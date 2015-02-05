@@ -11,4 +11,5 @@
 
 extern crate libc;
 
+pub mod glx;
 pub mod xlib;
