@@ -678,7 +678,7 @@ pub type Status = Bool;
 //
 
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
 pub struct XEvent {
   pub pad: [c_long; 24],
@@ -746,7 +746,7 @@ fn xevent_size_test () {
 }
 
 #[allow(raw_pointer_derive)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
 pub struct XAnyEvent {
   pub kind: c_int,
@@ -764,7 +764,7 @@ impl XAnyEvent {
   }
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
 pub struct XClientMessageData {
   longs: [c_long; 5],
@@ -815,7 +815,7 @@ fn client_message_size_test () {
 }
 
 #[allow(raw_pointer_derive)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
 pub struct XClientMessageEvent {
   pub kind: c_int,
@@ -837,7 +837,7 @@ impl XClientMessageEvent {
 }
 
 #[allow(raw_pointer_derive)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
 pub struct XDestroyWindowEvent {
   pub kind: c_int,
@@ -862,7 +862,7 @@ impl XDestroyWindowEvent {
 //
 
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
 pub struct XColor {
   pub pixel: c_ulong,
@@ -873,7 +873,7 @@ pub struct XColor {
   pub pad: c_char,
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
 pub struct XSetWindowAttributes {
   pub background_pixmap: Pixmap,
@@ -893,7 +893,7 @@ pub struct XSetWindowAttributes {
   pub cursor: Cursor,
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
 pub struct XSizeHints {
   pub flags: c_long,
@@ -915,7 +915,7 @@ pub struct XSizeHints {
 }
 
 #[allow(raw_pointer_derive)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
 pub struct XVisualInfo {
   pub visual: *const Visual,
@@ -931,7 +931,7 @@ pub struct XVisualInfo {
 }
 
 #[allow(raw_pointer_derive)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
 pub struct XWindowAttributes {
   pub x: c_int,
@@ -965,7 +965,7 @@ pub struct XWindowAttributes {
 //
 
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
 pub struct AspectRatio {
   pub x: c_int,
