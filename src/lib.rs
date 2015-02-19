@@ -6,7 +6,6 @@
 
 #![allow(non_upper_case_globals)]
 
-#![feature(core)]
 #![feature(libc)]
 
 extern crate libc;

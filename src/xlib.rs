@@ -12,6 +12,7 @@ use libc::{
   c_int,
   c_long,
   c_short,
+  c_uchar,
   c_uint,
   c_ulong,
   c_ushort,
@@ -361,12 +362,14 @@ extern "C" {
   pub fn XGetVisualInfo (display: *mut Display, mask: c_long, template: *const XVisualInfo, nitems: *mut c_int)
       -> *mut XVisualInfo;
   pub fn XGetWindowAttributes (display: *mut Display, window: Window, attr: *mut XWindowAttributes) -> Status;
-  // XGetWindowProperty
+  pub fn XGetWindowProperty (display: *mut Display, window: Window, property: Atom, long_offset: c_long,
+      long_length: c_long, delete: Bool, requested_type: Atom, out_type: *mut Atom, out_format: *mut c_int,
+      out_length: *mut c_ulong, out_remaining: *mut c_ulong, out_data: *mut c_char) -> c_int;
   // XGetWMClientMachine
   // XGetWMColormapWindows
   // XGetWMHints
   // XGetWMIconName
-  // XGetWMName
+  pub fn XGetWMName (display: *mut Display, window: Window, name: *mut XTextProperty) -> Status;
   // XGetWMNormalHints
   // XGetWMProtocols
   // XGetWMSizeHints
@@ -917,6 +920,16 @@ pub struct XSizeHints {
 #[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
+pub struct XTextProperty {
+  pub value: *mut c_uchar,
+  pub encoding: Atom,
+  pub format: c_int,
+  pub nitems: c_ulong,
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Clone, Copy, Eq, PartialEq)]
+#[repr(C)]
 pub struct XVisualInfo {
   pub visual: *const Visual,
   pub visualid: VisualID,
@@ -982,6 +995,28 @@ pub struct AspectRatio {
 pub const DoRed: c_char = 1;
 pub const DoGreen: c_char = 2;
 pub const DoBlue: c_char = 4;
+
+// error codes
+pub const Success: c_int = 0;
+pub const BadRequest: c_int = 1;
+pub const BadValue: c_int = 2;
+pub const BadWindow: c_int = 3;
+pub const BadPixmap: c_int = 4;
+pub const BadAtom: c_int = 5;
+pub const BadCursor: c_int = 6;
+pub const BadFont: c_int = 7;
+pub const BadMatch: c_int = 8;
+pub const BadDrawable: c_int = 9;
+pub const BadAccess: c_int = 10;
+pub const BadAlloc: c_int = 11;
+pub const BadColor: c_int = 12;
+pub const BadGC: c_int = 13;
+pub const BadIDChoice: c_int = 14;
+pub const BadName: c_int = 15;
+pub const BadLength: c_int = 16;
+pub const BadImplementation: c_int = 17;
+pub const FirstExtensionError: c_int = 128;
+pub const LastExtensionError: c_int = 255;
 
 // event kinds
 pub const KeyPress: c_int = 2;
