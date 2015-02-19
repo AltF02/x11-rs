@@ -991,6 +991,76 @@ pub struct AspectRatio {
 //
 
 
+// atoms
+pub const XA_PRIMARY: Atom = 1;
+pub const XA_SECONDARY: Atom = 2;
+pub const XA_ARC: Atom = 3;
+pub const XA_ATOM: Atom = 4;
+pub const XA_BITMAP: Atom = 5;
+pub const XA_CARDINAL: Atom = 6;
+pub const XA_COLORMAP: Atom = 7;
+pub const XA_CURSOR: Atom = 8;
+pub const XA_CUT_BUFFER0: Atom = 9;
+pub const XA_CUT_BUFFER1: Atom = 10;
+pub const XA_CUT_BUFFER2: Atom = 11;
+pub const XA_CUT_BUFFER3: Atom = 12;
+pub const XA_CUT_BUFFER4: Atom = 13;
+pub const XA_CUT_BUFFER5: Atom = 14;
+pub const XA_CUT_BUFFER6: Atom = 15;
+pub const XA_CUT_BUFFER7: Atom = 16;
+pub const XA_DRAWABLE: Atom = 17;
+pub const XA_FONT: Atom = 18;
+pub const XA_INTEGER: Atom = 19;
+pub const XA_PIXMAP: Atom = 20;
+pub const XA_POINT: Atom = 21;
+pub const XA_RECTANGLE: Atom = 22;
+pub const XA_RESOURCE_MANAGER: Atom = 23;
+pub const XA_RGB_COLOR_MAP: Atom = 24;
+pub const XA_RGB_BEST_MAP: Atom = 25;
+pub const XA_RGB_BLUE_MAP: Atom = 26;
+pub const XA_RGB_DEFAULT_MAP: Atom = 27;
+pub const XA_RGB_GRAY_MAP: Atom = 28;
+pub const XA_RGB_GREEN_MAP: Atom = 29;
+pub const XA_RGB_RED_MAP: Atom = 30;
+pub const XA_STRING: Atom = 31;
+pub const XA_VISUALID: Atom = 32;
+pub const XA_WINDOW: Atom = 33;
+pub const XA_WM_COMMAND: Atom = 34;
+pub const XA_WM_HINTS: Atom = 35;
+pub const XA_WM_CLIENT_MACHINE: Atom = 36;
+pub const XA_WM_ICON_NAME: Atom = 37;
+pub const XA_WM_ICON_SIZE: Atom = 38;
+pub const XA_WM_NAME: Atom = 39;
+pub const XA_WM_NORMAL_HINTS: Atom = 40;
+pub const XA_WM_SIZE_HINTS: Atom = 41;
+pub const XA_WM_ZOOM_HINTS: Atom = 42;
+pub const XA_MIN_SPACE: Atom = 43;
+pub const XA_NORM_SPACE: Atom = 44;
+pub const XA_MAX_SPACE: Atom = 45;
+pub const XA_END_SPACE: Atom = 46;
+pub const XA_SUPERSCRIPT_X: Atom = 47;
+pub const XA_SUPERSCRIPT_Y: Atom = 48;
+pub const XA_SUBSCRIPT_X: Atom = 49;
+pub const XA_SUBSCRIPT_Y: Atom = 50;
+pub const XA_UNDERLINE_POSITION: Atom = 51;
+pub const XA_UNDERLINE_THICKNESS: Atom = 52;
+pub const XA_STRIKEOUT_ASCENT: Atom = 53;
+pub const XA_STRIKEOUT_DESCENT: Atom = 54;
+pub const XA_ITALIC_ANGLE: Atom = 55;
+pub const XA_X_HEIGHT: Atom = 56;
+pub const XA_QUAD_WIDTH: Atom = 57;
+pub const XA_WEIGHT: Atom = 58;
+pub const XA_POINT_SIZE: Atom = 59;
+pub const XA_RESOLUTION: Atom = 60;
+pub const XA_COPYRIGHT: Atom = 61;
+pub const XA_NOTICE: Atom = 62;
+pub const XA_FONT_NAME: Atom = 63;
+pub const XA_FAMILY_NAME: Atom = 64;
+pub const XA_FULL_NAME: Atom = 65;
+pub const XA_CAP_HEIGHT: Atom = 66;
+pub const XA_WM_CLASS: Atom = 67;
+pub const XA_WM_TRANSIENT_FOR: Atom = 68;
+
 // color component mask
 pub const DoRed: c_char = 1;
 pub const DoGreen: c_char = 2;
