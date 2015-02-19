@@ -462,7 +462,8 @@ extern "C" {
   // XQueryPointer
   // XQueryTextExtents
   // XQueryTextExtents16
-  // XQueryTree
+  pub fn XQueryTree (display: *mut Display, window: Window, root: *mut Window, parent: *mut Window,
+      children: *mut *mut Window, nchildren: *mut c_uint) -> Status;
   // XRaiseWindow
   // XReadBitmapFile
   // XReadBitmapFileData
