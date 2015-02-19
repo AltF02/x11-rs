@@ -364,7 +364,7 @@ extern "C" {
   pub fn XGetWindowAttributes (display: *mut Display, window: Window, attr: *mut XWindowAttributes) -> Status;
   pub fn XGetWindowProperty (display: *mut Display, window: Window, property: Atom, long_offset: c_long,
       long_length: c_long, delete: Bool, requested_type: Atom, out_type: *mut Atom, out_format: *mut c_int,
-      out_length: *mut c_ulong, out_remaining: *mut c_ulong, out_data: *mut c_char) -> c_int;
+      out_length: *mut c_ulong, out_remaining: *mut c_ulong, out_data: *mut *mut c_char) -> c_int;
   // XGetWMClientMachine
   // XGetWMColormapWindows
   // XGetWMHints
