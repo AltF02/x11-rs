@@ -209,7 +209,7 @@ extern "C" {
   // XCopyPlane
   // XCreateAssocTable
   // XCreateBitmapFromData
-  // XCreateColormap
+  pub fn XCreateColormap (display: *mut Display, window: Window, visual: *const Visual, alloc: c_int) -> Colormap;
   // XCreateFontCursor
   // XCreateFontSet
   // XCreateGC
@@ -991,6 +991,10 @@ pub struct AspectRatio {
 // constants
 //
 
+
+// allocate colormap
+pub const AllocNone: c_int = 0;
+pub const AllocAll: c_int = 1;
 
 // atoms
 pub const XA_PRIMARY: Atom = 1;
