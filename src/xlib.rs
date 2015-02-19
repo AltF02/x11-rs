@@ -625,7 +625,7 @@ extern "C" {
   // XUnmapSubwindows
   pub fn XUnmapWindow (display: *mut Display, window: Window);
   // XVendorRelease
-  // XVisualIDFromVisual
+  pub fn XVisualIDFromVisual (visual: *const Visual) -> VisualID;
   // XWarpPointer
   // XwcFreeStringList
   // XwcTextListToTextProperty
