@@ -707,6 +707,12 @@ impl XEvent {
     }
   }
 
+  pub fn xconfigure (&self) -> XConfigureEvent {
+    unsafe {
+      xtransmute(self)
+    }
+  }
+
   pub fn xdestroy (&self) -> XDestroyWindowEvent {
     unsafe {
       xtransmute(self)
@@ -722,7 +728,7 @@ fn xevent_size_test () {
   // assert!(size_of::<XEvent>() >= size_of::<XCirculateRequestEvent>());
   assert!(size_of::<XEvent>() >= size_of::<XClientMessageEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XColormapEvent>());
-  // assert!(size_of::<XEvent>() >= size_of::<XConfigureEvent>());
+  assert!(size_of::<XEvent>() >= size_of::<XConfigureEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XConfigureRequestEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XCreateWindowEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XCrossingEvent>());
@@ -833,6 +839,33 @@ pub struct XClientMessageEvent {
 }
 
 impl XClientMessageEvent {
+  pub fn to_xevent (&self) -> XEvent {
+    unsafe {
+      xtransmute(self)
+    }
+  }
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Clone, Copy, Eq, PartialEq)]
+#[repr(C)]
+pub struct XConfigureEvent {
+  pub kind: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub event: Window,
+  pub window: Window,
+  pub x: c_int,
+  pub y: c_int,
+  pub width: c_int,
+  pub height: c_int,
+  pub border_width: c_int,
+  pub above: Window,
+  pub override_redirect: Bool,
+}
+
+impl XConfigureEvent {
   pub fn to_xevent (&self) -> XEvent {
     unsafe {
       xtransmute(self)
