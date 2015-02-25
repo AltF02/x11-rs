@@ -6,8 +6,6 @@
 
 #![allow(non_upper_case_globals)]
 
-#![feature(libc)]
-
 extern crate libc;
 
 pub mod glx;
