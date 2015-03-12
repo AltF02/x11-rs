@@ -713,7 +713,7 @@ impl XEvent {
     }
   }
 
-  pub fn xdestroy (&self) -> XDestroyWindowEvent {
+  pub fn xdestroywindow (&self) -> XDestroyWindowEvent {
     unsafe {
       xtransmute(self)
     }
