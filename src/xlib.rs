@@ -209,7 +209,7 @@ extern "C" {
   // XCopyPlane
   // XCreateAssocTable
   // XCreateBitmapFromData
-  pub fn XCreateColormap (display: *mut Display, window: Window, visual: *const Visual, alloc: c_int) -> Colormap;
+  pub fn XCreateColormap (display: *mut Display, window: Window, visual: *mut Visual, alloc: c_int) -> Colormap;
   // XCreateFontCursor
   // XCreateFontSet
   // XCreateGC
@@ -222,7 +222,7 @@ extern "C" {
   pub fn XCreateSimpleWindow (display: *mut Display, parent: Window, x: c_int, y: c_int, width: c_uint, height: c_uint,
       border_width: c_uint, border: c_ulong, background: c_ulong) -> Window;
   pub fn XCreateWindow (display: *mut Display, parent: Window, x: c_int, y: c_int, width: c_uint, height: c_uint,
-      border_width: c_uint, depth: c_int, class: c_int, visual: *const Visual, attr_mask: c_ulong,
+      border_width: c_uint, depth: c_int, class: c_int, visual: *mut Visual, attr_mask: c_ulong,
       attr: *const XSetWindowAttributes) -> Window;
   pub fn XDefaultColormap (display: *mut Display, screen_num: c_int) -> Colormap;
   // XDefaultColormapOfScreen
@@ -233,7 +233,7 @@ extern "C" {
   pub fn XDefaultScreen (display: *mut Display) -> c_int;
   // XDefaultScreenOfDisplay
   // XDefaultString
-  pub fn XDefaultVisual (display: *mut Display, screen_num: c_int) -> *const Visual;
+  pub fn XDefaultVisual (display: *mut Display, screen_num: c_int) -> *mut Visual;
   // XDefaultVisualOfScreen
   // XDefineCursor
   // XDeleteAssoc
@@ -625,7 +625,7 @@ extern "C" {
   // XUnmapSubwindows
   pub fn XUnmapWindow (display: *mut Display, window: Window);
   // XVendorRelease
-  pub fn XVisualIDFromVisual (visual: *const Visual) -> VisualID;
+  pub fn XVisualIDFromVisual (visual: *mut Visual) -> VisualID;
   // XWarpPointer
   // XwcFreeStringList
   // XwcTextListToTextProperty
@@ -965,7 +965,7 @@ pub struct XTextProperty {
 #[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
 pub struct XVisualInfo {
-  pub visual: *const Visual,
+  pub visual: *mut Visual,
   pub visualid: VisualID,
   pub screen: c_int,
   pub depth: c_uint,
@@ -987,7 +987,7 @@ pub struct XWindowAttributes {
   pub height: c_int,
   pub border_width: c_int,
   pub depth: c_int,
-  pub visual: *const Visual,
+  pub visual: *mut Visual,
   pub root: Window,
   pub class: c_int,
   pub bit_gravity: c_int,
@@ -1003,7 +1003,7 @@ pub struct XWindowAttributes {
   pub your_event_mask: c_long,
   pub do_not_propagate_mask: c_long,
   pub override_redirect: Bool,
-  pub screen: *const Screen,
+  pub screen: *mut Screen,
 }
 
 
