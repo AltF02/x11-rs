@@ -48,7 +48,7 @@ extern "C" {
   // glXGetCurrentReadDrawable
   // glXGetFBConfigAttrib
   // glXGetFBConfigs
-  pub fn glXGetProcAddress (name: *const c_char) -> unsafe extern "C" fn ();
+  pub fn glXGetProcAddress (name: *const c_char) -> Option<unsafe extern "C" fn ()>;
   // glXGetSelectedEvent
   pub fn glXGetVisualFromFBConfig (display: *mut Display, fbconfig: GLXFBConfig) -> *mut XVisualInfo;
   // glXIsDirect
