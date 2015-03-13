@@ -27,8 +27,6 @@ extern "C" {
   // glXCopyContext
   pub fn glXCreateContext (display: *mut Display, visual_info: *const XVisualInfo, share_context: GLXContext,
       direct: Bool) -> GLXContext;
-  pub fn glXCreateContextAttribsARB (display: *mut Display, config: GLXFBConfig, share_context: GLXContext,
-      direct: Bool, attrib_list: *const c_int) -> GLXContext;
   // glXCreateGLXPixmap
   // glXCreateNewContext
   // glXCreatePbuffer
@@ -99,20 +97,6 @@ pub type GLXFBConfig = *mut GLXFBConfig_Rec;
 pub const GLX_SLOW_CONFIG: c_int = 0x8001;
 pub const GLX_NON_CONFORMANT_CONFIG: c_int = 0x800d;
 
-// context attributes
-pub const GLX_CONTEXT_MAJOR_VERSION_ARB: c_int = 0x2091;
-pub const GLX_CONTEXT_MINOR_VERSION_ARB: c_int = 0x2092;
-pub const GLX_CONTEXT_FLAGS_ARB: c_int = 0x2094;
-pub const GLX_CONTEXT_PROFILE_MASK_ARB: c_int = 0x9126;
-
-// context flags
-pub const GLX_CONTEXT_DEBUG_BIT_ARB: c_int = 0x0001;
-pub const GLX_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB: c_int = 0x0002;
-
-// context profile mask
-pub const GLX_CONTEXT_CORE_PROFILE_BIT_ARB: c_int = 0x0001;
-pub const GLX_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB: c_int = 0x0002;
-
 // drawable type mask
 pub const GLX_WINDOW_BIT: c_int = 0x0001;
 pub const GLX_PIXMAP_BIT: c_int = 0x0002;
@@ -166,3 +150,27 @@ pub const GLX_PSEUDO_COLOR: c_int = 0x8004;
 pub const GLX_STATIC_COLOR: c_int = 0x8005;
 pub const GLX_GRAY_SCALE: c_int = 0x8006;
 pub const GLX_STATIC_GRAY: c_int = 0x8007;
+
+
+//
+// ARB extensions
+//
+
+
+pub mod arb {
+  use libc::c_int;
+
+  // context attributes
+  pub const GLX_CONTEXT_MAJOR_VERSION_ARB: c_int = 0x2091;
+  pub const GLX_CONTEXT_MINOR_VERSION_ARB: c_int = 0x2092;
+  pub const GLX_CONTEXT_FLAGS_ARB: c_int = 0x2094;
+  pub const GLX_CONTEXT_PROFILE_MASK_ARB: c_int = 0x9126;
+
+  // context flags
+  pub const GLX_CONTEXT_DEBUG_BIT_ARB: c_int = 0x0001;
+  pub const GLX_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB: c_int = 0x0002;
+
+  // context profile mask
+  pub const GLX_CONTEXT_CORE_PROFILE_BIT_ARB: c_int = 0x0001;
+  pub const GLX_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB: c_int = 0x0002;
+}
