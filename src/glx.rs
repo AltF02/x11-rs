@@ -87,7 +87,7 @@ pub type GLXContext = *mut GLXContext_Rec;
 #[allow(missing_copy_implementations)]
 #[repr(C)]
 pub struct GLXFBConfig_Rec;
-pub type GLXFBConfig = *const GLXFBConfig_Rec;
+pub type GLXFBConfig = *mut GLXFBConfig_Rec;
 
 
 //
