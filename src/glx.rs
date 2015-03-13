@@ -27,7 +27,7 @@ extern "C" {
   // glXCopyContext
   pub fn glXCreateContext (display: *mut Display, visual_info: *const XVisualInfo, share_context: GLXContext,
       direct: Bool) -> GLXContext;
-  pub fn glXCreateContextAttribsArb (display: *mut Display, config: GLXFBConfig, share_context: GLXContext,
+  pub fn glXCreateContextAttribsARB (display: *mut Display, config: GLXFBConfig, share_context: GLXContext,
       direct: Bool, attrib_list: *const c_int) -> GLXContext;
   // glXCreateGLXPixmap
   // glXCreateNewContext
