@@ -718,6 +718,12 @@ impl XEvent {
       xtransmute(self)
     }
   }
+
+  pub fn xexpose (&self) -> XExposeEvent {
+    unsafe {
+      xtransmute(self)
+    }
+  }
 }
 
 #[test]
@@ -734,7 +740,7 @@ fn xevent_size_test () {
   // assert!(size_of::<XEvent>() >= size_of::<XCrossingEvent>());
   assert!(size_of::<XEvent>() >= size_of::<XDestroyWindowEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XErrorEvent>());
-  // assert!(size_of::<XEvent>() >= size_of::<XExposeEvent>());
+  assert!(size_of::<XEvent>() >= size_of::<XExposeEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XFocusChangeEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XGraphicsExposeEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XGravityEvent>());
@@ -886,6 +892,30 @@ pub struct XDestroyWindowEvent {
 }
 
 impl XDestroyWindowEvent {
+  pub fn to_xevent (&self) -> XEvent {
+    unsafe {
+      xtransmute(self)
+    }
+  }
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Clone, Copy, Eq, PartialEq)]
+#[repr(C)]
+pub struct XExposeEvent {
+  pub kind: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub window: Window,
+  pub x: c_int,
+  pub y: c_int,
+  pub width: c_int,
+  pub height: c_int,
+  pub count: c_int,
+}
+
+impl XExposeEvent {
   pub fn to_xevent (&self) -> XEvent {
     unsafe {
       xtransmute(self)
