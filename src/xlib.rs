@@ -271,7 +271,8 @@ extern "C" {
   // XDrawPatterned
   // XDrawPoint
   // XDrawPoints
-  // XDrawRectangle
+  pub fn XDrawRectangle (display: *mut Display, drawable: Drawable, gc: GC, x: c_int, y: c_int,
+      width: c_uint, height: c_uint);
   // XDrawRectangles
   // XDrawSegments
   // XDrawString
@@ -305,7 +306,8 @@ extern "C" {
   // XFillArc
   // XFillArcs
   // XFillPolygon
-  // XFillRectangle
+  pub fn XFillRectangle (display: *mut Display, drawable: Drawable, gc: GC, x: c_int, y: c_int,
+      width: c_uint, height: c_uint);
   // XFillRectangles
   // XFindContext
   pub fn XFlush (display: *mut Display);
@@ -528,8 +530,8 @@ extern "C" {
   // XScreenResourceString
   // XScreensOfDisplay
   // XSelectInput
-  pub fn XSendEvent (display: *mut Display, window: Window, propagate: Bool, event_mask: c_long, event: *const XEvent)
-      -> Status;
+  pub fn XSendEvent (display: *mut Display, window: Window, propagate: Bool, event_mask: c_long,
+      event: *const XEvent) -> Status;
   // XServerVendor
   // XSetAccessControl
   // XSetAfterFunction
@@ -538,7 +540,8 @@ extern "C" {
   // XSetClassHint
   // XSetClipMask
   // XSetClipOrigin
-  // XSetClipRectangles
+  pub fn XSetClipRectangles (display: *mut Display, gc: GC, clip_x_origin: c_int,
+      clip_y_origin: c_int, rectangles: *const XRectangle, n: c_int, ordering: c_int);
   // XSetCloseDownMode
   // XSetCommand
   // XSetDashes
@@ -547,7 +550,7 @@ extern "C" {
   // XSetFillStyle
   // XSetFont
   // XSetFontPath
-  // XSetForeground
+  pub fn XSetForeground (display: *mut Display, gc: GC, fg: c_ulong);
   // XSetFunction
   // XSetGraphicsExposures
   // XSetIconName
@@ -942,6 +945,15 @@ pub struct XColor {
 
 #[derive(Clone, Copy, Eq, PartialEq)]
 #[repr(C)]
+pub struct XRectangle {
+  pub x: c_short,
+  pub y: c_short,
+  pub width: c_ushort,
+  pub height: c_ushort,
+}
+
+#[derive(Clone, Copy, Eq, PartialEq)]
+#[repr(C)]
 pub struct XSetWindowAttributes {
   pub background_pixmap: Pixmap,
   pub background_pixel: c_ulong,
@@ -1129,6 +1141,12 @@ pub const XA_CAP_HEIGHT: Atom = 66;
 pub const XA_WM_CLASS: Atom = 67;
 pub const XA_WM_TRANSIENT_FOR: Atom = 68;
 
+// clip rect ordering
+pub const Unsorted: c_int = 0;
+pub const YSorted: c_int = 1;
+pub const YXSorted: c_int = 2;
+pub const YXBanded: c_int = 3;
+
 // color component mask
 pub const DoRed: c_char = 1;
 pub const DoGreen: c_char = 2;
@@ -1236,6 +1254,14 @@ pub const PAspect: c_long = 0x0080;
 pub const PBaseSize: c_long = 0x0100;
 pub const PWinGravity: c_long = 0x0200;
 pub const PAllHints: c_long = PPosition | PSize | PMinSize | PMaxSize | PResizeInc | PAspect;
+
+// visual class
+pub const StaticGray: c_int = 0;
+pub const GrayScale: c_int = 1;
+pub const StaticColor: c_int = 2;
+pub const PseudoColor: c_int = 3;
+pub const TrueColor: c_int = 4;
+pub const DirectColor: c_int = 5;
 
 // visual info mask
 pub const VisualNoMask: c_long = 0x0000;
