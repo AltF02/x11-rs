@@ -209,21 +209,24 @@ extern "C" {
   // XCopyPlane
   // XCreateAssocTable
   // XCreateBitmapFromData
-  pub fn XCreateColormap (display: *mut Display, window: Window, visual: *mut Visual, alloc: c_int) -> Colormap;
+  pub fn XCreateColormap (display: *mut Display, window: Window, visual: *mut Visual, alloc: c_int)
+      -> Colormap;
   // XCreateFontCursor
   // XCreateFontSet
-  // XCreateGC
+  pub fn XCreateGC (display: *mut Display, drawable: Drawable, valuemask: c_ulong,
+      values: *const XGCValues) -> GC;
   // XCreateGlyphCursor
   // XCreateImage
   // XCreatePixmap
   // XCreatePixmapCursor
   // XCreatePixmapFromBitmapData
   // XCreateRegion
-  pub fn XCreateSimpleWindow (display: *mut Display, parent: Window, x: c_int, y: c_int, width: c_uint, height: c_uint,
-      border_width: c_uint, border: c_ulong, background: c_ulong) -> Window;
-  pub fn XCreateWindow (display: *mut Display, parent: Window, x: c_int, y: c_int, width: c_uint, height: c_uint,
-      border_width: c_uint, depth: c_int, class: c_int, visual: *mut Visual, attr_mask: c_ulong,
-      attr: *const XSetWindowAttributes) -> Window;
+  pub fn XCreateSimpleWindow (display: *mut Display, parent: Window, x: c_int, y: c_int,
+      width: c_uint, height: c_uint, border_width: c_uint, border: c_ulong, background: c_ulong)
+      -> Window;
+  pub fn XCreateWindow (display: *mut Display, parent: Window, x: c_int, y: c_int, width: c_uint,
+      height: c_uint, border_width: c_uint, depth: c_int, class: c_int, visual: *mut Visual,
+      attr_mask: c_ulong, attr: *const XSetWindowAttributes) -> Window;
   pub fn XDefaultColormap (display: *mut Display, screen_num: c_int) -> Colormap;
   // XDefaultColormapOfScreen
   // XDefaultDepthOfScreen
@@ -941,6 +944,34 @@ pub struct XColor {
   pub blue: c_ushort,
   pub flags: c_char,
   pub pad: c_char,
+}
+
+#[derive(Clone, Copy, Eq, PartialEq)]
+#[repr(C)]
+pub struct XGCValues {
+  pub function: c_int,
+  pub plane_mask: c_ulong,
+  pub foreground: c_ulong,
+  pub background: c_ulong,
+  pub line_width: c_int,
+  pub line_style: c_int,
+  pub cap_style: c_int,
+  pub join_style: c_int,
+  pub fill_style: c_int,
+  pub fill_rule: c_int,
+  pub arc_mode: c_int,
+  pub tile: Pixmap,
+  pub stipple: Pixmap,
+  pub ts_x_origin: c_int,
+  pub ts_y_origin: c_int,
+  pub font: Font,
+  pub subwindow_mode: c_int,
+  pub graphics_exposures: Bool,
+  pub clip_x_origin: c_int,
+  pub clip_y_origin: c_int,
+  pub clip_mask: Pixmap,
+  pub dash_offset: c_int,
+  pub dashes: c_char,
 }
 
 #[derive(Clone, Copy, Eq, PartialEq)]
