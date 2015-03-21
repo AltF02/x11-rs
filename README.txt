@@ -1,5 +1,6 @@
-x11.rs: Rust bindings for X11 libraries
-Copyright (c) 2015, <daggerbot@gmail.com>
-All rights reserved.
-This software is protected by U.S. and international copyright law.
-See LICENSE.txt for more information.
+x11-rs: Rust bindings for X11 libraries
+The X11 libraries are available under the MIT license.
+These bindings are public domain.
+
+Authors:
+- Daggerbot <daggerbot@gmail.com>
