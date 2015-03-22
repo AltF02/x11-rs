@@ -664,7 +664,10 @@ pub type GC = XID;
 pub type Pixmap = XID;
 pub type VisualID = XID;
 pub type Window = XID;
+pub type KeySym = XID;
 pub type XID = c_ulong;
+
+pub type KeyCode = c_uchar;
 
 // opaque structures
 #[allow(missing_copy_implementations)]
@@ -1080,6 +1083,11 @@ pub struct XWindowAttributes {
   pub screen: *mut Screen,
 }
 
+#[repr(C)]
+pub struct XModifierKeymap {
+  pub max_keypermod: c_int,
+  pub modifiermap: *mut KeyCode,
+}
 
 //
 // anonymous structures
