@@ -38,16 +38,13 @@ extern "C" {
   // CellsOfScreen
   // ClientWhitePointOfCCC
   // ConnectionNumber
-  // DefaultColormap
   // DefaultColormapOfScreen
   // DefaultDepth
   // DefaultDepthOfScreen
   // DefaultGC
   // DefaultGCOfScreen
   // DefaultRootWindow
-  // DefaultScreen
   // DefaultScreenOfDisplay
-  // DefaultVisual
   // DefaultVisualOfScreen
   // DisplayCells
   // DisplayHeight
@@ -80,7 +77,6 @@ extern "C" {
   // ProtocolRevision
   // ProtocolVersion
   // QLength
-  // RootWindow
   // RootWindowOfScreen
   // ScreenCount
   // ScreenNumberOfCCC
@@ -417,7 +413,7 @@ extern "C" {
   // XLockDisplay
   // XLookUpAssoc
   // XLookupColor
-  // XLookupKeysym
+  pub fn XLookupKeysym (key_event: *const XKeyEvent, index: c_int) -> KeySym;
   // XLookupString
   // XLowerWindow
   // XMakeAssoc
@@ -650,26 +646,49 @@ extern "C" {
 
 
 //
+// C macros implemented as Rust functions
+//
+
+
+pub unsafe fn DefaultColormap (display: *mut Display, screen_num: c_int) -> Colormap {
+  XDefaultColormap(display, screen_num)
+}
+
+pub unsafe fn DefaultScreen (display: *mut Display) -> c_int {
+  XDefaultScreen(display)
+}
+
+pub unsafe fn DefaultVisual (display: *mut Display, screen_num: c_int) -> *mut Visual {
+  XDefaultVisual(display, screen_num)
+}
+
+pub unsafe fn RootWindow (display: *mut Display, screen_num: c_int) -> Window {
+  XRootWindow(display, screen_num)
+}
+
+
+//
 // types
 //
 
 
-// ID types
 pub type Atom = XID;
+pub type Bool = c_int;
 pub type Colormap = XID;
 pub type Cursor = XID;
 pub type Drawable = XID;
 pub type Font = XID;
 pub type GC = XID;
+pub type KeyCode = c_uchar;
+pub type KeySym = XID;
+pub type Mask = c_ulong;
 pub type Pixmap = XID;
+pub type Status = Bool;
+pub type Time = c_ulong;
 pub type VisualID = XID;
 pub type Window = XID;
-pub type KeySym = XID;
 pub type XID = c_ulong;
 
-pub type KeyCode = c_uchar;
-
-// opaque structures
 #[allow(missing_copy_implementations)]
 #[repr(C)]
 pub struct Display;
@@ -681,10 +700,6 @@ pub struct Screen;
 #[allow(missing_copy_implementations)]
 #[repr(C)]
 pub struct Visual;
-
-// boolean types
-pub type Bool = c_int;
-pub type Status = Bool;
 
 
 //
@@ -734,6 +749,12 @@ impl XEvent {
       xtransmute(self)
     }
   }
+
+  pub fn xkey (&self) -> XKeyEvent {
+    unsafe {
+      xtransmute(self)
+    }
+  }
 }
 
 #[test]
@@ -754,7 +775,7 @@ fn xevent_size_test () {
   // assert!(size_of::<XEvent>() >= size_of::<XFocusChangeEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XGraphicsExposeEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XGravityEvent>());
-  // assert!(size_of::<XEvent>() >= size_of::<XKeyEvent>());
+  assert!(size_of::<XEvent>() >= size_of::<XKeyEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XKeymapEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XMapEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XMappingEvent>());
@@ -926,6 +947,37 @@ pub struct XExposeEvent {
 }
 
 impl XExposeEvent {
+  pub fn to_xevent (&self) -> XEvent {
+    unsafe {
+      xtransmute(self)
+    }
+  }
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Clone, Copy, Eq, PartialEq)]
+#[repr(C)]
+pub struct XKeyEvent {
+  pub kind: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub window: Window,
+  pub root: Window,
+  pub subwindow: Window,
+  pub time: Time,
+  pub x: c_int,
+  pub y: c_int,
+  pub x_root: c_int,
+  pub y_root: c_int,
+  pub state: c_uint,
+  pub keycode: c_uint,
+  pub same_screen: Bool,
+}
+pub type XKeyPressedEvent = XKeyEvent;
+pub type XKeyReleasedEvent = XKeyEvent;
+
+impl XKeyEvent {
   pub fn to_xevent (&self) -> XEvent {
     unsafe {
       xtransmute(self)
