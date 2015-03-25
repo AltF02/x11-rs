@@ -7,6 +7,10 @@ use std::mem::{
   size_of,
   zeroed,
 };
+use std::slice::{
+  from_raw_parts,
+  from_raw_parts_mut,
+};
 
 use libc::{
   c_char,
@@ -820,8 +824,7 @@ pub struct XClientMessageData {
 impl XClientMessageData {
   pub fn get_byte (&self, index: usize) -> c_char {
     unsafe {
-      assert!(index < 20);
-      return *(&self.longs[0] as *const c_long as *const c_char);
+      from_raw_parts(&self.longs[0] as *const c_long as *const c_char, 20)[index]
     }
   }
 
@@ -831,15 +834,13 @@ impl XClientMessageData {
 
   pub fn get_short (&self, index: usize) -> c_short {
     unsafe {
-      assert!(index < 10);
-      return *(&self.longs[0] as *const c_long as *const c_short);
+      from_raw_parts(&self.longs[0] as *const c_long as *const c_short, 10)[index]
     }
   }
 
   pub fn set_byte (&mut self, index: usize, value: c_char) {
     unsafe {
-      assert!(index < 20);
-      *(&mut self.longs[0] as *mut c_long as *mut c_char) = value;
+      from_raw_parts_mut(&mut self.longs[0] as *mut c_long as *mut c_char, 20)[index] = value;
     }
   }
 
@@ -849,8 +850,7 @@ impl XClientMessageData {
 
   pub fn set_short (&mut self, index: usize, value: c_short) {
     unsafe {
-      assert!(index < 10);
-      *(&mut self.longs[0] as *mut c_long as *mut c_short) = value;
+      from_raw_parts_mut(&mut self.longs[0] as *mut c_long as *mut c_short, 10)[index] = value;
     }
   }
 }
