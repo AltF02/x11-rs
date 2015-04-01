@@ -32,14 +32,6 @@ use libc::{
 
 #[link(name="X11")]
 extern "C" {
-  // _XSetLastRequestRead
-  // AllPlanes
-  // BitmapBitOrder
-  // BitmapPad
-  // BitmapUnit
-  // BlackPixel
-  // BlackPixelOfScreen
-  // CellsOfScreen
   // ClientWhitePointOfCCC
   // ConnectionNumber
   // DefaultColormapOfScreen
@@ -82,7 +74,6 @@ extern "C" {
   // ProtocolVersion
   // QLength
   // RootWindowOfScreen
-  // ScreenCount
   // ScreenNumberOfCCC
   // ScreensOfDisplay
   // ScreenWhitePointOfCCC
@@ -90,18 +81,16 @@ extern "C" {
   // VendorRelease
   // VertexDrawLastPoint
   // VisualOfCCC
-  // WhitePixel
-  // WhitePixelOfScreen
   // WidthMMOfScreen
   // WidthOfScreen
-  // XActivateScreenSaver
-  // XAddConnectionWatch
-  // XAddExtension
-  // XAddHost
-  // XAddHosts
-  // XAddPixel
-  // XAddToSaveSet
-  // XAllocClassHint
+  pub fn XActivateScreenSaver (display: *mut Display);
+  pub fn XAddConnectionWatch (display: *mut Display, watch: XConnectionWatchProc, client_data: XPointer) -> Status;
+  pub fn XAddExtension (display: *mut Display) -> *mut XExtCodes;
+  pub fn XAddHost (display: *mut Display, host: *const XHostAddress) -> c_int;
+  pub fn XAddHosts (display: *mut Display, hosts: *const XHostAddress, num_hosts: c_int) -> c_int;
+  pub fn XAddPixel (image: *mut XImage, value: c_long);
+  pub fn XAddToSaveSet (display: *mut Display, window: Window);
+  pub fn XAllocClassHint () -> *mut XClassHint;
   pub fn XAllocColor (display: *mut Display, colormap: Colormap, color: *mut XColor) -> Status;
   // XAllocColorCells
   // XAllocColorPlanes
@@ -111,17 +100,17 @@ extern "C" {
   // XAllocStandardColormap
   // XAllocWMHints
   // XAllowEvents
-  // XAllPlanes
+  pub fn XAllPlanes () -> c_ulong;
   // XAppendVertex
   // XAutoRepeatOff
   // XAutoRepeatOn
   // XBell
-  // XBitmapBitOrder
-  // XBitmapPad
-  // XBitmapUnit
+  pub fn XBitmapBitOrder (display: *mut Display) -> c_int;
+  pub fn XBitmapPad (display: *mut Display) -> c_int;
+  pub fn XBitmapUnit (display: *mut Display) -> c_int;
   pub fn XBlackPixel (display: *mut Display, screen_num: c_int) -> c_ulong;
-  // XBlackPixelOfScreen
-  // XCellsOfScreen
+  pub fn XBlackPixelOfScreen (screen: *mut Screen) -> c_ulong;
+  pub fn XCellsOfScreen (screen: *mut Screen) -> c_int;
   // XChangeActivePointerGrab
   // XChangeGC
   // XChangeKeyboardControl
@@ -210,24 +199,18 @@ extern "C" {
   // XCopyPlane
   // XCreateAssocTable
   // XCreateBitmapFromData
-  pub fn XCreateColormap (display: *mut Display, window: Window, visual: *mut Visual, alloc: c_int)
-      -> Colormap;
+  pub fn XCreateColormap (display: *mut Display, window: Window, visual: *mut Visual, alloc: c_int) -> Colormap;
   // XCreateFontCursor
   // XCreateFontSet
-  pub fn XCreateGC (display: *mut Display, drawable: Drawable, valuemask: c_ulong,
-      values: *const XGCValues) -> GC;
+  pub fn XCreateGC (display: *mut Display, drawable: Drawable, valuemask: c_ulong, values: *const XGCValues) -> GC;
   // XCreateGlyphCursor
   // XCreateImage
   // XCreatePixmap
   // XCreatePixmapCursor
   // XCreatePixmapFromBitmapData
   // XCreateRegion
-  pub fn XCreateSimpleWindow (display: *mut Display, parent: Window, x: c_int, y: c_int,
-      width: c_uint, height: c_uint, border_width: c_uint, border: c_ulong, background: c_ulong)
-      -> Window;
-  pub fn XCreateWindow (display: *mut Display, parent: Window, x: c_int, y: c_int, width: c_uint,
-      height: c_uint, border_width: c_uint, depth: c_int, class: c_int, visual: *mut Visual,
-      attr_mask: c_ulong, attr: *const XSetWindowAttributes) -> Window;
+  pub fn XCreateSimpleWindow (display: *mut Display, parent: Window, x: c_int, y: c_int, width: c_uint, height: c_uint, border_width: c_uint, border: c_ulong, background: c_ulong) -> Window;
+  pub fn XCreateWindow (display: *mut Display, parent: Window, x: c_int, y: c_int, width: c_uint, height: c_uint, border_width: c_uint, depth: c_int, class: c_int, visual: *mut Visual, attr_mask: c_ulong, attr: *const XSetWindowAttributes) -> Window;
   pub fn XDefaultColormap (display: *mut Display, screen_num: c_int) -> Colormap;
   // XDefaultColormapOfScreen
   // XDefaultDepthOfScreen
@@ -249,7 +232,7 @@ extern "C" {
   // XDestroyRegion
   // XDestroySubwindows
   pub fn XDestroyWindow (display: *mut Display, window: Window);
-  // XDisableAccessControl
+  pub fn XDisableAccessControl (display: *mut Display) -> c_int;
   // XDisplayCells
   // XDisplayHeight
   // XDisplayHeightMM
@@ -275,8 +258,7 @@ extern "C" {
   // XDrawPatterned
   // XDrawPoint
   // XDrawPoints
-  pub fn XDrawRectangle (display: *mut Display, drawable: Drawable, gc: GC, x: c_int, y: c_int,
-      width: c_uint, height: c_uint);
+  pub fn XDrawRectangle (display: *mut Display, drawable: Drawable, gc: GC, x: c_int, y: c_int, width: c_uint, height: c_uint);
   // XDrawRectangles
   // XDrawSegments
   // XDrawString
@@ -285,7 +267,7 @@ extern "C" {
   // XDrawText16
   // XDrawTiled
   // XEmptyRegion
-  // XEnableAccessControl
+  pub fn XEnableAccessControl (display: *mut Display) -> c_int;
   // XEqualRegion
   // XESetBeforeFlush
   // XESetCloseDisplay
@@ -310,8 +292,7 @@ extern "C" {
   // XFillArc
   // XFillArcs
   // XFillPolygon
-  pub fn XFillRectangle (display: *mut Display, drawable: Drawable, gc: GC, x: c_int, y: c_int,
-      width: c_uint, height: c_uint);
+  pub fn XFillRectangle (display: *mut Display, drawable: Drawable, gc: GC, x: c_int, y: c_int, width: c_uint, height: c_uint);
   // XFillRectangles
   // XFindContext
   pub fn XFlush (display: *mut Display);
@@ -334,7 +315,7 @@ extern "C" {
   // XGeometry
   // XGetAtomName
   // XGetAtomNames
-  // XGetClassHint
+  pub fn XGetClassHint (display: *mut Display, window: Window, class_hints_return: *mut XClassHint) -> Status;
   // XGetCommand
   // XGetDefault
   // XGetErrorDatabaseText
@@ -342,8 +323,7 @@ extern "C" {
   // XGetFontPath
   // XGetFontProperty
   // XGetGCValues
-  pub fn XGetGeometry (display: *mut Display, drawable: Drawable, root: *mut Window, x: *mut c_int, y: *mut c_int,
-      width: *mut c_uint, height: *mut c_uint, border_width: *mut c_uint, depth: *mut c_uint) -> Status;
+  pub fn XGetGeometry (display: *mut Display, drawable: Drawable, root: *mut Window, x: *mut c_int, y: *mut c_int, width: *mut c_uint, height: *mut c_uint, border_width: *mut c_uint, depth: *mut c_uint) -> Status;
   // XGetIconName
   // XGetIconSizes
   // XGetImage
@@ -365,12 +345,9 @@ extern "C" {
   // XGetSubImage
   // XGetTextProperty
   // XGetTransientForHint
-  pub fn XGetVisualInfo (display: *mut Display, mask: c_long, template: *const XVisualInfo, nitems: *mut c_int)
-      -> *mut XVisualInfo;
+  pub fn XGetVisualInfo (display: *mut Display, mask: c_long, template: *const XVisualInfo, nitems: *mut c_int) -> *mut XVisualInfo;
   pub fn XGetWindowAttributes (display: *mut Display, window: Window, attr: *mut XWindowAttributes) -> Status;
-  pub fn XGetWindowProperty (display: *mut Display, window: Window, property: Atom, long_offset: c_long,
-      long_length: c_long, delete: Bool, requested_type: Atom, out_type: *mut Atom, out_format: *mut c_int,
-      out_length: *mut c_ulong, out_remaining: *mut c_ulong, out_data: *mut *mut c_char) -> c_int;
+  pub fn XGetWindowProperty (display: *mut Display, window: Window, property: Atom, long_offset: c_long, long_length: c_long, delete: Bool, requested_type: Atom, out_type: *mut Atom, out_format: *mut c_int, out_length: *mut c_ulong, out_remaining: *mut c_ulong, out_data: *mut *mut c_char) -> c_int;
   // XGetWMClientMachine
   // XGetWMColormapWindows
   // XGetWMHints
@@ -408,7 +385,7 @@ extern "C" {
   // XListExtensions
   // XListFonts
   // XListFontsWithInfo
-  // XListHosts
+  pub fn XListHosts (display: *mut Display, nhosts_return: *mut c_int, state_return: Bool) -> *mut XHostAddress;
   // XListInstalledColormaps
   // XListPixmapFormats
   // XListProperties
@@ -468,8 +445,7 @@ extern "C" {
   // XQueryPointer
   // XQueryTextExtents
   // XQueryTextExtents16
-  pub fn XQueryTree (display: *mut Display, window: Window, root: *mut Window, parent: *mut Window,
-      children: *mut *mut Window, nchildren: *mut c_uint) -> Status;
+  pub fn XQueryTree (display: *mut Display, window: Window, root: *mut Window, parent: *mut Window, children: *mut *mut Window, nchildren: *mut c_uint) -> Status;
   // XRaiseWindow
   // XReadBitmapFile
   // XReadBitmapFileData
@@ -480,8 +456,8 @@ extern "C" {
   // XRefreshKeyboardMapping
   // XRemoveConnectionWatch
   // XRemoveFromSaveSet
-  // XRemoveHost
-  // XRemoveHosts
+  pub fn XRemoveHost (display: *mut Display, host: *const XHostAddress) -> c_int;
+  pub fn XRemoveHosts (display: *mut Display, hosts: *const XHostAddress, num_hosts: c_int) -> c_int;
   // XReparentWindow
   // XResetScreenSaver
   pub fn XResizeWindow (display: *mut Display, window: Window, width: c_uint, height: c_uint);
@@ -534,18 +510,16 @@ extern "C" {
   // XScreenResourceString
   // XScreensOfDisplay
   // XSelectInput
-  pub fn XSendEvent (display: *mut Display, window: Window, propagate: Bool, event_mask: c_long,
-      event: *const XEvent) -> Status;
+  pub fn XSendEvent (display: *mut Display, window: Window, propagate: Bool, event_mask: c_long, event: *const XEvent) -> Status;
   // XServerVendor
-  // XSetAccessControl
+  pub fn XSetAccessControl (display: *mut Display, mode: c_int) -> c_int;
   // XSetAfterFunction
   // XSetArcMode
   // XSetBackground
-  // XSetClassHint
+  pub fn XSetClassHint (display: *mut Display, window: Window, class_hints: *const XClassHint);
   // XSetClipMask
   // XSetClipOrigin
-  pub fn XSetClipRectangles (display: *mut Display, gc: GC, clip_x_origin: c_int,
-      clip_y_origin: c_int, rectangles: *const XRectangle, n: c_int, ordering: c_int);
+  pub fn XSetClipRectangles (display: *mut Display, gc: GC, clip_x_origin: c_int, clip_y_origin: c_int, rectangles: *const XRectangle, n: c_int, ordering: c_int);
   // XSetCloseDownMode
   // XSetCommand
   // XSetDashes
@@ -638,7 +612,7 @@ extern "C" {
   // XwcTextListToTextProperty
   // XwcTextPropertyToTextList
   pub fn XWhitePixel (display: *mut Display, screen_num: c_int) -> c_ulong;
-  // XWhitePixelOfScreen
+  pub fn XWhitePixelOfScreen (screen: *mut Screen) -> c_ulong;
   // XWidthMMOfScreen
   // XWidthOfScreen
   // XWindowEvent
@@ -654,6 +628,34 @@ extern "C" {
 //
 
 
+pub unsafe fn AllPlanes () -> c_ulong {
+  XAllPlanes()
+}
+
+pub unsafe fn BitmapBitOrder (display: *mut Display) -> c_int {
+  XBitmapBitOrder(display)
+}
+
+pub unsafe fn BitmapPad (display: *mut Display) -> c_int {
+  XBitmapPad(display)
+}
+
+pub unsafe fn BitmapUnit (display: *mut Display) -> c_int {
+  XBitmapUnit(display)
+}
+
+pub unsafe fn BlackPixel (display: *mut Display, screen_num: c_int) -> c_ulong {
+  XBlackPixel(display, screen_num)
+}
+
+pub unsafe fn BlackPixelOfScreen (screen: *mut Screen) -> c_ulong {
+  XBlackPixelOfScreen(screen)
+}
+
+pub unsafe fn CellsOfScreen (screen: *mut Screen) -> c_int {
+  XCellsOfScreen(screen)
+}
+
 pub unsafe fn DefaultColormap (display: *mut Display, screen_num: c_int) -> Colormap {
   XDefaultColormap(display, screen_num)
 }
@@ -668,6 +670,18 @@ pub unsafe fn DefaultVisual (display: *mut Display, screen_num: c_int) -> *mut V
 
 pub unsafe fn RootWindow (display: *mut Display, screen_num: c_int) -> Window {
   XRootWindow(display, screen_num)
+}
+
+pub unsafe fn ScreenCount (display: *mut Display) -> c_int {
+  XScreenCount(display)
+}
+
+pub unsafe fn WhitePixel (display: *mut Display, screen_num: c_int) -> c_ulong {
+  XWhitePixel(display, screen_num)
+}
+
+pub unsafe fn WhitePixelOfScreen (screen: *mut Screen) -> c_ulong {
+  XWhitePixelOfScreen(screen)
 }
 
 
@@ -692,6 +706,7 @@ pub type Time = c_ulong;
 pub type VisualID = XID;
 pub type Window = XID;
 pub type XID = c_ulong;
+pub type XPointer = *mut c_void;
 
 #[allow(missing_copy_implementations)]
 #[repr(C)]
@@ -705,13 +720,21 @@ pub struct Screen;
 #[repr(C)]
 pub struct Visual;
 
+pub type AddPixelFn = Option<unsafe extern "C" fn () -> c_int>;
+pub type CreateImageFn = Option<unsafe extern "C" fn () -> *mut XImage>;
+pub type DestroyImageFn = Option<unsafe extern "C" fn () -> c_int>;
+pub type GetPixelFn = Option<unsafe extern "C" fn () -> c_ulong>;
+pub type PutPixelFn = Option<unsafe extern "C" fn () -> c_int>;
+pub type SubImageFn = Option<unsafe extern "C" fn () -> *mut XImage>;
+pub type XConnectionWatchProc = Option<unsafe extern "C" fn (*mut Display, XPointer, c_int, Bool, XPointer)>;
+
 
 //
 // event structures
 //
 
 
-#[derive(Clone, Copy, Eq, PartialEq)]
+#[derive(Copy)]
 #[repr(C)]
 pub struct XEvent {
   pub pad: [c_long; 24],
@@ -726,37 +749,55 @@ impl XEvent {
 
   pub fn xany (&self) -> XAnyEvent {
     unsafe {
-      xtransmute(self)
+      transmute_union(self)
+    }
+  }
+  
+  pub fn xbutton (&self) -> XButtonEvent {
+    unsafe {
+      transmute_union(self)
     }
   }
 
   pub fn xclient (&self) -> XClientMessageEvent {
     unsafe {
-      xtransmute(self)
+      transmute_union(self)
     }
   }
 
   pub fn xconfigure (&self) -> XConfigureEvent {
     unsafe {
-      xtransmute(self)
+      transmute_union(self)
+    }
+  }
+  
+  pub fn xcrossing (&self) -> XCrossingEvent {
+    unsafe {
+      transmute_union(self)
     }
   }
 
   pub fn xdestroywindow (&self) -> XDestroyWindowEvent {
     unsafe {
-      xtransmute(self)
+      transmute_union(self)
     }
   }
 
   pub fn xexpose (&self) -> XExposeEvent {
     unsafe {
-      xtransmute(self)
+      transmute_union(self)
     }
   }
 
   pub fn xkey (&self) -> XKeyEvent {
     unsafe {
-      xtransmute(self)
+      transmute_union(self)
+    }
+  }
+  
+  pub fn xmotion (&self) -> XMotionEvent {
+    unsafe {
+      transmute_union(self)
     }
   }
 }
@@ -764,7 +805,7 @@ impl XEvent {
 #[test]
 fn xevent_size_test () {
   assert!(size_of::<XEvent>() >= size_of::<XAnyEvent>());
-  // assert!(size_of::<XEvent>() >= size_of::<XButtonEvent>());
+  assert!(size_of::<XEvent>() >= size_of::<XButtonEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XCirculateEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XCirculateRequestEvent>());
   assert!(size_of::<XEvent>() >= size_of::<XClientMessageEvent>());
@@ -772,7 +813,7 @@ fn xevent_size_test () {
   assert!(size_of::<XEvent>() >= size_of::<XConfigureEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XConfigureRequestEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XCreateWindowEvent>());
-  // assert!(size_of::<XEvent>() >= size_of::<XCrossingEvent>());
+  assert!(size_of::<XEvent>() >= size_of::<XCrossingEvent>());
   assert!(size_of::<XEvent>() >= size_of::<XDestroyWindowEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XErrorEvent>());
   assert!(size_of::<XEvent>() >= size_of::<XExposeEvent>());
@@ -784,7 +825,7 @@ fn xevent_size_test () {
   // assert!(size_of::<XEvent>() >= size_of::<XMapEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XMappingEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XMapRequestEvent>());
-  // assert!(size_of::<XEvent>() >= size_of::<XMotionEvent>());
+  assert!(size_of::<XEvent>() >= size_of::<XMotionEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XNoExposeEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XPropertyEvent>());
   // assert!(size_of::<XEvent>() >= size_of::<XReparentEvent>());
@@ -797,7 +838,7 @@ fn xevent_size_test () {
 }
 
 #[allow(raw_pointer_derive)]
-#[derive(Clone, Copy, Eq, PartialEq)]
+#[derive(Copy)]
 #[repr(C)]
 pub struct XAnyEvent {
   pub kind: c_int,
@@ -810,12 +851,461 @@ pub struct XAnyEvent {
 impl XAnyEvent {
   pub fn to_xevent (&self) -> XEvent {
     unsafe {
-      xtransmute(self)
+      transmute_union(self)
     }
   }
 }
 
-#[derive(Clone, Copy, Eq, PartialEq)]
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XButtonEvent {
+  pub kind: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub window: Window,
+  pub root: Window,
+  pub subwindow: Window,
+  pub time: Time,
+  pub x: c_int,
+  pub y: c_int,
+  pub x_root: c_int,
+  pub y_root: c_int,
+  pub state: c_uint,
+  pub button: c_uint,
+  pub same_screen: Bool,
+}
+pub type XButtonPressedEvent = XButtonEvent;
+pub type XButtonReleasedEvent = XButtonEvent;
+
+impl XButtonEvent {
+  pub fn to_xevent (&self) -> XEvent {
+    unsafe {
+      transmute_union(self)
+    }
+  }
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XClientMessageEvent {
+  pub kind: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub window: Window,
+  pub message_type: Atom,
+  pub format: c_int,
+  pub data: XClientMessageData,
+}
+
+impl XClientMessageEvent {
+  pub fn to_xevent (&self) -> XEvent {
+    unsafe {
+      transmute_union(self)
+    }
+  }
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XConfigureEvent {
+  pub kind: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub event: Window,
+  pub window: Window,
+  pub x: c_int,
+  pub y: c_int,
+  pub width: c_int,
+  pub height: c_int,
+  pub border_width: c_int,
+  pub above: Window,
+  pub override_redirect: Bool,
+}
+
+impl XConfigureEvent {
+  pub fn to_xevent (&self) -> XEvent {
+    unsafe {
+      transmute_union(self)
+    }
+  }
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XCrossingEvent {
+  pub kind: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub window: Window,
+  pub root: Window,
+  pub subwindow: Window,
+  pub time: Time,
+  pub x: c_int,
+  pub y: c_int,
+  pub x_root: c_int,
+  pub y_root: c_int,
+  pub mode: c_int,
+  pub detail: c_int,
+  pub same_screen: Bool,
+  pub focus: Bool,
+  pub state: c_uint,
+}
+pub type XEnterWindowEvent = XCrossingEvent;
+pub type XLeaveWindowEvent = XCrossingEvent;
+
+impl XCrossingEvent {
+  pub fn to_xevent (&self) -> XEvent {
+    unsafe {
+      transmute_union(self)
+    }
+  }
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XDestroyWindowEvent {
+  pub kind: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub event: Window,
+  pub window: Window,
+}
+
+impl XDestroyWindowEvent {
+  pub fn to_xevent (&self) -> XEvent {
+    unsafe {
+      transmute_union(self)
+    }
+  }
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XExposeEvent {
+  pub kind: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub window: Window,
+  pub x: c_int,
+  pub y: c_int,
+  pub width: c_int,
+  pub height: c_int,
+  pub count: c_int,
+}
+
+impl XExposeEvent {
+  pub fn to_xevent (&self) -> XEvent {
+    unsafe {
+      transmute_union(self)
+    }
+  }
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XKeyEvent {
+  pub kind: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub window: Window,
+  pub root: Window,
+  pub subwindow: Window,
+  pub time: Time,
+  pub x: c_int,
+  pub y: c_int,
+  pub x_root: c_int,
+  pub y_root: c_int,
+  pub state: c_uint,
+  pub keycode: c_uint,
+  pub same_screen: Bool,
+}
+pub type XKeyPressedEvent = XKeyEvent;
+pub type XKeyReleasedEvent = XKeyEvent;
+
+impl XKeyEvent {
+  pub fn to_xevent (&self) -> XEvent {
+    unsafe {
+      transmute_union(self)
+    }
+  }
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XMotionEvent {
+  pub kind: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub window: Window,
+  pub root: Window,
+  pub subwindow: Window,
+  pub time: Time,
+  pub x: c_int,
+  pub y: c_int,
+  pub x_root: c_int,
+  pub y_root: c_int,
+  pub state: c_uint,
+  pub is_hint: c_char,
+  pub same_screen: Bool,
+}
+pub type XPointerMovedEvent = XMotionEvent;
+
+impl XMotionEvent {
+  pub fn to_xevent (&self) -> XEvent {
+    unsafe {
+      transmute_union(self)
+    }
+  }
+}
+
+
+//
+// other structures
+//
+
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XClassHint {
+  pub res_name: *mut c_char,
+  pub res_class: *mut c_char,
+}
+
+#[derive(Copy)]
+#[repr(C)]
+pub struct XColor {
+  pub pixel: c_ulong,
+  pub red: c_ushort,
+  pub green: c_ushort,
+  pub blue: c_ushort,
+  pub flags: c_char,
+  pub pad: c_char,
+}
+
+#[derive(Copy)]
+#[repr(C)]
+pub struct XExtCodes {
+  pub extension: c_int,
+  pub major_opcode: c_int,
+  pub first_event: c_int,
+  pub first_error: c_int,
+}
+
+#[derive(Copy)]
+#[repr(C)]
+pub struct XGCValues {
+  pub function: c_int,
+  pub plane_mask: c_ulong,
+  pub foreground: c_ulong,
+  pub background: c_ulong,
+  pub line_width: c_int,
+  pub line_style: c_int,
+  pub cap_style: c_int,
+  pub join_style: c_int,
+  pub fill_style: c_int,
+  pub fill_rule: c_int,
+  pub arc_mode: c_int,
+  pub tile: Pixmap,
+  pub stipple: Pixmap,
+  pub ts_x_origin: c_int,
+  pub ts_y_origin: c_int,
+  pub font: Font,
+  pub subwindow_mode: c_int,
+  pub graphics_exposures: Bool,
+  pub clip_x_origin: c_int,
+  pub clip_y_origin: c_int,
+  pub clip_mask: Pixmap,
+  pub dash_offset: c_int,
+  pub dashes: c_char,
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XHostAddress {
+  pub family: c_int,
+  pub length: c_int,
+  pub address: *const c_char,
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XImage {
+  pub width: c_int,
+  pub height: c_int,
+  pub xoffset: c_int,
+  pub format: c_int,
+  pub data: *mut c_char,
+  pub byte_order: c_int,
+  pub bitmap_unity: c_int,
+  pub bitmap_bit_order: c_int,
+  pub bitmap_pad: c_int,
+  pub depth: c_int,
+  pub bytes_per_line: c_int,
+  pub bits_per_pixel: c_int,
+  pub red_mask: c_ulong,
+  pub green_mask: c_ulong,
+  pub blue_mask: c_ulong,
+  pub obdata: XPointer,
+  pub funcs: ImageFns,
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XModifierKeymap {
+  pub max_keypermod: c_int,
+  pub modifiermap: *mut KeyCode,
+}
+
+#[derive(Copy)]
+#[repr(C)]
+pub struct XRectangle {
+  pub x: c_short,
+  pub y: c_short,
+  pub width: c_ushort,
+  pub height: c_ushort,
+}
+
+#[derive(Copy)]
+#[repr(C)]
+pub struct XSetWindowAttributes {
+  pub background_pixmap: Pixmap,
+  pub background_pixel: c_ulong,
+  pub border_pixmap: Pixmap,
+  pub border_pixel: c_ulong,
+  pub bit_gravity: c_int,
+  pub win_gravity: c_int,
+  pub backing_store: c_int,
+  pub backing_planes: c_ulong,
+  pub backing_pixel: c_ulong,
+  pub save_under: Bool,
+  pub event_mask: c_long,
+  pub do_not_propagate_mask: c_long,
+  pub override_redirect: Bool,
+  pub colormap: Colormap,
+  pub cursor: Cursor,
+}
+
+#[derive(Copy)]
+#[repr(C)]
+pub struct XSizeHints {
+  pub flags: c_long,
+  pub x: c_int,
+  pub y: c_int,
+  pub width: c_int,
+  pub height: c_int,
+  pub min_width: c_int,
+  pub min_height: c_int,
+  pub max_width: c_int,
+  pub max_height: c_int,
+  pub width_inc: c_int,
+  pub height_inc: c_int,
+  pub min_aspect: AspectRatio,
+  pub max_aspect: AspectRatio,
+  pub base_width: c_int,
+  pub base_height: c_int,
+  pub win_gravity: c_int,
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XTextProperty {
+  pub value: *mut c_uchar,
+  pub encoding: Atom,
+  pub format: c_int,
+  pub nitems: c_ulong,
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XVisualInfo {
+  pub visual: *mut Visual,
+  pub visualid: VisualID,
+  pub screen: c_int,
+  pub depth: c_uint,
+  pub class: c_int,
+  pub red_mask: c_ulong,
+  pub green_mask: c_ulong,
+  pub blue_mask: c_ulong,
+  pub colormap_size: c_int,
+  pub bits_per_rgb: c_int,
+}
+
+#[allow(raw_pointer_derive)]
+#[derive(Copy)]
+#[repr(C)]
+pub struct XWindowAttributes {
+  pub x: c_int,
+  pub y: c_int,
+  pub width: c_int,
+  pub height: c_int,
+  pub border_width: c_int,
+  pub depth: c_int,
+  pub visual: *mut Visual,
+  pub root: Window,
+  pub class: c_int,
+  pub bit_gravity: c_int,
+  pub win_gravity: c_int,
+  pub backing_store: c_int,
+  pub backing_planes: c_ulong,
+  pub backing_pixel: c_ulong,
+  pub save_under: Bool,
+  pub colormap: Colormap,
+  pub map_installed: Bool,
+  pub map_state: c_int,
+  pub all_event_masks: c_long,
+  pub your_event_mask: c_long,
+  pub do_not_propagate_mask: c_long,
+  pub override_redirect: Bool,
+  pub screen: *mut Screen,
+}
+
+
+//
+// anonymous structures
+//
+
+
+#[derive(Copy)]
+#[repr(C)]
+pub struct AspectRatio {
+  pub x: c_int,
+  pub y: c_int,
+}
+
+#[derive(Copy)]
+#[repr(C)]
+pub struct ImageFns {
+  pub create_image: CreateImageFn,
+  pub destroy_image: DestroyImageFn,
+  pub get_pixel: GetPixelFn,
+  pub put_pixel: PutPixelFn,
+  pub sub_image: SubImageFn,
+  pub add_pixel: AddPixelFn,
+}
+
+#[derive(Copy)]
 #[repr(C)]
 pub struct XClientMessageData {
   longs: [c_long; 5],
@@ -859,298 +1349,6 @@ impl XClientMessageData {
 fn client_message_size_test () {
   assert!(size_of::<XClientMessageData>() >= size_of::<[c_char; 20]>());
   assert!(size_of::<XClientMessageData>() >= size_of::<[c_short; 10]>());
-}
-
-#[allow(raw_pointer_derive)]
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct XClientMessageEvent {
-  pub kind: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub message_type: Atom,
-  pub format: c_int,
-  pub data: XClientMessageData,
-}
-
-impl XClientMessageEvent {
-  pub fn to_xevent (&self) -> XEvent {
-    unsafe {
-      xtransmute(self)
-    }
-  }
-}
-
-#[allow(raw_pointer_derive)]
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct XConfigureEvent {
-  pub kind: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub event: Window,
-  pub window: Window,
-  pub x: c_int,
-  pub y: c_int,
-  pub width: c_int,
-  pub height: c_int,
-  pub border_width: c_int,
-  pub above: Window,
-  pub override_redirect: Bool,
-}
-
-impl XConfigureEvent {
-  pub fn to_xevent (&self) -> XEvent {
-    unsafe {
-      xtransmute(self)
-    }
-  }
-}
-
-#[allow(raw_pointer_derive)]
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct XDestroyWindowEvent {
-  pub kind: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub event: Window,
-  pub window: Window,
-}
-
-impl XDestroyWindowEvent {
-  pub fn to_xevent (&self) -> XEvent {
-    unsafe {
-      xtransmute(self)
-    }
-  }
-}
-
-#[allow(raw_pointer_derive)]
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct XExposeEvent {
-  pub kind: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub x: c_int,
-  pub y: c_int,
-  pub width: c_int,
-  pub height: c_int,
-  pub count: c_int,
-}
-
-impl XExposeEvent {
-  pub fn to_xevent (&self) -> XEvent {
-    unsafe {
-      xtransmute(self)
-    }
-  }
-}
-
-#[allow(raw_pointer_derive)]
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct XKeyEvent {
-  pub kind: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub root: Window,
-  pub subwindow: Window,
-  pub time: Time,
-  pub x: c_int,
-  pub y: c_int,
-  pub x_root: c_int,
-  pub y_root: c_int,
-  pub state: c_uint,
-  pub keycode: c_uint,
-  pub same_screen: Bool,
-}
-pub type XKeyPressedEvent = XKeyEvent;
-pub type XKeyReleasedEvent = XKeyEvent;
-
-impl XKeyEvent {
-  pub fn to_xevent (&self) -> XEvent {
-    unsafe {
-      xtransmute(self)
-    }
-  }
-}
-
-
-//
-// other structures
-//
-
-
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct XColor {
-  pub pixel: c_ulong,
-  pub red: c_ushort,
-  pub green: c_ushort,
-  pub blue: c_ushort,
-  pub flags: c_char,
-  pub pad: c_char,
-}
-
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct XGCValues {
-  pub function: c_int,
-  pub plane_mask: c_ulong,
-  pub foreground: c_ulong,
-  pub background: c_ulong,
-  pub line_width: c_int,
-  pub line_style: c_int,
-  pub cap_style: c_int,
-  pub join_style: c_int,
-  pub fill_style: c_int,
-  pub fill_rule: c_int,
-  pub arc_mode: c_int,
-  pub tile: Pixmap,
-  pub stipple: Pixmap,
-  pub ts_x_origin: c_int,
-  pub ts_y_origin: c_int,
-  pub font: Font,
-  pub subwindow_mode: c_int,
-  pub graphics_exposures: Bool,
-  pub clip_x_origin: c_int,
-  pub clip_y_origin: c_int,
-  pub clip_mask: Pixmap,
-  pub dash_offset: c_int,
-  pub dashes: c_char,
-}
-
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct XRectangle {
-  pub x: c_short,
-  pub y: c_short,
-  pub width: c_ushort,
-  pub height: c_ushort,
-}
-
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct XSetWindowAttributes {
-  pub background_pixmap: Pixmap,
-  pub background_pixel: c_ulong,
-  pub border_pixmap: Pixmap,
-  pub border_pixel: c_ulong,
-  pub bit_gravity: c_int,
-  pub win_gravity: c_int,
-  pub backing_store: c_int,
-  pub backing_planes: c_ulong,
-  pub backing_pixel: c_ulong,
-  pub save_under: Bool,
-  pub event_mask: c_long,
-  pub do_not_propagate_mask: c_long,
-  pub override_redirect: Bool,
-  pub colormap: Colormap,
-  pub cursor: Cursor,
-}
-
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct XSizeHints {
-  pub flags: c_long,
-  pub x: c_int,
-  pub y: c_int,
-  pub width: c_int,
-  pub height: c_int,
-  pub min_width: c_int,
-  pub min_height: c_int,
-  pub max_width: c_int,
-  pub max_height: c_int,
-  pub width_inc: c_int,
-  pub height_inc: c_int,
-  pub min_aspect: AspectRatio,
-  pub max_aspect: AspectRatio,
-  pub base_width: c_int,
-  pub base_height: c_int,
-  pub win_gravity: c_int,
-}
-
-#[allow(raw_pointer_derive)]
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct XTextProperty {
-  pub value: *mut c_uchar,
-  pub encoding: Atom,
-  pub format: c_int,
-  pub nitems: c_ulong,
-}
-
-#[allow(raw_pointer_derive)]
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct XVisualInfo {
-  pub visual: *mut Visual,
-  pub visualid: VisualID,
-  pub screen: c_int,
-  pub depth: c_uint,
-  pub class: c_int,
-  pub red_mask: c_ulong,
-  pub green_mask: c_ulong,
-  pub blue_mask: c_ulong,
-  pub colormap_size: c_int,
-  pub bits_per_rgb: c_int,
-}
-
-#[allow(raw_pointer_derive)]
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct XWindowAttributes {
-  pub x: c_int,
-  pub y: c_int,
-  pub width: c_int,
-  pub height: c_int,
-  pub border_width: c_int,
-  pub depth: c_int,
-  pub visual: *mut Visual,
-  pub root: Window,
-  pub class: c_int,
-  pub bit_gravity: c_int,
-  pub win_gravity: c_int,
-  pub backing_store: c_int,
-  pub backing_planes: c_ulong,
-  pub backing_pixel: c_ulong,
-  pub save_under: Bool,
-  pub colormap: Colormap,
-  pub map_installed: Bool,
-  pub map_state: c_int,
-  pub all_event_masks: c_long,
-  pub your_event_mask: c_long,
-  pub do_not_propagate_mask: c_long,
-  pub override_redirect: Bool,
-  pub screen: *mut Screen,
-}
-
-#[repr(C)]
-pub struct XModifierKeymap {
-  pub max_keypermod: c_int,
-  pub modifiermap: *mut KeyCode,
-}
-
-//
-// anonymous structures
-//
-
-
-#[derive(Clone, Copy, Eq, PartialEq)]
-#[repr(C)]
-pub struct AspectRatio {
-  pub x: c_int,
-  pub y: c_int,
 }
 
 
@@ -1395,7 +1593,7 @@ pub const InputOnly: c_int = 2;
 //
 
 
-unsafe fn xtransmute<I, O> (input: &I) -> O
+unsafe fn transmute_union<I, O> (input: &I) -> O
   where I : Sized, O : Sized
 {
   let mut output: O = zeroed();
