@@ -22,12 +22,10 @@ use ::xlib::{
 
 #[link(name="GL")]
 extern "C" {
-  pub fn glXChooseFBConfig (display: *mut Display, screen: c_int, attr: *const c_int, nitems: *mut c_int)
-      -> *mut GLXFBConfig;
+  pub fn glXChooseFBConfig (display: *mut Display, screen: c_int, attr: *const c_int, nitems: *mut c_int) -> *mut GLXFBConfig;
   // glXChooseVisual
   // glXCopyContext
-  pub fn glXCreateContext (display: *mut Display, visual_info: *const XVisualInfo, share_context: GLXContext,
-      direct: Bool) -> GLXContext;
+  pub fn glXCreateContext (display: *mut Display, visual_info: *const XVisualInfo, share_context: GLXContext, direct: Bool) -> GLXContext;
   // glXCreateGLXPixmap
   // glXCreateNewContext
   // glXCreatePbuffer
