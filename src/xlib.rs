@@ -1052,7 +1052,7 @@ pub struct XClientMessageEvent {
   pub send_event: Bool,
   pub display: *mut Display,
   pub window: Window,
-  pub messagekind: Atom,
+  pub message_type: Atom,
   pub format: c_int,
   pub data: ClientMessageData,
 }
