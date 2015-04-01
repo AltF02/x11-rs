@@ -1,10 +1,11 @@
 [package]
 name = "x11"
-version = "0.0.16"
+version = "0.0.17"
 authors = ["Daggerbot <daggerbot@gmail.com>"]
-description = "X11 bindings for Rust"
+description = "X11 library bindings for Rust"
 license = "CC0-1.0"
 repository = "https://github.com/Daggerbot/x11-rs.git"
+documentation = "http://daggerbot.github.io/x11-rs/x11/index.html"
 
 [dependencies]
 libc = "*"
