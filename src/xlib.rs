@@ -329,7 +329,7 @@ extern "C" {
   // XGetImage
   // XGetInputFocus
   // XGetKeyboardControl
-  // XGetKeyboardMapping
+  pub fn XGetKeyboardMapping (display: *mut Display, keycode: *const KeyCode, keycode_count: c_int, keysyms_returned_per_keycode: *mut c_int)-> *mut KeySym;
   // XGetModifierMapping
   // XGetMotionEvents
   // XGetNormalHints
@@ -358,7 +358,7 @@ extern "C" {
   // XGetWMSizeHints
   // XGetZoomHints
   // XGrabButton
-  // XGrabKey
+  pub fn XGrabKey (display: *mut Display, keycode: KeyCode, modifiers: c_uint, window: Window, owner_events: c_int, pointer_mode: c_int, keyboard_mode: c_int);
   // XGrabKeyboard
   // XGrabPointer
   // XGrabServer
@@ -579,7 +579,7 @@ extern "C" {
   pub fn XStoreName (display: *mut Display, window: Window, name: *const c_char);
   // XStoreNamedColor
   // XStringListToTextProperty
-  // XStringToKeysym
+  pub fn XStringToKeysym (display: *mut Display, window: Window, string: *const c_char) -> *mut KeySym;
   // XSubImage
   // XSubtractRegion
   // XSync
