@@ -752,7 +752,7 @@ impl XEvent {
       transmute_union(self)
     }
   }
-  
+
   pub fn xbutton (&self) -> XButtonEvent {
     unsafe {
       transmute_union(self)
@@ -770,7 +770,7 @@ impl XEvent {
       transmute_union(self)
     }
   }
-  
+
   pub fn xcrossing (&self) -> XCrossingEvent {
     unsafe {
       transmute_union(self)
@@ -794,7 +794,7 @@ impl XEvent {
       transmute_union(self)
     }
   }
-  
+
   pub fn xmotion (&self) -> XMotionEvent {
     unsafe {
       transmute_union(self)
@@ -898,7 +898,7 @@ pub struct XClientMessageEvent {
   pub window: Window,
   pub message_type: Atom,
   pub format: c_int,
-  pub data: XClientMessageData,
+  pub data: ClientMessageData,
 }
 
 impl XClientMessageEvent {
@@ -1296,22 +1296,11 @@ pub struct AspectRatio {
 
 #[derive(Copy)]
 #[repr(C)]
-pub struct ImageFns {
-  pub create_image: CreateImageFn,
-  pub destroy_image: DestroyImageFn,
-  pub get_pixel: GetPixelFn,
-  pub put_pixel: PutPixelFn,
-  pub sub_image: SubImageFn,
-  pub add_pixel: AddPixelFn,
-}
-
-#[derive(Copy)]
-#[repr(C)]
-pub struct XClientMessageData {
+pub struct ClientMessageData {
   longs: [c_long; 5],
 }
 
-impl XClientMessageData {
+impl ClientMessageData {
   pub fn get_byte (&self, index: usize) -> c_char {
     unsafe {
       from_raw_parts(&self.longs[0] as *const c_long as *const c_char, 20)[index]
@@ -1347,8 +1336,19 @@ impl XClientMessageData {
 
 #[test]
 fn client_message_size_test () {
-  assert!(size_of::<XClientMessageData>() >= size_of::<[c_char; 20]>());
-  assert!(size_of::<XClientMessageData>() >= size_of::<[c_short; 10]>());
+  assert!(size_of::<ClientMessageData>() >= size_of::<[c_char; 20]>());
+  assert!(size_of::<ClientMessageData>() >= size_of::<[c_short; 10]>());
+}
+
+#[derive(Copy)]
+#[repr(C)]
+pub struct ImageFns {
+  pub create_image: CreateImageFn,
+  pub destroy_image: DestroyImageFn,
+  pub get_pixel: GetPixelFn,
+  pub put_pixel: PutPixelFn,
+  pub sub_image: SubImageFn,
+  pub add_pixel: AddPixelFn,
 }
 
 
