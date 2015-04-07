@@ -33,57 +33,6 @@ use libc::{
 
 #[link(name="X11")]
 extern "C" {
-  // ClientWhitePointOfCCC
-  // ConnectionNumber
-  // DefaultColormapOfScreen
-  // DefaultDepth
-  // DefaultDepthOfScreen
-  // DefaultGC
-  // DefaultGCOfScreen
-  // DefaultRootWindow
-  // DefaultScreenOfDisplay
-  // DefaultVisualOfScreen
-  // DisplayCells
-  // DisplayHeight
-  // DisplayHeightMM
-  // DisplayOfCCC
-  // DisplayOfScreen
-  // DisplayPlanes
-  // DisplayString
-  // DisplayWidth
-  // DisplayWidthMM
-  // DoesBackingStore
-  // DoesSaveUnders
-  // EventMaskOfScreen
-  // HeightMMOfScreen
-  // HeightOfScreen
-  // ImageByteOrder
-  // InitExtension
-  // IsCursorKey
-  // IsFunctionKey
-  // IsKeypadKey
-  // IsMiscFunctionKey
-  // IsModifierKey
-  // IsPFKey
-  // IsPrivateKeypadKey
-  // LastKnownRequestProcessed
-  // MaxCmapsOfScreen
-  // MinCmapsOfScreen
-  // NextRequest
-  // PlanesOfScreen
-  // ProtocolRevision
-  // ProtocolVersion
-  // QLength
-  // RootWindowOfScreen
-  // ScreenNumberOfCCC
-  // ScreensOfDisplay
-  // ScreenWhitePointOfCCC
-  // ServerVendor
-  // VendorRelease
-  // VertexDrawLastPoint
-  // VisualOfCCC
-  // WidthMMOfScreen
-  // WidthOfScreen
   pub fn XActivateScreenSaver (display: *mut Display);
   pub fn XAddConnectionWatch (display: *mut Display, watch: XConnectionWatchProc, client_data: XPointer) -> Status;
   pub fn XAddExtension (display: *mut Display) -> *mut XExtCodes;
@@ -93,596 +42,95 @@ extern "C" {
   pub fn XAddToSaveSet (display: *mut Display, window: Window);
   pub fn XAllocClassHint () -> *mut XClassHint;
   pub fn XAllocColor (display: *mut Display, colormap: Colormap, color: *mut XColor) -> Status;
-  // XAllocColorCells
-  // XAllocColorPlanes
-  // XAllocIconSize
-  // XAllocNamedColor
-  // XAllocSizeHints
-  // XAllocStandardColormap
-  // XAllocWMHints
-  // XAllowEvents
   pub fn XAllPlanes () -> c_ulong;
-  // XAppendVertex
-  // XAutoRepeatOff
-  // XAutoRepeatOn
-  // XBell
   pub fn XBitmapBitOrder (display: *mut Display) -> c_int;
   pub fn XBitmapPad (display: *mut Display) -> c_int;
   pub fn XBitmapUnit (display: *mut Display) -> c_int;
   pub fn XBlackPixel (display: *mut Display, screen_num: c_int) -> c_ulong;
   pub fn XBlackPixelOfScreen (screen: *mut Screen) -> c_ulong;
   pub fn XCellsOfScreen (screen: *mut Screen) -> c_int;
-  // XChangeActivePointerGrab
-  // XChangeGC
-  // XChangeKeyboardControl
-  // XChangeKeyboardMapping
-  // XChangePointerControl
-  // XChangeProperty
-  // XChangeSaveSet
-  // XChangeWindowAttributes
-  // XCheckIfEvent
-  // XCheckMaskEvent
-  // XCheckTypedEvent
-  // XCheckTypedWindowEvent
-  // XCheckWindowEvent
-  // XCirculateSubwindows
-  // XCirculateSubwindowsDown
-  // XCirculateSubwindowsUp
-  // XClearArea
-  // XClearVertexFlag
-  // XClearWindow
-  // XClipBox
+  pub fn XCheckMaskEvent (display: *mut Display, event_mask: c_long, event_return: *mut XEvent) -> Bool;
+  pub fn XCheckTypedEvent (display: *mut Display, event_type: c_int, event_return: *mut XEvent) -> Bool;
   pub fn XCloseDisplay (display: *mut Display);
-  // XcmsAddColorSpace
-  // XcmsAddFunctionSet
-  // XcmsAllocColor
-  // XcmsAllocNamedColor
-  // XcmsCCCOfColormap
-  // XcmsCIELabQueryMaxC
-  // XcmsCIELabQueryMaxL
-  // XcmsCIELabQueryMaxLC
-  // XcmsCIELabQueryMinL
-  // XcmsCIELabToCIEXYZ
-  // XcmsCIELuvQueryMaxC
-  // XcmsCIELuvQueryMaxL
-  // XcmsCIELuvQueryMaxLC
-  // XcmsCIELuvQueryMinL
-  // XcmsCIELuvToCIEuvY
-  // XcmsCIEuvYToCIELuv
-  // XcmsCIEuvYToCIEXYZ
-  // XcmsCIEuvYToTekHVC
-  // XcmsCIExyYToCIEXYZ
-  // XcmsCIEXYZToCIELab
-  // XcmsCIEXYZToCIEuvY
-  // XcmsCIEXYZToCIExyY
-  // XcmsCIEXYZToRGBi
-  // XcmsClientWhitePointOfCCC
-  // XcmsConvertColors
-  // XcmsCreateCCC
-  // XcmsDefaultCCC
-  // XcmsDisplayOfCCC
-  // XcmsFormatOfPrefix
-  // XcmsFreeCCC
-  // XcmsLookupColor
-  // XcmsPrefixOfFormat
-  // XcmsQueryBlack
-  // XcmsQueryBlue
-  // XcmsQueryColor
-  // XcmsQueryColors
-  // XcmsQueryGreen
-  // XcmsQueryRed
-  // XcmsQueryWhite
-  // XcmsRGBiToCIEXYZ
-  // XcmsRGBiToRGB
-  // XcmsRGBToRGBi
-  // XcmsScreenNumberOfCCC
-  // XcmsScreenWhitePointOfCCC
-  // XcmsSetCCCOfColormap
-  // XcmsSetCompressionProc
-  // XcmsSetWhiteAdjustProc
-  // XcmsSetWhitePoint
-  // XcmsStoreColor
-  // XcmsStoreColors
-  // XcmsTekHVCQueryMaxC
-  // XcmsTekHVCQueryMaxV
-  // XcmsTekHVCQueryMaxVC
-  // XcmsTekHVCQueryMaxVSamples
-  // XcmsTekHVCQueryMinV
-  // XcmsTekHVCToCIEuvY
-  // XcmsVisualOfCCC
-  // XConfigureWindow
-  // XConnectionNumber
-  // XConvertCase
-  // XConvertSelection
-  // XCopy, PartialEqArea
-  // XCopy, PartialEqColormapAndFree
-  // XCopy, PartialEqGC
-  // XCopy, PartialEqPlane
-  // XCreateAssocTable
-  // XCreateBitmapFromData
+  pub fn XCloseIM (im: XIM) -> Status;
   pub fn XCreateColormap (display: *mut Display, window: Window, visual: *mut Visual, alloc: c_int) -> Colormap;
-  // XCreateFontCursor
-  // XCreateFontSet
   pub fn XCreateGC (display: *mut Display, drawable: Drawable, valuemask: c_ulong, values: *const XGCValues) -> GC;
-  // XCreateGlyphCursor
-  // XCreateImage
-  // XCreatePixmap
-  // XCreatePixmapCursor
-  // XCreatePixmapFromBitmapData
-  // XCreateRegion
+  pub fn XCreateIC (im: XIM, ...) -> XIC;
   pub fn XCreateSimpleWindow (display: *mut Display, parent: Window, x: c_int, y: c_int, width: c_uint, height: c_uint, border_width: c_uint, border: c_ulong, background: c_ulong) -> Window;
   pub fn XCreateWindow (display: *mut Display, parent: Window, x: c_int, y: c_int, width: c_uint, height: c_uint, border_width: c_uint, depth: c_int, class: c_int, visual: *mut Visual, attr_mask: c_ulong, attr: *const XSetWindowAttributes) -> Window;
   pub fn XDefaultColormap (display: *mut Display, screen_num: c_int) -> Colormap;
-  // XDefaultColormapOfScreen
-  // XDefaultDepthOfScreen
-  // XDefaultGC
-  // XDefaultGCOfScreen
-  // XDefaultRootWindow
+  pub fn XDefaultRootWindow (display: *mut Display) -> Window;
   pub fn XDefaultScreen (display: *mut Display) -> c_int;
-  // XDefaultScreenOfDisplay
-  // XDefaultString
   pub fn XDefaultVisual (display: *mut Display, screen_num: c_int) -> *mut Visual;
-  // XDefaultVisualOfScreen
-  // XDefineCursor
-  // XDeleteAssoc
-  // XDeleteContext
-  // XDeleteModifiermapEntry
-  // XDeleteProperty
-  // XDestroyAssocTable
-  // XDestroyImage
-  // XDestroyRegion
-  // XDestroySubwindows
+  pub fn XDefineCursor (display: *mut Display, window: Window, cursor: Cursor);
+  pub fn XDestroyIC (ic: XIC);
   pub fn XDestroyWindow (display: *mut Display, window: Window);
   pub fn XDisableAccessControl (display: *mut Display) -> c_int;
-  // XDisplayCells
-  // XDisplayHeight
-  // XDisplayHeightMM
-  // XDisplayKeycodes
-  // XDisplayMotionBufferSize
-  // XDisplayName
-  // XDisplayOfScreen
-  // XDisplayPlanes
-  // XDisplayString
-  // XDisplayWidth
-  // XDisplayWidthMM
-  // XDoesBackingStore
-  // XDoesSaveUnders
-  // XDraw
-  // XDrawArc
-  // XDrawArcs
-  // XDrawDashed
-  // XDrawFilled
-  // XDrawImageString
-  // XDrawImageString16
-  // XDrawLine
-  // XDrawLines
-  // XDrawPatterned
-  // XDrawPoint
-  // XDrawPoints
+  pub fn XDisplayOfIM (im: XIM) -> *mut Display;
   pub fn XDrawRectangle (display: *mut Display, drawable: Drawable, gc: GC, x: c_int, y: c_int, width: c_uint, height: c_uint);
-  // XDrawRectangles
-  // XDrawSegments
-  // XDrawString
-  // XDrawString16
-  // XDrawText
-  // XDrawText16
-  // XDrawTiled
-  // XEmptyRegion
   pub fn XEnableAccessControl (display: *mut Display) -> c_int;
-  // XEqualRegion
-  // XESetBeforeFlush
-  // XESetCloseDisplay
-  // XESetCopy, PartialEqGC
-  // XESetCreateFont
-  // XESetCreateGC
-  // XESetError
-  // XESetErrorString
-  // XESetEventToWire
-  // XESetFlushGC
-  // XESetFreeFont
-  // XESetFreeGC
-  // XESetPrintErrorValues
-  // XESetWireToError
-  // XESetWireToEvent
-  // XEventMaskOfScreen
-  // XEventsQueued
-  // XExtendedMaxRequestSize
-  // XFetchBuffer
-  // XFetchBytes
   pub fn XFetchName (display: *mut Display, window: Window, name: *mut *mut c_char) -> Status;
-  // XFillArc
-  // XFillArcs
-  // XFillPolygon
   pub fn XFillRectangle (display: *mut Display, drawable: Drawable, gc: GC, x: c_int, y: c_int, width: c_uint, height: c_uint);
-  // XFillRectangles
-  // XFindContext
+  pub fn XFilterEvent (event: *const XEvent, window: Window) -> Bool;
   pub fn XFlush (display: *mut Display);
-  // XFlushGC
-  // XForceScreenSaver
   pub fn XFree (mem: *mut c_void);
   pub fn XFreeColormap (display: *mut Display, colormap: Colormap);
-  // XFreeColors
-  // XFreeCursor
-  // XFreeExtensionList
-  // XFreeFont
-  // XFreeFontInfo
-  // XFreeFontNames
-  // XFreeFontPath
   pub fn XFreeGC (display: *mut Display, gc: GC);
-  // XFreeModifiermap
-  // XFreePixmap
-  // XFreeStringList
-  // XGContextFromGC
-  // XGeometry
-  // XGetAtomName
-  // XGetAtomNames
   pub fn XGetClassHint (display: *mut Display, window: Window, class_hints_return: *mut XClassHint) -> Status;
-  // XGetCommand
-  // XGetDefault
-  // XGetErrorDatabaseText
-  // XGetErrorText
-  // XGetFontPath
-  // XGetFontProperty
-  // XGetGCValues
   pub fn XGetGeometry (display: *mut Display, drawable: Drawable, root: *mut Window, x: *mut c_int, y: *mut c_int, width: *mut c_uint, height: *mut c_uint, border_width: *mut c_uint, depth: *mut c_uint) -> Status;
-  // XGetIconName
-  // XGetIconSizes
-  // XGetImage
-  // XGetInputFocus
-  // XGetKeyboardControl
+  pub fn XGetIMValues (im: XIM, ...) -> *const c_char;
   pub fn XGetKeyboardMapping (display: *mut Display, keycode: *const KeyCode, keycode_count: c_int, keysyms_returned_per_keycode: *mut c_int)-> *mut KeySym;
-  // XGetModifierMapping
-  // XGetMotionEvents
-  // XGetNormalHints
-  // XGetPixel
-  // XGetPointerControl
-  // XGetPointerMapping
-  // XGetRGBColormap
-  // XGetRGBColormaps
-  // XGetScreenSaver
-  // XGetSelectionOwner
-  // XGetSizeHints
-  // XGetStandardColormap
-  // XGetSubImage
-  // XGetTextProperty
-  // XGetTransientForHint
   pub fn XGetVisualInfo (display: *mut Display, mask: c_long, template: *const XVisualInfo, nitems: *mut c_int) -> *mut XVisualInfo;
   pub fn XGetWindowAttributes (display: *mut Display, window: Window, attr: *mut XWindowAttributes) -> Status;
   pub fn XGetWindowProperty (display: *mut Display, window: Window, property: Atom, long_offset: c_long, long_length: c_long, delete: Bool, requestedkind: Atom, outkind: *mut Atom, out_format: *mut c_int, out_length: *mut c_ulong, out_remaining: *mut c_ulong, out_data: *mut *mut c_char) -> c_int;
-  // XGetWMClientMachine
-  // XGetWMColormapWindows
-  // XGetWMHints
-  // XGetWMIconName
   pub fn XGetWMName (display: *mut Display, window: Window, name: *mut XTextProperty) -> Status;
-  // XGetWMNormalHints
-  // XGetWMProtocols
-  // XGetWMSizeHints
-  // XGetZoomHints
-  // XGrabButton
   pub fn XGrabKey (display: *mut Display, keycode: KeyCode, modifiers: c_uint, window: Window, owner_events: c_int, pointer_mode: c_int, keyboard_mode: c_int);
-  // XGrabKeyboard
-  // XGrabPointer
-  // XGrabServer
-  // XHeightMMOfScreen
-  // XHeightOfScreen
-  // XIconifyWindow
-  // XIfEvent
-  // XImageByteOrder
-  // XInitExtension
-  // XInitImage
-  // XInitThreads
-  // XInsertModifiermapEntry
-  // XInstallColormap
-  // XInternalConnectionNumbers
+  pub fn XGrabPointer (display: *mut Display, grab_window: Window, owner_events: Bool, event_mask: c_uint, pointer_mode: c_int, keyboard_mode: c_int, confine_to: Window, cursor: Cursor, time: Time) -> c_int;
+  pub fn XHeightOfScreen (screen: *mut Screen) -> c_int;
+  pub fn XIMOfIC (ic: XIC) -> XIM;
+  pub fn XInitThreads () -> Status;
   pub fn XInternAtom (display: *mut Display, name: *const c_char, only_if_exists: Bool) -> Atom;
-  // XInternAtoms
-  // XIntersectRegion
-  // XKeycodeToKeysym
-  // XKeysymToKeycode
-  // XKeysymToString
-  // XKillClient
-  // XLastKnownRequestProcessed
-  // XListDepths
-  // XListExtensions
-  // XListFonts
-  // XListFontsWithInfo
+  pub fn XkbSetDetectableAutoRepeat (display: *mut Display, detectable: Bool, supported_return: *mut Bool) -> Bool;
+  pub fn XKeycodeToKeysym (display: *mut Display, keycode: KeyCode, index: c_int) -> KeySym;
   pub fn XListHosts (display: *mut Display, nhosts_return: *mut c_int, state_return: Bool) -> *mut XHostAddress;
-  // XListInstalledColormaps
-  // XListPixmapFormats
-  // XListProperties
-  // XLoadFont
-  // XLoadQueryFont
-  // XLockDisplay
-  // XLookUpAssoc
-  // XLookupColor
+  pub fn XLocaleOfIM (im: XIM) -> *const c_char;
   pub fn XLookupKeysym (key_event: *const XKeyEvent, index: c_int) -> KeySym;
-  // XLookupString
-  // XLowerWindow
-  // XMakeAssoc
-  // XMapRaised
-  // XMapSubwindows
+  pub fn XMapRaised (display: *mut Display, window: Window);
   pub fn XMapWindow (display: *mut Display, window: Window);
-  // XMaskEvent
-  // XMatchVisualInfo
-  // XMaxCmapsOfScreen
-  // XMaxRequestSize
-  // XmbSetWMProperties
-  // XmbTextListToTextProperty
-  // XmbTextPropertyToTextList
-  // XMinCmapsOfScreen
-  // XMoveResizeWindow
   pub fn XMoveWindow (display: *mut Display, window: Window, x: c_int, y: c_int);
-  // XNewModifiermap
   pub fn XNextEvent (display: *mut Display, event: *mut XEvent);
-  // XNextRequest
-  // XNoOp
-  // XOffsetRegion
   pub fn XOpenDisplay (name: *const c_char) -> *mut Display;
-  // XParseColor
-  // XParseGeometry
-  // XPeekEvent
-  // XPeekIfEvent
+  pub fn XOpenIM (display: *mut Display, db: XrmDatabase, res_name: *const c_char, res_class: *const c_char) -> XIM;
+  pub fn XPeekEvent (display: *mut Display, event_return: *mut XEvent);
   pub fn XPending (display: *mut Display) -> c_int;
-  // Xpermalloc
-  // XPlanesOfScreen
-  // XPointInRegion
-  // XPolygonRegion
-  // XProcessInternalConnection
-  // XProtocolRevision
-  // XProtocolVersion
-  // XPutBackEvent
-  // XPutImage
-  // XPutPixel
-  // XQLength
-  // XQueryBestCursor
-  // XQueryBestSize
-  // XQueryBestStipple
-  // XQueryBestTile
-  // XQueryColor
-  // XQueryColors
-  // XQueryExtension
-  // XQueryFont
-  // XQueryKeymap
-  // XQueryPointer
-  // XQueryTextExtents
-  // XQueryTextExtents16
   pub fn XQueryTree (display: *mut Display, window: Window, root: *mut Window, parent: *mut Window, children: *mut *mut Window, nchildren: *mut c_uint) -> Status;
-  // XRaiseWindow
-  // XReadBitmapFile
-  // XReadBitmapFileData
-  // XRebindKeysym
-  // XRecolorCursor
-  // XReconfigureWMWindow
-  // XRectInRegion
-  // XRefreshKeyboardMapping
-  // XRemoveConnectionWatch
-  // XRemoveFromSaveSet
+  pub fn XRefreshKeyboardMapping (event_map: *const XMappingEvent);
   pub fn XRemoveHost (display: *mut Display, host: *const XHostAddress) -> c_int;
   pub fn XRemoveHosts (display: *mut Display, hosts: *const XHostAddress, num_hosts: c_int) -> c_int;
-  // XReparentWindow
-  // XResetScreenSaver
   pub fn XResizeWindow (display: *mut Display, window: Window, width: c_uint, height: c_uint);
-  // XResourceManagerString
-  // XRestackWindows
-  // XrmClassToString
-  // XrmCombineDatabase
-  // XrmCombineFileDatabase
-  // XrmDestroyDatabase
-  // XrmEnumerateDatabase
-  // XrmGetDatabase
-  // XrmGetFileDatabase
-  // XrmGetResource
-  // XrmGetStringDatabase
-  // XrmInitialize
-  // XrmLocaleOfDatabase
-  // XrmMergeDatabases
-  // XrmNameToString
-  // XrmParseCommand
-  // XrmPermStringToQuark
-  // XrmPutFileDatabase
-  // XrmPutLineResource
-  // XrmPutResource
-  // XrmPutStringResource
-  // XrmQGetResource
-  // XrmQGetSearchList
-  // XrmQGetSearchResource
-  // XrmQPutResource
-  // XrmQPutStringResource
-  // XrmQuarkToString
-  // XrmRepresentationToString
-  // XrmSetDataBase
-  // XrmSetDatabase
-  // XrmStringToBindingQuarkList
-  // XrmStringToClass
-  // XrmStringToClassList
-  // XrmStringToName
-  // XrmStringToNameList
-  // XrmStringToQuark
-  // XrmStringToQuarkList
-  // XrmStringToRepresentation
-  // XrmUniqueQuark
   pub fn XRootWindow (display: *mut Display, screen_num: c_int) -> Window;
-  // XRootWindowOfScreen
-  // XRotateBuffers
-  // XRotateWindowProperties
-  // XSaveContext
   pub fn XScreenCount (display: *mut Display) -> c_int;
-  // XScreenNumberOfScreen
-  // XScreenResourceString
-  // XScreensOfDisplay
-  // XSelectInput
+  pub fn XScreenOfDisplay (display: *mut Display, screen_num: c_int) -> *mut Screen;
   pub fn XSendEvent (display: *mut Display, window: Window, propagate: Bool, event_mask: c_long, event: *const XEvent) -> Status;
-  // XServerVendor
   pub fn XSetAccessControl (display: *mut Display, mode: c_int) -> c_int;
-  // XSetAfterFunction
-  // XSetArcMode
-  // XSetBackground
   pub fn XSetClassHint (display: *mut Display, window: Window, class_hints: *const XClassHint);
-  // XSetClipMask
-  // XSetClipOrigin
   pub fn XSetClipRectangles (display: *mut Display, gc: GC, clip_x_origin: c_int, clip_y_origin: c_int, rectangles: *const XRectangle, n: c_int, ordering: c_int);
-  // XSetCloseDownMode
-  // XSetCommand
-  // XSetDashes
-  // XSetErrorHandler
-  // XSetFillRule
-  // XSetFillStyle
-  // XSetFont
-  // XSetFontPath
+  pub fn XSetErrorHandler (handler: ErrorHandler) -> ErrorHandler;
   pub fn XSetForeground (display: *mut Display, gc: GC, fg: c_ulong);
-  // XSetFunction
-  // XSetGraphicsExposures
-  // XSetIconName
-  // XSetIconSizes
-  // XSetInputFocus
-  // XSetIOErrorHandler
-  // XSetLineAttributes
-  // XSetModifierMapping
-  // XSetNormalHints
-  // XSetPlaneMask
-  // XSetPointerMapping
-  // XSetProperty
-  // XSetRegion
-  // XSetRGBColormaps
-  // XSetScreenSaver
-  // XSetSelectionOwner
-  // XSetSizeHints
-  // XSetStandardColormap
-  // XSetStandardProperties
-  // XSetState
-  // XSetStipple
-  // XSetSubwindowMode
-  // XSetTextProperty
-  // XSetTile
-  // XSetTransientForHint
-  // XSetTSOrigin
-  // XSetWindowBackground
-  // XSetWindowBackgroundPixmap
-  // XSetWindowBorder
-  // XSetWindowBorderPixmap
-  // XSetWindowBorderWidth
-  // XSetWindowColormap
-  // XSetWMClientMachine
-  // XSetWMColormapWindows
-  // XSetWMHints
-  // XSetWMIconName
-  // XSetWMName
+  pub fn XSetICFocus (ic: XIC);
+  pub fn XSetIMValues (im: XIM, ...) -> *const c_char;
   pub fn XSetWMNormalHints (display: *mut Display, window: Window, hints: *const XSizeHints);
-  // XSetWMProperties
   pub fn XSetWMProtocols (display: *mut Display, window: Window, protocols: *const Atom, count: c_int) -> Status;
-  // XSetWMSizeHints
-  // XSetZoomHints
-  // XShrinkRegion
-  // XStoreBuffer
-  // XStoreBytes
-  // XStoreColor
-  // XStoreColors
   pub fn XStoreName (display: *mut Display, window: Window, name: *const c_char);
-  // XStoreNamedColor
-  // XStringListToTextProperty
   pub fn XStringToKeysym (display: *mut Display, window: Window, string: *const c_char) -> *mut KeySym;
-  // XSubImage
-  // XSubtractRegion
-  // XSync
-  // XSynchronize
-  // XTextExtents
-  // XTextExtents16
-  // XTextListToTextProperty
-  // XTextPropertyToStringList
-  // XTextWidth
-  // XTextWidth16
-  // XTranslateCoordinates
-  // XUndefineCursor
-  // XUngrabButton
-  // XUngrabKey
-  // XUngrabKeyboard
-  // XUngrabPointer
-  // XUngrabServer
-  // XUninstallColormap
-  // XUnionRectWithRegion
-  // XUnionRegion
-  // XUniqueContext
-  // XUnloadFont
-  // XUnlockDisplay
-  // XUnmapSubwindows
+  pub fn XUngrabPointer (display: *mut Display, time: Time);
   pub fn XUnmapWindow (display: *mut Display, window: Window);
-  // XVendorRelease
+  pub fn XUnsetICFocus (ic: XIC);
+  pub fn Xutf8LookupString (ic: XIC, event: *const XKeyPressedEvent, buffer_return: *mut c_char, buffer_size: c_int, keysym_return: *mut KeySym, status_return: *mut Status) -> c_int;
   pub fn XVisualIDFromVisual (visual: *mut Visual) -> VisualID;
-  // XWarpPointer
-  // XwcFreeStringList
-  // XwcTextListToTextProperty
-  // XwcTextPropertyToTextList
   pub fn XWhitePixel (display: *mut Display, screen_num: c_int) -> c_ulong;
   pub fn XWhitePixelOfScreen (screen: *mut Screen) -> c_ulong;
-  // XWidthMMOfScreen
-  // XWidthOfScreen
-  // XWindowEvent
-  // XWithdrawWindow
-  // XWMGeometry
-  // XWriteBitmapFile
-  // XXorRegion
-}
-
-
-//
-// C macros implemented as Rust functions
-//
-
-
-pub unsafe fn AllPlanes () -> c_ulong {
-  XAllPlanes()
-}
-
-pub unsafe fn BitmapBitOrder (display: *mut Display) -> c_int {
-  XBitmapBitOrder(display)
-}
-
-pub unsafe fn BitmapPad (display: *mut Display) -> c_int {
-  XBitmapPad(display)
-}
-
-pub unsafe fn BitmapUnit (display: *mut Display) -> c_int {
-  XBitmapUnit(display)
-}
-
-pub unsafe fn BlackPixel (display: *mut Display, screen_num: c_int) -> c_ulong {
-  XBlackPixel(display, screen_num)
-}
-
-pub unsafe fn BlackPixelOfScreen (screen: *mut Screen) -> c_ulong {
-  XBlackPixelOfScreen(screen)
-}
-
-pub unsafe fn CellsOfScreen (screen: *mut Screen) -> c_int {
-  XCellsOfScreen(screen)
-}
-
-pub unsafe fn DefaultColormap (display: *mut Display, screen_num: c_int) -> Colormap {
-  XDefaultColormap(display, screen_num)
-}
-
-pub unsafe fn DefaultScreen (display: *mut Display) -> c_int {
-  XDefaultScreen(display)
-}
-
-pub unsafe fn DefaultVisual (display: *mut Display, screen_num: c_int) -> *mut Visual {
-  XDefaultVisual(display, screen_num)
-}
-
-pub unsafe fn RootWindow (display: *mut Display, screen_num: c_int) -> Window {
-  XRootWindow(display, screen_num)
-}
-
-pub unsafe fn ScreenCount (display: *mut Display) -> c_int {
-  XScreenCount(display)
-}
-
-pub unsafe fn WhitePixel (display: *mut Display, screen_num: c_int) -> c_ulong {
-  XWhitePixel(display, screen_num)
-}
-
-pub unsafe fn WhitePixelOfScreen (screen: *mut Screen) -> c_ulong {
-  XWhitePixelOfScreen(screen)
+  pub fn XWidthOfScreen (screen: *mut Screen) -> c_int;
 }
 
 
@@ -706,7 +154,9 @@ pub type Status = Bool;
 pub type Time = c_ulong;
 pub type VisualID = XID;
 pub type Window = XID;
+pub type XIC = *mut XIC_Rec;
 pub type XID = c_ulong;
+pub type XIM = *mut XIM_Rec;
 pub type XPointer = *mut c_void;
 
 #[allow(missing_copy_implementations)]
@@ -721,13 +171,27 @@ pub struct Screen;
 #[repr(C)]
 pub struct Visual;
 
+#[allow(missing_copy_implementations)]
+#[repr(C)]
+pub struct XIC_Rec;
+
+#[allow(missing_copy_implementations)]
+#[repr(C)]
+pub struct XIM_Rec;
+
+#[allow(missing_copy_implementations)]
+#[repr(C)]
+pub struct _XrmHashBucketRec;
+
 pub type AddPixelFn = Option<unsafe extern "C" fn () -> c_int>;
 pub type CreateImageFn = Option<unsafe extern "C" fn () -> *mut XImage>;
 pub type DestroyImageFn = Option<unsafe extern "C" fn () -> c_int>;
+pub type ErrorHandler = Option<unsafe extern "C" fn (*mut Display, *const XErrorEvent) -> c_int>;
 pub type GetPixelFn = Option<unsafe extern "C" fn () -> c_ulong>;
 pub type PutPixelFn = Option<unsafe extern "C" fn () -> c_int>;
 pub type SubImageFn = Option<unsafe extern "C" fn () -> *mut XImage>;
 pub type XConnectionWatchProc = Option<unsafe extern "C" fn (*mut Display, XPointer, c_int, Bool, XPointer)>;
+pub type XrmDatabase = *mut _XrmHashBucketRec;
 
 
 //
@@ -1998,6 +1462,10 @@ pub const XA_CAP_HEIGHT: Atom = 66;
 pub const XA_WM_CLASS: Atom = 67;
 pub const XA_WM_TRANSIENT_FOR: Atom = 68;
 
+// boolean values
+pub const False: Bool = 0;
+pub const True: Bool = 1;
+
 // clip rect ordering
 pub const Unsorted: c_int = 0;
 pub const YSorted: c_int = 1;
@@ -2094,10 +1562,28 @@ pub const PropertyChangeMask: c_long = 0x0040_0000;
 pub const ColormapChangeMask: c_long = 0x0080_0000;
 pub const OwnerGrabButtonMask: c_long = 0x0100_0000;
 
+// grab modes
+pub const GrabModeSync: c_int = 0;
+pub const GrabModeAsync: c_int = 1;
+
+// grab status
+pub const GrabSuccess: c_int = 0;
+pub const AlreadyGrabbed: c_int = 1;
+pub const GrabInvalidTime: c_int = 2;
+pub const GrabNotViewable: c_int = 3;
+pub const GrabFrozen: c_int = 4;
+
 // map state
 pub const IsUnmapped: c_int = 0;
 pub const IsUnviewable: c_int = 1;
 pub const IsViewable: c_int = 2;
+
+// mouse buttons
+pub const Button1: c_int = 1;
+pub const Button2: c_int = 2;
+pub const Button3: c_int = 3;
+pub const Button4: c_int = 4;
+pub const Button5: c_int = 5;
 
 // size hints mask
 pub const USPosition: c_long = 0x0001;
@@ -2111,6 +1597,9 @@ pub const PAspect: c_long = 0x0080;
 pub const PBaseSize: c_long = 0x0100;
 pub const PWinGravity: c_long = 0x0200;
 pub const PAllHints: c_long = PPosition | PSize | PMinSize | PMaxSize | PResizeInc | PAspect;
+
+// time constants
+pub const CurrentTime: Time = 0;
 
 // visual class
 pub const StaticGray: c_int = 0;
@@ -2153,6 +1642,17 @@ pub const CWCursor: c_ulong = 0x4000;
 // window classes
 pub const InputOutput: c_int = 1;
 pub const InputOnly: c_int = 2;
+
+// XCreateIC values
+pub const XIMPreeditArea: c_int = 0x0001;
+pub const XIMPreeditCallbacks: c_int = 0x0002;
+pub const XIMPreeditPosition: c_int = 0x0004;
+pub const XIMPreeditNothing: c_int = 0x0008;
+pub const XIMPreeditNone: c_int = 0x0010;
+pub const XIMStatusArea: c_int = 0x0100;
+pub const XIMStatusCallbacks: c_int = 0x0200;
+pub const XIMStatusNothing: c_int = 0x0400;
+pub const XIMStatusNone: c_int = 0x0800;
 
 
 //

@@ -11,4 +11,7 @@
 extern crate libc;
 
 pub mod glx;
+pub mod keysym;
+pub mod xcursor;
+pub mod xf86vmode;
 pub mod xlib;

@@ -5,6 +5,7 @@
 use libc::{
   c_char,
   c_int,
+  c_uint,
 };
 
 use ::xlib::{
@@ -54,7 +55,7 @@ extern "C" {
   // glXNewCommandSGI
   // glXQuery
   // glXQueryContext
-  // glXQueryDrawable
+  pub fn glXQueryDrawable (display: *mut Display, drawable: GLXDrawable, attribute: c_int, value: *mut c_uint) -> c_int;
   // glXQueryExtension
   // glXQueryExtensionsString
   // glXQueryServerString
@@ -172,4 +173,18 @@ pub mod arb {
   // context profile mask
   pub const GLX_CONTEXT_CORE_PROFILE_BIT_ARB: c_int = 0x0001;
   pub const GLX_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB: c_int = 0x0002;
+}
+
+
+//
+// EXT extensions
+//
+
+
+pub mod ext {
+  use libc::c_int;
+
+  // drawable attributes
+  pub const GLX_SWAP_INTERVAL_EXT: c_int = 0x20f1;
+  pub const GLX_MAX_SWAP_INTERVAL_EXT: c_int = 0x20f2;
 }
