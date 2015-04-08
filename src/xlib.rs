@@ -71,7 +71,7 @@ extern "C" {
   pub fn XEnableAccessControl (display: *mut Display) -> c_int;
   pub fn XFetchName (display: *mut Display, window: Window, name: *mut *mut c_char) -> Status;
   pub fn XFillRectangle (display: *mut Display, drawable: Drawable, gc: GC, x: c_int, y: c_int, width: c_uint, height: c_uint);
-  pub fn XFilterEvent (event: *const XEvent, window: Window) -> Bool;
+  pub fn XFilterEvent (event: *mut XEvent, window: Window) -> Bool;
   pub fn XFlush (display: *mut Display);
   pub fn XFree (mem: *mut c_void);
   pub fn XFreeColormap (display: *mut Display, colormap: Colormap);
@@ -104,7 +104,7 @@ extern "C" {
   pub fn XPeekEvent (display: *mut Display, event_return: *mut XEvent);
   pub fn XPending (display: *mut Display) -> c_int;
   pub fn XQueryTree (display: *mut Display, window: Window, root: *mut Window, parent: *mut Window, children: *mut *mut Window, nchildren: *mut c_uint) -> Status;
-  pub fn XRefreshKeyboardMapping (event_map: *const XMappingEvent);
+  pub fn XRefreshKeyboardMapping (event_map: *mut XMappingEvent);
   pub fn XRemoveHost (display: *mut Display, host: *const XHostAddress) -> c_int;
   pub fn XRemoveHosts (display: *mut Display, hosts: *const XHostAddress, num_hosts: c_int) -> c_int;
   pub fn XResizeWindow (display: *mut Display, window: Window, width: c_uint, height: c_uint);
