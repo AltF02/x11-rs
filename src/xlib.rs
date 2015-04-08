@@ -139,8 +139,10 @@ extern "C" {
 //
 
 
+#[repr(C)]
+pub type Bool = bool;
+
 pub type Atom = XID;
-pub type Bool = c_int;
 pub type Colormap = XID;
 pub type Cursor = XID;
 pub type Drawable = XID;
@@ -1461,10 +1463,6 @@ pub const XA_FULL_NAME: Atom = 65;
 pub const XA_CAP_HEIGHT: Atom = 66;
 pub const XA_WM_CLASS: Atom = 67;
 pub const XA_WM_TRANSIENT_FOR: Atom = 68;
-
-// boolean values
-pub const False: Bool = 0;
-pub const True: Bool = 1;
 
 // clip rect ordering
 pub const Unsorted: c_int = 0;
