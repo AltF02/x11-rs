@@ -128,6 +128,7 @@ extern "C" {
   pub fn XUnsetICFocus (ic: XIC);
   pub fn Xutf8LookupString (ic: XIC, event: *const XKeyPressedEvent, buffer_return: *mut c_char, buffer_size: c_int, keysym_return: *mut KeySym, status_return: *mut Status) -> c_int;
   pub fn XVisualIDFromVisual (visual: *mut Visual) -> VisualID;
+  pub fn XWarpPointer (display: *mut Display, src_window: Window, dest_window: Window, src_x: c_int, src_y: c_int, src_width: c_uint, src_height: c_uint, dest_x: c_int, dest_y: c_int);
   pub fn XWhitePixel (display: *mut Display, screen_num: c_int) -> c_ulong;
   pub fn XWhitePixelOfScreen (screen: *mut Screen) -> c_ulong;
   pub fn XWidthOfScreen (screen: *mut Screen) -> c_int;
