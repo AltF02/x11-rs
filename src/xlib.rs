@@ -140,7 +140,7 @@ extern "C" {
 
 
 pub type Atom = XID;
-pub type Bool = bool;
+pub type Bool = c_int;
 pub type Colormap = XID;
 pub type Cursor = XID;
 pub type Drawable = XID;
