@@ -1,6 +1,6 @@
 [package]
 name = "x11"
-version = "0.0.26"
+version = "0.0.28"
 authors = ["Daggerbot <daggerbot@gmail.com>"]
 description = "X11 library bindings for Rust"
 license = "CC0-1.0"
