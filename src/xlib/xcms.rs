@@ -100,9 +100,13 @@ extern "C" {
 //
 
 
-// todo structs
+// TODO structs
 #[repr(C)] pub struct _XcmsCCC;
 #[repr(C)] pub struct XcmsColor;
+#[repr(C)] pub struct _XcmsColorSpace;
+#[repr(C)] pub struct _XcmsFunctionSet;
 
 // typedefs
 pub type XcmsCCC = *mut _XcmsCCC;
+pub type XcmsColorSpace = _XcmsColorSpace;
+pub type XcmsFunctionSet = _XcmsFunctionSet;

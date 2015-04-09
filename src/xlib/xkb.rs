@@ -202,17 +202,89 @@ extern "C" {
 //
 
 
-// opaque structs
+// TODO structs
+#[repr(C)] pub struct _XkbAction;
+#[repr(C)] pub struct _XkbBounds;
+#[repr(C)] pub struct _XkbChanges;
+#[repr(C)] pub struct _XkbClientMapRec;
+#[repr(C)] pub struct _XkbColor;
+#[repr(C)] pub struct _XkbComponentList;
+#[repr(C)] pub struct _XkbComponentNames;
+#[repr(C)] pub struct _XkbControls;
+#[repr(C)] pub struct _XkbControlsChanges;
+#[repr(C)] pub struct _XkbControlsNotify;
+#[repr(C)] pub struct _XkbDeviceChanges;
+#[repr(C)] pub struct _XkbDeviceInfo;
+#[repr(C)] pub struct _XkbDeviceLedInfo;
+#[repr(C)] pub struct _XkbDoodad;
+#[repr(C)] pub struct _XkbExtensionDeviceNotify;
 #[repr(C)] pub struct _XkbGeometry;
+#[repr(C)] pub struct _XkbGeometrySizes;
+#[repr(C)] pub struct _XkbIndicatorMapRec;
+#[repr(C)] pub struct _XkbKey;
+#[repr(C)] pub struct _XkbKeyType;
+#[repr(C)] pub struct _XkbMapChanges;
+#[repr(C)] pub struct _XkbMapNotifyEvent;
+#[repr(C)] pub struct _XkbMods;
+#[repr(C)] pub struct _XkbNameChanges;
+#[repr(C)] pub struct _XkbNamesNotify;
+#[repr(C)] pub struct _XkbOutline;
+#[repr(C)] pub struct _XkbOverlay;
+#[repr(C)] pub struct _XkbOverlayKey;
+#[repr(C)] pub struct _XkbOverlayRow;
+#[repr(C)] pub struct _XkbProperty;
+#[repr(C)] pub struct _XkbRow;
+#[repr(C)] pub struct _XkbSection;
+#[repr(C)] pub struct _XkbServerMapRec;
+#[repr(C)] pub struct _XkbShape;
+#[repr(C)] pub struct _XkbStateRec;
+#[repr(C)] pub struct _XkbSymInterpretRec;
 
 // types
+pub type XkbAction = _XkbAction;
+pub type XkbBoundsPtr = *mut _XkbBounds;
+pub type XkbChangesPtr = *mut _XkbChanges;
+pub type XkbClientMapPtr = *mut _XkbClientMapRec;
+pub type XkbColorPtr = *mut _XkbColor;
 pub type XkbCompatMapPtr = *mut _XkbCompatMapRec;
+pub type XkbComponentListPtr = *mut _XkbComponentList;
+pub type XkbComponentNamesPtr = *mut _XkbComponentNames;
+pub type XkbControlsChangesPtr = *mut _XkbControlsChanges;
+pub type XkbControlsNotifyEvent = _XkbControlsNotify;
+pub type XkbControlsPtr = *mut _XkbControls;
 pub type XkbDescPtr = *mut _XkbDesc;
+pub type XkbDeviceChangesPtr = *mut _XkbDeviceChanges;
+pub type XkbDeviceInfoPtr = *mut _XkbDeviceInfo;
+pub type XkbDeviceLedInfoPtr = *mut _XkbDeviceLedInfo;
+pub type XkbDoodadPtr = *mut _XkbDoodad;
+pub type XkbExtensionDeviceNotifyEvent = _XkbExtensionDeviceNotify;
 pub type XkbGeometryPtr = *mut _XkbGeometry;
+pub type XkbGeometrySizesPtr = *mut _XkbGeometrySizes;
+pub type XkbIndicatorMapPtr = *mut _XkbIndicatorMapRec;
+pub type XkbIndicatorMapRec = _XkbIndicatorMapRec;
 pub type XkbIndicatorPtr = *mut _XkbIndicatorRec;
+pub type XkbKeyTypePtr = *mut _XkbKeyType;
+pub type XkbMapChangesPtr = *mut _XkbMapChanges;
+pub type XkbMapNotifyEvent = _XkbMapNotifyEvent;
+pub type XkbModsPtr = *mut _XkbMods;
+pub type XkbModsRec = _XkbMods;
+pub type XkbNameChangesPtr = *mut _XkbNameChanges;
+pub type XkbNamesNotifyEvent = _XkbNamesNotify;
+pub type XkbNamesPtr = *mut _XkbNamesRec;
 pub type XkbKeyAliasPtr = *mut _XkbKeyAliasRec;
 pub type XkbKeyNamePtr = *mut _XkbKeyNameRec;
-pub type XkbNamesPtr = *mut _XkbNamesRec;
+pub type XkbKeyPtr = *mut _XkbKey;
+pub type XkbOutlinePtr = *mut _XkbOutline;
+pub type XkbOverlayKeyPtr = *mut _XkbOverlayKey;
+pub type XkbOverlayPtr = *mut _XkbOverlay;
+pub type XkbOverlayRowPtr = *mut _XkbOverlayRow;
+pub type XkbPropertyPtr = *mut _XkbProperty;
+pub type XkbRowPtr = *mut _XkbRow;
+pub type XkbSectionPtr = *mut _XkbSection;
+pub type XkbServerMapPtr = *mut _XkbServerMapRec;
+pub type XkbShapePtr = *mut _XkbShape;
+pub type XkbStatePtr = *mut _XkbStateRec;
+pub type XkbSymInterpretPtr = *mut _XkbSymInterpretRec;
 
 
 //
@@ -221,7 +293,6 @@ pub type XkbNamesPtr = *mut _XkbNamesRec;
 
 
 #[allow(raw_pointer_derive)]
-#[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XkbCompatMapRec {
   pub sym_interpret: XkbSymInterpretPtr,
@@ -248,7 +319,6 @@ pub struct _XkbDesc {
   pub geom: XkbGeometryPtr,
 }
 
-#[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XkbIndicatorRec {
   pub phys_indicators: c_ulong,

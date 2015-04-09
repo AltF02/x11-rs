@@ -1635,7 +1635,6 @@ pub struct XExtCodes {
 }
 
 #[allow(raw_pointer_derive)]
-#[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XExtData {
   pub number: c_int,
