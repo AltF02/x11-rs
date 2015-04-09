@@ -56,11 +56,11 @@ extern "C" {
   pub fn XcmsCIEXYZToRGBi (_4: XcmsCCC, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int;
   pub fn XcmsClientWhitePointOfCCC (_1: XcmsCCC) -> *mut XcmsColor;
   pub fn XcmsConvertColors (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_ulong, _1: *mut c_int) -> c_int;
-  pub fn XcmsCreateCCC (_8: *mut Display, _7: c_int, _6: *mut Visual, _5: *mut XcmsColor, _4: Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, c_uint, c_uint, *mut c_int) -> c_int>, _3: *mut c_char, _2: Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, *mut XcmsColor, c_ulong, *mut XcmsColor, c_uint, *mut c_int) -> c_int>, _1: *mut c_char) -> XcmsCCC;
+  pub fn XcmsCreateCCC (_8: *mut Display, _7: c_int, _6: *mut Visual, _5: *mut XcmsColor, _4: unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, c_uint, c_uint, *mut c_int) -> c_int, _3: *mut c_char, _2: unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, *mut XcmsColor, c_ulong, *mut XcmsColor, c_uint, *mut c_int) -> c_int, _1: *mut c_char) -> XcmsCCC;
   pub fn XcmsDefaultCCC (_2: *mut Display, _1: c_int) -> XcmsCCC;
   pub fn XcmsDisplayOfCCC (_1: XcmsCCC) -> *mut Display;
   pub fn XcmsFormatOfPrefix (_1: *mut c_char) -> c_ulong;
-  pub fn XcmsFreeCCC (_1: XcmsCCC) -> ();
+  pub fn XcmsFreeCCC (_1: XcmsCCC);
   pub fn XcmsLookupColor (_6: *mut Display, _5: c_ulong, _4: *const c_char, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_ulong) -> c_int;
   pub fn XcmsPrefixOfFormat (_1: c_ulong) -> *mut c_char;
   pub fn XcmsQueryBlack (_3: XcmsCCC, _2: c_ulong, _1: *mut XcmsColor) -> c_int;
@@ -76,8 +76,8 @@ extern "C" {
   pub fn XcmsScreenNumberOfCCC (_1: XcmsCCC) -> c_int;
   pub fn XcmsScreenWhitePointOfCCC (_1: XcmsCCC) -> *mut XcmsColor;
   pub fn XcmsSetCCCOfColormap (_3: *mut Display, _2: c_ulong, _1: XcmsCCC) -> XcmsCCC;
-  pub fn XcmsSetCompressionProc (_3: XcmsCCC, _2: Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, c_uint, c_uint, *mut c_int) -> c_int>, _1: *mut c_char) -> Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, c_uint, c_uint, *mut c_int) -> c_int>;
-  pub fn XcmsSetWhiteAdjustProc (_3: XcmsCCC, _2: Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, *mut XcmsColor, c_ulong, *mut XcmsColor, c_uint, *mut c_int) -> c_int>, _1: *mut c_char) -> Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, *mut XcmsColor, c_ulong, *mut XcmsColor, c_uint, *mut c_int) -> c_int>;
+  pub fn XcmsSetCompressionProc (_3: XcmsCCC, _2: unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, c_uint, c_uint, *mut c_int) -> c_int, _1: *mut c_char) -> unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, c_uint, c_uint, *mut c_int) -> c_int;
+  pub fn XcmsSetWhiteAdjustProc (_3: XcmsCCC, _2: unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, *mut XcmsColor, c_ulong, *mut XcmsColor, c_uint, *mut c_int) -> c_int, _1: *mut c_char) -> unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, *mut XcmsColor, c_ulong, *mut XcmsColor, c_uint, *mut c_int) -> c_int;
   pub fn XcmsSetWhitePoint (_2: XcmsCCC, _1: *mut XcmsColor) -> c_int;
   pub fn XcmsStoreColor (_3: *mut Display, _2: c_ulong, _1: *mut XcmsColor) -> c_int;
   pub fn XcmsStoreColors (_5: *mut Display, _4: c_ulong, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int;

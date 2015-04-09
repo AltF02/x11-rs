@@ -38,7 +38,7 @@ pub mod xkb;
 #[link(name="X11")]
 extern "C" {
   pub fn XActivateScreenSaver (_1: *mut Display) -> c_int;
-  pub fn XAddConnectionWatch (_3: *mut Display, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, c_int, c_int, *mut *mut c_char) -> ()>, _1: *mut c_char) -> c_int;
+  pub fn XAddConnectionWatch (_3: *mut Display, _2: unsafe extern "C" fn (*mut Display, *mut c_char, c_int, c_int, *mut *mut c_char), _1: *mut c_char) -> c_int;
   pub fn XAddExtension (_1: *mut Display) -> *mut XExtCodes;
   pub fn XAddHost (_2: *mut Display, _1: *mut XHostAddress) -> c_int;
   pub fn XAddHosts (_3: *mut Display, _2: *mut XHostAddress, _1: c_int) -> c_int;
@@ -74,7 +74,7 @@ extern "C" {
   pub fn XChangeProperty (_8: *mut Display, _7: c_ulong, _6: c_ulong, _5: c_ulong, _4: c_int, _3: c_int, _2: *const c_uchar, _1: c_int) -> c_int;
   pub fn XChangeSaveSet (_3: *mut Display, _2: c_ulong, _1: c_int) -> c_int;
   pub fn XChangeWindowAttributes (_4: *mut Display, _3: c_ulong, _2: c_ulong, _1: *mut XSetWindowAttributes) -> c_int;
-  pub fn XCheckIfEvent (_4: *mut Display, _3: *mut XEvent, _2: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut c_char) -> c_int>, _1: *mut c_char) -> c_int;
+  pub fn XCheckIfEvent (_4: *mut Display, _3: *mut XEvent, _2: unsafe extern "C" fn (*mut Display, *mut XEvent, *mut c_char) -> c_int, _1: *mut c_char) -> c_int;
   pub fn XCheckMaskEvent (_3: *mut Display, _2: c_long, _1: *mut XEvent) -> c_int;
   pub fn XCheckTypedEvent (_3: *mut Display, _2: c_int, _1: *mut XEvent) -> c_int;
   pub fn XCheckTypedWindowEvent (_4: *mut Display, _3: c_ulong, _2: c_int, _1: *mut XEvent) -> c_int;
@@ -171,22 +171,22 @@ extern "C" {
   pub fn XEmptyRegion (_1: Region) -> c_int;
   pub fn XEnableAccessControl (_1: *mut Display) -> c_int;
   pub fn XEqualRegion (_2: Region, _1: Region) -> c_int;
-  pub fn XESetBeforeFlush (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XExtCodes, *const c_char, c_long) -> ()>) -> Option<unsafe extern "C" fn (*mut Display, *mut XExtCodes, *const c_char, c_long) -> ()>;
-  pub fn XESetCloseDisplay (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XExtCodes) -> c_int>;
-  pub fn XESetCopyEventCookie (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut XGenericEventCookie) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut XGenericEventCookie) -> c_int>;
-  pub fn XESetCopyGC (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>;
-  pub fn XESetCreateFont (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int>;
-  pub fn XESetCreateGC (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>;
-  pub fn XESetError (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut xError, *mut XExtCodes, *mut c_int) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut xError, *mut XExtCodes, *mut c_int) -> c_int>;
-  pub fn XESetErrorString (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, c_int, *mut XExtCodes, *mut c_char, c_int) -> *mut c_char>) -> Option<unsafe extern "C" fn (*mut Display, c_int, *mut XExtCodes, *mut c_char, c_int) -> *mut c_char>;
-  pub fn XESetEventToWire (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int>;
-  pub fn XESetFlushGC (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>;
-  pub fn XESetFreeFont (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int>;
-  pub fn XESetFreeGC (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>;
-  pub fn XESetPrintErrorValues (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut ()) -> ()>) -> Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut ()) -> ()>;
-  pub fn XESetWireToError (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut xError) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut xError) -> c_int>;
-  pub fn XESetWireToEvent (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int>;
-  pub fn XESetWireToEventCookie (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut xEvent) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut xEvent) -> c_int>;
+  pub fn XESetBeforeFlush (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, *mut XExtCodes, *const c_char, c_long)) -> unsafe extern "C" fn (*mut Display, *mut XExtCodes, *const c_char, c_long);
+  pub fn XESetCloseDisplay (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, *mut XExtCodes) -> c_int) -> unsafe extern "C" fn (*mut Display, *mut XExtCodes) -> c_int;
+  pub fn XESetCopyEventCookie (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut XGenericEventCookie) -> c_int) -> unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut XGenericEventCookie) -> c_int;
+  pub fn XESetCopyGC (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int) -> unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int;
+  pub fn XESetCreateFont (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int) -> unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int;
+  pub fn XESetCreateGC (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int) -> unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int;
+  pub fn XESetError (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, *mut xError, *mut XExtCodes, *mut c_int) -> c_int) -> unsafe extern "C" fn (*mut Display, *mut xError, *mut XExtCodes, *mut c_int) -> c_int;
+  pub fn XESetErrorString (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, c_int, *mut XExtCodes, *mut c_char, c_int) -> *mut c_char) -> unsafe extern "C" fn (*mut Display, c_int, *mut XExtCodes, *mut c_char, c_int) -> *mut c_char;
+  pub fn XESetEventToWire (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int) -> unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int;
+  pub fn XESetFlushGC (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int) -> unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int;
+  pub fn XESetFreeFont (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int) -> unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int;
+  pub fn XESetFreeGC (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int) -> unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int;
+  pub fn XESetPrintErrorValues (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut ())) -> unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut ());
+  pub fn XESetWireToError (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut xError) -> c_int) -> unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut xError) -> c_int;
+  pub fn XESetWireToEvent (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int) -> unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int;
+  pub fn XESetWireToEventCookie (_3: *mut Display, _2: c_int, _1: unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut xEvent) -> c_int) -> unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut xEvent) -> c_int;
   pub fn XEventMaskOfScreen (_1: *mut Screen) -> c_long;
   pub fn XEventsQueued (_2: *mut Display, _1: c_int) -> c_int;
   pub fn XExtendedMaxRequestSize (_1: *mut Display) -> c_long;
@@ -279,7 +279,7 @@ extern "C" {
   pub fn XHeightMMOfScreen (_1: *mut Screen) -> c_int;
   pub fn XHeightOfScreen (_1: *mut Screen) -> c_int;
   pub fn XIconifyWindow (_3: *mut Display, _2: c_ulong, _1: c_int) -> c_int;
-  pub fn XIfEvent (_4: *mut Display, _3: *mut XEvent, _2: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut c_char) -> c_int>, _1: *mut c_char) -> c_int;
+  pub fn XIfEvent (_4: *mut Display, _3: *mut XEvent, _2: unsafe extern "C" fn (*mut Display, *mut XEvent, *mut c_char) -> c_int, _1: *mut c_char) -> c_int;
   pub fn XImageByteOrder (_1: *mut Display) -> c_int;
   pub fn XIMOfIC (_1: XIC) -> XIM;
   pub fn XInitExtension (_2: *mut Display, _1: *const c_char) -> *mut XExtCodes;
@@ -347,7 +347,7 @@ extern "C" {
   pub fn XParseColor (_4: *mut Display, _3: c_ulong, _2: *const c_char, _1: *mut XColor) -> c_int;
   pub fn XParseGeometry (_5: *const c_char, _4: *mut c_int, _3: *mut c_int, _2: *mut c_uint, _1: *mut c_uint) -> c_int;
   pub fn XPeekEvent (_2: *mut Display, _1: *mut XEvent) -> c_int;
-  pub fn XPeekIfEvent (_4: *mut Display, _3: *mut XEvent, _2: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut c_char) -> c_int>, _1: *mut c_char) -> c_int;
+  pub fn XPeekIfEvent (_4: *mut Display, _3: *mut XEvent, _2: unsafe extern "C" fn (*mut Display, *mut XEvent, *mut c_char) -> c_int, _1: *mut c_char) -> c_int;
   pub fn XPending (_1: *mut Display) -> c_int;
   pub fn Xpermalloc (_1: c_uint) -> *mut c_char;
   pub fn XPlanesOfScreen (_1: *mut Screen) -> c_int;
@@ -381,8 +381,8 @@ extern "C" {
   pub fn XReconfigureWMWindow (_5: *mut Display, _4: c_ulong, _3: c_int, _2: c_uint, _1: *mut XWindowChanges) -> c_int;
   pub fn XRectInRegion (_5: Region, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -> c_int;
   pub fn XRefreshKeyboardMapping (_1: *mut XMappingEvent) -> c_int;
-  pub fn XRegisterIMInstantiateCallback (_6: *mut Display, _5: XrmDatabase, _4: *mut c_char, _3: *mut c_char, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, *mut c_char) -> ()>, _1: *mut c_char) -> c_int;
-  pub fn XRemoveConnectionWatch (_3: *mut Display, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, c_int, c_int, *mut *mut c_char) -> ()>, _1: *mut c_char);
+  pub fn XRegisterIMInstantiateCallback (_6: *mut Display, _5: XrmDatabase, _4: *mut c_char, _3: *mut c_char, _2: unsafe extern "C" fn (*mut Display, *mut c_char, *mut c_char), _1: *mut c_char) -> c_int;
+  pub fn XRemoveConnectionWatch (_3: *mut Display, _2: unsafe extern "C" fn (*mut Display, *mut c_char, c_int, c_int, *mut *mut c_char), _1: *mut c_char);
   pub fn XRemoveFromSaveSet (_2: *mut Display, _1: c_ulong) -> c_int;
   pub fn XRemoveHost (_2: *mut Display, _1: *mut XHostAddress) -> c_int;
   pub fn XRemoveHosts (_3: *mut Display, _2: *mut XHostAddress, _1: c_int) -> c_int;
@@ -394,7 +394,7 @@ extern "C" {
   pub fn XrmCombineDatabase (_3: XrmDatabase, _2: *mut XrmDatabase, _1: c_int);
   pub fn XrmCombineFileDatabase (_3: *const c_char, _2: *mut XrmDatabase, _1: c_int) -> c_int;
   pub fn XrmDestroyDatabase (_1: XrmDatabase);
-  pub fn XrmEnumerateDatabase (_6: XrmDatabase, _5: *mut c_int, _4: *mut c_int, _3: c_int, _2: Option<unsafe extern "C" fn (*mut XrmDatabase, *mut XrmBinding, *mut c_int, *mut c_int, *mut XrmValue, *mut c_char) -> c_int>, _1: *mut c_char) -> c_int;
+  pub fn XrmEnumerateDatabase (_6: XrmDatabase, _5: *mut c_int, _4: *mut c_int, _3: c_int, _2: unsafe extern "C" fn (*mut XrmDatabase, *mut XrmBinding, *mut c_int, *mut c_int, *mut XrmValue, *mut c_char) -> c_int, _1: *mut c_char) -> c_int;
   pub fn XrmGetDatabase (_1: *mut Display) -> XrmDatabase;
   pub fn XrmGetFileDatabase (_1: *const c_char) -> XrmDatabase;
   pub fn XrmGetResource (_5: XrmDatabase, _4: *const c_char, _3: *const c_char, _2: *mut *mut c_char, _1: *mut XrmValue) -> c_int;
@@ -432,7 +432,7 @@ extern "C" {
   pub fn XSendEvent (_5: *mut Display, _4: c_ulong, _3: c_int, _2: c_long, _1: *mut XEvent) -> c_int;
   pub fn XServerVendor (_1: *mut Display) -> *mut c_char;
   pub fn XSetAccessControl (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XSetAfterFunction (_2: *mut Display, _1: Option<unsafe extern "C" fn (*mut Display) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display) -> c_int>;
+  pub fn XSetAfterFunction (_2: *mut Display, _1: unsafe extern "C" fn (*mut Display) -> c_int) -> unsafe extern "C" fn (*mut Display) -> c_int;
   pub fn XSetArcMode (_3: *mut Display, _2: GC, _1: c_int) -> c_int;
   pub fn XSetAuthorization (_4: *mut c_char, _3: c_int, _2: *mut c_char, _1: c_int);
   pub fn XSetBackground (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int;
@@ -443,7 +443,7 @@ extern "C" {
   pub fn XSetCloseDownMode (_2: *mut Display, _1: c_int) -> c_int;
   pub fn XSetCommand (_4: *mut Display, _3: c_ulong, _2: *mut *mut c_char, _1: c_int) -> c_int;
   pub fn XSetDashes (_5: *mut Display, _4: GC, _3: c_int, _2: *const c_char, _1: c_int) -> c_int;
-  pub fn XSetErrorHandler (_1: Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent) -> c_int>;
+  pub fn XSetErrorHandler (_1: unsafe extern "C" fn (*mut Display, *mut XErrorEvent) -> c_int) -> unsafe extern "C" fn (*mut Display, *mut XErrorEvent) -> c_int;
   pub fn XSetFillRule (_3: *mut Display, _2: GC, _1: c_int) -> c_int;
   pub fn XSetFillStyle (_3: *mut Display, _2: GC, _1: c_int) -> c_int;
   pub fn XSetFont (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int;
@@ -457,7 +457,7 @@ extern "C" {
   pub fn XSetICValues (_1: XIC, ...) -> *mut c_char;
   pub fn XSetIMValues (_1: XIM, ...) -> *mut c_char;
   pub fn XSetInputFocus (_4: *mut Display, _3: c_ulong, _2: c_int, _1: c_ulong) -> c_int;
-  pub fn XSetIOErrorHandler (_1: Option<unsafe extern "C" fn (*mut Display) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display) -> c_int>;
+  pub fn XSetIOErrorHandler (_1: unsafe extern "C" fn (*mut Display) -> c_int) -> unsafe extern "C" fn (*mut Display) -> c_int;
   pub fn XSetLineAttributes (_6: *mut Display, _5: GC, _4: c_uint, _3: c_int, _2: c_int, _1: c_int) -> c_int;
   pub fn XSetLocaleModifiers (_1: *const c_char) -> *mut c_char;
   pub fn XSetModifierMapping (_2: *mut Display, _1: *mut XModifierKeymap) -> c_int;
@@ -509,7 +509,7 @@ extern "C" {
   pub fn XSubtractRegion (_3: Region, _2: Region, _1: Region) -> c_int;
   pub fn XSupportsLocale () -> c_int;
   pub fn XSync (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XSynchronize (_2: *mut Display, _1: c_int) -> Option<unsafe extern "C" fn (*mut Display) -> c_int>;
+  pub fn XSynchronize (_2: *mut Display, _1: c_int) -> unsafe extern "C" fn (*mut Display) -> c_int;
   pub fn XTextExtents (_7: *mut XFontStruct, _6: *const c_char, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut XCharStruct) -> c_int;
   pub fn XTextExtents16 (_7: *mut XFontStruct, _6: *const XChar2b, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut XCharStruct) -> c_int;
   pub fn XTextPropertyToStringList (_3: *mut XTextProperty, _2: *mut *mut *mut c_char, _1: *mut c_int) -> c_int;
@@ -529,7 +529,7 @@ extern "C" {
   pub fn XUnlockDisplay (_1: *mut Display);
   pub fn XUnmapSubwindows (_2: *mut Display, _1: c_ulong) -> c_int;
   pub fn XUnmapWindow (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XUnregisterIMInstantiateCallback (_6: *mut Display, _5: XrmDatabase, _4: *mut c_char, _3: *mut c_char, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, *mut c_char) -> ()>, _1: *mut c_char) -> c_int;
+  pub fn XUnregisterIMInstantiateCallback (_6: *mut Display, _5: XrmDatabase, _4: *mut c_char, _3: *mut c_char, _2: unsafe extern "C" fn (*mut Display, *mut c_char, *mut c_char), _1: *mut c_char) -> c_int;
   pub fn XUnsetICFocus (_1: XIC);
   pub fn Xutf8DrawImageString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int);
   pub fn Xutf8DrawString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int);
@@ -622,7 +622,7 @@ pub type XrmDatabase = *mut _XrmHashBucketRec;
 pub type XrmOptionDescList = *mut XrmOptionDescRec;
 
 // function pointers
-pub type XConnectionWatchProc = Option<unsafe extern "C" fn (*mut Display, XPointer, c_int, Bool, XPointer)>;
+pub type XConnectionWatchProc = unsafe extern "C" fn (*mut Display, XPointer, c_int, Bool, XPointer);
 
 
 //
@@ -1636,7 +1636,7 @@ pub struct XExtCodes {
 pub struct XExtData {
   pub number: c_int,
   pub next: *mut XExtData,
-  pub free_private: Option<unsafe extern "C" fn () -> c_int>,
+  pub free_private: unsafe extern "C" fn () -> c_int,
   pub private_data: XPointer,
 }
 
@@ -2092,12 +2092,12 @@ fn client_message_size_test () {
 #[derive(Copy)]
 #[repr(C)]
 pub struct ImageFns {
-  pub create_image: Option<unsafe extern "C" fn (*mut Display, *mut Visual, c_uint, c_int, c_int, *mut c_char, c_uint, c_uint, c_int, c_int) -> *mut XImage>,
-  pub destroy_image: Option<unsafe extern "C" fn (*mut XImage) -> c_int>,
-  pub get_pixel: Option<unsafe extern "C" fn (*mut XImage, c_int, c_int) -> c_ulong>,
-  pub put_pixel: Option<unsafe extern "C" fn (*mut XImage, c_int, c_int, c_ulong) -> c_int>,
-  pub sub_image: Option<unsafe extern "C" fn (*mut XImage, c_int, c_int, c_uint, c_uint) -> *mut XImage>,
-  pub add_pixel: Option<unsafe extern "C" fn (&mut XImage, c_long) -> c_int>,
+  pub create_image: unsafe extern "C" fn (*mut Display, *mut Visual, c_uint, c_int, c_int, *mut c_char, c_uint, c_uint, c_int, c_int) -> *mut XImage,
+  pub destroy_image: unsafe extern "C" fn (*mut XImage) -> c_int,
+  pub get_pixel: unsafe extern "C" fn (*mut XImage, c_int, c_int) -> c_ulong,
+  pub put_pixel: unsafe extern "C" fn (*mut XImage, c_int, c_int, c_ulong) -> c_int,
+  pub sub_image: unsafe extern "C" fn (*mut XImage, c_int, c_int, c_uint, c_uint) -> *mut XImage,
+  pub add_pixel: unsafe extern "C" fn (&mut XImage, c_long) -> c_int,
 }
 
 impl Clone for ImageFns {
