@@ -899,7 +899,7 @@ fn xevent_size_test () {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XAnyEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -916,7 +916,7 @@ impl From<XEvent> for XAnyEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XButtonEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -945,7 +945,7 @@ impl From<XEvent> for XButtonEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCirculateEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -964,7 +964,7 @@ impl From<XEvent> for XCirculateEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCirculateRequestEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -983,7 +983,7 @@ impl From<XEvent> for XCirculateRequestEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XClientMessageEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1003,7 +1003,7 @@ impl From<XEvent> for XClientMessageEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XColormapEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1023,7 +1023,7 @@ impl From<XEvent> for XColormapEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XConfigureEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1048,7 +1048,7 @@ impl From<XEvent> for XConfigureEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XConfigureRequestEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1074,7 +1074,7 @@ impl From<XEvent> for XConfigureRequestEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCreateWindowEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1098,7 +1098,7 @@ impl From<XEvent> for XCreateWindowEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCrossingEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1129,7 +1129,7 @@ impl From<XEvent> for XCrossingEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDestroyWindowEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1147,7 +1147,7 @@ impl From<XEvent> for XDestroyWindowEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XErrorEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub display: *mut Display,
   pub serial: c_ulong,
   pub error_code: c_uchar,
@@ -1166,7 +1166,7 @@ impl From<XEvent> for XErrorEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XExposeEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1188,7 +1188,7 @@ impl From<XEvent> for XExposeEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XFocusChangeEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1209,7 +1209,7 @@ impl From<XEvent> for XFocusChangeEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XGraphicsExposeEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1233,7 +1233,7 @@ impl From<XEvent> for XGraphicsExposeEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XGravityEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1253,7 +1253,7 @@ impl From<XEvent> for XGravityEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XKeyEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1282,7 +1282,7 @@ impl From<XEvent> for XKeyEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XKeymapEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1300,7 +1300,7 @@ impl From<XEvent> for XKeymapEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XMapEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1319,7 +1319,7 @@ impl From<XEvent> for XMapEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XMappingEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1339,7 +1339,7 @@ impl From<XEvent> for XMappingEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XMapRequestEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1357,7 +1357,7 @@ impl From<XEvent> for XMapRequestEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XMotionEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1385,7 +1385,7 @@ impl From<XEvent> for XMotionEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XNoExposeEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1404,7 +1404,7 @@ impl From<XEvent> for XNoExposeEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XPropertyEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1424,7 +1424,7 @@ impl From<XEvent> for XPropertyEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XReparentEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1446,7 +1446,7 @@ impl From<XEvent> for XReparentEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XResizeRequestEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1465,7 +1465,7 @@ impl From<XEvent> for XResizeRequestEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XSelectionClearEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1484,7 +1484,7 @@ impl From<XEvent> for XSelectionClearEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XSelectionEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1505,7 +1505,7 @@ impl From<XEvent> for XSelectionEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XSelectionRequestEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1527,7 +1527,7 @@ impl From<XEvent> for XSelectionRequestEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XUnmapEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1546,7 +1546,7 @@ impl From<XEvent> for XUnmapEvent {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XVisibilityEvent {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
@@ -1708,7 +1708,7 @@ pub struct XGCValues {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XGenericEventCookie {
-  pub _type: c_int,
+  pub type_: c_int,
   pub serial: c_ulong,
   pub send_event: Bool,
   pub display: *mut Display,
