@@ -11,7 +11,7 @@ use libc::{
   c_ushort,
 };
 
-use super::{
+use ::xlib::{
   Atom,
   Display,
   KeyCode,

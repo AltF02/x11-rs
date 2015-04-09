@@ -29,9 +29,6 @@ use libc::{
 pub mod xcms;
 pub mod xkb;
 
-pub use self::xcms::*;
-pub use self::xkb::*;
-
 
 //
 // functions

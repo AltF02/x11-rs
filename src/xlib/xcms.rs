@@ -10,7 +10,7 @@ use libc::{
   c_ulong,
 };
 
-use super::{
+use ::xlib::{
   Display,
   Visual,
 };
