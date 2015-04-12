@@ -165,7 +165,7 @@ extern "C" {
   pub fn XkbResizeKeyType (_5: XkbDescPtr, _4: c_int, _3: c_int, _2: c_int, _1: c_int) -> c_int;
   pub fn XkbSelectEventDetails (_5: *mut Display, _4: c_uint, _3: c_uint, _2: c_ulong, _1: c_ulong) -> c_int;
   pub fn XkbSelectEvents (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbSetAtomFuncs (_2: unsafe extern "C" fn (*mut Display, *const c_char, c_int) -> c_ulong, _1: unsafe extern "C" fn (*mut Display, c_ulong) -> *mut c_char);
+  pub fn XkbSetAtomFuncs (_2: Option<unsafe extern "C" fn (*mut Display, *const c_char, c_int) -> c_ulong>, _1: Option<unsafe extern "C" fn (*mut Display, c_ulong) -> *mut c_char>);
   pub fn XkbSetAutoRepeatRate (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int;
   pub fn XkbSetAutoResetControls (_4: *mut Display, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int;
   pub fn XkbSetCompatMap (_4: *mut Display, _3: c_uint, _2: XkbDescPtr, _1: c_int) -> c_int;
