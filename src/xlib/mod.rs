@@ -1956,7 +1956,7 @@ pub struct XVisualInfo {
   pub visual: *mut Visual,
   pub visualid: VisualID,
   pub screen: c_int,
-  pub depth: c_uint,
+  pub depth: c_int,
   pub class: c_int,
   pub red_mask: c_ulong,
   pub green_mask: c_ulong,
