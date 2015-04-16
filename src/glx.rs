@@ -101,8 +101,10 @@ pub const GLX_PIXMAP_BIT: c_int = 0x0002;
 pub const GLX_PBUFFER_BIT: c_int = 0x0004;
 
 // framebuffer attributes
+pub const GLX_USE_GL: c_int = 0x0001;
 pub const GLX_BUFFER_SIZE: c_int = 0x0002;
 pub const GLX_LEVEL: c_int = 0x0003;
+pub const GLX_RGBA: c_int = 0x0004;
 pub const GLX_DOUBLEBUFFER: c_int = 0x0005;
 pub const GLX_STEREO: c_int = 0x0006;
 pub const GLX_AUX_BUFFERS: c_int = 0x0007;
