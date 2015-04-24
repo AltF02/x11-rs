@@ -2308,6 +2308,16 @@ pub const IsUnmapped: c_int = 0;
 pub const IsUnviewable: c_int = 1;
 pub const IsViewable: c_int = 2;
 
+// modifier keys mask
+pub const ShiftMask: c_uint = 0x01;
+pub const LockMask: c_uint = 0x02;
+pub const ControlMask: c_uint = 0x04;
+pub const Mod1Mask: c_uint = 0x08;
+pub const Mod2Mask: c_uint = 0x10;
+pub const Mod3Mask: c_uint = 0x20;
+pub const Mod4Mask: c_uint = 0x40;
+pub const Mod5Mask: c_uint = 0x80;
+
 // mouse buttons
 pub const Button1: c_uint = 1;
 pub const Button2: c_uint = 2;
