@@ -292,7 +292,6 @@ pub type XkbSymInterpretPtr = *mut _XkbSymInterpretRec;
 //
 
 
-#[allow(raw_pointer_derive)]
 #[repr(C)]
 pub struct _XkbCompatMapRec {
   pub sym_interpret: XkbSymInterpretPtr,
@@ -301,7 +300,6 @@ pub struct _XkbCompatMapRec {
   pub size_si: c_ushort,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XkbDesc {
@@ -338,7 +336,6 @@ pub struct _XkbKeyNameRec {
   pub name: [c_char; XkbKeyNameLength],
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XkbNamesRec {

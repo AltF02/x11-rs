@@ -65,7 +65,6 @@ pub struct XF86VidModeGamma {
   pub blue: c_float,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XF86VidModeModeInfo {
@@ -83,7 +82,6 @@ pub struct XF86VidModeModeInfo {
   pub private: *mut i32,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct XF86VidModeModeLine {
@@ -101,7 +99,6 @@ pub struct XF86VidModeModeLine {
   pub private: *mut i32,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct XF86VidModeMonitor {
@@ -114,7 +111,6 @@ pub struct XF86VidModeMonitor {
   pub vsync: *mut XF86VidModeSyncRange,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct XF86VidModeNotifyEvent {

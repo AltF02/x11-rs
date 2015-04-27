@@ -581,6 +581,7 @@ pub type Colormap = XID;
 pub type Cursor = XID;
 pub type Drawable = XID;
 pub type Font = XID;
+pub type GContext = XID;
 pub type KeyCode = c_uchar;
 pub type KeySym = XID;
 pub type Mask = c_ulong;
@@ -590,30 +591,27 @@ pub type Time = c_ulong;
 pub type VisualID = XID;
 pub type Window = XID;
 pub type XID = c_ulong;
-pub type XPointer = *mut c_void;
+pub type XPointer = *mut c_char;
 
 // opaque structures
-#[repr(C)] pub struct Screen;
-#[repr(C)] pub struct Visual;
-#[repr(C)] pub struct _XDisplay;
-#[repr(C)] pub struct xError;
-#[repr(C)] pub struct xEvent;
-#[repr(C)] pub struct _XGC;
-#[repr(C)] pub struct _XIC;
-#[repr(C)] pub struct _XIM;
-#[repr(C)] pub struct _XRegion;
-#[repr(C)] pub struct _XOC;
-#[repr(C)] pub struct _XOM;
-#[repr(C)] pub struct _XrmHashBucketRec;
+pub enum _XDisplay {}
+pub enum xError {}
+pub enum xEvent {}
+pub enum _XGC {}
+pub enum _XIC {}
+pub enum _XIM {}
+pub enum _XRegion {}
+pub enum _XOC {}
+pub enum _XOM {}
+pub enum _XrmHashBucketRec {}
 
-// placeholder structures
-#[repr(C)] pub struct _XEDataObjectRec;
+// union placeholders
+pub type XEDataObject = *mut c_void;
 
 // opaque types
 pub type Display = _XDisplay;
 pub type GC = *mut _XGC;
 pub type Region = *mut _XRegion;
-pub type XEDataObject = *mut _XEDataObjectRec;
 pub type XFontSet = *mut _XOC;
 pub type XIC = *mut _XIC;
 pub type XIM = *mut _XIM;
@@ -624,40 +622,18 @@ pub type XrmOptionDescList = *mut XrmOptionDescRec;
 // function pointers
 pub type XConnectionWatchProc = Option<unsafe extern "C" fn (*mut Display, XPointer, c_int, Bool, XPointer)>;
 
+// enum types
+pub type XICCEncodingStyle = c_int;
+pub type XOrientation = c_int;
+pub type XrmBinding = c_int;
+pub type XrmOptionKind = c_int;
 
-//
-// enums
-//
+#[cfg(test)]
+enum TestEnum {}
 
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub enum XICCEncodingStyle {
-  XStringStyle,
-  XCompoundTextStyle,
-  XTextStyle,
-  XStdICCTextStyle,
-  XUTF8StringStyle,
-}
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub enum XrmBinding {
-  XrmBindTightly,
-  XrmBindLoosely,
-}
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub enum XrmOptionKind {
-  XrmoptionNoArg,
-  XrmoptionIsArg,
-  XrmoptionStickyArg,
-  XrmoptionSepArg,
-  XrmoptionResArg,
-  XrmoptionSkipArg,
-  XrmoptionSkipLine,
-  XrmoptionSkipNArgs,
+#[test]
+fn enum_size_test () {
+  assert!(size_of::<TestEnum>() == size_of::<c_int>());
 }
 
 
@@ -895,7 +871,6 @@ fn xevent_size_test () {
   assert!(size_of::<XEvent>() >= size_of::<XVisibilityEvent>());
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XAnyEvent {
@@ -912,7 +887,6 @@ impl From<XEvent> for XAnyEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XButtonEvent {
@@ -941,7 +915,6 @@ impl From<XEvent> for XButtonEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCirculateEvent {
@@ -960,7 +933,6 @@ impl From<XEvent> for XCirculateEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCirculateRequestEvent {
@@ -979,7 +951,6 @@ impl From<XEvent> for XCirculateRequestEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XClientMessageEvent {
@@ -999,7 +970,6 @@ impl From<XEvent> for XClientMessageEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XColormapEvent {
@@ -1019,7 +989,6 @@ impl From<XEvent> for XColormapEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XConfigureEvent {
@@ -1044,7 +1013,6 @@ impl From<XEvent> for XConfigureEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XConfigureRequestEvent {
@@ -1070,7 +1038,6 @@ impl From<XEvent> for XConfigureRequestEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCreateWindowEvent {
@@ -1094,7 +1061,6 @@ impl From<XEvent> for XCreateWindowEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCrossingEvent {
@@ -1125,7 +1091,6 @@ impl From<XEvent> for XCrossingEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDestroyWindowEvent {
@@ -1143,7 +1108,6 @@ impl From<XEvent> for XDestroyWindowEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XErrorEvent {
@@ -1162,7 +1126,6 @@ impl From<XEvent> for XErrorEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XExposeEvent {
@@ -1184,7 +1147,6 @@ impl From<XEvent> for XExposeEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XFocusChangeEvent {
@@ -1205,7 +1167,6 @@ impl From<XEvent> for XFocusChangeEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XGraphicsExposeEvent {
@@ -1229,7 +1190,6 @@ impl From<XEvent> for XGraphicsExposeEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XGravityEvent {
@@ -1249,7 +1209,6 @@ impl From<XEvent> for XGravityEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XKeyEvent {
@@ -1278,7 +1237,6 @@ impl From<XEvent> for XKeyEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XKeymapEvent {
@@ -1296,7 +1254,6 @@ impl From<XEvent> for XKeymapEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XMapEvent {
@@ -1315,7 +1272,6 @@ impl From<XEvent> for XMapEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XMappingEvent {
@@ -1335,7 +1291,6 @@ impl From<XEvent> for XMappingEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XMapRequestEvent {
@@ -1353,7 +1308,6 @@ impl From<XEvent> for XMapRequestEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XMotionEvent {
@@ -1381,7 +1335,6 @@ impl From<XEvent> for XMotionEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XNoExposeEvent {
@@ -1400,7 +1353,6 @@ impl From<XEvent> for XNoExposeEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XPropertyEvent {
@@ -1420,7 +1372,6 @@ impl From<XEvent> for XPropertyEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XReparentEvent {
@@ -1442,7 +1393,6 @@ impl From<XEvent> for XReparentEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XResizeRequestEvent {
@@ -1461,7 +1411,6 @@ impl From<XEvent> for XResizeRequestEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XSelectionClearEvent {
@@ -1480,7 +1429,6 @@ impl From<XEvent> for XSelectionClearEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XSelectionEvent {
@@ -1501,7 +1449,6 @@ impl From<XEvent> for XSelectionEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XSelectionRequestEvent {
@@ -1523,7 +1470,6 @@ impl From<XEvent> for XSelectionRequestEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XUnmapEvent {
@@ -1542,7 +1488,6 @@ impl From<XEvent> for XUnmapEvent {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XVisibilityEvent {
@@ -1565,6 +1510,61 @@ impl From<XEvent> for XVisibilityEvent {
 // other structures
 //
 
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct Depth {
+  pub depth: c_int,
+  pub nvisuals: c_int,
+  pub visuals: *mut Visual,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct Screen {
+  pub ext_data: *mut XExtData,
+  pub display: *mut Display,
+  pub root: Window,
+  pub width: c_int,
+  pub height: c_int,
+  pub mwidth: c_int,
+  pub mheight: c_int,
+  pub ndepths: c_int,
+  pub depths: *mut Depth,
+  pub root_depth: c_int,
+  pub root_visual: *mut Visual,
+  pub default_gc: GC,
+  pub cmap: Colormap,
+  pub white_pixel: c_ulong,
+  pub black_pixel: c_ulong,
+  pub max_maps: c_int,
+  pub min_maps: c_int,
+  pub backing_store: c_int,
+  pub save_unders: Bool,
+  pub root_input_mask: c_long,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct ScreenFormat {
+  pub ext_data: *mut XExtData,
+  pub depth: c_int,
+  pub bits_per_pixel: c_int,
+  pub scanline_pad: c_int,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct Visual {
+  pub ext_data: *mut XExtData,
+  pub visualid: VisualID,
+  pub class: c_int,
+  pub red_mask: c_ulong,
+  pub green_mask: c_ulong,
+  pub blue_mask: c_ulong,
+  pub bits_per_rgb: c_int,
+  pub map_entries: c_int,
+}
 
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
@@ -1595,7 +1595,6 @@ pub struct XCharStruct {
   pub attributes: c_ushort,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XClassHint {
@@ -1614,7 +1613,6 @@ pub struct XColor {
   pub pad: c_char,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XComposeStatus {
@@ -1631,7 +1629,6 @@ pub struct XExtCodes {
   pub first_error: c_int,
 }
 
-#[allow(raw_pointer_derive)]
 #[repr(C)]
 pub struct XExtData {
   pub number: c_int,
@@ -1654,7 +1651,6 @@ pub struct XFontSetExtents {
   pub max_logical_extent: XRectangle,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XFontStruct {
@@ -1704,7 +1700,6 @@ pub struct XGCValues {
   pub dashes: c_char,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XGenericEventCookie {
@@ -1718,7 +1713,6 @@ pub struct XGenericEventCookie {
   pub data: *mut c_void,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XHostAddress {
@@ -1738,7 +1732,6 @@ pub struct XIconSize {
   pub height_inc: c_int,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XImage {
@@ -1786,7 +1779,6 @@ pub struct XKeyboardState {
   pub auto_repeats: [c_char; 32],
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XmbTextItem {
@@ -1796,12 +1788,18 @@ pub struct XmbTextItem {
   pub font_set: XFontSet,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XModifierKeymap {
   pub max_keypermod: c_int,
   pub modifiermap: *mut KeyCode,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct XOMCharSetList {
+  pub charset_count: c_int,
+  pub charset_list: *mut *mut c_char,
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1828,7 +1826,6 @@ pub struct XRectangle {
   pub height: c_ushort,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XrmOptionDescRec {
@@ -1838,7 +1835,6 @@ pub struct XrmOptionDescRec {
   pub value: XPointer,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XrmValue {
@@ -1911,7 +1907,6 @@ pub struct XStandardColormap {
   pub killid: XID,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XTextItem {
@@ -1921,7 +1916,6 @@ pub struct XTextItem {
   pub font: Font,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XTextItem16 {
@@ -1931,7 +1925,6 @@ pub struct XTextItem16 {
   pub font: Font,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XTextProperty {
@@ -1949,7 +1942,6 @@ pub struct XTimeCoord {
   pub y: c_short,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XVisualInfo {
@@ -1965,7 +1957,6 @@ pub struct XVisualInfo {
   pub bits_per_rgb: c_int,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XwcTextItem {
@@ -1975,7 +1966,6 @@ pub struct XwcTextItem {
   pub font_set: XFontSet,
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XWindowAttributes {

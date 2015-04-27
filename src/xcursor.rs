@@ -100,7 +100,6 @@ pub type XcursorDim = XcursorUInt;
 pub type XcursorPixel = XcursorUInt;
 pub type XcursorUInt = c_uint;
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorAnimate {
@@ -119,7 +118,6 @@ pub struct _XcursorChunkHeader {
 }
 pub type XcursorChunkHeader = _XcursorChunkHeader;
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorComment {
@@ -129,7 +127,6 @@ pub struct _XcursorComment {
 }
 pub type XcursorComment = _XcursorComment;
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorComments {
@@ -138,7 +135,6 @@ pub struct _XcursorComments {
 }
 pub type XcursorComments = _XcursorComments;
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorCursors {
@@ -149,7 +145,6 @@ pub struct _XcursorCursors {
 }
 pub type XcursorCursors = _XcursorCursors;
 
-#[allow(raw_pointer_derive)]
 #[derive(Copy)]
 #[repr(C)]
 pub struct _XcursorFile {
@@ -171,7 +166,6 @@ impl Clone for _XcursorFile {
   }
 }
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorFileHeader {
@@ -192,7 +186,6 @@ pub struct _XcursorFileToc {
 }
 pub type XcursorFileToc = _XcursorFileToc;
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorImage {
@@ -207,7 +200,6 @@ pub struct _XcursorImage {
 }
 pub type XcursorImage = _XcursorImage;
 
-#[allow(raw_pointer_derive)]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorImages {
