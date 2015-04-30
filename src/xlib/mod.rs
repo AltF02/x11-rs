@@ -622,14 +622,19 @@ pub type XrmOptionDescList = *mut XrmOptionDescRec;
 // function pointers
 pub type XConnectionWatchProc = Option<unsafe extern "C" fn (*mut Display, XPointer, c_int, Bool, XPointer)>;
 
-// enum types
+// C enums
 pub type XICCEncodingStyle = c_int;
 pub type XOrientation = c_int;
 pub type XrmBinding = c_int;
 pub type XrmOptionKind = c_int;
 
+#[allow(dead_code)]
 #[cfg(test)]
-enum TestEnum {}
+#[repr(C)]
+enum TestEnum {
+  Variant1,
+  Variant2,
+}
 
 #[test]
 fn enum_size_test () {
