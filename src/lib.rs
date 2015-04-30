@@ -17,3 +17,4 @@ pub mod keysym;
 pub mod xcursor;
 pub mod xf86vmode;
 pub mod xlib;
+pub mod xrender;
