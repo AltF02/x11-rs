@@ -21,7 +21,6 @@ use ::xlib::{
 //
 
 
-#[link(name="X11")]
 extern "C" {
   pub fn XcmsAddColorSpace (_1: *mut XcmsColorSpace) -> c_int;
   pub fn XcmsAddFunctionSet (_1: *mut XcmsFunctionSet) -> c_int;

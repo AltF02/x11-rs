@@ -25,7 +25,6 @@ use ::xlib::{
 //
 
 
-#[link(name="Xxf86vm")]
 extern "C" {
   pub fn XF86VidModeAddModeLine (_4: *mut Display, _3: c_int, _2: *mut XF86VidModeModeInfo, _1: *mut XF86VidModeModeInfo) -> c_int;
   pub fn XF86VidModeDeleteModeLine (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeModeInfo) -> c_int;

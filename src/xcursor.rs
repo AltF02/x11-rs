@@ -26,7 +26,6 @@ use ::xlib::{
 //
 
 
-#[link(name="Xcursor")]
 extern "C" {
   pub fn XcursorAnimateCreate (_1: *mut XcursorCursors) -> *mut XcursorAnimate;
   pub fn XcursorAnimateDestroy (_1: *mut XcursorAnimate);

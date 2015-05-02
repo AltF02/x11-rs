@@ -23,7 +23,6 @@ use ::xlib::{
 //
 
 
-#[link(name="X11")]
 extern "C" {
   pub fn XkbAddDeviceLedInfo (_3: XkbDeviceInfoPtr, _2: c_uint, _1: c_uint) -> XkbDeviceLedInfoPtr;
   pub fn XkbAddGeomColor (_3: XkbGeometryPtr, _2: *mut c_char, _1: c_uint) -> XkbColorPtr;

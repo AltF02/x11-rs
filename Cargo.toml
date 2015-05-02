@@ -5,7 +5,10 @@ authors = ["Daggerbot <daggerbot@gmail.com>"]
 description = "X11 library bindings for Rust"
 license = "CC0-1.0"
 repository = "https://github.com/Daggerbot/x11-rs.git"
-documentation = "http://daggerbot.github.io/x11-rs/x11/index.html"
+build = "build.rs"
 
 [dependencies]
 libc = "*"
+
+[build-dependencies]
+pkg-config = "*"

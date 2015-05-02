@@ -22,7 +22,6 @@ use ::xlib::{
 //
 
 
-#[link(name="GL")]
 extern "C" {
   pub fn glXChooseFBConfig (_4: *mut Display, _3: c_int, _2: *const c_int, _1: *mut c_int) -> *mut GLXFBConfig;
   pub fn glXChooseVisual (_3: *mut Display, _2: c_int, _1: *mut c_int) -> *mut XVisualInfo;

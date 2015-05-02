@@ -35,7 +35,6 @@ pub mod xkb;
 //
 
 
-#[link(name="X11")]
 extern "C" {
   pub fn XActivateScreenSaver (_1: *mut Display) -> c_int;
   pub fn XAddConnectionWatch (_3: *mut Display, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, c_int, c_int, *mut *mut c_char)>, _1: *mut c_char) -> c_int;
