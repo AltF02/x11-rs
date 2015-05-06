@@ -12,6 +12,8 @@
 
 extern crate libc;
 
+mod internal;
+
 pub mod glx;
 pub mod keysym;
 pub mod xcursor;
