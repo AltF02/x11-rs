@@ -4,7 +4,6 @@
 
 use libc::c_uint;
 
-
 pub const XK_BackSpace: c_uint = 0xFF08;
 pub const XK_Tab: c_uint = 0xFF09;
 pub const XK_Linefeed: c_uint = 0xFF0A;

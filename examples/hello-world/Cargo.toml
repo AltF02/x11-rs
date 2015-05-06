@@ -1,0 +1,13 @@
+[package]
+name = "_"
+version = "0.0.0"
+
+[dependencies]
+libc = "*"
+
+[dependencies.x11]
+path = "../.."
+
+[[bin]]
+name = "_"
+path = "main.rs"
