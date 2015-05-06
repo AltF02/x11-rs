@@ -26,66 +26,66 @@ use ::xlib::{
 //
 
 
-extern "C" {
-  pub fn XcursorAnimateCreate (_1: *mut XcursorCursors) -> *mut XcursorAnimate;
-  pub fn XcursorAnimateDestroy (_1: *mut XcursorAnimate);
-  pub fn XcursorAnimateNext (_1: *mut XcursorAnimate) -> c_ulong;
-  pub fn XcursorCommentCreate (_2: c_uint, _1: c_int) -> *mut XcursorComment;
-  pub fn XcursorCommentDestroy (_1: *mut XcursorComment);
-  pub fn XcursorCommentsCreate (_1: c_int) -> *mut XcursorComments;
-  pub fn XcursorCommentsDestroy (_1: *mut XcursorComments);
-  pub fn XcursorCursorsCreate (_2: *mut Display, _1: c_int) -> *mut XcursorCursors;
-  pub fn XcursorCursorsDestroy (_1: *mut XcursorCursors);
-  pub fn XcursorFileLoad (_3: *mut FILE, _2: *mut *mut XcursorComments, _1: *mut *mut XcursorImages) -> c_int;
-  pub fn XcursorFileLoadAllImages (_1: *mut FILE) -> *mut XcursorImages;
-  pub fn XcursorFileLoadImage (_2: *mut FILE, _1: c_int) -> *mut XcursorImage;
-  pub fn XcursorFileLoadImages (_2: *mut FILE, _1: c_int) -> *mut XcursorImages;
-  pub fn XcursorFilenameLoad (_3: *const c_char, _2: *mut *mut XcursorComments, _1: *mut *mut XcursorImages) -> c_int;
-  pub fn XcursorFilenameLoadAllImages (_1: *const c_char) -> *mut XcursorImages;
-  pub fn XcursorFilenameLoadCursor (_2: *mut Display, _1: *const c_char) -> c_ulong;
-  pub fn XcursorFilenameLoadCursors (_2: *mut Display, _1: *const c_char) -> *mut XcursorCursors;
-  pub fn XcursorFilenameLoadImage (_2: *const c_char, _1: c_int) -> *mut XcursorImage;
-  pub fn XcursorFilenameLoadImages (_2: *const c_char, _1: c_int) -> *mut XcursorImages;
-  pub fn XcursorFilenameSave (_3: *const c_char, _2: *const XcursorComments, _1: *const XcursorImages) -> c_int;
-  pub fn XcursorFilenameSaveImages (_2: *const c_char, _1: *const XcursorImages) -> c_int;
-  pub fn XcursorFileSave (_3: *mut FILE, _2: *const XcursorComments, _1: *const XcursorImages) -> c_int;
-  pub fn XcursorFileSaveImages (_2: *mut FILE, _1: *const XcursorImages) -> c_int;
-  pub fn XcursorGetDefaultSize (_1: *mut Display) -> c_int;
-  pub fn XcursorGetTheme (_1: *mut Display) -> *mut c_char;
-  pub fn XcursorGetThemeCore (_1: *mut Display) -> c_int;
-  pub fn XcursorImageCreate (_2: c_int, _1: c_int) -> *mut XcursorImage;
-  pub fn XcursorImageDestroy (_1: *mut XcursorImage);
-  pub fn XcursorImageHash (_2: *mut XImage, _1: *mut c_uchar);
-  pub fn XcursorImageLoadCursor (_2: *mut Display, _1: *const XcursorImage) -> c_ulong;
-  pub fn XcursorImagesCreate (_1: c_int) -> *mut XcursorImages;
-  pub fn XcursorImagesDestroy (_1: *mut XcursorImages);
-  pub fn XcursorImagesLoadCursor (_2: *mut Display, _1: *const XcursorImages) -> c_ulong;
-  pub fn XcursorImagesLoadCursors (_2: *mut Display, _1: *const XcursorImages) -> *mut XcursorCursors;
-  pub fn XcursorImagesSetName (_2: *mut XcursorImages, _1: *const c_char);
-  pub fn XcursorLibraryLoadCursor (_2: *mut Display, _1: *const c_char) -> c_ulong;
-  pub fn XcursorLibraryLoadCursors (_2: *mut Display, _1: *const c_char) -> *mut XcursorCursors;
-  pub fn XcursorLibraryLoadImage (_3: *const c_char, _2: *const c_char, _1: c_int) -> *mut XcursorImage;
-  pub fn XcursorLibraryLoadImages (_3: *const c_char, _2: *const c_char, _1: c_int) -> *mut XcursorImages;
-  pub fn XcursorLibraryPath () -> *const c_char;
-  pub fn XcursorLibraryShape (_1: *const c_char) -> c_int;
-  pub fn XcursorNoticeCreateBitmap (_4: *mut Display, _3: c_ulong, _2: c_uint, _1: c_uint);
-  pub fn XcursorNoticePutBitmap (_3: *mut Display, _2: c_ulong, _1: *mut XImage);
-  pub fn XcursorSetDefaultSize (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XcursorSetTheme (_2: *mut Display, _1: *const c_char) -> c_int;
-  pub fn XcursorSetThemeCore (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XcursorShapeLoadCursor (_2: *mut Display, _1: c_uint) -> c_ulong;
-  pub fn XcursorShapeLoadCursors (_2: *mut Display, _1: c_uint) -> *mut XcursorCursors;
-  pub fn XcursorShapeLoadImage (_3: c_uint, _2: *const c_char, _1: c_int) -> *mut XcursorImage;
-  pub fn XcursorShapeLoadImages (_3: c_uint, _2: *const c_char, _1: c_int) -> *mut XcursorImages;
-  pub fn XcursorSupportsAnim (_1: *mut Display) -> c_int;
-  pub fn XcursorSupportsARGB (_1: *mut Display) -> c_int;
-  pub fn XcursorTryShapeBitmapCursor (_7: *mut Display, _6: c_ulong, _5: c_ulong, _4: *mut XColor, _3: *mut XColor, _2: c_uint, _1: c_uint) -> c_ulong;
-  pub fn XcursorTryShapeCursor (_7: *mut Display, _6: c_ulong, _5: c_ulong, _4: c_uint, _3: c_uint, _2: *const XColor, _1: *const XColor) -> c_ulong;
-  pub fn XcursorXcFileLoad (_3: *mut XcursorFile, _2: *mut *mut XcursorComments, _1: *mut *mut XcursorImages) -> c_int;
-  pub fn XcursorXcFileLoadAllImages (_1: *mut XcursorFile) -> *mut XcursorImages;
-  pub fn XcursorXcFileLoadImage (_2: *mut XcursorFile, _1: c_int) -> *mut XcursorImage;
-  pub fn XcursorXcFileLoadImages (_2: *mut XcursorFile, _1: c_int) -> *mut XcursorImages;
-  pub fn XcursorXcFileSave (_3: *mut XcursorFile, _2: *const XcursorComments, _1: *const XcursorImages) -> c_int;
+x11_link! { Xcursor, "libXcursor.so",
+  pub fn XcursorAnimateCreate (_1: *mut XcursorCursors) -> *mut XcursorAnimate,
+  pub fn XcursorAnimateDestroy (_1: *mut XcursorAnimate) -> (),
+  pub fn XcursorAnimateNext (_1: *mut XcursorAnimate) -> c_ulong,
+  pub fn XcursorCommentCreate (_2: c_uint, _1: c_int) -> *mut XcursorComment,
+  pub fn XcursorCommentDestroy (_1: *mut XcursorComment) -> (),
+  pub fn XcursorCommentsCreate (_1: c_int) -> *mut XcursorComments,
+  pub fn XcursorCommentsDestroy (_1: *mut XcursorComments) -> (),
+  pub fn XcursorCursorsCreate (_2: *mut Display, _1: c_int) -> *mut XcursorCursors,
+  pub fn XcursorCursorsDestroy (_1: *mut XcursorCursors) -> (),
+  pub fn XcursorFileLoad (_3: *mut FILE, _2: *mut *mut XcursorComments, _1: *mut *mut XcursorImages) -> c_int,
+  pub fn XcursorFileLoadAllImages (_1: *mut FILE) -> *mut XcursorImages,
+  pub fn XcursorFileLoadImage (_2: *mut FILE, _1: c_int) -> *mut XcursorImage,
+  pub fn XcursorFileLoadImages (_2: *mut FILE, _1: c_int) -> *mut XcursorImages,
+  pub fn XcursorFilenameLoad (_3: *const c_char, _2: *mut *mut XcursorComments, _1: *mut *mut XcursorImages) -> c_int,
+  pub fn XcursorFilenameLoadAllImages (_1: *const c_char) -> *mut XcursorImages,
+  pub fn XcursorFilenameLoadCursor (_2: *mut Display, _1: *const c_char) -> c_ulong,
+  pub fn XcursorFilenameLoadCursors (_2: *mut Display, _1: *const c_char) -> *mut XcursorCursors,
+  pub fn XcursorFilenameLoadImage (_2: *const c_char, _1: c_int) -> *mut XcursorImage,
+  pub fn XcursorFilenameLoadImages (_2: *const c_char, _1: c_int) -> *mut XcursorImages,
+  pub fn XcursorFilenameSave (_3: *const c_char, _2: *const XcursorComments, _1: *const XcursorImages) -> c_int,
+  pub fn XcursorFilenameSaveImages (_2: *const c_char, _1: *const XcursorImages) -> c_int,
+  pub fn XcursorFileSave (_3: *mut FILE, _2: *const XcursorComments, _1: *const XcursorImages) -> c_int,
+  pub fn XcursorFileSaveImages (_2: *mut FILE, _1: *const XcursorImages) -> c_int,
+  pub fn XcursorGetDefaultSize (_1: *mut Display) -> c_int,
+  pub fn XcursorGetTheme (_1: *mut Display) -> *mut c_char,
+  pub fn XcursorGetThemeCore (_1: *mut Display) -> c_int,
+  pub fn XcursorImageCreate (_2: c_int, _1: c_int) -> *mut XcursorImage,
+  pub fn XcursorImageDestroy (_1: *mut XcursorImage) -> (),
+  pub fn XcursorImageHash (_2: *mut XImage, _1: *mut c_uchar) -> (),
+  pub fn XcursorImageLoadCursor (_2: *mut Display, _1: *const XcursorImage) -> c_ulong,
+  pub fn XcursorImagesCreate (_1: c_int) -> *mut XcursorImages,
+  pub fn XcursorImagesDestroy (_1: *mut XcursorImages) -> (),
+  pub fn XcursorImagesLoadCursor (_2: *mut Display, _1: *const XcursorImages) -> c_ulong,
+  pub fn XcursorImagesLoadCursors (_2: *mut Display, _1: *const XcursorImages) -> *mut XcursorCursors,
+  pub fn XcursorImagesSetName (_2: *mut XcursorImages, _1: *const c_char) -> (),
+  pub fn XcursorLibraryLoadCursor (_2: *mut Display, _1: *const c_char) -> c_ulong,
+  pub fn XcursorLibraryLoadCursors (_2: *mut Display, _1: *const c_char) -> *mut XcursorCursors,
+  pub fn XcursorLibraryLoadImage (_3: *const c_char, _2: *const c_char, _1: c_int) -> *mut XcursorImage,
+  pub fn XcursorLibraryLoadImages (_3: *const c_char, _2: *const c_char, _1: c_int) -> *mut XcursorImages,
+  pub fn XcursorLibraryPath () -> *const c_char,
+  pub fn XcursorLibraryShape (_1: *const c_char) -> c_int,
+  pub fn XcursorNoticeCreateBitmap (_4: *mut Display, _3: c_ulong, _2: c_uint, _1: c_uint) -> (),
+  pub fn XcursorNoticePutBitmap (_3: *mut Display, _2: c_ulong, _1: *mut XImage) -> (),
+  pub fn XcursorSetDefaultSize (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XcursorSetTheme (_2: *mut Display, _1: *const c_char) -> c_int,
+  pub fn XcursorSetThemeCore (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XcursorShapeLoadCursor (_2: *mut Display, _1: c_uint) -> c_ulong,
+  pub fn XcursorShapeLoadCursors (_2: *mut Display, _1: c_uint) -> *mut XcursorCursors,
+  pub fn XcursorShapeLoadImage (_3: c_uint, _2: *const c_char, _1: c_int) -> *mut XcursorImage,
+  pub fn XcursorShapeLoadImages (_3: c_uint, _2: *const c_char, _1: c_int) -> *mut XcursorImages,
+  pub fn XcursorSupportsAnim (_1: *mut Display) -> c_int,
+  pub fn XcursorSupportsARGB (_1: *mut Display) -> c_int,
+  pub fn XcursorTryShapeBitmapCursor (_7: *mut Display, _6: c_ulong, _5: c_ulong, _4: *mut XColor, _3: *mut XColor, _2: c_uint, _1: c_uint) -> c_ulong,
+  pub fn XcursorTryShapeCursor (_7: *mut Display, _6: c_ulong, _5: c_ulong, _4: c_uint, _3: c_uint, _2: *const XColor, _1: *const XColor) -> c_ulong,
+  pub fn XcursorXcFileLoad (_3: *mut XcursorFile, _2: *mut *mut XcursorComments, _1: *mut *mut XcursorImages) -> c_int,
+  pub fn XcursorXcFileLoadAllImages (_1: *mut XcursorFile) -> *mut XcursorImages,
+  pub fn XcursorXcFileLoadImage (_2: *mut XcursorFile, _1: c_int) -> *mut XcursorImage,
+  pub fn XcursorXcFileLoadImages (_2: *mut XcursorFile, _1: c_int) -> *mut XcursorImages,
+  pub fn XcursorXcFileSave (_3: *mut XcursorFile, _2: *const XcursorComments, _1: *const XcursorImages) -> c_int,
 }
 
 

@@ -10,8 +10,11 @@
 #![allow(non_upper_case_globals)]
 #![allow(raw_pointer_derive)]
 
+#[cfg(feature="dynamic")]
+extern crate dylib;
 extern crate libc;
 
+#[macro_use]
 mod internal;
 
 pub mod glx;

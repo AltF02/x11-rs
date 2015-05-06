@@ -1,14 +1,21 @@
 [package]
 name = "x11"
-version = "0.0.34"
+version = "0.0.35"
 authors = ["Daggerbot <daggerbot@gmail.com>"]
 description = "X11 library bindings for Rust"
 license = "CC0-1.0"
 repository = "https://github.com/Daggerbot/x11-rs.git"
 build = "build.rs"
 
+[features]
+dynamic = ["dylib"]
+
 [dependencies]
 libc = "*"
+
+[dependencies.dylib]
+version = "*"
+optional = true
 
 [build-dependencies]
 pkg-config = "*"

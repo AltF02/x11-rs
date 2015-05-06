@@ -36,774 +36,775 @@ pub mod xkb {}
 //
 
 
-extern "C" {
-  pub fn XActivateScreenSaver (_1: *mut Display) -> c_int;
-  pub fn XAddConnectionWatch (_3: *mut Display, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, c_int, c_int, *mut *mut c_char)>, _1: *mut c_char) -> c_int;
-  pub fn XAddExtension (_1: *mut Display) -> *mut XExtCodes;
-  pub fn XAddHost (_2: *mut Display, _1: *mut XHostAddress) -> c_int;
-  pub fn XAddHosts (_3: *mut Display, _2: *mut XHostAddress, _1: c_int) -> c_int;
-  pub fn XAddPixel (_2: *mut XImage, _1: c_long) -> c_int;
-  pub fn XAddToExtensionList (_2: *mut *mut XExtData, _1: *mut XExtData) -> c_int;
-  pub fn XAddToSaveSet (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XAllocClassHint () -> *mut XClassHint;
-  pub fn XAllocColor (_3: *mut Display, _2: c_ulong, _1: *mut XColor) -> c_int;
-  pub fn XAllocColorCells (_7: *mut Display, _6: c_ulong, _5: c_int, _4: *mut c_ulong, _3: c_uint, _2: *mut c_ulong, _1: c_uint) -> c_int;
-  pub fn XAllocColorPlanes (_11: *mut Display, _10: c_ulong, _9: c_int, _8: *mut c_ulong, _7: c_int, _6: c_int, _5: c_int, _4: c_int, _3: *mut c_ulong, _2: *mut c_ulong, _1: *mut c_ulong) -> c_int;
-  pub fn XAllocIconSize () -> *mut XIconSize;
-  pub fn XAllocNamedColor (_5: *mut Display, _4: c_ulong, _3: *const c_char, _2: *mut XColor, _1: *mut XColor) -> c_int;
-  pub fn XAllocSizeHints () -> *mut XSizeHints;
-  pub fn XAllocStandardColormap () -> *mut XStandardColormap;
-  pub fn XAllocWMHints () -> *mut XWMHints;
-  pub fn XAllowEvents (_3: *mut Display, _2: c_int, _1: c_ulong) -> c_int;
-  pub fn XAllPlanes () -> c_ulong;
-  pub fn XAutoRepeatOff (_1: *mut Display) -> c_int;
-  pub fn XAutoRepeatOn (_1: *mut Display) -> c_int;
-  pub fn XBaseFontNameListOfFontSet (_1: XFontSet) -> *mut c_char;
-  pub fn XBell (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XBitmapBitOrder (_1: *mut Display) -> c_int;
-  pub fn XBitmapPad (_1: *mut Display) -> c_int;
-  pub fn XBitmapUnit (_1: *mut Display) -> c_int;
-  pub fn XBlackPixel (_2: *mut Display, _1: c_int) -> c_ulong;
-  pub fn XBlackPixelOfScreen (_1: *mut Screen) -> c_ulong;
-  pub fn XCellsOfScreen (_1: *mut Screen) -> c_int;
-  pub fn XChangeActivePointerGrab (_4: *mut Display, _3: c_uint, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XChangeGC (_4: *mut Display, _3: GC, _2: c_ulong, _1: *mut XGCValues) -> c_int;
-  pub fn XChangeKeyboardControl (_3: *mut Display, _2: c_ulong, _1: *mut XKeyboardControl) -> c_int;
-  pub fn XChangeKeyboardMapping (_5: *mut Display, _4: c_int, _3: c_int, _2: *mut c_ulong, _1: c_int) -> c_int;
-  pub fn XChangePointerControl (_6: *mut Display, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: c_int) -> c_int;
-  pub fn XChangeProperty (_8: *mut Display, _7: c_ulong, _6: c_ulong, _5: c_ulong, _4: c_int, _3: c_int, _2: *const c_uchar, _1: c_int) -> c_int;
-  pub fn XChangeSaveSet (_3: *mut Display, _2: c_ulong, _1: c_int) -> c_int;
-  pub fn XChangeWindowAttributes (_4: *mut Display, _3: c_ulong, _2: c_ulong, _1: *mut XSetWindowAttributes) -> c_int;
-  pub fn XCheckIfEvent (_4: *mut Display, _3: *mut XEvent, _2: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut c_char) -> c_int>, _1: *mut c_char) -> c_int;
-  pub fn XCheckMaskEvent (_3: *mut Display, _2: c_long, _1: *mut XEvent) -> c_int;
-  pub fn XCheckTypedEvent (_3: *mut Display, _2: c_int, _1: *mut XEvent) -> c_int;
-  pub fn XCheckTypedWindowEvent (_4: *mut Display, _3: c_ulong, _2: c_int, _1: *mut XEvent) -> c_int;
-  pub fn XCheckWindowEvent (_4: *mut Display, _3: c_ulong, _2: c_long, _1: *mut XEvent) -> c_int;
-  pub fn XCirculateSubwindows (_3: *mut Display, _2: c_ulong, _1: c_int) -> c_int;
-  pub fn XCirculateSubwindowsDown (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XCirculateSubwindowsUp (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XClearArea (_7: *mut Display, _6: c_ulong, _5: c_int, _4: c_int, _3: c_uint, _2: c_uint, _1: c_int) -> c_int;
-  pub fn XClearWindow (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XClipBox (_2: Region, _1: *mut XRectangle) -> c_int;
-  pub fn XCloseDisplay (_1: *mut Display) -> c_int;
-  pub fn XCloseIM (_1: XIM) -> c_int;
-  pub fn XCloseOM (_1: XOM) -> c_int;
-  pub fn XcmsAddColorSpace (_1: *mut XcmsColorSpace) -> c_int;
-  pub fn XcmsAddFunctionSet (_1: *mut XcmsFunctionSet) -> c_int;
-  pub fn XcmsAllocColor (_4: *mut Display, _3: c_ulong, _2: *mut XcmsColor, _1: c_ulong) -> c_int;
-  pub fn XcmsAllocNamedColor (_6: *mut Display, _5: c_ulong, _4: *const c_char, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_ulong) -> c_int;
-  pub fn XcmsCCCOfColormap (_2: *mut Display, _1: c_ulong) -> XcmsCCC;
-  pub fn XcmsCIELabClipab (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsCIELabClipL (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsCIELabClipLab (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsCIELabQueryMaxC (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsCIELabQueryMaxL (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsCIELabQueryMaxLC (_3: XcmsCCC, _2: c_double, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsCIELabQueryMinL (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsCIELabToCIEXYZ (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int;
-  pub fn XcmsCIELabWhiteShiftColors (_7: XcmsCCC, _6: *mut XcmsColor, _5: *mut XcmsColor, _4: c_ulong, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsCIELuvClipL (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsCIELuvClipLuv (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsCIELuvClipuv (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsCIELuvQueryMaxC (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsCIELuvQueryMaxL (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsCIELuvQueryMaxLC (_3: XcmsCCC, _2: c_double, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsCIELuvQueryMinL (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsCIELuvToCIEuvY (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int;
-  pub fn XcmsCIELuvWhiteShiftColors (_7: XcmsCCC, _6: *mut XcmsColor, _5: *mut XcmsColor, _4: c_ulong, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsCIEuvYToCIELuv (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int;
-  pub fn XcmsCIEuvYToCIEXYZ (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int;
-  pub fn XcmsCIEuvYToTekHVC (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int;
-  pub fn XcmsCIExyYToCIEXYZ (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int;
-  pub fn XcmsCIEXYZToCIELab (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int;
-  pub fn XcmsCIEXYZToCIEuvY (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int;
-  pub fn XcmsCIEXYZToCIExyY (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int;
-  pub fn XcmsCIEXYZToRGBi (_4: XcmsCCC, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsClientWhitePointOfCCC (_1: XcmsCCC) -> *mut XcmsColor;
-  pub fn XcmsConvertColors (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_ulong, _1: *mut c_int) -> c_int;
-  pub fn XcmsCreateCCC (_8: *mut Display, _7: c_int, _6: *mut Visual, _5: *mut XcmsColor, _4: Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, c_uint, c_uint, *mut c_int) -> c_int>, _3: *mut c_char, _2: Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, *mut XcmsColor, c_ulong, *mut XcmsColor, c_uint, *mut c_int) -> c_int>, _1: *mut c_char) -> XcmsCCC;
-  pub fn XcmsDefaultCCC (_2: *mut Display, _1: c_int) -> XcmsCCC;
-  pub fn XcmsDisplayOfCCC (_1: XcmsCCC) -> *mut Display;
-  pub fn XcmsFormatOfPrefix (_1: *mut c_char) -> c_ulong;
-  pub fn XcmsFreeCCC (_1: XcmsCCC);
-  pub fn XcmsLookupColor (_6: *mut Display, _5: c_ulong, _4: *const c_char, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_ulong) -> c_int;
-  pub fn XcmsPrefixOfFormat (_1: c_ulong) -> *mut c_char;
-  pub fn XcmsQueryBlack (_3: XcmsCCC, _2: c_ulong, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsQueryBlue (_3: XcmsCCC, _2: c_ulong, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsQueryColor (_4: *mut Display, _3: c_ulong, _2: *mut XcmsColor, _1: c_ulong) -> c_int;
-  pub fn XcmsQueryColors (_5: *mut Display, _4: c_ulong, _3: *mut XcmsColor, _2: c_uint, _1: c_ulong) -> c_int;
-  pub fn XcmsQueryGreen (_3: XcmsCCC, _2: c_ulong, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsQueryRed (_3: XcmsCCC, _2: c_ulong, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsQueryWhite (_3: XcmsCCC, _2: c_ulong, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsRGBiToCIEXYZ (_4: XcmsCCC, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsRGBiToRGB (_4: XcmsCCC, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsRGBToRGBi (_4: XcmsCCC, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsScreenNumberOfCCC (_1: XcmsCCC) -> c_int;
-  pub fn XcmsScreenWhitePointOfCCC (_1: XcmsCCC) -> *mut XcmsColor;
-  pub fn XcmsSetCCCOfColormap (_3: *mut Display, _2: c_ulong, _1: XcmsCCC) -> XcmsCCC;
-  pub fn XcmsSetCompressionProc (_3: XcmsCCC, _2: Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, c_uint, c_uint, *mut c_int) -> c_int>, _1: *mut c_char) -> Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, c_uint, c_uint, *mut c_int) -> c_int>;
-  pub fn XcmsSetWhiteAdjustProc (_3: XcmsCCC, _2: Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, *mut XcmsColor, c_ulong, *mut XcmsColor, c_uint, *mut c_int) -> c_int>, _1: *mut c_char) -> Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, *mut XcmsColor, c_ulong, *mut XcmsColor, c_uint, *mut c_int) -> c_int>;
-  pub fn XcmsSetWhitePoint (_2: XcmsCCC, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsStoreColor (_3: *mut Display, _2: c_ulong, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsStoreColors (_5: *mut Display, _4: c_ulong, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsTekHVCClipC (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsTekHVCClipV (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsTekHVCClipVC (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsTekHVCQueryMaxC (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsTekHVCQueryMaxV (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsTekHVCQueryMaxVC (_3: XcmsCCC, _2: c_double, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsTekHVCQueryMaxVSamples (_4: XcmsCCC, _3: c_double, _2: *mut XcmsColor, _1: c_uint) -> c_int;
-  pub fn XcmsTekHVCQueryMinV (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int;
-  pub fn XcmsTekHVCToCIEuvY (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int;
-  pub fn XcmsTekHVCWhiteShiftColors (_7: XcmsCCC, _6: *mut XcmsColor, _5: *mut XcmsColor, _4: c_ulong, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int;
-  pub fn XcmsVisualOfCCC (_1: XcmsCCC) -> *mut Visual;
-  pub fn XConfigureWindow (_4: *mut Display, _3: c_ulong, _2: c_uint, _1: *mut XWindowChanges) -> c_int;
-  pub fn XConnectionNumber (_1: *mut Display) -> c_int;
-  pub fn XContextDependentDrawing (_1: XFontSet) -> c_int;
-  pub fn XContextualDrawing (_1: XFontSet) -> c_int;
-  pub fn XConvertCase (_3: c_ulong, _2: *mut c_ulong, _1: *mut c_ulong);
-  pub fn XConvertSelection (_6: *mut Display, _5: c_ulong, _4: c_ulong, _3: c_ulong, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XCopyArea (_10: *mut Display, _9: c_ulong, _8: c_ulong, _7: GC, _6: c_int, _5: c_int, _4: c_uint, _3: c_uint, _2: c_int, _1: c_int) -> c_int;
-  pub fn XCopyColormapAndFree (_2: *mut Display, _1: c_ulong) -> c_ulong;
-  pub fn XCopyGC (_4: *mut Display, _3: GC, _2: c_ulong, _1: GC) -> c_int;
-  pub fn XCopyPlane (_11: *mut Display, _10: c_ulong, _9: c_ulong, _8: GC, _7: c_int, _6: c_int, _5: c_uint, _4: c_uint, _3: c_int, _2: c_int, _1: c_ulong) -> c_int;
-  pub fn XCreateBitmapFromData (_5: *mut Display, _4: c_ulong, _3: *const c_char, _2: c_uint, _1: c_uint) -> c_ulong;
-  pub fn XCreateColormap (_4: *mut Display, _3: c_ulong, _2: *mut Visual, _1: c_int) -> c_ulong;
-  pub fn XCreateFontCursor (_2: *mut Display, _1: c_uint) -> c_ulong;
-  pub fn XCreateFontSet (_5: *mut Display, _4: *const c_char, _3: *mut *mut *mut c_char, _2: *mut c_int, _1: *mut *mut c_char) -> XFontSet;
-  pub fn XCreateGC (_4: *mut Display, _3: c_ulong, _2: c_ulong, _1: *mut XGCValues) -> GC;
-  pub fn XCreateGlyphCursor (_7: *mut Display, _6: c_ulong, _5: c_ulong, _4: c_uint, _3: c_uint, _2: *const XColor, _1: *const XColor) -> c_ulong;
-  pub fn XCreateIC (_1: XIM, ...) -> XIC;
-  pub fn XCreateImage (_10: *mut Display, _9: *mut Visual, _8: c_uint, _7: c_int, _6: c_int, _5: *mut c_char, _4: c_uint, _3: c_uint, _2: c_int, _1: c_int) -> *mut XImage;
-  pub fn XCreateOC (_1: XOM, ...) -> XFontSet;
-  pub fn XCreatePixmap (_5: *mut Display, _4: c_ulong, _3: c_uint, _2: c_uint, _1: c_uint) -> c_ulong;
-  pub fn XCreatePixmapCursor (_7: *mut Display, _6: c_ulong, _5: c_ulong, _4: *mut XColor, _3: *mut XColor, _2: c_uint, _1: c_uint) -> c_ulong;
-  pub fn XCreatePixmapFromBitmapData (_8: *mut Display, _7: c_ulong, _6: *mut c_char, _5: c_uint, _4: c_uint, _3: c_ulong, _2: c_ulong, _1: c_uint) -> c_ulong;
-  pub fn XCreateRegion () -> Region;
-  pub fn XCreateSimpleWindow (_9: *mut Display, _8: c_ulong, _7: c_int, _6: c_int, _5: c_uint, _4: c_uint, _3: c_uint, _2: c_ulong, _1: c_ulong) -> c_ulong;
-  pub fn XCreateWindow (_12: *mut Display, _11: c_ulong, _10: c_int, _9: c_int, _8: c_uint, _7: c_uint, _6: c_uint, _5: c_int, _4: c_uint, _3: *mut Visual, _2: c_ulong, _1: *mut XSetWindowAttributes) -> c_ulong;
-  pub fn XDefaultColormap (_2: *mut Display, _1: c_int) -> c_ulong;
-  pub fn XDefaultColormapOfScreen (_1: *mut Screen) -> c_ulong;
-  pub fn XDefaultDepth (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XDefaultDepthOfScreen (_1: *mut Screen) -> c_int;
-  pub fn XDefaultGC (_2: *mut Display, _1: c_int) -> GC;
-  pub fn XDefaultGCOfScreen (_1: *mut Screen) -> GC;
-  pub fn XDefaultRootWindow (_1: *mut Display) -> c_ulong;
-  pub fn XDefaultScreen (_1: *mut Display) -> c_int;
-  pub fn XDefaultScreenOfDisplay (_1: *mut Display) -> *mut Screen;
-  pub fn XDefaultString () -> *const c_char;
-  pub fn XDefaultVisual (_2: *mut Display, _1: c_int) -> *mut Visual;
-  pub fn XDefaultVisualOfScreen (_1: *mut Screen) -> *mut Visual;
-  pub fn XDefineCursor (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XDeleteContext (_3: *mut Display, _2: c_ulong, _1: c_int) -> c_int;
-  pub fn XDeleteModifiermapEntry (_3: *mut XModifierKeymap, _2: c_uchar, _1: c_int) -> *mut XModifierKeymap;
-  pub fn XDeleteProperty (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XDestroyIC (_1: XIC);
-  pub fn XDestroyImage (_1: *mut XImage) -> c_int;
-  pub fn XDestroyOC (_1: XFontSet);
-  pub fn XDestroyRegion (_1: Region) -> c_int;
-  pub fn XDestroySubwindows (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XDestroyWindow (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XDirectionalDependentDrawing (_1: XFontSet) -> c_int;
-  pub fn XDisableAccessControl (_1: *mut Display) -> c_int;
-  pub fn XDisplayCells (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XDisplayHeight (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XDisplayHeightMM (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XDisplayKeycodes (_3: *mut Display, _2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XDisplayMotionBufferSize (_1: *mut Display) -> c_ulong;
-  pub fn XDisplayName (_1: *const c_char) -> *mut c_char;
-  pub fn XDisplayOfIM (_1: XIM) -> *mut Display;
-  pub fn XDisplayOfOM (_1: XOM) -> *mut Display;
-  pub fn XDisplayOfScreen (_1: *mut Screen) -> *mut Display;
-  pub fn XDisplayPlanes (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XDisplayString (_1: *mut Display) -> *mut c_char;
-  pub fn XDisplayWidth (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XDisplayWidthMM (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XDoesBackingStore (_1: *mut Screen) -> c_int;
-  pub fn XDoesSaveUnders (_1: *mut Screen) -> c_int;
-  pub fn XDrawArc (_9: *mut Display, _8: c_ulong, _7: GC, _6: c_int, _5: c_int, _4: c_uint, _3: c_uint, _2: c_int, _1: c_int) -> c_int;
-  pub fn XDrawArcs (_5: *mut Display, _4: c_ulong, _3: GC, _2: *mut XArc, _1: c_int) -> c_int;
-  pub fn XDrawImageString (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int) -> c_int;
-  pub fn XDrawImageString16 (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *const XChar2b, _1: c_int) -> c_int;
-  pub fn XDrawLine (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: c_int, _1: c_int) -> c_int;
-  pub fn XDrawLines (_6: *mut Display, _5: c_ulong, _4: GC, _3: *mut XPoint, _2: c_int, _1: c_int) -> c_int;
-  pub fn XDrawPoint (_5: *mut Display, _4: c_ulong, _3: GC, _2: c_int, _1: c_int) -> c_int;
-  pub fn XDrawPoints (_6: *mut Display, _5: c_ulong, _4: GC, _3: *mut XPoint, _2: c_int, _1: c_int) -> c_int;
-  pub fn XDrawRectangle (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XDrawRectangles (_5: *mut Display, _4: c_ulong, _3: GC, _2: *mut XRectangle, _1: c_int) -> c_int;
-  pub fn XDrawSegments (_5: *mut Display, _4: c_ulong, _3: GC, _2: *mut XSegment, _1: c_int) -> c_int;
-  pub fn XDrawString (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int) -> c_int;
-  pub fn XDrawString16 (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *const XChar2b, _1: c_int) -> c_int;
-  pub fn XDrawText (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *mut XTextItem, _1: c_int) -> c_int;
-  pub fn XDrawText16 (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *mut XTextItem16, _1: c_int) -> c_int;
-  pub fn XEHeadOfExtensionList (_1: XEDataObject) -> *mut *mut XExtData;
-  pub fn XEmptyRegion (_1: Region) -> c_int;
-  pub fn XEnableAccessControl (_1: *mut Display) -> c_int;
-  pub fn XEqualRegion (_2: Region, _1: Region) -> c_int;
-  pub fn XESetBeforeFlush (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XExtCodes, *const c_char, c_long)>) -> Option<unsafe extern "C" fn (*mut Display, *mut XExtCodes, *const c_char, c_long)>;
-  pub fn XESetCloseDisplay (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XExtCodes) -> c_int>;
-  pub fn XESetCopyEventCookie (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut XGenericEventCookie) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut XGenericEventCookie) -> c_int>;
-  pub fn XESetCopyGC (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>;
-  pub fn XESetCreateFont (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int>;
-  pub fn XESetCreateGC (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>;
-  pub fn XESetError (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut xError, *mut XExtCodes, *mut c_int) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut xError, *mut XExtCodes, *mut c_int) -> c_int>;
-  pub fn XESetErrorString (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, c_int, *mut XExtCodes, *mut c_char, c_int) -> *mut c_char>) -> Option<unsafe extern "C" fn (*mut Display, c_int, *mut XExtCodes, *mut c_char, c_int) -> *mut c_char>;
-  pub fn XESetEventToWire (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int>;
-  pub fn XESetFlushGC (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>;
-  pub fn XESetFreeFont (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int>;
-  pub fn XESetFreeGC (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>;
-  pub fn XESetPrintErrorValues (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut c_void)>) -> Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut c_void)>;
-  pub fn XESetWireToError (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut xError) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut xError) -> c_int>;
-  pub fn XESetWireToEvent (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int>;
-  pub fn XESetWireToEventCookie (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut xEvent) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut xEvent) -> c_int>;
-  pub fn XEventMaskOfScreen (_1: *mut Screen) -> c_long;
-  pub fn XEventsQueued (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XExtendedMaxRequestSize (_1: *mut Display) -> c_long;
-  pub fn XExtentsOfFontSet (_1: XFontSet) -> *mut XFontSetExtents;
-  pub fn XFetchBuffer (_3: *mut Display, _2: *mut c_int, _1: c_int) -> *mut c_char;
-  pub fn XFetchBytes (_2: *mut Display, _1: *mut c_int) -> *mut c_char;
-  pub fn XFetchName (_3: *mut Display, _2: c_ulong, _1: *mut *mut c_char) -> c_int;
-  pub fn XFillArc (_9: *mut Display, _8: c_ulong, _7: GC, _6: c_int, _5: c_int, _4: c_uint, _3: c_uint, _2: c_int, _1: c_int) -> c_int;
-  pub fn XFillArcs (_5: *mut Display, _4: c_ulong, _3: GC, _2: *mut XArc, _1: c_int) -> c_int;
-  pub fn XFillPolygon (_7: *mut Display, _6: c_ulong, _5: GC, _4: *mut XPoint, _3: c_int, _2: c_int, _1: c_int) -> c_int;
-  pub fn XFillRectangle (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XFillRectangles (_5: *mut Display, _4: c_ulong, _3: GC, _2: *mut XRectangle, _1: c_int) -> c_int;
-  pub fn XFilterEvent (_2: *mut XEvent, _1: c_ulong) -> c_int;
-  pub fn XFindContext (_4: *mut Display, _3: c_ulong, _2: c_int, _1: *mut *mut c_char) -> c_int;
-  pub fn XFindOnExtensionList (_2: *mut *mut XExtData, _1: c_int) -> *mut XExtData;
-  pub fn XFlush (_1: *mut Display) -> c_int;
-  pub fn XFlushGC (_2: *mut Display, _1: GC);
-  pub fn XFontsOfFontSet (_3: XFontSet, _2: *mut *mut *mut XFontStruct, _1: *mut *mut *mut c_char) -> c_int;
-  pub fn XForceScreenSaver (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XFree (_1: *mut c_void) -> c_int;
-  pub fn XFreeColormap (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XFreeColors (_5: *mut Display, _4: c_ulong, _3: *mut c_ulong, _2: c_int, _1: c_ulong) -> c_int;
-  pub fn XFreeCursor (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XFreeEventData (_2: *mut Display, _1: *mut XGenericEventCookie);
-  pub fn XFreeExtensionList (_1: *mut *mut c_char) -> c_int;
-  pub fn XFreeFont (_2: *mut Display, _1: *mut XFontStruct) -> c_int;
-  pub fn XFreeFontInfo (_3: *mut *mut c_char, _2: *mut XFontStruct, _1: c_int) -> c_int;
-  pub fn XFreeFontNames (_1: *mut *mut c_char) -> c_int;
-  pub fn XFreeFontPath (_1: *mut *mut c_char) -> c_int;
-  pub fn XFreeFontSet (_2: *mut Display, _1: XFontSet);
-  pub fn XFreeGC (_2: *mut Display, _1: GC) -> c_int;
-  pub fn XFreeModifiermap (_1: *mut XModifierKeymap) -> c_int;
-  pub fn XFreePixmap (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XFreeStringList (_1: *mut *mut c_char);
-  pub fn XGContextFromGC (_1: GC) -> c_ulong;
-  pub fn XGeometry (_13: *mut Display, _12: c_int, _11: *const c_char, _10: *const c_char, _9: c_uint, _8: c_uint, _7: c_uint, _6: c_int, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XGetAtomName (_2: *mut Display, _1: c_ulong) -> *mut c_char;
-  pub fn XGetAtomNames (_4: *mut Display, _3: *mut c_ulong, _2: c_int, _1: *mut *mut c_char) -> c_int;
-  pub fn XGetClassHint (_3: *mut Display, _2: c_ulong, _1: *mut XClassHint) -> c_int;
-  pub fn XGetCommand (_4: *mut Display, _3: c_ulong, _2: *mut *mut *mut c_char, _1: *mut c_int) -> c_int;
-  pub fn XGetDefault (_3: *mut Display, _2: *const c_char, _1: *const c_char) -> *mut c_char;
-  pub fn XGetErrorDatabaseText (_6: *mut Display, _5: *const c_char, _4: *const c_char, _3: *const c_char, _2: *mut c_char, _1: c_int) -> c_int;
-  pub fn XGetErrorText (_4: *mut Display, _3: c_int, _2: *mut c_char, _1: c_int) -> c_int;
-  pub fn XGetEventData (_2: *mut Display, _1: *mut XGenericEventCookie) -> c_int;
-  pub fn XGetFontPath (_2: *mut Display, _1: *mut c_int) -> *mut *mut c_char;
-  pub fn XGetFontProperty (_3: *mut XFontStruct, _2: c_ulong, _1: *mut c_ulong) -> c_int;
-  pub fn XGetGCValues (_4: *mut Display, _3: GC, _2: c_ulong, _1: *mut XGCValues) -> c_int;
-  pub fn XGetGeometry (_9: *mut Display, _8: c_ulong, _7: *mut c_ulong, _6: *mut c_int, _5: *mut c_int, _4: *mut c_uint, _3: *mut c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int;
-  pub fn XGetIconName (_3: *mut Display, _2: c_ulong, _1: *mut *mut c_char) -> c_int;
-  pub fn XGetIconSizes (_4: *mut Display, _3: c_ulong, _2: *mut *mut XIconSize, _1: *mut c_int) -> c_int;
-  pub fn XGetICValues (_1: XIC, ...) -> *mut c_char;
-  pub fn XGetImage (_8: *mut Display, _7: c_ulong, _6: c_int, _5: c_int, _4: c_uint, _3: c_uint, _2: c_ulong, _1: c_int) -> *mut XImage;
-  pub fn XGetIMValues (_1: XIM, ...) -> *mut c_char;
-  pub fn XGetInputFocus (_3: *mut Display, _2: *mut c_ulong, _1: *mut c_int) -> c_int;
-  pub fn XGetKeyboardControl (_2: *mut Display, _1: *mut XKeyboardState) -> c_int;
-  pub fn XGetKeyboardMapping (_4: *mut Display, _3: c_uchar, _2: c_int, _1: *mut c_int) -> *mut c_ulong;
-  pub fn XGetModifierMapping (_1: *mut Display) -> *mut XModifierKeymap;
-  pub fn XGetMotionEvents (_5: *mut Display, _4: c_ulong, _3: c_ulong, _2: c_ulong, _1: *mut c_int) -> *mut XTimeCoord;
-  pub fn XGetNormalHints (_3: *mut Display, _2: c_ulong, _1: *mut XSizeHints) -> c_int;
-  pub fn XGetOCValues (_1: XFontSet, ...) -> *mut c_char;
-  pub fn XGetOMValues (_1: XOM, ...) -> *mut c_char;
-  pub fn XGetPixel (_3: *mut XImage, _2: c_int, _1: c_int) -> c_ulong;
-  pub fn XGetPointerControl (_4: *mut Display, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XGetPointerMapping (_3: *mut Display, _2: *mut c_uchar, _1: c_int) -> c_int;
-  pub fn XGetRGBColormaps (_5: *mut Display, _4: c_ulong, _3: *mut *mut XStandardColormap, _2: *mut c_int, _1: c_ulong) -> c_int;
-  pub fn XGetScreenSaver (_5: *mut Display, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XGetSelectionOwner (_2: *mut Display, _1: c_ulong) -> c_ulong;
-  pub fn XGetSizeHints (_4: *mut Display, _3: c_ulong, _2: *mut XSizeHints, _1: c_ulong) -> c_int;
-  pub fn XGetStandardColormap (_4: *mut Display, _3: c_ulong, _2: *mut XStandardColormap, _1: c_ulong) -> c_int;
-  pub fn XGetSubImage (_11: *mut Display, _10: c_ulong, _9: c_int, _8: c_int, _7: c_uint, _6: c_uint, _5: c_ulong, _4: c_int, _3: *mut XImage, _2: c_int, _1: c_int) -> *mut XImage;
-  pub fn XGetTextProperty (_4: *mut Display, _3: c_ulong, _2: *mut XTextProperty, _1: c_ulong) -> c_int;
-  pub fn XGetTransientForHint (_3: *mut Display, _2: c_ulong, _1: *mut c_ulong) -> c_int;
-  pub fn XGetVisualInfo (_4: *mut Display, _3: c_long, _2: *mut XVisualInfo, _1: *mut c_int) -> *mut XVisualInfo;
-  pub fn XGetWindowAttributes (_3: *mut Display, _2: c_ulong, _1: *mut XWindowAttributes) -> c_int;
-  pub fn XGetWindowProperty (_12: *mut Display, _11: c_ulong, _10: c_ulong, _9: c_long, _8: c_long, _7: c_int, _6: c_ulong, _5: *mut c_ulong, _4: *mut c_int, _3: *mut c_ulong, _2: *mut c_ulong, _1: *mut *mut c_uchar) -> c_int;
-  pub fn XGetWMClientMachine (_3: *mut Display, _2: c_ulong, _1: *mut XTextProperty) -> c_int;
-  pub fn XGetWMColormapWindows (_4: *mut Display, _3: c_ulong, _2: *mut *mut c_ulong, _1: *mut c_int) -> c_int;
-  pub fn XGetWMHints (_2: *mut Display, _1: c_ulong) -> *mut XWMHints;
-  pub fn XGetWMIconName (_3: *mut Display, _2: c_ulong, _1: *mut XTextProperty) -> c_int;
-  pub fn XGetWMName (_3: *mut Display, _2: c_ulong, _1: *mut XTextProperty) -> c_int;
-  pub fn XGetWMNormalHints (_4: *mut Display, _3: c_ulong, _2: *mut XSizeHints, _1: *mut c_long) -> c_int;
-  pub fn XGetWMProtocols (_4: *mut Display, _3: c_ulong, _2: *mut *mut c_ulong, _1: *mut c_int) -> c_int;
-  pub fn XGetWMSizeHints (_5: *mut Display, _4: c_ulong, _3: *mut XSizeHints, _2: *mut c_long, _1: c_ulong) -> c_int;
-  pub fn XGetZoomHints (_3: *mut Display, _2: c_ulong, _1: *mut XSizeHints) -> c_int;
-  pub fn XGrabButton (_10: *mut Display, _9: c_uint, _8: c_uint, _7: c_ulong, _6: c_int, _5: c_uint, _4: c_int, _3: c_int, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XGrabKey (_7: *mut Display, _6: c_int, _5: c_uint, _4: c_ulong, _3: c_int, _2: c_int, _1: c_int) -> c_int;
-  pub fn XGrabKeyboard (_6: *mut Display, _5: c_ulong, _4: c_int, _3: c_int, _2: c_int, _1: c_ulong) -> c_int;
-  pub fn XGrabPointer (_9: *mut Display, _8: c_ulong, _7: c_int, _6: c_uint, _5: c_int, _4: c_int, _3: c_ulong, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XGrabServer (_1: *mut Display) -> c_int;
-  pub fn XHeightMMOfScreen (_1: *mut Screen) -> c_int;
-  pub fn XHeightOfScreen (_1: *mut Screen) -> c_int;
-  pub fn XIconifyWindow (_3: *mut Display, _2: c_ulong, _1: c_int) -> c_int;
-  pub fn XIfEvent (_4: *mut Display, _3: *mut XEvent, _2: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut c_char) -> c_int>, _1: *mut c_char) -> c_int;
-  pub fn XImageByteOrder (_1: *mut Display) -> c_int;
-  pub fn XIMOfIC (_1: XIC) -> XIM;
-  pub fn XInitExtension (_2: *mut Display, _1: *const c_char) -> *mut XExtCodes;
-  pub fn XInitImage (_1: *mut XImage) -> c_int;
-  pub fn XInitThreads () -> c_int;
-  pub fn XInsertModifiermapEntry (_3: *mut XModifierKeymap, _2: c_uchar, _1: c_int) -> *mut XModifierKeymap;
-  pub fn XInstallColormap (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XInternalConnectionNumbers (_3: *mut Display, _2: *mut *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XInternAtom (_3: *mut Display, _2: *const c_char, _1: c_int) -> c_ulong;
-  pub fn XInternAtoms (_5: *mut Display, _4: *mut *mut c_char, _3: c_int, _2: c_int, _1: *mut c_ulong) -> c_int;
-  pub fn XIntersectRegion (_3: Region, _2: Region, _1: Region) -> c_int;
-  pub fn XkbAddDeviceLedInfo (_3: XkbDeviceInfoPtr, _2: c_uint, _1: c_uint) -> XkbDeviceLedInfoPtr;
-  pub fn XkbAddGeomColor (_3: XkbGeometryPtr, _2: *mut c_char, _1: c_uint) -> XkbColorPtr;
-  pub fn XkbAddGeomDoodad (_3: XkbGeometryPtr, _2: XkbSectionPtr, _1: c_ulong) -> XkbDoodadPtr;
-  pub fn XkbAddGeomKey (_1: XkbRowPtr) -> XkbKeyPtr;
-  pub fn XkbAddGeomKeyAlias (_3: XkbGeometryPtr, _2: *mut c_char, _1: *mut c_char) -> XkbKeyAliasPtr;
-  pub fn XkbAddGeomOutline (_2: XkbShapePtr, _1: c_int) -> XkbOutlinePtr;
-  pub fn XkbAddGeomOverlay (_3: XkbSectionPtr, _2: c_ulong, _1: c_int) -> XkbOverlayPtr;
-  pub fn XkbAddGeomOverlayKey (_4: XkbOverlayPtr, _3: XkbOverlayRowPtr, _2: *mut c_char, _1: *mut c_char) -> XkbOverlayKeyPtr;
-  pub fn XkbAddGeomOverlayRow (_3: XkbOverlayPtr, _2: c_int, _1: c_int) -> XkbOverlayRowPtr;
-  pub fn XkbAddGeomProperty (_3: XkbGeometryPtr, _2: *mut c_char, _1: *mut c_char) -> XkbPropertyPtr;
-  pub fn XkbAddGeomRow (_2: XkbSectionPtr, _1: c_int) -> XkbRowPtr;
-  pub fn XkbAddGeomSection (_5: XkbGeometryPtr, _4: c_ulong, _3: c_int, _2: c_int, _1: c_int) -> XkbSectionPtr;
-  pub fn XkbAddGeomShape (_3: XkbGeometryPtr, _2: c_ulong, _1: c_int) -> XkbShapePtr;
-  pub fn XkbAddKeyType (_5: XkbDescPtr, _4: c_ulong, _3: c_int, _2: c_int, _1: c_int) -> XkbKeyTypePtr;
-  pub fn XkbAllocClientMap (_3: XkbDescPtr, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbAllocCompatMap (_3: XkbDescPtr, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbAllocControls (_2: XkbDescPtr, _1: c_uint) -> c_int;
-  pub fn XkbAllocDeviceInfo (_3: c_uint, _2: c_uint, _1: c_uint) -> XkbDeviceInfoPtr;
-  pub fn XkbAllocGeomColors (_2: XkbGeometryPtr, _1: c_int) -> c_int;
-  pub fn XkbAllocGeomDoodads (_2: XkbGeometryPtr, _1: c_int) -> c_int;
-  pub fn XkbAllocGeometry (_2: XkbDescPtr, _1: XkbGeometrySizesPtr) -> c_int;
-  pub fn XkbAllocGeomKeyAliases (_2: XkbGeometryPtr, _1: c_int) -> c_int;
-  pub fn XkbAllocGeomKeys (_2: XkbRowPtr, _1: c_int) -> c_int;
-  pub fn XkbAllocGeomOutlines (_2: XkbShapePtr, _1: c_int) -> c_int;
-  pub fn XkbAllocGeomOverlayKeys (_2: XkbOverlayRowPtr, _1: c_int) -> c_int;
-  pub fn XkbAllocGeomOverlayRows (_2: XkbOverlayPtr, _1: c_int) -> c_int;
-  pub fn XkbAllocGeomOverlays (_2: XkbSectionPtr, _1: c_int) -> c_int;
-  pub fn XkbAllocGeomPoints (_2: XkbOutlinePtr, _1: c_int) -> c_int;
-  pub fn XkbAllocGeomProps (_2: XkbGeometryPtr, _1: c_int) -> c_int;
-  pub fn XkbAllocGeomRows (_2: XkbSectionPtr, _1: c_int) -> c_int;
-  pub fn XkbAllocGeomSectionDoodads (_2: XkbSectionPtr, _1: c_int) -> c_int;
-  pub fn XkbAllocGeomSections (_2: XkbGeometryPtr, _1: c_int) -> c_int;
-  pub fn XkbAllocGeomShapes (_2: XkbGeometryPtr, _1: c_int) -> c_int;
-  pub fn XkbAllocIndicatorMaps (_1: XkbDescPtr) -> c_int;
-  pub fn XkbAllocKeyboard () -> XkbDescPtr;
-  pub fn XkbAllocNames (_4: XkbDescPtr, _3: c_uint, _2: c_int, _1: c_int) -> c_int;
-  pub fn XkbAllocServerMap (_3: XkbDescPtr, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbApplyCompatMapToKey (_3: XkbDescPtr, _2: c_uchar, _1: XkbChangesPtr) -> c_int;
-  pub fn XkbApplyVirtualModChanges (_3: XkbDescPtr, _2: c_uint, _1: XkbChangesPtr) -> c_int;
-  pub fn XkbBell (_4: *mut Display, _3: c_ulong, _2: c_int, _1: c_ulong) -> c_int;
-  pub fn XkbBellEvent (_4: *mut Display, _3: c_ulong, _2: c_int, _1: c_ulong) -> c_int;
-  pub fn XkbChangeDeviceInfo (_3: *mut Display, _2: XkbDeviceInfoPtr, _1: XkbDeviceChangesPtr) -> c_int;
-  pub fn XkbChangeEnabledControls (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbChangeKeycodeRange (_4: XkbDescPtr, _3: c_int, _2: c_int, _1: XkbChangesPtr) -> c_int;
-  pub fn XkbChangeMap (_3: *mut Display, _2: XkbDescPtr, _1: XkbMapChangesPtr) -> c_int;
-  pub fn XkbChangeNames (_3: *mut Display, _2: XkbDescPtr, _1: XkbNameChangesPtr) -> c_int;
-  pub fn XkbChangeTypesOfKey (_6: XkbDescPtr, _5: c_int, _4: c_int, _3: c_uint, _2: *mut c_int, _1: XkbMapChangesPtr) -> c_int;
-  pub fn XkbComputeEffectiveMap (_3: XkbDescPtr, _2: XkbKeyTypePtr, _1: *mut c_uchar) -> c_int;
-  pub fn XkbComputeRowBounds (_3: XkbGeometryPtr, _2: XkbSectionPtr, _1: XkbRowPtr) -> c_int;
-  pub fn XkbComputeSectionBounds (_2: XkbGeometryPtr, _1: XkbSectionPtr) -> c_int;
-  pub fn XkbComputeShapeBounds (_1: XkbShapePtr) -> c_int;
-  pub fn XkbComputeShapeTop (_2: XkbShapePtr, _1: XkbBoundsPtr) -> c_int;
-  pub fn XkbCopyKeyType (_2: XkbKeyTypePtr, _1: XkbKeyTypePtr) -> c_int;
-  pub fn XkbCopyKeyTypes (_3: XkbKeyTypePtr, _2: XkbKeyTypePtr, _1: c_int) -> c_int;
-  pub fn XkbDeviceBell (_7: *mut Display, _6: c_ulong, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: c_ulong) -> c_int;
-  pub fn XkbDeviceBellEvent (_7: *mut Display, _6: c_ulong, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: c_ulong) -> c_int;
-  pub fn XkbFindOverlayForKey (_3: XkbGeometryPtr, _2: XkbSectionPtr, _1: *mut c_char) -> *mut c_char;
-  pub fn XkbForceBell (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XkbForceDeviceBell (_5: *mut Display, _4: c_int, _3: c_int, _2: c_int, _1: c_int) -> c_int;
-  pub fn XkbFreeClientMap (_3: XkbDescPtr, _2: c_uint, _1: c_int);
-  pub fn XkbFreeCompatMap (_3: XkbDescPtr, _2: c_uint, _1: c_int);
-  pub fn XkbFreeComponentList (_1: XkbComponentListPtr);
-  pub fn XkbFreeControls (_3: XkbDescPtr, _2: c_uint, _1: c_int);
-  pub fn XkbFreeDeviceInfo (_3: XkbDeviceInfoPtr, _2: c_uint, _1: c_int);
-  pub fn XkbFreeGeomColors (_4: XkbGeometryPtr, _3: c_int, _2: c_int, _1: c_int);
-  pub fn XkbFreeGeomDoodads (_3: XkbDoodadPtr, _2: c_int, _1: c_int);
-  pub fn XkbFreeGeometry (_3: XkbGeometryPtr, _2: c_uint, _1: c_int);
-  pub fn XkbFreeGeomKeyAliases (_4: XkbGeometryPtr, _3: c_int, _2: c_int, _1: c_int);
-  pub fn XkbFreeGeomKeys (_4: XkbRowPtr, _3: c_int, _2: c_int, _1: c_int);
-  pub fn XkbFreeGeomOutlines (_4: XkbShapePtr, _3: c_int, _2: c_int, _1: c_int);
-  pub fn XkbFreeGeomOverlayKeys (_4: XkbOverlayRowPtr, _3: c_int, _2: c_int, _1: c_int);
-  pub fn XkbFreeGeomOverlayRows (_4: XkbOverlayPtr, _3: c_int, _2: c_int, _1: c_int);
-  pub fn XkbFreeGeomOverlays (_4: XkbSectionPtr, _3: c_int, _2: c_int, _1: c_int);
-  pub fn XkbFreeGeomPoints (_4: XkbOutlinePtr, _3: c_int, _2: c_int, _1: c_int);
-  pub fn XkbFreeGeomProperties (_4: XkbGeometryPtr, _3: c_int, _2: c_int, _1: c_int);
-  pub fn XkbFreeGeomRows (_4: XkbSectionPtr, _3: c_int, _2: c_int, _1: c_int);
-  pub fn XkbFreeGeomSections (_4: XkbGeometryPtr, _3: c_int, _2: c_int, _1: c_int);
-  pub fn XkbFreeGeomShapes (_4: XkbGeometryPtr, _3: c_int, _2: c_int, _1: c_int);
-  pub fn XkbFreeIndicatorMaps (_1: XkbDescPtr);
-  pub fn XkbFreeKeyboard (_3: XkbDescPtr, _2: c_uint, _1: c_int);
-  pub fn XkbFreeNames (_3: XkbDescPtr, _2: c_uint, _1: c_int);
-  pub fn XkbFreeServerMap (_3: XkbDescPtr, _2: c_uint, _1: c_int);
-  pub fn XkbGetAutoRepeatRate (_4: *mut Display, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int;
-  pub fn XkbGetAutoResetControls (_3: *mut Display, _2: *mut c_uint, _1: *mut c_uint) -> c_int;
-  pub fn XkbGetCompatMap (_3: *mut Display, _2: c_uint, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetControls (_3: *mut Display, _2: c_ulong, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetDetectableAutoRepeat (_2: *mut Display, _1: *mut c_int) -> c_int;
-  pub fn XkbGetDeviceButtonActions (_5: *mut Display, _4: XkbDeviceInfoPtr, _3: c_int, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbGetDeviceInfo (_5: *mut Display, _4: c_uint, _3: c_uint, _2: c_uint, _1: c_uint) -> XkbDeviceInfoPtr;
-  pub fn XkbGetDeviceInfoChanges (_3: *mut Display, _2: XkbDeviceInfoPtr, _1: XkbDeviceChangesPtr) -> c_int;
-  pub fn XkbGetDeviceLedInfo (_5: *mut Display, _4: XkbDeviceInfoPtr, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbGetGeometry (_2: *mut Display, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetIndicatorMap (_3: *mut Display, _2: c_ulong, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetIndicatorState (_3: *mut Display, _2: c_uint, _1: *mut c_uint) -> c_int;
-  pub fn XkbGetKeyActions (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetKeyBehaviors (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetKeyboard (_3: *mut Display, _2: c_uint, _1: c_uint) -> XkbDescPtr;
-  pub fn XkbGetKeyboardByName (_6: *mut Display, _5: c_uint, _4: XkbComponentNamesPtr, _3: c_uint, _2: c_uint, _1: c_int) -> XkbDescPtr;
-  pub fn XkbGetKeyExplicitComponents (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetKeyModifierMap (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetKeySyms (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetKeyTypes (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetKeyVirtualModMap (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetMap (_3: *mut Display, _2: c_uint, _1: c_uint) -> XkbDescPtr;
-  pub fn XkbGetMapChanges (_3: *mut Display, _2: XkbDescPtr, _1: XkbMapChangesPtr) -> c_int;
-  pub fn XkbGetNamedDeviceIndicator (_9: *mut Display, _8: c_uint, _7: c_uint, _6: c_uint, _5: c_ulong, _4: *mut c_int, _3: *mut c_int, _2: XkbIndicatorMapPtr, _1: *mut c_int) -> c_int;
-  pub fn XkbGetNamedGeometry (_3: *mut Display, _2: XkbDescPtr, _1: c_ulong) -> c_int;
-  pub fn XkbGetNamedIndicator (_6: *mut Display, _5: c_ulong, _4: *mut c_int, _3: *mut c_int, _2: XkbIndicatorMapPtr, _1: *mut c_int) -> c_int;
-  pub fn XkbGetNames (_3: *mut Display, _2: c_uint, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetPerClientControls (_2: *mut Display, _1: *mut c_uint) -> c_int;
-  pub fn XkbGetState (_3: *mut Display, _2: c_uint, _1: XkbStatePtr) -> c_int;
-  pub fn XkbGetUpdatedMap (_3: *mut Display, _2: c_uint, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetVirtualMods (_3: *mut Display, _2: c_uint, _1: XkbDescPtr) -> c_int;
-  pub fn XkbGetXlibControls (_1: *mut Display) -> c_uint;
-  pub fn XkbIgnoreExtension (_1: c_int) -> c_int;
-  pub fn XkbInitCanonicalKeyTypes (_3: XkbDescPtr, _2: c_uint, _1: c_int) -> c_int;
-  pub fn XkbKeycodeToKeysym (_4: *mut Display, _3: c_uchar, _2: c_int, _1: c_int) -> c_ulong;
-  pub fn XkbKeysymToModifiers (_2: *mut Display, _1: c_ulong) -> c_uint;
-  pub fn XkbKeyTypesForCoreSymbols (_6: XkbDescPtr, _5: c_int, _4: *mut c_ulong, _3: c_uint, _2: *mut c_int, _1: *mut c_ulong) -> c_int;
-  pub fn XkbLatchGroup (_3: *mut Display, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbLatchModifiers (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbLibraryVersion (_2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XkbListComponents (_4: *mut Display, _3: c_uint, _2: XkbComponentNamesPtr, _1: *mut c_int) -> XkbComponentListPtr;
-  pub fn XkbLockGroup (_3: *mut Display, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbLockModifiers (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbLookupKeyBinding (_6: *mut Display, _5: c_ulong, _4: c_uint, _3: *mut c_char, _2: c_int, _1: *mut c_int) -> c_int;
-  pub fn XkbLookupKeySym (_5: *mut Display, _4: c_uchar, _3: c_uint, _2: *mut c_uint, _1: *mut c_ulong) -> c_int;
-  pub fn XkbNoteControlsChanges (_3: XkbControlsChangesPtr, _2: *mut XkbControlsNotifyEvent, _1: c_uint);
-  pub fn XkbNoteDeviceChanges (_3: XkbDeviceChangesPtr, _2: *mut XkbExtensionDeviceNotifyEvent, _1: c_uint);
-  pub fn XkbNoteMapChanges (_3: XkbMapChangesPtr, _2: *mut XkbMapNotifyEvent, _1: c_uint);
-  pub fn XkbNoteNameChanges (_3: XkbNameChangesPtr, _2: *mut XkbNamesNotifyEvent, _1: c_uint);
-  pub fn XkbOpenDisplay (_6: *mut c_char, _5: *mut c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> *mut Display;
-  pub fn XkbQueryExtension (_6: *mut Display, _5: *mut c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XkbRefreshKeyboardMapping (_1: *mut XkbMapNotifyEvent) -> c_int;
-  pub fn XkbResizeDeviceButtonActions (_2: XkbDeviceInfoPtr, _1: c_uint) -> c_int;
-  pub fn XkbResizeKeyActions (_3: XkbDescPtr, _2: c_int, _1: c_int) -> *mut XkbAction;
-  pub fn XkbResizeKeySyms (_3: XkbDescPtr, _2: c_int, _1: c_int) -> *mut c_ulong;
-  pub fn XkbResizeKeyType (_5: XkbDescPtr, _4: c_int, _3: c_int, _2: c_int, _1: c_int) -> c_int;
-  pub fn XkbSelectEventDetails (_5: *mut Display, _4: c_uint, _3: c_uint, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XkbSelectEvents (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbSetAtomFuncs (_2: Option<unsafe extern "C" fn (*mut Display, *const c_char, c_int) -> c_ulong>, _1: Option<unsafe extern "C" fn (*mut Display, c_ulong) -> *mut c_char>);
-  pub fn XkbSetAutoRepeatRate (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbSetAutoResetControls (_4: *mut Display, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int;
-  pub fn XkbSetCompatMap (_4: *mut Display, _3: c_uint, _2: XkbDescPtr, _1: c_int) -> c_int;
-  pub fn XkbSetControls (_3: *mut Display, _2: c_ulong, _1: XkbDescPtr) -> c_int;
-  pub fn XkbSetDebuggingFlags (_8: *mut Display, _7: c_uint, _6: c_uint, _5: *mut c_char, _4: c_uint, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int;
-  pub fn XkbSetDetectableAutoRepeat (_3: *mut Display, _2: c_int, _1: *mut c_int) -> c_int;
-  pub fn XkbSetDeviceButtonActions (_4: *mut Display, _3: XkbDeviceInfoPtr, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbSetDeviceInfo (_3: *mut Display, _2: c_uint, _1: XkbDeviceInfoPtr) -> c_int;
-  pub fn XkbSetDeviceLedInfo (_5: *mut Display, _4: XkbDeviceInfoPtr, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbSetGeometry (_3: *mut Display, _2: c_uint, _1: XkbGeometryPtr) -> c_int;
-  pub fn XkbSetIgnoreLockMods (_6: *mut Display, _5: c_uint, _4: c_uint, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbSetIndicatorMap (_3: *mut Display, _2: c_ulong, _1: XkbDescPtr) -> c_int;
-  pub fn XkbSetMap (_3: *mut Display, _2: c_uint, _1: XkbDescPtr) -> c_int;
-  pub fn XkbSetNamedDeviceIndicator (_9: *mut Display, _8: c_uint, _7: c_uint, _6: c_uint, _5: c_ulong, _4: c_int, _3: c_int, _2: c_int, _1: XkbIndicatorMapPtr) -> c_int;
-  pub fn XkbSetNamedIndicator (_6: *mut Display, _5: c_ulong, _4: c_int, _3: c_int, _2: c_int, _1: XkbIndicatorMapPtr) -> c_int;
-  pub fn XkbSetNames (_5: *mut Display, _4: c_uint, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int;
-  pub fn XkbSetPerClientControls (_3: *mut Display, _2: c_uint, _1: *mut c_uint) -> c_int;
-  pub fn XkbSetServerInternalMods (_6: *mut Display, _5: c_uint, _4: c_uint, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XkbSetXlibControls (_3: *mut Display, _2: c_uint, _1: c_uint) -> c_uint;
-  pub fn XkbToControl (_1: c_char) -> c_char;
-  pub fn XkbTranslateKeyCode (_5: XkbDescPtr, _4: c_uchar, _3: c_uint, _2: *mut c_uint, _1: *mut c_ulong) -> c_int;
-  pub fn XkbTranslateKeySym (_6: *mut Display, _5: *mut c_ulong, _4: c_uint, _3: *mut c_char, _2: c_int, _1: *mut c_int) -> c_int;
-  pub fn XkbUpdateActionVirtualMods (_3: XkbDescPtr, _2: *mut XkbAction, _1: c_uint) -> c_int;
-  pub fn XkbUpdateKeyTypeVirtualMods (_4: XkbDescPtr, _3: XkbKeyTypePtr, _2: c_uint, _1: XkbChangesPtr);
-  pub fn XkbUpdateMapFromCore (_6: XkbDescPtr, _5: c_uchar, _4: c_int, _3: c_int, _2: *mut c_ulong, _1: XkbChangesPtr) -> c_int;
-  pub fn XkbUseExtension (_3: *mut Display, _2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XkbVirtualModsToReal (_3: XkbDescPtr, _2: c_uint, _1: *mut c_uint) -> c_int;
-  pub fn XkbXlibControlsImplemented () -> c_uint;
-  pub fn XKeycodeToKeysym (_3: *mut Display, _2: c_uchar, _1: c_int) -> c_ulong;
-  pub fn XKeysymToKeycode (_2: *mut Display, _1: c_ulong) -> c_uchar;
-  pub fn XKeysymToString (_1: c_ulong) -> *mut c_char;
-  pub fn XKillClient (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XLastKnownRequestProcessed (_1: *mut Display) -> c_ulong;
-  pub fn XListDepths (_3: *mut Display, _2: c_int, _1: *mut c_int) -> *mut c_int;
-  pub fn XListExtensions (_2: *mut Display, _1: *mut c_int) -> *mut *mut c_char;
-  pub fn XListFonts (_4: *mut Display, _3: *const c_char, _2: c_int, _1: *mut c_int) -> *mut *mut c_char;
-  pub fn XListFontsWithInfo (_5: *mut Display, _4: *const c_char, _3: c_int, _2: *mut c_int, _1: *mut *mut XFontStruct) -> *mut *mut c_char;
-  pub fn XListHosts (_3: *mut Display, _2: *mut c_int, _1: *mut c_int) -> *mut XHostAddress;
-  pub fn XListInstalledColormaps (_3: *mut Display, _2: c_ulong, _1: *mut c_int) -> *mut c_ulong;
-  pub fn XListPixmapFormats (_2: *mut Display, _1: *mut c_int) -> *mut XPixmapFormatValues;
-  pub fn XListProperties (_3: *mut Display, _2: c_ulong, _1: *mut c_int) -> *mut c_ulong;
-  pub fn XLoadFont (_2: *mut Display, _1: *const c_char) -> c_ulong;
-  pub fn XLoadQueryFont (_2: *mut Display, _1: *const c_char) -> *mut XFontStruct;
-  pub fn XLocaleOfFontSet (_1: XFontSet) -> *mut c_char;
-  pub fn XLocaleOfIM (_1: XIM) -> *mut c_char;
-  pub fn XLocaleOfOM (_1: XOM) -> *mut c_char;
-  pub fn XLockDisplay (_1: *mut Display);
-  pub fn XLookupColor (_5: *mut Display, _4: c_ulong, _3: *const c_char, _2: *mut XColor, _1: *mut XColor) -> c_int;
-  pub fn XLookupKeysym (_2: *mut XKeyEvent, _1: c_int) -> c_ulong;
-  pub fn XLookupString (_5: *mut XKeyEvent, _4: *mut c_char, _3: c_int, _2: *mut c_ulong, _1: *mut XComposeStatus) -> c_int;
-  pub fn XLowerWindow (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XMapRaised (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XMapSubwindows (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XMapWindow (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XMaskEvent (_3: *mut Display, _2: c_long, _1: *mut XEvent) -> c_int;
-  pub fn XMatchVisualInfo (_5: *mut Display, _4: c_int, _3: c_int, _2: c_int, _1: *mut XVisualInfo) -> c_int;
-  pub fn XMaxCmapsOfScreen (_1: *mut Screen) -> c_int;
-  pub fn XMaxRequestSize (_1: *mut Display) -> c_long;
-  pub fn XmbDrawImageString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int);
-  pub fn XmbDrawString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int);
-  pub fn XmbDrawText (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *mut XmbTextItem, _1: c_int);
-  pub fn XmbLookupString (_6: XIC, _5: *mut XKeyEvent, _4: *mut c_char, _3: c_int, _2: *mut c_ulong, _1: *mut c_int) -> c_int;
-  pub fn XmbResetIC (_1: XIC) -> *mut c_char;
-  pub fn XmbSetWMProperties (_9: *mut Display, _8: c_ulong, _7: *const c_char, _6: *const c_char, _5: *mut *mut c_char, _4: c_int, _3: *mut XSizeHints, _2: *mut XWMHints, _1: *mut XClassHint);
-  pub fn XmbTextEscapement (_3: XFontSet, _2: *const c_char, _1: c_int) -> c_int;
-  pub fn XmbTextExtents (_5: XFontSet, _4: *const c_char, _3: c_int, _2: *mut XRectangle, _1: *mut XRectangle) -> c_int;
-  pub fn XmbTextListToTextProperty (_5: *mut Display, _4: *mut *mut c_char, _3: c_int, _2: XICCEncodingStyle, _1: *mut XTextProperty) -> c_int;
-  pub fn XmbTextPerCharExtents (_9: XFontSet, _8: *const c_char, _7: c_int, _6: *mut XRectangle, _5: *mut XRectangle, _4: c_int, _3: *mut c_int, _2: *mut XRectangle, _1: *mut XRectangle) -> c_int;
-  pub fn XmbTextPropertyToTextList (_4: *mut Display, _3: *const XTextProperty, _2: *mut *mut *mut c_char, _1: *mut c_int) -> c_int;
-  pub fn XMinCmapsOfScreen (_1: *mut Screen) -> c_int;
-  pub fn XMoveResizeWindow (_6: *mut Display, _5: c_ulong, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XMoveWindow (_4: *mut Display, _3: c_ulong, _2: c_int, _1: c_int) -> c_int;
-  pub fn XNewModifiermap (_1: c_int) -> *mut XModifierKeymap;
-  pub fn XNextEvent (_2: *mut Display, _1: *mut XEvent) -> c_int;
-  pub fn XNextRequest (_1: *mut Display) -> c_ulong;
-  pub fn XNoOp (_1: *mut Display) -> c_int;
-  pub fn XOffsetRegion (_3: Region, _2: c_int, _1: c_int) -> c_int;
-  pub fn XOMOfOC (_1: XFontSet) -> XOM;
-  pub fn XOpenDisplay (_1: *const c_char) -> *mut Display;
-  pub fn XOpenIM (_4: *mut Display, _3: XrmDatabase, _2: *mut c_char, _1: *mut c_char) -> XIM;
-  pub fn XOpenOM (_4: *mut Display, _3: XrmDatabase, _2: *const c_char, _1: *const c_char) -> XOM;
-  pub fn XParseColor (_4: *mut Display, _3: c_ulong, _2: *const c_char, _1: *mut XColor) -> c_int;
-  pub fn XParseGeometry (_5: *const c_char, _4: *mut c_int, _3: *mut c_int, _2: *mut c_uint, _1: *mut c_uint) -> c_int;
-  pub fn XPeekEvent (_2: *mut Display, _1: *mut XEvent) -> c_int;
-  pub fn XPeekIfEvent (_4: *mut Display, _3: *mut XEvent, _2: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut c_char) -> c_int>, _1: *mut c_char) -> c_int;
-  pub fn XPending (_1: *mut Display) -> c_int;
-  pub fn Xpermalloc (_1: c_uint) -> *mut c_char;
-  pub fn XPlanesOfScreen (_1: *mut Screen) -> c_int;
-  pub fn XPointInRegion (_3: Region, _2: c_int, _1: c_int) -> c_int;
-  pub fn XPolygonRegion (_3: *mut XPoint, _2: c_int, _1: c_int) -> Region;
-  pub fn XProcessInternalConnection (_2: *mut Display, _1: c_int);
-  pub fn XProtocolRevision (_1: *mut Display) -> c_int;
-  pub fn XProtocolVersion (_1: *mut Display) -> c_int;
-  pub fn XPutBackEvent (_2: *mut Display, _1: *mut XEvent) -> c_int;
-  pub fn XPutImage (_10: *mut Display, _9: c_ulong, _8: GC, _7: *mut XImage, _6: c_int, _5: c_int, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XPutPixel (_4: *mut XImage, _3: c_int, _2: c_int, _1: c_ulong) -> c_int;
-  pub fn XQLength (_1: *mut Display) -> c_int;
-  pub fn XQueryBestCursor (_6: *mut Display, _5: c_ulong, _4: c_uint, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int;
-  pub fn XQueryBestSize (_7: *mut Display, _6: c_int, _5: c_ulong, _4: c_uint, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int;
-  pub fn XQueryBestStipple (_6: *mut Display, _5: c_ulong, _4: c_uint, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int;
-  pub fn XQueryBestTile (_6: *mut Display, _5: c_ulong, _4: c_uint, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int;
-  pub fn XQueryColor (_3: *mut Display, _2: c_ulong, _1: *mut XColor) -> c_int;
-  pub fn XQueryColors (_4: *mut Display, _3: c_ulong, _2: *mut XColor, _1: c_int) -> c_int;
-  pub fn XQueryExtension (_5: *mut Display, _4: *const c_char, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XQueryFont (_2: *mut Display, _1: c_ulong) -> *mut XFontStruct;
-  pub fn XQueryKeymap (_2: *mut Display, _1: *mut c_char) -> c_int;
-  pub fn XQueryPointer (_9: *mut Display, _8: c_ulong, _7: *mut c_ulong, _6: *mut c_ulong, _5: *mut c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_uint) -> c_int;
-  pub fn XQueryTextExtents (_8: *mut Display, _7: c_ulong, _6: *const c_char, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut XCharStruct) -> c_int;
-  pub fn XQueryTextExtents16 (_8: *mut Display, _7: c_ulong, _6: *const XChar2b, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut XCharStruct) -> c_int;
-  pub fn XQueryTree (_6: *mut Display, _5: c_ulong, _4: *mut c_ulong, _3: *mut c_ulong, _2: *mut *mut c_ulong, _1: *mut c_uint) -> c_int;
-  pub fn XRaiseWindow (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XReadBitmapFile (_8: *mut Display, _7: c_ulong, _6: *const c_char, _5: *mut c_uint, _4: *mut c_uint, _3: *mut c_ulong, _2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XReadBitmapFileData (_6: *const c_char, _5: *mut c_uint, _4: *mut c_uint, _3: *mut *mut c_uchar, _2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XRebindKeysym (_6: *mut Display, _5: c_ulong, _4: *mut c_ulong, _3: c_int, _2: *const c_uchar, _1: c_int) -> c_int;
-  pub fn XRecolorCursor (_4: *mut Display, _3: c_ulong, _2: *mut XColor, _1: *mut XColor) -> c_int;
-  pub fn XReconfigureWMWindow (_5: *mut Display, _4: c_ulong, _3: c_int, _2: c_uint, _1: *mut XWindowChanges) -> c_int;
-  pub fn XRectInRegion (_5: Region, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XRefreshKeyboardMapping (_1: *mut XMappingEvent) -> c_int;
-  pub fn XRegisterIMInstantiateCallback (_6: *mut Display, _5: XrmDatabase, _4: *mut c_char, _3: *mut c_char, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, *mut c_char)>, _1: *mut c_char) -> c_int;
-  pub fn XRemoveConnectionWatch (_3: *mut Display, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, c_int, c_int, *mut *mut c_char)>, _1: *mut c_char);
-  pub fn XRemoveFromSaveSet (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XRemoveHost (_2: *mut Display, _1: *mut XHostAddress) -> c_int;
-  pub fn XRemoveHosts (_3: *mut Display, _2: *mut XHostAddress, _1: c_int) -> c_int;
-  pub fn XReparentWindow (_5: *mut Display, _4: c_ulong, _3: c_ulong, _2: c_int, _1: c_int) -> c_int;
-  pub fn XResetScreenSaver (_1: *mut Display) -> c_int;
-  pub fn XResizeWindow (_4: *mut Display, _3: c_ulong, _2: c_uint, _1: c_uint) -> c_int;
-  pub fn XResourceManagerString (_1: *mut Display) -> *mut c_char;
-  pub fn XRestackWindows (_3: *mut Display, _2: *mut c_ulong, _1: c_int) -> c_int;
-  pub fn XrmCombineDatabase (_3: XrmDatabase, _2: *mut XrmDatabase, _1: c_int);
-  pub fn XrmCombineFileDatabase (_3: *const c_char, _2: *mut XrmDatabase, _1: c_int) -> c_int;
-  pub fn XrmDestroyDatabase (_1: XrmDatabase);
-  pub fn XrmEnumerateDatabase (_6: XrmDatabase, _5: *mut c_int, _4: *mut c_int, _3: c_int, _2: Option<unsafe extern "C" fn (*mut XrmDatabase, *mut XrmBinding, *mut c_int, *mut c_int, *mut XrmValue, *mut c_char) -> c_int>, _1: *mut c_char) -> c_int;
-  pub fn XrmGetDatabase (_1: *mut Display) -> XrmDatabase;
-  pub fn XrmGetFileDatabase (_1: *const c_char) -> XrmDatabase;
-  pub fn XrmGetResource (_5: XrmDatabase, _4: *const c_char, _3: *const c_char, _2: *mut *mut c_char, _1: *mut XrmValue) -> c_int;
-  pub fn XrmGetStringDatabase (_1: *const c_char) -> XrmDatabase;
-  pub fn XrmInitialize ();
-  pub fn XrmLocaleOfDatabase (_1: XrmDatabase) -> *const c_char;
-  pub fn XrmMergeDatabases (_2: XrmDatabase, _1: *mut XrmDatabase);
-  pub fn XrmParseCommand (_6: *mut XrmDatabase, _5: XrmOptionDescList, _4: c_int, _3: *const c_char, _2: *mut c_int, _1: *mut *mut c_char);
-  pub fn XrmPermStringToQuark (_1: *const c_char) -> c_int;
-  pub fn XrmPutFileDatabase (_2: XrmDatabase, _1: *const c_char);
-  pub fn XrmPutLineResource (_2: *mut XrmDatabase, _1: *const c_char);
-  pub fn XrmPutResource (_4: *mut XrmDatabase, _3: *const c_char, _2: *const c_char, _1: *mut XrmValue);
-  pub fn XrmPutStringResource (_3: *mut XrmDatabase, _2: *const c_char, _1: *const c_char);
-  pub fn XrmQGetResource (_5: XrmDatabase, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut XrmValue) -> c_int;
-  pub fn XrmQGetSearchList (_5: XrmDatabase, _4: *mut c_int, _3: *mut c_int, _2: *mut *mut XrmDatabase, _1: c_int) -> c_int;
-  pub fn XrmQGetSearchResource (_5: *mut *mut XrmDatabase, _4: c_int, _3: c_int, _2: *mut c_int, _1: *mut XrmValue) -> c_int;
-  pub fn XrmQPutResource (_5: *mut XrmDatabase, _4: *mut XrmBinding, _3: *mut c_int, _2: c_int, _1: *mut XrmValue);
-  pub fn XrmQPutStringResource (_4: *mut XrmDatabase, _3: *mut XrmBinding, _2: *mut c_int, _1: *const c_char);
-  pub fn XrmQuarkToString (_1: c_int) -> *mut c_char;
-  pub fn XrmSetDatabase (_2: *mut Display, _1: XrmDatabase);
-  pub fn XrmStringToBindingQuarkList (_3: *const c_char, _2: *mut XrmBinding, _1: *mut c_int);
-  pub fn XrmStringToQuark (_1: *const c_char) -> c_int;
-  pub fn XrmStringToQuarkList (_2: *const c_char, _1: *mut c_int);
-  pub fn XrmUniqueQuark () -> c_int;
-  pub fn XRootWindow (_2: *mut Display, _1: c_int) -> c_ulong;
-  pub fn XRootWindowOfScreen (_1: *mut Screen) -> c_ulong;
-  pub fn XRotateBuffers (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XRotateWindowProperties (_5: *mut Display, _4: c_ulong, _3: *mut c_ulong, _2: c_int, _1: c_int) -> c_int;
-  pub fn XSaveContext (_4: *mut Display, _3: c_ulong, _2: c_int, _1: *const c_char) -> c_int;
-  pub fn XScreenCount (_1: *mut Display) -> c_int;
-  pub fn XScreenNumberOfScreen (_1: *mut Screen) -> c_int;
-  pub fn XScreenOfDisplay (_2: *mut Display, _1: c_int) -> *mut Screen;
-  pub fn XScreenResourceString (_1: *mut Screen) -> *mut c_char;
-  pub fn XSelectInput (_3: *mut Display, _2: c_ulong, _1: c_long) -> c_int;
-  pub fn XSendEvent (_5: *mut Display, _4: c_ulong, _3: c_int, _2: c_long, _1: *mut XEvent) -> c_int;
-  pub fn XServerVendor (_1: *mut Display) -> *mut c_char;
-  pub fn XSetAccessControl (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XSetAfterFunction (_2: *mut Display, _1: Option<unsafe extern "C" fn (*mut Display) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display) -> c_int>;
-  pub fn XSetArcMode (_3: *mut Display, _2: GC, _1: c_int) -> c_int;
-  pub fn XSetAuthorization (_4: *mut c_char, _3: c_int, _2: *mut c_char, _1: c_int);
-  pub fn XSetBackground (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int;
-  pub fn XSetClassHint (_3: *mut Display, _2: c_ulong, _1: *mut XClassHint) -> c_int;
-  pub fn XSetClipMask (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int;
-  pub fn XSetClipOrigin (_4: *mut Display, _3: GC, _2: c_int, _1: c_int) -> c_int;
-  pub fn XSetClipRectangles (_7: *mut Display, _6: GC, _5: c_int, _4: c_int, _3: *mut XRectangle, _2: c_int, _1: c_int) -> c_int;
-  pub fn XSetCloseDownMode (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XSetCommand (_4: *mut Display, _3: c_ulong, _2: *mut *mut c_char, _1: c_int) -> c_int;
-  pub fn XSetDashes (_5: *mut Display, _4: GC, _3: c_int, _2: *const c_char, _1: c_int) -> c_int;
-  pub fn XSetErrorHandler (_1: Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent) -> c_int>;
-  pub fn XSetFillRule (_3: *mut Display, _2: GC, _1: c_int) -> c_int;
-  pub fn XSetFillStyle (_3: *mut Display, _2: GC, _1: c_int) -> c_int;
-  pub fn XSetFont (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int;
-  pub fn XSetFontPath (_3: *mut Display, _2: *mut *mut c_char, _1: c_int) -> c_int;
-  pub fn XSetForeground (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int;
-  pub fn XSetFunction (_3: *mut Display, _2: GC, _1: c_int) -> c_int;
-  pub fn XSetGraphicsExposures (_3: *mut Display, _2: GC, _1: c_int) -> c_int;
-  pub fn XSetICFocus (_1: XIC);
-  pub fn XSetIconName (_3: *mut Display, _2: c_ulong, _1: *const c_char) -> c_int;
-  pub fn XSetIconSizes (_4: *mut Display, _3: c_ulong, _2: *mut XIconSize, _1: c_int) -> c_int;
-  pub fn XSetICValues (_1: XIC, ...) -> *mut c_char;
-  pub fn XSetIMValues (_1: XIM, ...) -> *mut c_char;
-  pub fn XSetInputFocus (_4: *mut Display, _3: c_ulong, _2: c_int, _1: c_ulong) -> c_int;
-  pub fn XSetIOErrorHandler (_1: Option<unsafe extern "C" fn (*mut Display) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display) -> c_int>;
-  pub fn XSetLineAttributes (_6: *mut Display, _5: GC, _4: c_uint, _3: c_int, _2: c_int, _1: c_int) -> c_int;
-  pub fn XSetLocaleModifiers (_1: *const c_char) -> *mut c_char;
-  pub fn XSetModifierMapping (_2: *mut Display, _1: *mut XModifierKeymap) -> c_int;
-  pub fn XSetNormalHints (_3: *mut Display, _2: c_ulong, _1: *mut XSizeHints) -> c_int;
-  pub fn XSetOCValues (_1: XFontSet, ...) -> *mut c_char;
-  pub fn XSetOMValues (_1: XOM, ...) -> *mut c_char;
-  pub fn XSetPlaneMask (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int;
-  pub fn XSetPointerMapping (_3: *mut Display, _2: *const c_uchar, _1: c_int) -> c_int;
-  pub fn XSetRegion (_3: *mut Display, _2: GC, _1: Region) -> c_int;
-  pub fn XSetRGBColormaps (_5: *mut Display, _4: c_ulong, _3: *mut XStandardColormap, _2: c_int, _1: c_ulong);
-  pub fn XSetScreenSaver (_5: *mut Display, _4: c_int, _3: c_int, _2: c_int, _1: c_int) -> c_int;
-  pub fn XSetSelectionOwner (_4: *mut Display, _3: c_ulong, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XSetSizeHints (_4: *mut Display, _3: c_ulong, _2: *mut XSizeHints, _1: c_ulong) -> c_int;
-  pub fn XSetStandardColormap (_4: *mut Display, _3: c_ulong, _2: *mut XStandardColormap, _1: c_ulong);
-  pub fn XSetStandardProperties (_8: *mut Display, _7: c_ulong, _6: *const c_char, _5: *const c_char, _4: c_ulong, _3: *mut *mut c_char, _2: c_int, _1: *mut XSizeHints) -> c_int;
-  pub fn XSetState (_6: *mut Display, _5: GC, _4: c_ulong, _3: c_ulong, _2: c_int, _1: c_ulong) -> c_int;
-  pub fn XSetStipple (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int;
-  pub fn XSetSubwindowMode (_3: *mut Display, _2: GC, _1: c_int) -> c_int;
-  pub fn XSetTextProperty (_4: *mut Display, _3: c_ulong, _2: *mut XTextProperty, _1: c_ulong);
-  pub fn XSetTile (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int;
-  pub fn XSetTransientForHint (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XSetTSOrigin (_4: *mut Display, _3: GC, _2: c_int, _1: c_int) -> c_int;
-  pub fn XSetWindowBackground (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XSetWindowBackgroundPixmap (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XSetWindowBorder (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XSetWindowBorderPixmap (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XSetWindowBorderWidth (_3: *mut Display, _2: c_ulong, _1: c_uint) -> c_int;
-  pub fn XSetWindowColormap (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int;
-  pub fn XSetWMClientMachine (_3: *mut Display, _2: c_ulong, _1: *mut XTextProperty);
-  pub fn XSetWMColormapWindows (_4: *mut Display, _3: c_ulong, _2: *mut c_ulong, _1: c_int) -> c_int;
-  pub fn XSetWMHints (_3: *mut Display, _2: c_ulong, _1: *mut XWMHints) -> c_int;
-  pub fn XSetWMIconName (_3: *mut Display, _2: c_ulong, _1: *mut XTextProperty);
-  pub fn XSetWMName (_3: *mut Display, _2: c_ulong, _1: *mut XTextProperty);
-  pub fn XSetWMNormalHints (_3: *mut Display, _2: c_ulong, _1: *mut XSizeHints);
-  pub fn XSetWMProperties (_9: *mut Display, _8: c_ulong, _7: *mut XTextProperty, _6: *mut XTextProperty, _5: *mut *mut c_char, _4: c_int, _3: *mut XSizeHints, _2: *mut XWMHints, _1: *mut XClassHint);
-  pub fn XSetWMProtocols (_4: *mut Display, _3: c_ulong, _2: *mut c_ulong, _1: c_int) -> c_int;
-  pub fn XSetWMSizeHints (_4: *mut Display, _3: c_ulong, _2: *mut XSizeHints, _1: c_ulong);
-  pub fn XSetZoomHints (_3: *mut Display, _2: c_ulong, _1: *mut XSizeHints) -> c_int;
-  pub fn XShrinkRegion (_3: Region, _2: c_int, _1: c_int) -> c_int;
-  pub fn XStoreBuffer (_4: *mut Display, _3: *const c_char, _2: c_int, _1: c_int) -> c_int;
-  pub fn XStoreBytes (_3: *mut Display, _2: *const c_char, _1: c_int) -> c_int;
-  pub fn XStoreColor (_3: *mut Display, _2: c_ulong, _1: *mut XColor) -> c_int;
-  pub fn XStoreColors (_4: *mut Display, _3: c_ulong, _2: *mut XColor, _1: c_int) -> c_int;
-  pub fn XStoreName (_3: *mut Display, _2: c_ulong, _1: *const c_char) -> c_int;
-  pub fn XStoreNamedColor (_5: *mut Display, _4: c_ulong, _3: *const c_char, _2: c_ulong, _1: c_int) -> c_int;
-  pub fn XStringListToTextProperty (_3: *mut *mut c_char, _2: c_int, _1: *mut XTextProperty) -> c_int;
-  pub fn XStringToKeysym (_1: *const c_char) -> c_ulong;
-  pub fn XSubImage (_5: *mut XImage, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -> *mut XImage;
-  pub fn XSubtractRegion (_3: Region, _2: Region, _1: Region) -> c_int;
-  pub fn XSupportsLocale () -> c_int;
-  pub fn XSync (_2: *mut Display, _1: c_int) -> c_int;
-  pub fn XSynchronize (_2: *mut Display, _1: c_int) -> Option<unsafe extern "C" fn (*mut Display) -> c_int>;
-  pub fn XTextExtents (_7: *mut XFontStruct, _6: *const c_char, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut XCharStruct) -> c_int;
-  pub fn XTextExtents16 (_7: *mut XFontStruct, _6: *const XChar2b, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut XCharStruct) -> c_int;
-  pub fn XTextPropertyToStringList (_3: *mut XTextProperty, _2: *mut *mut *mut c_char, _1: *mut c_int) -> c_int;
-  pub fn XTextWidth (_3: *mut XFontStruct, _2: *const c_char, _1: c_int) -> c_int;
-  pub fn XTextWidth16 (_3: *mut XFontStruct, _2: *const XChar2b, _1: c_int) -> c_int;
-  pub fn XTranslateCoordinates (_8: *mut Display, _7: c_ulong, _6: c_ulong, _5: c_int, _4: c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_ulong) -> c_int;
-  pub fn XUndefineCursor (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XUngrabButton (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_ulong) -> c_int;
-  pub fn XUngrabKey (_4: *mut Display, _3: c_int, _2: c_uint, _1: c_ulong) -> c_int;
-  pub fn XUngrabKeyboard (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XUngrabPointer (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XUngrabServer (_1: *mut Display) -> c_int;
-  pub fn XUninstallColormap (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XUnionRectWithRegion (_3: *mut XRectangle, _2: Region, _1: Region) -> c_int;
-  pub fn XUnionRegion (_3: Region, _2: Region, _1: Region) -> c_int;
-  pub fn XUnloadFont (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XUnlockDisplay (_1: *mut Display);
-  pub fn XUnmapSubwindows (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XUnmapWindow (_2: *mut Display, _1: c_ulong) -> c_int;
-  pub fn XUnregisterIMInstantiateCallback (_6: *mut Display, _5: XrmDatabase, _4: *mut c_char, _3: *mut c_char, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, *mut c_char)>, _1: *mut c_char) -> c_int;
-  pub fn XUnsetICFocus (_1: XIC);
-  pub fn Xutf8DrawImageString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int);
-  pub fn Xutf8DrawString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int);
-  pub fn Xutf8DrawText (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *mut XmbTextItem, _1: c_int);
-  pub fn Xutf8LookupString (_6: XIC, _5: *mut XKeyEvent, _4: *mut c_char, _3: c_int, _2: *mut c_ulong, _1: *mut c_int) -> c_int;
-  pub fn Xutf8ResetIC (_1: XIC) -> *mut c_char;
-  pub fn Xutf8SetWMProperties (_9: *mut Display, _8: c_ulong, _7: *const c_char, _6: *const c_char, _5: *mut *mut c_char, _4: c_int, _3: *mut XSizeHints, _2: *mut XWMHints, _1: *mut XClassHint);
-  pub fn Xutf8TextEscapement (_3: XFontSet, _2: *const c_char, _1: c_int) -> c_int;
-  pub fn Xutf8TextExtents (_5: XFontSet, _4: *const c_char, _3: c_int, _2: *mut XRectangle, _1: *mut XRectangle) -> c_int;
-  pub fn Xutf8TextListToTextProperty (_5: *mut Display, _4: *mut *mut c_char, _3: c_int, _2: XICCEncodingStyle, _1: *mut XTextProperty) -> c_int;
-  pub fn Xutf8TextPerCharExtents (_9: XFontSet, _8: *const c_char, _7: c_int, _6: *mut XRectangle, _5: *mut XRectangle, _4: c_int, _3: *mut c_int, _2: *mut XRectangle, _1: *mut XRectangle) -> c_int;
-  pub fn Xutf8TextPropertyToTextList (_4: *mut Display, _3: *const XTextProperty, _2: *mut *mut *mut c_char, _1: *mut c_int) -> c_int;
-  pub fn XVaCreateNestedList (_1: c_int, ...) -> *mut c_void;
-  pub fn XVendorRelease (_1: *mut Display) -> c_int;
-  pub fn XVisualIDFromVisual (_1: *mut Visual) -> c_ulong;
-  pub fn XWarpPointer (_9: *mut Display, _8: c_ulong, _7: c_ulong, _6: c_int, _5: c_int, _4: c_uint, _3: c_uint, _2: c_int, _1: c_int) -> c_int;
-  pub fn XwcDrawImageString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const wchar_t, _1: c_int);
-  pub fn XwcDrawString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const wchar_t, _1: c_int);
-  pub fn XwcDrawText (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *mut XwcTextItem, _1: c_int);
-  pub fn XwcFreeStringList (_1: *mut *mut wchar_t);
-  pub fn XwcLookupString (_6: XIC, _5: *mut XKeyEvent, _4: *mut wchar_t, _3: c_int, _2: *mut c_ulong, _1: *mut c_int) -> c_int;
-  pub fn XwcResetIC (_1: XIC) -> *mut wchar_t;
-  pub fn XwcTextEscapement (_3: XFontSet, _2: *const wchar_t, _1: c_int) -> c_int;
-  pub fn XwcTextExtents (_5: XFontSet, _4: *const wchar_t, _3: c_int, _2: *mut XRectangle, _1: *mut XRectangle) -> c_int;
-  pub fn XwcTextListToTextProperty (_5: *mut Display, _4: *mut *mut wchar_t, _3: c_int, _2: XICCEncodingStyle, _1: *mut XTextProperty) -> c_int;
-  pub fn XwcTextPerCharExtents (_9: XFontSet, _8: *const wchar_t, _7: c_int, _6: *mut XRectangle, _5: *mut XRectangle, _4: c_int, _3: *mut c_int, _2: *mut XRectangle, _1: *mut XRectangle) -> c_int;
-  pub fn XwcTextPropertyToTextList (_4: *mut Display, _3: *const XTextProperty, _2: *mut *mut *mut wchar_t, _1: *mut c_int) -> c_int;
-  pub fn XWhitePixel (_2: *mut Display, _1: c_int) -> c_ulong;
-  pub fn XWhitePixelOfScreen (_1: *mut Screen) -> c_ulong;
-  pub fn XWidthMMOfScreen (_1: *mut Screen) -> c_int;
-  pub fn XWidthOfScreen (_1: *mut Screen) -> c_int;
-  pub fn XWindowEvent (_4: *mut Display, _3: c_ulong, _2: c_long, _1: *mut XEvent) -> c_int;
-  pub fn XWithdrawWindow (_3: *mut Display, _2: c_ulong, _1: c_int) -> c_int;
-  pub fn XWMGeometry (_11: *mut Display, _10: c_int, _9: *const c_char, _8: *const c_char, _7: c_uint, _6: *mut XSizeHints, _5: *mut c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XWriteBitmapFile (_7: *mut Display, _6: *const c_char, _5: c_ulong, _4: c_uint, _3: c_uint, _2: c_int, _1: c_int) -> c_int;
-  pub fn XXorRegion (_3: Region, _2: Region, _1: Region) -> c_int;
+x11_link! { Xlib, "libX11.so",
+  pub fn XActivateScreenSaver (_1: *mut Display) -> c_int,
+  pub fn XAddConnectionWatch (_3: *mut Display, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, c_int, c_int, *mut *mut c_char)>, _1: *mut c_char) -> c_int,
+  pub fn XAddExtension (_1: *mut Display) -> *mut XExtCodes,
+  pub fn XAddHost (_2: *mut Display, _1: *mut XHostAddress) -> c_int,
+  pub fn XAddHosts (_3: *mut Display, _2: *mut XHostAddress, _1: c_int) -> c_int,
+  pub fn XAddPixel (_2: *mut XImage, _1: c_long) -> c_int,
+  pub fn XAddToExtensionList (_2: *mut *mut XExtData, _1: *mut XExtData) -> c_int,
+  pub fn XAddToSaveSet (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XAllocClassHint () -> *mut XClassHint,
+  pub fn XAllocColor (_3: *mut Display, _2: c_ulong, _1: *mut XColor) -> c_int,
+  pub fn XAllocColorCells (_7: *mut Display, _6: c_ulong, _5: c_int, _4: *mut c_ulong, _3: c_uint, _2: *mut c_ulong, _1: c_uint) -> c_int,
+  pub fn XAllocColorPlanes (_11: *mut Display, _10: c_ulong, _9: c_int, _8: *mut c_ulong, _7: c_int, _6: c_int, _5: c_int, _4: c_int, _3: *mut c_ulong, _2: *mut c_ulong, _1: *mut c_ulong) -> c_int,
+  pub fn XAllocIconSize () -> *mut XIconSize,
+  pub fn XAllocNamedColor (_5: *mut Display, _4: c_ulong, _3: *const c_char, _2: *mut XColor, _1: *mut XColor) -> c_int,
+  pub fn XAllocSizeHints () -> *mut XSizeHints,
+  pub fn XAllocStandardColormap () -> *mut XStandardColormap,
+  pub fn XAllocWMHints () -> *mut XWMHints,
+  pub fn XAllowEvents (_3: *mut Display, _2: c_int, _1: c_ulong) -> c_int,
+  pub fn XAllPlanes () -> c_ulong,
+  pub fn XAutoRepeatOff (_1: *mut Display) -> c_int,
+  pub fn XAutoRepeatOn (_1: *mut Display) -> c_int,
+  pub fn XBaseFontNameListOfFontSet (_1: XFontSet) -> *mut c_char,
+  pub fn XBell (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XBitmapBitOrder (_1: *mut Display) -> c_int,
+  pub fn XBitmapPad (_1: *mut Display) -> c_int,
+  pub fn XBitmapUnit (_1: *mut Display) -> c_int,
+  pub fn XBlackPixel (_2: *mut Display, _1: c_int) -> c_ulong,
+  pub fn XBlackPixelOfScreen (_1: *mut Screen) -> c_ulong,
+  pub fn XCellsOfScreen (_1: *mut Screen) -> c_int,
+  pub fn XChangeActivePointerGrab (_4: *mut Display, _3: c_uint, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XChangeGC (_4: *mut Display, _3: GC, _2: c_ulong, _1: *mut XGCValues) -> c_int,
+  pub fn XChangeKeyboardControl (_3: *mut Display, _2: c_ulong, _1: *mut XKeyboardControl) -> c_int,
+  pub fn XChangeKeyboardMapping (_5: *mut Display, _4: c_int, _3: c_int, _2: *mut c_ulong, _1: c_int) -> c_int,
+  pub fn XChangePointerControl (_6: *mut Display, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: c_int) -> c_int,
+  pub fn XChangeProperty (_8: *mut Display, _7: c_ulong, _6: c_ulong, _5: c_ulong, _4: c_int, _3: c_int, _2: *const c_uchar, _1: c_int) -> c_int,
+  pub fn XChangeSaveSet (_3: *mut Display, _2: c_ulong, _1: c_int) -> c_int,
+  pub fn XChangeWindowAttributes (_4: *mut Display, _3: c_ulong, _2: c_ulong, _1: *mut XSetWindowAttributes) -> c_int,
+  pub fn XCheckIfEvent (_4: *mut Display, _3: *mut XEvent, _2: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut c_char) -> c_int>, _1: *mut c_char) -> c_int,
+  pub fn XCheckMaskEvent (_3: *mut Display, _2: c_long, _1: *mut XEvent) -> c_int,
+  pub fn XCheckTypedEvent (_3: *mut Display, _2: c_int, _1: *mut XEvent) -> c_int,
+  pub fn XCheckTypedWindowEvent (_4: *mut Display, _3: c_ulong, _2: c_int, _1: *mut XEvent) -> c_int,
+  pub fn XCheckWindowEvent (_4: *mut Display, _3: c_ulong, _2: c_long, _1: *mut XEvent) -> c_int,
+  pub fn XCirculateSubwindows (_3: *mut Display, _2: c_ulong, _1: c_int) -> c_int,
+  pub fn XCirculateSubwindowsDown (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XCirculateSubwindowsUp (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XClearArea (_7: *mut Display, _6: c_ulong, _5: c_int, _4: c_int, _3: c_uint, _2: c_uint, _1: c_int) -> c_int,
+  pub fn XClearWindow (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XClipBox (_2: Region, _1: *mut XRectangle) -> c_int,
+  pub fn XCloseDisplay (_1: *mut Display) -> c_int,
+  pub fn XCloseIM (_1: XIM) -> c_int,
+  pub fn XCloseOM (_1: XOM) -> c_int,
+  pub fn XcmsAddColorSpace (_1: *mut XcmsColorSpace) -> c_int,
+  pub fn XcmsAddFunctionSet (_1: *mut XcmsFunctionSet) -> c_int,
+  pub fn XcmsAllocColor (_4: *mut Display, _3: c_ulong, _2: *mut XcmsColor, _1: c_ulong) -> c_int,
+  pub fn XcmsAllocNamedColor (_6: *mut Display, _5: c_ulong, _4: *const c_char, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_ulong) -> c_int,
+  pub fn XcmsCCCOfColormap (_2: *mut Display, _1: c_ulong) -> XcmsCCC,
+  pub fn XcmsCIELabClipab (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsCIELabClipL (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsCIELabClipLab (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsCIELabQueryMaxC (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsCIELabQueryMaxL (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsCIELabQueryMaxLC (_3: XcmsCCC, _2: c_double, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsCIELabQueryMinL (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsCIELabToCIEXYZ (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int,
+  pub fn XcmsCIELabWhiteShiftColors (_7: XcmsCCC, _6: *mut XcmsColor, _5: *mut XcmsColor, _4: c_ulong, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsCIELuvClipL (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsCIELuvClipLuv (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsCIELuvClipuv (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsCIELuvQueryMaxC (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsCIELuvQueryMaxL (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsCIELuvQueryMaxLC (_3: XcmsCCC, _2: c_double, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsCIELuvQueryMinL (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsCIELuvToCIEuvY (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int,
+  pub fn XcmsCIELuvWhiteShiftColors (_7: XcmsCCC, _6: *mut XcmsColor, _5: *mut XcmsColor, _4: c_ulong, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsCIEuvYToCIELuv (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int,
+  pub fn XcmsCIEuvYToCIEXYZ (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int,
+  pub fn XcmsCIEuvYToTekHVC (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int,
+  pub fn XcmsCIExyYToCIEXYZ (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int,
+  pub fn XcmsCIEXYZToCIELab (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int,
+  pub fn XcmsCIEXYZToCIEuvY (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int,
+  pub fn XcmsCIEXYZToCIExyY (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int,
+  pub fn XcmsCIEXYZToRGBi (_4: XcmsCCC, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsClientWhitePointOfCCC (_1: XcmsCCC) -> *mut XcmsColor,
+  pub fn XcmsConvertColors (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_ulong, _1: *mut c_int) -> c_int,
+  pub fn XcmsCreateCCC (_8: *mut Display, _7: c_int, _6: *mut Visual, _5: *mut XcmsColor, _4: Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, c_uint, c_uint, *mut c_int) -> c_int>, _3: *mut c_char, _2: Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, *mut XcmsColor, c_ulong, *mut XcmsColor, c_uint, *mut c_int) -> c_int>, _1: *mut c_char) -> XcmsCCC,
+  pub fn XcmsDefaultCCC (_2: *mut Display, _1: c_int) -> XcmsCCC,
+  pub fn XcmsDisplayOfCCC (_1: XcmsCCC) -> *mut Display,
+  pub fn XcmsFormatOfPrefix (_1: *mut c_char) -> c_ulong,
+  pub fn XcmsFreeCCC (_1: XcmsCCC) -> (),
+  pub fn XcmsLookupColor (_6: *mut Display, _5: c_ulong, _4: *const c_char, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_ulong) -> c_int,
+  pub fn XcmsPrefixOfFormat (_1: c_ulong) -> *mut c_char,
+  pub fn XcmsQueryBlack (_3: XcmsCCC, _2: c_ulong, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsQueryBlue (_3: XcmsCCC, _2: c_ulong, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsQueryColor (_4: *mut Display, _3: c_ulong, _2: *mut XcmsColor, _1: c_ulong) -> c_int,
+  pub fn XcmsQueryColors (_5: *mut Display, _4: c_ulong, _3: *mut XcmsColor, _2: c_uint, _1: c_ulong) -> c_int,
+  pub fn XcmsQueryGreen (_3: XcmsCCC, _2: c_ulong, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsQueryRed (_3: XcmsCCC, _2: c_ulong, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsQueryWhite (_3: XcmsCCC, _2: c_ulong, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsRGBiToCIEXYZ (_4: XcmsCCC, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsRGBiToRGB (_4: XcmsCCC, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsRGBToRGBi (_4: XcmsCCC, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsScreenNumberOfCCC (_1: XcmsCCC) -> c_int,
+  pub fn XcmsScreenWhitePointOfCCC (_1: XcmsCCC) -> *mut XcmsColor,
+  pub fn XcmsSetCCCOfColormap (_3: *mut Display, _2: c_ulong, _1: XcmsCCC) -> XcmsCCC,
+  pub fn XcmsSetCompressionProc (_3: XcmsCCC, _2: Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, c_uint, c_uint, *mut c_int) -> c_int>, _1: *mut c_char) -> Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, c_uint, c_uint, *mut c_int) -> c_int>,
+  pub fn XcmsSetWhiteAdjustProc (_3: XcmsCCC, _2: Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, *mut XcmsColor, c_ulong, *mut XcmsColor, c_uint, *mut c_int) -> c_int>, _1: *mut c_char) -> Option<unsafe extern "C" fn (XcmsCCC, *mut XcmsColor, *mut XcmsColor, c_ulong, *mut XcmsColor, c_uint, *mut c_int) -> c_int>,
+  pub fn XcmsSetWhitePoint (_2: XcmsCCC, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsStoreColor (_3: *mut Display, _2: c_ulong, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsStoreColors (_5: *mut Display, _4: c_ulong, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsTekHVCClipC (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsTekHVCClipV (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsTekHVCClipVC (_5: XcmsCCC, _4: *mut XcmsColor, _3: c_uint, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsTekHVCQueryMaxC (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsTekHVCQueryMaxV (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsTekHVCQueryMaxVC (_3: XcmsCCC, _2: c_double, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsTekHVCQueryMaxVSamples (_4: XcmsCCC, _3: c_double, _2: *mut XcmsColor, _1: c_uint) -> c_int,
+  pub fn XcmsTekHVCQueryMinV (_4: XcmsCCC, _3: c_double, _2: c_double, _1: *mut XcmsColor) -> c_int,
+  pub fn XcmsTekHVCToCIEuvY (_4: XcmsCCC, _3: *mut XcmsColor, _2: *mut XcmsColor, _1: c_uint) -> c_int,
+  pub fn XcmsTekHVCWhiteShiftColors (_7: XcmsCCC, _6: *mut XcmsColor, _5: *mut XcmsColor, _4: c_ulong, _3: *mut XcmsColor, _2: c_uint, _1: *mut c_int) -> c_int,
+  pub fn XcmsVisualOfCCC (_1: XcmsCCC) -> *mut Visual,
+  pub fn XConfigureWindow (_4: *mut Display, _3: c_ulong, _2: c_uint, _1: *mut XWindowChanges) -> c_int,
+  pub fn XConnectionNumber (_1: *mut Display) -> c_int,
+  pub fn XContextDependentDrawing (_1: XFontSet) -> c_int,
+  pub fn XContextualDrawing (_1: XFontSet) -> c_int,
+  pub fn XConvertCase (_3: c_ulong, _2: *mut c_ulong, _1: *mut c_ulong) -> (),
+  pub fn XConvertSelection (_6: *mut Display, _5: c_ulong, _4: c_ulong, _3: c_ulong, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XCopyArea (_10: *mut Display, _9: c_ulong, _8: c_ulong, _7: GC, _6: c_int, _5: c_int, _4: c_uint, _3: c_uint, _2: c_int, _1: c_int) -> c_int,
+  pub fn XCopyColormapAndFree (_2: *mut Display, _1: c_ulong) -> c_ulong,
+  pub fn XCopyGC (_4: *mut Display, _3: GC, _2: c_ulong, _1: GC) -> c_int,
+  pub fn XCopyPlane (_11: *mut Display, _10: c_ulong, _9: c_ulong, _8: GC, _7: c_int, _6: c_int, _5: c_uint, _4: c_uint, _3: c_int, _2: c_int, _1: c_ulong) -> c_int,
+  pub fn XCreateBitmapFromData (_5: *mut Display, _4: c_ulong, _3: *const c_char, _2: c_uint, _1: c_uint) -> c_ulong,
+  pub fn XCreateColormap (_4: *mut Display, _3: c_ulong, _2: *mut Visual, _1: c_int) -> c_ulong,
+  pub fn XCreateFontCursor (_2: *mut Display, _1: c_uint) -> c_ulong,
+  pub fn XCreateFontSet (_5: *mut Display, _4: *const c_char, _3: *mut *mut *mut c_char, _2: *mut c_int, _1: *mut *mut c_char) -> XFontSet,
+  pub fn XCreateGC (_4: *mut Display, _3: c_ulong, _2: c_ulong, _1: *mut XGCValues) -> GC,
+  pub fn XCreateGlyphCursor (_7: *mut Display, _6: c_ulong, _5: c_ulong, _4: c_uint, _3: c_uint, _2: *const XColor, _1: *const XColor) -> c_ulong,
+  pub fn XCreateImage (_10: *mut Display, _9: *mut Visual, _8: c_uint, _7: c_int, _6: c_int, _5: *mut c_char, _4: c_uint, _3: c_uint, _2: c_int, _1: c_int) -> *mut XImage,
+  pub fn XCreatePixmap (_5: *mut Display, _4: c_ulong, _3: c_uint, _2: c_uint, _1: c_uint) -> c_ulong,
+  pub fn XCreatePixmapCursor (_7: *mut Display, _6: c_ulong, _5: c_ulong, _4: *mut XColor, _3: *mut XColor, _2: c_uint, _1: c_uint) -> c_ulong,
+  pub fn XCreatePixmapFromBitmapData (_8: *mut Display, _7: c_ulong, _6: *mut c_char, _5: c_uint, _4: c_uint, _3: c_ulong, _2: c_ulong, _1: c_uint) -> c_ulong,
+  pub fn XCreateRegion () -> Region,
+  pub fn XCreateSimpleWindow (_9: *mut Display, _8: c_ulong, _7: c_int, _6: c_int, _5: c_uint, _4: c_uint, _3: c_uint, _2: c_ulong, _1: c_ulong) -> c_ulong,
+  pub fn XCreateWindow (_12: *mut Display, _11: c_ulong, _10: c_int, _9: c_int, _8: c_uint, _7: c_uint, _6: c_uint, _5: c_int, _4: c_uint, _3: *mut Visual, _2: c_ulong, _1: *mut XSetWindowAttributes) -> c_ulong,
+  pub fn XDefaultColormap (_2: *mut Display, _1: c_int) -> c_ulong,
+  pub fn XDefaultColormapOfScreen (_1: *mut Screen) -> c_ulong,
+  pub fn XDefaultDepth (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XDefaultDepthOfScreen (_1: *mut Screen) -> c_int,
+  pub fn XDefaultGC (_2: *mut Display, _1: c_int) -> GC,
+  pub fn XDefaultGCOfScreen (_1: *mut Screen) -> GC,
+  pub fn XDefaultRootWindow (_1: *mut Display) -> c_ulong,
+  pub fn XDefaultScreen (_1: *mut Display) -> c_int,
+  pub fn XDefaultScreenOfDisplay (_1: *mut Display) -> *mut Screen,
+  pub fn XDefaultString () -> *const c_char,
+  pub fn XDefaultVisual (_2: *mut Display, _1: c_int) -> *mut Visual,
+  pub fn XDefaultVisualOfScreen (_1: *mut Screen) -> *mut Visual,
+  pub fn XDefineCursor (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XDeleteContext (_3: *mut Display, _2: c_ulong, _1: c_int) -> c_int,
+  pub fn XDeleteModifiermapEntry (_3: *mut XModifierKeymap, _2: c_uchar, _1: c_int) -> *mut XModifierKeymap,
+  pub fn XDeleteProperty (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XDestroyIC (_1: XIC) -> (),
+  pub fn XDestroyImage (_1: *mut XImage) -> c_int,
+  pub fn XDestroyOC (_1: XFontSet) -> (),
+  pub fn XDestroyRegion (_1: Region) -> c_int,
+  pub fn XDestroySubwindows (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XDestroyWindow (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XDirectionalDependentDrawing (_1: XFontSet) -> c_int,
+  pub fn XDisableAccessControl (_1: *mut Display) -> c_int,
+  pub fn XDisplayCells (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XDisplayHeight (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XDisplayHeightMM (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XDisplayKeycodes (_3: *mut Display, _2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XDisplayMotionBufferSize (_1: *mut Display) -> c_ulong,
+  pub fn XDisplayName (_1: *const c_char) -> *mut c_char,
+  pub fn XDisplayOfIM (_1: XIM) -> *mut Display,
+  pub fn XDisplayOfOM (_1: XOM) -> *mut Display,
+  pub fn XDisplayOfScreen (_1: *mut Screen) -> *mut Display,
+  pub fn XDisplayPlanes (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XDisplayString (_1: *mut Display) -> *mut c_char,
+  pub fn XDisplayWidth (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XDisplayWidthMM (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XDoesBackingStore (_1: *mut Screen) -> c_int,
+  pub fn XDoesSaveUnders (_1: *mut Screen) -> c_int,
+  pub fn XDrawArc (_9: *mut Display, _8: c_ulong, _7: GC, _6: c_int, _5: c_int, _4: c_uint, _3: c_uint, _2: c_int, _1: c_int) -> c_int,
+  pub fn XDrawArcs (_5: *mut Display, _4: c_ulong, _3: GC, _2: *mut XArc, _1: c_int) -> c_int,
+  pub fn XDrawImageString (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int) -> c_int,
+  pub fn XDrawImageString16 (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *const XChar2b, _1: c_int) -> c_int,
+  pub fn XDrawLine (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: c_int, _1: c_int) -> c_int,
+  pub fn XDrawLines (_6: *mut Display, _5: c_ulong, _4: GC, _3: *mut XPoint, _2: c_int, _1: c_int) -> c_int,
+  pub fn XDrawPoint (_5: *mut Display, _4: c_ulong, _3: GC, _2: c_int, _1: c_int) -> c_int,
+  pub fn XDrawPoints (_6: *mut Display, _5: c_ulong, _4: GC, _3: *mut XPoint, _2: c_int, _1: c_int) -> c_int,
+  pub fn XDrawRectangle (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XDrawRectangles (_5: *mut Display, _4: c_ulong, _3: GC, _2: *mut XRectangle, _1: c_int) -> c_int,
+  pub fn XDrawSegments (_5: *mut Display, _4: c_ulong, _3: GC, _2: *mut XSegment, _1: c_int) -> c_int,
+  pub fn XDrawString (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int) -> c_int,
+  pub fn XDrawString16 (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *const XChar2b, _1: c_int) -> c_int,
+  pub fn XDrawText (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *mut XTextItem, _1: c_int) -> c_int,
+  pub fn XDrawText16 (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *mut XTextItem16, _1: c_int) -> c_int,
+  pub fn XEHeadOfExtensionList (_1: XEDataObject) -> *mut *mut XExtData,
+  pub fn XEmptyRegion (_1: Region) -> c_int,
+  pub fn XEnableAccessControl (_1: *mut Display) -> c_int,
+  pub fn XEqualRegion (_2: Region, _1: Region) -> c_int,
+  pub fn XESetBeforeFlush (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XExtCodes, *const c_char, c_long)>) -> Option<unsafe extern "C" fn (*mut Display, *mut XExtCodes, *const c_char, c_long)>,
+  pub fn XESetCloseDisplay (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XExtCodes) -> c_int>,
+  pub fn XESetCopyEventCookie (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut XGenericEventCookie) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut XGenericEventCookie) -> c_int>,
+  pub fn XESetCopyGC (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>,
+  pub fn XESetCreateFont (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int>,
+  pub fn XESetCreateGC (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>,
+  pub fn XESetError (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut xError, *mut XExtCodes, *mut c_int) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut xError, *mut XExtCodes, *mut c_int) -> c_int>,
+  pub fn XESetErrorString (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, c_int, *mut XExtCodes, *mut c_char, c_int) -> *mut c_char>) -> Option<unsafe extern "C" fn (*mut Display, c_int, *mut XExtCodes, *mut c_char, c_int) -> *mut c_char>,
+  pub fn XESetEventToWire (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int>,
+  pub fn XESetFlushGC (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>,
+  pub fn XESetFreeFont (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XFontStruct, *mut XExtCodes) -> c_int>,
+  pub fn XESetFreeGC (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, GC, *mut XExtCodes) -> c_int>,
+  pub fn XESetPrintErrorValues (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut c_void)>) -> Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut c_void)>,
+  pub fn XESetWireToError (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut xError) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent, *mut xError) -> c_int>,
+  pub fn XESetWireToEvent (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut xEvent) -> c_int>,
+  pub fn XESetWireToEventCookie (_3: *mut Display, _2: c_int, _1: Option<unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut xEvent) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XGenericEventCookie, *mut xEvent) -> c_int>,
+  pub fn XEventMaskOfScreen (_1: *mut Screen) -> c_long,
+  pub fn XEventsQueued (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XExtendedMaxRequestSize (_1: *mut Display) -> c_long,
+  pub fn XExtentsOfFontSet (_1: XFontSet) -> *mut XFontSetExtents,
+  pub fn XFetchBuffer (_3: *mut Display, _2: *mut c_int, _1: c_int) -> *mut c_char,
+  pub fn XFetchBytes (_2: *mut Display, _1: *mut c_int) -> *mut c_char,
+  pub fn XFetchName (_3: *mut Display, _2: c_ulong, _1: *mut *mut c_char) -> c_int,
+  pub fn XFillArc (_9: *mut Display, _8: c_ulong, _7: GC, _6: c_int, _5: c_int, _4: c_uint, _3: c_uint, _2: c_int, _1: c_int) -> c_int,
+  pub fn XFillArcs (_5: *mut Display, _4: c_ulong, _3: GC, _2: *mut XArc, _1: c_int) -> c_int,
+  pub fn XFillPolygon (_7: *mut Display, _6: c_ulong, _5: GC, _4: *mut XPoint, _3: c_int, _2: c_int, _1: c_int) -> c_int,
+  pub fn XFillRectangle (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XFillRectangles (_5: *mut Display, _4: c_ulong, _3: GC, _2: *mut XRectangle, _1: c_int) -> c_int,
+  pub fn XFilterEvent (_2: *mut XEvent, _1: c_ulong) -> c_int,
+  pub fn XFindContext (_4: *mut Display, _3: c_ulong, _2: c_int, _1: *mut *mut c_char) -> c_int,
+  pub fn XFindOnExtensionList (_2: *mut *mut XExtData, _1: c_int) -> *mut XExtData,
+  pub fn XFlush (_1: *mut Display) -> c_int,
+  pub fn XFlushGC (_2: *mut Display, _1: GC) -> (),
+  pub fn XFontsOfFontSet (_3: XFontSet, _2: *mut *mut *mut XFontStruct, _1: *mut *mut *mut c_char) -> c_int,
+  pub fn XForceScreenSaver (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XFree (_1: *mut c_void) -> c_int,
+  pub fn XFreeColormap (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XFreeColors (_5: *mut Display, _4: c_ulong, _3: *mut c_ulong, _2: c_int, _1: c_ulong) -> c_int,
+  pub fn XFreeCursor (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XFreeEventData (_2: *mut Display, _1: *mut XGenericEventCookie) -> (),
+  pub fn XFreeExtensionList (_1: *mut *mut c_char) -> c_int,
+  pub fn XFreeFont (_2: *mut Display, _1: *mut XFontStruct) -> c_int,
+  pub fn XFreeFontInfo (_3: *mut *mut c_char, _2: *mut XFontStruct, _1: c_int) -> c_int,
+  pub fn XFreeFontNames (_1: *mut *mut c_char) -> c_int,
+  pub fn XFreeFontPath (_1: *mut *mut c_char) -> c_int,
+  pub fn XFreeFontSet (_2: *mut Display, _1: XFontSet) -> (),
+  pub fn XFreeGC (_2: *mut Display, _1: GC) -> c_int,
+  pub fn XFreeModifiermap (_1: *mut XModifierKeymap) -> c_int,
+  pub fn XFreePixmap (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XFreeStringList (_1: *mut *mut c_char) -> (),
+  pub fn XGContextFromGC (_1: GC) -> c_ulong,
+  pub fn XGeometry (_13: *mut Display, _12: c_int, _11: *const c_char, _10: *const c_char, _9: c_uint, _8: c_uint, _7: c_uint, _6: c_int, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XGetAtomName (_2: *mut Display, _1: c_ulong) -> *mut c_char,
+  pub fn XGetAtomNames (_4: *mut Display, _3: *mut c_ulong, _2: c_int, _1: *mut *mut c_char) -> c_int,
+  pub fn XGetClassHint (_3: *mut Display, _2: c_ulong, _1: *mut XClassHint) -> c_int,
+  pub fn XGetCommand (_4: *mut Display, _3: c_ulong, _2: *mut *mut *mut c_char, _1: *mut c_int) -> c_int,
+  pub fn XGetDefault (_3: *mut Display, _2: *const c_char, _1: *const c_char) -> *mut c_char,
+  pub fn XGetErrorDatabaseText (_6: *mut Display, _5: *const c_char, _4: *const c_char, _3: *const c_char, _2: *mut c_char, _1: c_int) -> c_int,
+  pub fn XGetErrorText (_4: *mut Display, _3: c_int, _2: *mut c_char, _1: c_int) -> c_int,
+  pub fn XGetEventData (_2: *mut Display, _1: *mut XGenericEventCookie) -> c_int,
+  pub fn XGetFontPath (_2: *mut Display, _1: *mut c_int) -> *mut *mut c_char,
+  pub fn XGetFontProperty (_3: *mut XFontStruct, _2: c_ulong, _1: *mut c_ulong) -> c_int,
+  pub fn XGetGCValues (_4: *mut Display, _3: GC, _2: c_ulong, _1: *mut XGCValues) -> c_int,
+  pub fn XGetGeometry (_9: *mut Display, _8: c_ulong, _7: *mut c_ulong, _6: *mut c_int, _5: *mut c_int, _4: *mut c_uint, _3: *mut c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int,
+  pub fn XGetIconName (_3: *mut Display, _2: c_ulong, _1: *mut *mut c_char) -> c_int,
+  pub fn XGetIconSizes (_4: *mut Display, _3: c_ulong, _2: *mut *mut XIconSize, _1: *mut c_int) -> c_int,
+  pub fn XGetImage (_8: *mut Display, _7: c_ulong, _6: c_int, _5: c_int, _4: c_uint, _3: c_uint, _2: c_ulong, _1: c_int) -> *mut XImage,
+  pub fn XGetInputFocus (_3: *mut Display, _2: *mut c_ulong, _1: *mut c_int) -> c_int,
+  pub fn XGetKeyboardControl (_2: *mut Display, _1: *mut XKeyboardState) -> c_int,
+  pub fn XGetKeyboardMapping (_4: *mut Display, _3: c_uchar, _2: c_int, _1: *mut c_int) -> *mut c_ulong,
+  pub fn XGetModifierMapping (_1: *mut Display) -> *mut XModifierKeymap,
+  pub fn XGetMotionEvents (_5: *mut Display, _4: c_ulong, _3: c_ulong, _2: c_ulong, _1: *mut c_int) -> *mut XTimeCoord,
+  pub fn XGetNormalHints (_3: *mut Display, _2: c_ulong, _1: *mut XSizeHints) -> c_int,
+  pub fn XGetPixel (_3: *mut XImage, _2: c_int, _1: c_int) -> c_ulong,
+  pub fn XGetPointerControl (_4: *mut Display, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XGetPointerMapping (_3: *mut Display, _2: *mut c_uchar, _1: c_int) -> c_int,
+  pub fn XGetRGBColormaps (_5: *mut Display, _4: c_ulong, _3: *mut *mut XStandardColormap, _2: *mut c_int, _1: c_ulong) -> c_int,
+  pub fn XGetScreenSaver (_5: *mut Display, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XGetSelectionOwner (_2: *mut Display, _1: c_ulong) -> c_ulong,
+  pub fn XGetSizeHints (_4: *mut Display, _3: c_ulong, _2: *mut XSizeHints, _1: c_ulong) -> c_int,
+  pub fn XGetStandardColormap (_4: *mut Display, _3: c_ulong, _2: *mut XStandardColormap, _1: c_ulong) -> c_int,
+  pub fn XGetSubImage (_11: *mut Display, _10: c_ulong, _9: c_int, _8: c_int, _7: c_uint, _6: c_uint, _5: c_ulong, _4: c_int, _3: *mut XImage, _2: c_int, _1: c_int) -> *mut XImage,
+  pub fn XGetTextProperty (_4: *mut Display, _3: c_ulong, _2: *mut XTextProperty, _1: c_ulong) -> c_int,
+  pub fn XGetTransientForHint (_3: *mut Display, _2: c_ulong, _1: *mut c_ulong) -> c_int,
+  pub fn XGetVisualInfo (_4: *mut Display, _3: c_long, _2: *mut XVisualInfo, _1: *mut c_int) -> *mut XVisualInfo,
+  pub fn XGetWindowAttributes (_3: *mut Display, _2: c_ulong, _1: *mut XWindowAttributes) -> c_int,
+  pub fn XGetWindowProperty (_12: *mut Display, _11: c_ulong, _10: c_ulong, _9: c_long, _8: c_long, _7: c_int, _6: c_ulong, _5: *mut c_ulong, _4: *mut c_int, _3: *mut c_ulong, _2: *mut c_ulong, _1: *mut *mut c_uchar) -> c_int,
+  pub fn XGetWMClientMachine (_3: *mut Display, _2: c_ulong, _1: *mut XTextProperty) -> c_int,
+  pub fn XGetWMColormapWindows (_4: *mut Display, _3: c_ulong, _2: *mut *mut c_ulong, _1: *mut c_int) -> c_int,
+  pub fn XGetWMHints (_2: *mut Display, _1: c_ulong) -> *mut XWMHints,
+  pub fn XGetWMIconName (_3: *mut Display, _2: c_ulong, _1: *mut XTextProperty) -> c_int,
+  pub fn XGetWMName (_3: *mut Display, _2: c_ulong, _1: *mut XTextProperty) -> c_int,
+  pub fn XGetWMNormalHints (_4: *mut Display, _3: c_ulong, _2: *mut XSizeHints, _1: *mut c_long) -> c_int,
+  pub fn XGetWMProtocols (_4: *mut Display, _3: c_ulong, _2: *mut *mut c_ulong, _1: *mut c_int) -> c_int,
+  pub fn XGetWMSizeHints (_5: *mut Display, _4: c_ulong, _3: *mut XSizeHints, _2: *mut c_long, _1: c_ulong) -> c_int,
+  pub fn XGetZoomHints (_3: *mut Display, _2: c_ulong, _1: *mut XSizeHints) -> c_int,
+  pub fn XGrabButton (_10: *mut Display, _9: c_uint, _8: c_uint, _7: c_ulong, _6: c_int, _5: c_uint, _4: c_int, _3: c_int, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XGrabKey (_7: *mut Display, _6: c_int, _5: c_uint, _4: c_ulong, _3: c_int, _2: c_int, _1: c_int) -> c_int,
+  pub fn XGrabKeyboard (_6: *mut Display, _5: c_ulong, _4: c_int, _3: c_int, _2: c_int, _1: c_ulong) -> c_int,
+  pub fn XGrabPointer (_9: *mut Display, _8: c_ulong, _7: c_int, _6: c_uint, _5: c_int, _4: c_int, _3: c_ulong, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XGrabServer (_1: *mut Display) -> c_int,
+  pub fn XHeightMMOfScreen (_1: *mut Screen) -> c_int,
+  pub fn XHeightOfScreen (_1: *mut Screen) -> c_int,
+  pub fn XIconifyWindow (_3: *mut Display, _2: c_ulong, _1: c_int) -> c_int,
+  pub fn XIfEvent (_4: *mut Display, _3: *mut XEvent, _2: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut c_char) -> c_int>, _1: *mut c_char) -> c_int,
+  pub fn XImageByteOrder (_1: *mut Display) -> c_int,
+  pub fn XIMOfIC (_1: XIC) -> XIM,
+  pub fn XInitExtension (_2: *mut Display, _1: *const c_char) -> *mut XExtCodes,
+  pub fn XInitImage (_1: *mut XImage) -> c_int,
+  pub fn XInitThreads () -> c_int,
+  pub fn XInsertModifiermapEntry (_3: *mut XModifierKeymap, _2: c_uchar, _1: c_int) -> *mut XModifierKeymap,
+  pub fn XInstallColormap (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XInternalConnectionNumbers (_3: *mut Display, _2: *mut *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XInternAtom (_3: *mut Display, _2: *const c_char, _1: c_int) -> c_ulong,
+  pub fn XInternAtoms (_5: *mut Display, _4: *mut *mut c_char, _3: c_int, _2: c_int, _1: *mut c_ulong) -> c_int,
+  pub fn XIntersectRegion (_3: Region, _2: Region, _1: Region) -> c_int,
+  pub fn XkbAddDeviceLedInfo (_3: XkbDeviceInfoPtr, _2: c_uint, _1: c_uint) -> XkbDeviceLedInfoPtr,
+  pub fn XkbAddGeomColor (_3: XkbGeometryPtr, _2: *mut c_char, _1: c_uint) -> XkbColorPtr,
+  pub fn XkbAddGeomDoodad (_3: XkbGeometryPtr, _2: XkbSectionPtr, _1: c_ulong) -> XkbDoodadPtr,
+  pub fn XkbAddGeomKey (_1: XkbRowPtr) -> XkbKeyPtr,
+  pub fn XkbAddGeomKeyAlias (_3: XkbGeometryPtr, _2: *mut c_char, _1: *mut c_char) -> XkbKeyAliasPtr,
+  pub fn XkbAddGeomOutline (_2: XkbShapePtr, _1: c_int) -> XkbOutlinePtr,
+  pub fn XkbAddGeomOverlay (_3: XkbSectionPtr, _2: c_ulong, _1: c_int) -> XkbOverlayPtr,
+  pub fn XkbAddGeomOverlayKey (_4: XkbOverlayPtr, _3: XkbOverlayRowPtr, _2: *mut c_char, _1: *mut c_char) -> XkbOverlayKeyPtr,
+  pub fn XkbAddGeomOverlayRow (_3: XkbOverlayPtr, _2: c_int, _1: c_int) -> XkbOverlayRowPtr,
+  pub fn XkbAddGeomProperty (_3: XkbGeometryPtr, _2: *mut c_char, _1: *mut c_char) -> XkbPropertyPtr,
+  pub fn XkbAddGeomRow (_2: XkbSectionPtr, _1: c_int) -> XkbRowPtr,
+  pub fn XkbAddGeomSection (_5: XkbGeometryPtr, _4: c_ulong, _3: c_int, _2: c_int, _1: c_int) -> XkbSectionPtr,
+  pub fn XkbAddGeomShape (_3: XkbGeometryPtr, _2: c_ulong, _1: c_int) -> XkbShapePtr,
+  pub fn XkbAddKeyType (_5: XkbDescPtr, _4: c_ulong, _3: c_int, _2: c_int, _1: c_int) -> XkbKeyTypePtr,
+  pub fn XkbAllocClientMap (_3: XkbDescPtr, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbAllocCompatMap (_3: XkbDescPtr, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbAllocControls (_2: XkbDescPtr, _1: c_uint) -> c_int,
+  pub fn XkbAllocDeviceInfo (_3: c_uint, _2: c_uint, _1: c_uint) -> XkbDeviceInfoPtr,
+  pub fn XkbAllocGeomColors (_2: XkbGeometryPtr, _1: c_int) -> c_int,
+  pub fn XkbAllocGeomDoodads (_2: XkbGeometryPtr, _1: c_int) -> c_int,
+  pub fn XkbAllocGeometry (_2: XkbDescPtr, _1: XkbGeometrySizesPtr) -> c_int,
+  pub fn XkbAllocGeomKeyAliases (_2: XkbGeometryPtr, _1: c_int) -> c_int,
+  pub fn XkbAllocGeomKeys (_2: XkbRowPtr, _1: c_int) -> c_int,
+  pub fn XkbAllocGeomOutlines (_2: XkbShapePtr, _1: c_int) -> c_int,
+  pub fn XkbAllocGeomOverlayKeys (_2: XkbOverlayRowPtr, _1: c_int) -> c_int,
+  pub fn XkbAllocGeomOverlayRows (_2: XkbOverlayPtr, _1: c_int) -> c_int,
+  pub fn XkbAllocGeomOverlays (_2: XkbSectionPtr, _1: c_int) -> c_int,
+  pub fn XkbAllocGeomPoints (_2: XkbOutlinePtr, _1: c_int) -> c_int,
+  pub fn XkbAllocGeomProps (_2: XkbGeometryPtr, _1: c_int) -> c_int,
+  pub fn XkbAllocGeomRows (_2: XkbSectionPtr, _1: c_int) -> c_int,
+  pub fn XkbAllocGeomSectionDoodads (_2: XkbSectionPtr, _1: c_int) -> c_int,
+  pub fn XkbAllocGeomSections (_2: XkbGeometryPtr, _1: c_int) -> c_int,
+  pub fn XkbAllocGeomShapes (_2: XkbGeometryPtr, _1: c_int) -> c_int,
+  pub fn XkbAllocIndicatorMaps (_1: XkbDescPtr) -> c_int,
+  pub fn XkbAllocKeyboard () -> XkbDescPtr,
+  pub fn XkbAllocNames (_4: XkbDescPtr, _3: c_uint, _2: c_int, _1: c_int) -> c_int,
+  pub fn XkbAllocServerMap (_3: XkbDescPtr, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbApplyCompatMapToKey (_3: XkbDescPtr, _2: c_uchar, _1: XkbChangesPtr) -> c_int,
+  pub fn XkbApplyVirtualModChanges (_3: XkbDescPtr, _2: c_uint, _1: XkbChangesPtr) -> c_int,
+  pub fn XkbBell (_4: *mut Display, _3: c_ulong, _2: c_int, _1: c_ulong) -> c_int,
+  pub fn XkbBellEvent (_4: *mut Display, _3: c_ulong, _2: c_int, _1: c_ulong) -> c_int,
+  pub fn XkbChangeDeviceInfo (_3: *mut Display, _2: XkbDeviceInfoPtr, _1: XkbDeviceChangesPtr) -> c_int,
+  pub fn XkbChangeEnabledControls (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbChangeKeycodeRange (_4: XkbDescPtr, _3: c_int, _2: c_int, _1: XkbChangesPtr) -> c_int,
+  pub fn XkbChangeMap (_3: *mut Display, _2: XkbDescPtr, _1: XkbMapChangesPtr) -> c_int,
+  pub fn XkbChangeNames (_3: *mut Display, _2: XkbDescPtr, _1: XkbNameChangesPtr) -> c_int,
+  pub fn XkbChangeTypesOfKey (_6: XkbDescPtr, _5: c_int, _4: c_int, _3: c_uint, _2: *mut c_int, _1: XkbMapChangesPtr) -> c_int,
+  pub fn XkbComputeEffectiveMap (_3: XkbDescPtr, _2: XkbKeyTypePtr, _1: *mut c_uchar) -> c_int,
+  pub fn XkbComputeRowBounds (_3: XkbGeometryPtr, _2: XkbSectionPtr, _1: XkbRowPtr) -> c_int,
+  pub fn XkbComputeSectionBounds (_2: XkbGeometryPtr, _1: XkbSectionPtr) -> c_int,
+  pub fn XkbComputeShapeBounds (_1: XkbShapePtr) -> c_int,
+  pub fn XkbComputeShapeTop (_2: XkbShapePtr, _1: XkbBoundsPtr) -> c_int,
+  pub fn XkbCopyKeyType (_2: XkbKeyTypePtr, _1: XkbKeyTypePtr) -> c_int,
+  pub fn XkbCopyKeyTypes (_3: XkbKeyTypePtr, _2: XkbKeyTypePtr, _1: c_int) -> c_int,
+  pub fn XkbDeviceBell (_7: *mut Display, _6: c_ulong, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: c_ulong) -> c_int,
+  pub fn XkbDeviceBellEvent (_7: *mut Display, _6: c_ulong, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: c_ulong) -> c_int,
+  pub fn XkbFindOverlayForKey (_3: XkbGeometryPtr, _2: XkbSectionPtr, _1: *mut c_char) -> *mut c_char,
+  pub fn XkbForceBell (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XkbForceDeviceBell (_5: *mut Display, _4: c_int, _3: c_int, _2: c_int, _1: c_int) -> c_int,
+  pub fn XkbFreeClientMap (_3: XkbDescPtr, _2: c_uint, _1: c_int) -> (),
+  pub fn XkbFreeCompatMap (_3: XkbDescPtr, _2: c_uint, _1: c_int) -> (),
+  pub fn XkbFreeComponentList (_1: XkbComponentListPtr) -> (),
+  pub fn XkbFreeControls (_3: XkbDescPtr, _2: c_uint, _1: c_int) -> (),
+  pub fn XkbFreeDeviceInfo (_3: XkbDeviceInfoPtr, _2: c_uint, _1: c_int) -> (),
+  pub fn XkbFreeGeomColors (_4: XkbGeometryPtr, _3: c_int, _2: c_int, _1: c_int) -> (),
+  pub fn XkbFreeGeomDoodads (_3: XkbDoodadPtr, _2: c_int, _1: c_int) -> (),
+  pub fn XkbFreeGeometry (_3: XkbGeometryPtr, _2: c_uint, _1: c_int) -> (),
+  pub fn XkbFreeGeomKeyAliases (_4: XkbGeometryPtr, _3: c_int, _2: c_int, _1: c_int) -> (),
+  pub fn XkbFreeGeomKeys (_4: XkbRowPtr, _3: c_int, _2: c_int, _1: c_int) -> (),
+  pub fn XkbFreeGeomOutlines (_4: XkbShapePtr, _3: c_int, _2: c_int, _1: c_int) -> (),
+  pub fn XkbFreeGeomOverlayKeys (_4: XkbOverlayRowPtr, _3: c_int, _2: c_int, _1: c_int) -> (),
+  pub fn XkbFreeGeomOverlayRows (_4: XkbOverlayPtr, _3: c_int, _2: c_int, _1: c_int) -> (),
+  pub fn XkbFreeGeomOverlays (_4: XkbSectionPtr, _3: c_int, _2: c_int, _1: c_int) -> (),
+  pub fn XkbFreeGeomPoints (_4: XkbOutlinePtr, _3: c_int, _2: c_int, _1: c_int) -> (),
+  pub fn XkbFreeGeomProperties (_4: XkbGeometryPtr, _3: c_int, _2: c_int, _1: c_int) -> (),
+  pub fn XkbFreeGeomRows (_4: XkbSectionPtr, _3: c_int, _2: c_int, _1: c_int) -> (),
+  pub fn XkbFreeGeomSections (_4: XkbGeometryPtr, _3: c_int, _2: c_int, _1: c_int) -> (),
+  pub fn XkbFreeGeomShapes (_4: XkbGeometryPtr, _3: c_int, _2: c_int, _1: c_int) -> (),
+  pub fn XkbFreeIndicatorMaps (_1: XkbDescPtr) -> (),
+  pub fn XkbFreeKeyboard (_3: XkbDescPtr, _2: c_uint, _1: c_int) -> (),
+  pub fn XkbFreeNames (_3: XkbDescPtr, _2: c_uint, _1: c_int) -> (),
+  pub fn XkbFreeServerMap (_3: XkbDescPtr, _2: c_uint, _1: c_int) -> (),
+  pub fn XkbGetAutoRepeatRate (_4: *mut Display, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int,
+  pub fn XkbGetAutoResetControls (_3: *mut Display, _2: *mut c_uint, _1: *mut c_uint) -> c_int,
+  pub fn XkbGetCompatMap (_3: *mut Display, _2: c_uint, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetControls (_3: *mut Display, _2: c_ulong, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetDetectableAutoRepeat (_2: *mut Display, _1: *mut c_int) -> c_int,
+  pub fn XkbGetDeviceButtonActions (_5: *mut Display, _4: XkbDeviceInfoPtr, _3: c_int, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbGetDeviceInfo (_5: *mut Display, _4: c_uint, _3: c_uint, _2: c_uint, _1: c_uint) -> XkbDeviceInfoPtr,
+  pub fn XkbGetDeviceInfoChanges (_3: *mut Display, _2: XkbDeviceInfoPtr, _1: XkbDeviceChangesPtr) -> c_int,
+  pub fn XkbGetDeviceLedInfo (_5: *mut Display, _4: XkbDeviceInfoPtr, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbGetGeometry (_2: *mut Display, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetIndicatorMap (_3: *mut Display, _2: c_ulong, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetIndicatorState (_3: *mut Display, _2: c_uint, _1: *mut c_uint) -> c_int,
+  pub fn XkbGetKeyActions (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetKeyBehaviors (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetKeyboard (_3: *mut Display, _2: c_uint, _1: c_uint) -> XkbDescPtr,
+  pub fn XkbGetKeyboardByName (_6: *mut Display, _5: c_uint, _4: XkbComponentNamesPtr, _3: c_uint, _2: c_uint, _1: c_int) -> XkbDescPtr,
+  pub fn XkbGetKeyExplicitComponents (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetKeyModifierMap (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetKeySyms (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetKeyTypes (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetKeyVirtualModMap (_4: *mut Display, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetMap (_3: *mut Display, _2: c_uint, _1: c_uint) -> XkbDescPtr,
+  pub fn XkbGetMapChanges (_3: *mut Display, _2: XkbDescPtr, _1: XkbMapChangesPtr) -> c_int,
+  pub fn XkbGetNamedDeviceIndicator (_9: *mut Display, _8: c_uint, _7: c_uint, _6: c_uint, _5: c_ulong, _4: *mut c_int, _3: *mut c_int, _2: XkbIndicatorMapPtr, _1: *mut c_int) -> c_int,
+  pub fn XkbGetNamedGeometry (_3: *mut Display, _2: XkbDescPtr, _1: c_ulong) -> c_int,
+  pub fn XkbGetNamedIndicator (_6: *mut Display, _5: c_ulong, _4: *mut c_int, _3: *mut c_int, _2: XkbIndicatorMapPtr, _1: *mut c_int) -> c_int,
+  pub fn XkbGetNames (_3: *mut Display, _2: c_uint, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetPerClientControls (_2: *mut Display, _1: *mut c_uint) -> c_int,
+  pub fn XkbGetState (_3: *mut Display, _2: c_uint, _1: XkbStatePtr) -> c_int,
+  pub fn XkbGetUpdatedMap (_3: *mut Display, _2: c_uint, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetVirtualMods (_3: *mut Display, _2: c_uint, _1: XkbDescPtr) -> c_int,
+  pub fn XkbGetXlibControls (_1: *mut Display) -> c_uint,
+  pub fn XkbIgnoreExtension (_1: c_int) -> c_int,
+  pub fn XkbInitCanonicalKeyTypes (_3: XkbDescPtr, _2: c_uint, _1: c_int) -> c_int,
+  pub fn XkbKeycodeToKeysym (_4: *mut Display, _3: c_uchar, _2: c_int, _1: c_int) -> c_ulong,
+  pub fn XkbKeysymToModifiers (_2: *mut Display, _1: c_ulong) -> c_uint,
+  pub fn XkbKeyTypesForCoreSymbols (_6: XkbDescPtr, _5: c_int, _4: *mut c_ulong, _3: c_uint, _2: *mut c_int, _1: *mut c_ulong) -> c_int,
+  pub fn XkbLatchGroup (_3: *mut Display, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbLatchModifiers (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbLibraryVersion (_2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XkbListComponents (_4: *mut Display, _3: c_uint, _2: XkbComponentNamesPtr, _1: *mut c_int) -> XkbComponentListPtr,
+  pub fn XkbLockGroup (_3: *mut Display, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbLockModifiers (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbLookupKeyBinding (_6: *mut Display, _5: c_ulong, _4: c_uint, _3: *mut c_char, _2: c_int, _1: *mut c_int) -> c_int,
+  pub fn XkbLookupKeySym (_5: *mut Display, _4: c_uchar, _3: c_uint, _2: *mut c_uint, _1: *mut c_ulong) -> c_int,
+  pub fn XkbNoteControlsChanges (_3: XkbControlsChangesPtr, _2: *mut XkbControlsNotifyEvent, _1: c_uint) -> (),
+  pub fn XkbNoteDeviceChanges (_3: XkbDeviceChangesPtr, _2: *mut XkbExtensionDeviceNotifyEvent, _1: c_uint) -> (),
+  pub fn XkbNoteMapChanges (_3: XkbMapChangesPtr, _2: *mut XkbMapNotifyEvent, _1: c_uint) -> (),
+  pub fn XkbNoteNameChanges (_3: XkbNameChangesPtr, _2: *mut XkbNamesNotifyEvent, _1: c_uint) -> (),
+  pub fn XkbOpenDisplay (_6: *mut c_char, _5: *mut c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> *mut Display,
+  pub fn XkbQueryExtension (_6: *mut Display, _5: *mut c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XkbRefreshKeyboardMapping (_1: *mut XkbMapNotifyEvent) -> c_int,
+  pub fn XkbResizeDeviceButtonActions (_2: XkbDeviceInfoPtr, _1: c_uint) -> c_int,
+  pub fn XkbResizeKeyActions (_3: XkbDescPtr, _2: c_int, _1: c_int) -> *mut XkbAction,
+  pub fn XkbResizeKeySyms (_3: XkbDescPtr, _2: c_int, _1: c_int) -> *mut c_ulong,
+  pub fn XkbResizeKeyType (_5: XkbDescPtr, _4: c_int, _3: c_int, _2: c_int, _1: c_int) -> c_int,
+  pub fn XkbSelectEventDetails (_5: *mut Display, _4: c_uint, _3: c_uint, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XkbSelectEvents (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbSetAtomFuncs (_2: Option<unsafe extern "C" fn (*mut Display, *const c_char, c_int) -> c_ulong>, _1: Option<unsafe extern "C" fn (*mut Display, c_ulong) -> *mut c_char>) -> (),
+  pub fn XkbSetAutoRepeatRate (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbSetAutoResetControls (_4: *mut Display, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int,
+  pub fn XkbSetCompatMap (_4: *mut Display, _3: c_uint, _2: XkbDescPtr, _1: c_int) -> c_int,
+  pub fn XkbSetControls (_3: *mut Display, _2: c_ulong, _1: XkbDescPtr) -> c_int,
+  pub fn XkbSetDebuggingFlags (_8: *mut Display, _7: c_uint, _6: c_uint, _5: *mut c_char, _4: c_uint, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int,
+  pub fn XkbSetDetectableAutoRepeat (_3: *mut Display, _2: c_int, _1: *mut c_int) -> c_int,
+  pub fn XkbSetDeviceButtonActions (_4: *mut Display, _3: XkbDeviceInfoPtr, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbSetDeviceInfo (_3: *mut Display, _2: c_uint, _1: XkbDeviceInfoPtr) -> c_int,
+  pub fn XkbSetDeviceLedInfo (_5: *mut Display, _4: XkbDeviceInfoPtr, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbSetGeometry (_3: *mut Display, _2: c_uint, _1: XkbGeometryPtr) -> c_int,
+  pub fn XkbSetIgnoreLockMods (_6: *mut Display, _5: c_uint, _4: c_uint, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbSetIndicatorMap (_3: *mut Display, _2: c_ulong, _1: XkbDescPtr) -> c_int,
+  pub fn XkbSetMap (_3: *mut Display, _2: c_uint, _1: XkbDescPtr) -> c_int,
+  pub fn XkbSetNamedDeviceIndicator (_9: *mut Display, _8: c_uint, _7: c_uint, _6: c_uint, _5: c_ulong, _4: c_int, _3: c_int, _2: c_int, _1: XkbIndicatorMapPtr) -> c_int,
+  pub fn XkbSetNamedIndicator (_6: *mut Display, _5: c_ulong, _4: c_int, _3: c_int, _2: c_int, _1: XkbIndicatorMapPtr) -> c_int,
+  pub fn XkbSetNames (_5: *mut Display, _4: c_uint, _3: c_uint, _2: c_uint, _1: XkbDescPtr) -> c_int,
+  pub fn XkbSetPerClientControls (_3: *mut Display, _2: c_uint, _1: *mut c_uint) -> c_int,
+  pub fn XkbSetServerInternalMods (_6: *mut Display, _5: c_uint, _4: c_uint, _3: c_uint, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XkbSetXlibControls (_3: *mut Display, _2: c_uint, _1: c_uint) -> c_uint,
+  pub fn XkbToControl (_1: c_char) -> c_char,
+  pub fn XkbTranslateKeyCode (_5: XkbDescPtr, _4: c_uchar, _3: c_uint, _2: *mut c_uint, _1: *mut c_ulong) -> c_int,
+  pub fn XkbTranslateKeySym (_6: *mut Display, _5: *mut c_ulong, _4: c_uint, _3: *mut c_char, _2: c_int, _1: *mut c_int) -> c_int,
+  pub fn XkbUpdateActionVirtualMods (_3: XkbDescPtr, _2: *mut XkbAction, _1: c_uint) -> c_int,
+  pub fn XkbUpdateKeyTypeVirtualMods (_4: XkbDescPtr, _3: XkbKeyTypePtr, _2: c_uint, _1: XkbChangesPtr) -> (),
+  pub fn XkbUpdateMapFromCore (_6: XkbDescPtr, _5: c_uchar, _4: c_int, _3: c_int, _2: *mut c_ulong, _1: XkbChangesPtr) -> c_int,
+  pub fn XkbUseExtension (_3: *mut Display, _2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XkbVirtualModsToReal (_3: XkbDescPtr, _2: c_uint, _1: *mut c_uint) -> c_int,
+  pub fn XkbXlibControlsImplemented () -> c_uint,
+  pub fn XKeycodeToKeysym (_3: *mut Display, _2: c_uchar, _1: c_int) -> c_ulong,
+  pub fn XKeysymToKeycode (_2: *mut Display, _1: c_ulong) -> c_uchar,
+  pub fn XKeysymToString (_1: c_ulong) -> *mut c_char,
+  pub fn XKillClient (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XLastKnownRequestProcessed (_1: *mut Display) -> c_ulong,
+  pub fn XListDepths (_3: *mut Display, _2: c_int, _1: *mut c_int) -> *mut c_int,
+  pub fn XListExtensions (_2: *mut Display, _1: *mut c_int) -> *mut *mut c_char,
+  pub fn XListFonts (_4: *mut Display, _3: *const c_char, _2: c_int, _1: *mut c_int) -> *mut *mut c_char,
+  pub fn XListFontsWithInfo (_5: *mut Display, _4: *const c_char, _3: c_int, _2: *mut c_int, _1: *mut *mut XFontStruct) -> *mut *mut c_char,
+  pub fn XListHosts (_3: *mut Display, _2: *mut c_int, _1: *mut c_int) -> *mut XHostAddress,
+  pub fn XListInstalledColormaps (_3: *mut Display, _2: c_ulong, _1: *mut c_int) -> *mut c_ulong,
+  pub fn XListPixmapFormats (_2: *mut Display, _1: *mut c_int) -> *mut XPixmapFormatValues,
+  pub fn XListProperties (_3: *mut Display, _2: c_ulong, _1: *mut c_int) -> *mut c_ulong,
+  pub fn XLoadFont (_2: *mut Display, _1: *const c_char) -> c_ulong,
+  pub fn XLoadQueryFont (_2: *mut Display, _1: *const c_char) -> *mut XFontStruct,
+  pub fn XLocaleOfFontSet (_1: XFontSet) -> *mut c_char,
+  pub fn XLocaleOfIM (_1: XIM) -> *mut c_char,
+  pub fn XLocaleOfOM (_1: XOM) -> *mut c_char,
+  pub fn XLockDisplay (_1: *mut Display) -> (),
+  pub fn XLookupColor (_5: *mut Display, _4: c_ulong, _3: *const c_char, _2: *mut XColor, _1: *mut XColor) -> c_int,
+  pub fn XLookupKeysym (_2: *mut XKeyEvent, _1: c_int) -> c_ulong,
+  pub fn XLookupString (_5: *mut XKeyEvent, _4: *mut c_char, _3: c_int, _2: *mut c_ulong, _1: *mut XComposeStatus) -> c_int,
+  pub fn XLowerWindow (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XMapRaised (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XMapSubwindows (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XMapWindow (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XMaskEvent (_3: *mut Display, _2: c_long, _1: *mut XEvent) -> c_int,
+  pub fn XMatchVisualInfo (_5: *mut Display, _4: c_int, _3: c_int, _2: c_int, _1: *mut XVisualInfo) -> c_int,
+  pub fn XMaxCmapsOfScreen (_1: *mut Screen) -> c_int,
+  pub fn XMaxRequestSize (_1: *mut Display) -> c_long,
+  pub fn XmbDrawImageString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int) -> (),
+  pub fn XmbDrawString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int) -> (),
+  pub fn XmbDrawText (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *mut XmbTextItem, _1: c_int) -> (),
+  pub fn XmbLookupString (_6: XIC, _5: *mut XKeyEvent, _4: *mut c_char, _3: c_int, _2: *mut c_ulong, _1: *mut c_int) -> c_int,
+  pub fn XmbResetIC (_1: XIC) -> *mut c_char,
+  pub fn XmbSetWMProperties (_9: *mut Display, _8: c_ulong, _7: *const c_char, _6: *const c_char, _5: *mut *mut c_char, _4: c_int, _3: *mut XSizeHints, _2: *mut XWMHints, _1: *mut XClassHint) -> (),
+  pub fn XmbTextEscapement (_3: XFontSet, _2: *const c_char, _1: c_int) -> c_int,
+  pub fn XmbTextExtents (_5: XFontSet, _4: *const c_char, _3: c_int, _2: *mut XRectangle, _1: *mut XRectangle) -> c_int,
+  pub fn XmbTextListToTextProperty (_5: *mut Display, _4: *mut *mut c_char, _3: c_int, _2: XICCEncodingStyle, _1: *mut XTextProperty) -> c_int,
+  pub fn XmbTextPerCharExtents (_9: XFontSet, _8: *const c_char, _7: c_int, _6: *mut XRectangle, _5: *mut XRectangle, _4: c_int, _3: *mut c_int, _2: *mut XRectangle, _1: *mut XRectangle) -> c_int,
+  pub fn XmbTextPropertyToTextList (_4: *mut Display, _3: *const XTextProperty, _2: *mut *mut *mut c_char, _1: *mut c_int) -> c_int,
+  pub fn XMinCmapsOfScreen (_1: *mut Screen) -> c_int,
+  pub fn XMoveResizeWindow (_6: *mut Display, _5: c_ulong, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XMoveWindow (_4: *mut Display, _3: c_ulong, _2: c_int, _1: c_int) -> c_int,
+  pub fn XNewModifiermap (_1: c_int) -> *mut XModifierKeymap,
+  pub fn XNextEvent (_2: *mut Display, _1: *mut XEvent) -> c_int,
+  pub fn XNextRequest (_1: *mut Display) -> c_ulong,
+  pub fn XNoOp (_1: *mut Display) -> c_int,
+  pub fn XOffsetRegion (_3: Region, _2: c_int, _1: c_int) -> c_int,
+  pub fn XOMOfOC (_1: XFontSet) -> XOM,
+  pub fn XOpenDisplay (_1: *const c_char) -> *mut Display,
+  pub fn XOpenIM (_4: *mut Display, _3: XrmDatabase, _2: *mut c_char, _1: *mut c_char) -> XIM,
+  pub fn XOpenOM (_4: *mut Display, _3: XrmDatabase, _2: *const c_char, _1: *const c_char) -> XOM,
+  pub fn XParseColor (_4: *mut Display, _3: c_ulong, _2: *const c_char, _1: *mut XColor) -> c_int,
+  pub fn XParseGeometry (_5: *const c_char, _4: *mut c_int, _3: *mut c_int, _2: *mut c_uint, _1: *mut c_uint) -> c_int,
+  pub fn XPeekEvent (_2: *mut Display, _1: *mut XEvent) -> c_int,
+  pub fn XPeekIfEvent (_4: *mut Display, _3: *mut XEvent, _2: Option<unsafe extern "C" fn (*mut Display, *mut XEvent, *mut c_char) -> c_int>, _1: *mut c_char) -> c_int,
+  pub fn XPending (_1: *mut Display) -> c_int,
+  pub fn Xpermalloc (_1: c_uint) -> *mut c_char,
+  pub fn XPlanesOfScreen (_1: *mut Screen) -> c_int,
+  pub fn XPointInRegion (_3: Region, _2: c_int, _1: c_int) -> c_int,
+  pub fn XPolygonRegion (_3: *mut XPoint, _2: c_int, _1: c_int) -> Region,
+  pub fn XProcessInternalConnection (_2: *mut Display, _1: c_int) -> (),
+  pub fn XProtocolRevision (_1: *mut Display) -> c_int,
+  pub fn XProtocolVersion (_1: *mut Display) -> c_int,
+  pub fn XPutBackEvent (_2: *mut Display, _1: *mut XEvent) -> c_int,
+  pub fn XPutImage (_10: *mut Display, _9: c_ulong, _8: GC, _7: *mut XImage, _6: c_int, _5: c_int, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XPutPixel (_4: *mut XImage, _3: c_int, _2: c_int, _1: c_ulong) -> c_int,
+  pub fn XQLength (_1: *mut Display) -> c_int,
+  pub fn XQueryBestCursor (_6: *mut Display, _5: c_ulong, _4: c_uint, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int,
+  pub fn XQueryBestSize (_7: *mut Display, _6: c_int, _5: c_ulong, _4: c_uint, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int,
+  pub fn XQueryBestStipple (_6: *mut Display, _5: c_ulong, _4: c_uint, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int,
+  pub fn XQueryBestTile (_6: *mut Display, _5: c_ulong, _4: c_uint, _3: c_uint, _2: *mut c_uint, _1: *mut c_uint) -> c_int,
+  pub fn XQueryColor (_3: *mut Display, _2: c_ulong, _1: *mut XColor) -> c_int,
+  pub fn XQueryColors (_4: *mut Display, _3: c_ulong, _2: *mut XColor, _1: c_int) -> c_int,
+  pub fn XQueryExtension (_5: *mut Display, _4: *const c_char, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XQueryFont (_2: *mut Display, _1: c_ulong) -> *mut XFontStruct,
+  pub fn XQueryKeymap (_2: *mut Display, _1: *mut c_char) -> c_int,
+  pub fn XQueryPointer (_9: *mut Display, _8: c_ulong, _7: *mut c_ulong, _6: *mut c_ulong, _5: *mut c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_uint) -> c_int,
+  pub fn XQueryTextExtents (_8: *mut Display, _7: c_ulong, _6: *const c_char, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut XCharStruct) -> c_int,
+  pub fn XQueryTextExtents16 (_8: *mut Display, _7: c_ulong, _6: *const XChar2b, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut XCharStruct) -> c_int,
+  pub fn XQueryTree (_6: *mut Display, _5: c_ulong, _4: *mut c_ulong, _3: *mut c_ulong, _2: *mut *mut c_ulong, _1: *mut c_uint) -> c_int,
+  pub fn XRaiseWindow (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XReadBitmapFile (_8: *mut Display, _7: c_ulong, _6: *const c_char, _5: *mut c_uint, _4: *mut c_uint, _3: *mut c_ulong, _2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XReadBitmapFileData (_6: *const c_char, _5: *mut c_uint, _4: *mut c_uint, _3: *mut *mut c_uchar, _2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XRebindKeysym (_6: *mut Display, _5: c_ulong, _4: *mut c_ulong, _3: c_int, _2: *const c_uchar, _1: c_int) -> c_int,
+  pub fn XRecolorCursor (_4: *mut Display, _3: c_ulong, _2: *mut XColor, _1: *mut XColor) -> c_int,
+  pub fn XReconfigureWMWindow (_5: *mut Display, _4: c_ulong, _3: c_int, _2: c_uint, _1: *mut XWindowChanges) -> c_int,
+  pub fn XRectInRegion (_5: Region, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XRefreshKeyboardMapping (_1: *mut XMappingEvent) -> c_int,
+  pub fn XRegisterIMInstantiateCallback (_6: *mut Display, _5: XrmDatabase, _4: *mut c_char, _3: *mut c_char, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, *mut c_char)>, _1: *mut c_char) -> c_int,
+  pub fn XRemoveConnectionWatch (_3: *mut Display, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, c_int, c_int, *mut *mut c_char)>, _1: *mut c_char) -> (),
+  pub fn XRemoveFromSaveSet (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XRemoveHost (_2: *mut Display, _1: *mut XHostAddress) -> c_int,
+  pub fn XRemoveHosts (_3: *mut Display, _2: *mut XHostAddress, _1: c_int) -> c_int,
+  pub fn XReparentWindow (_5: *mut Display, _4: c_ulong, _3: c_ulong, _2: c_int, _1: c_int) -> c_int,
+  pub fn XResetScreenSaver (_1: *mut Display) -> c_int,
+  pub fn XResizeWindow (_4: *mut Display, _3: c_ulong, _2: c_uint, _1: c_uint) -> c_int,
+  pub fn XResourceManagerString (_1: *mut Display) -> *mut c_char,
+  pub fn XRestackWindows (_3: *mut Display, _2: *mut c_ulong, _1: c_int) -> c_int,
+  pub fn XrmCombineDatabase (_3: XrmDatabase, _2: *mut XrmDatabase, _1: c_int) -> (),
+  pub fn XrmCombineFileDatabase (_3: *const c_char, _2: *mut XrmDatabase, _1: c_int) -> c_int,
+  pub fn XrmDestroyDatabase (_1: XrmDatabase) -> (),
+  pub fn XrmEnumerateDatabase (_6: XrmDatabase, _5: *mut c_int, _4: *mut c_int, _3: c_int, _2: Option<unsafe extern "C" fn (*mut XrmDatabase, *mut XrmBinding, *mut c_int, *mut c_int, *mut XrmValue, *mut c_char) -> c_int>, _1: *mut c_char) -> c_int,
+  pub fn XrmGetDatabase (_1: *mut Display) -> XrmDatabase,
+  pub fn XrmGetFileDatabase (_1: *const c_char) -> XrmDatabase,
+  pub fn XrmGetResource (_5: XrmDatabase, _4: *const c_char, _3: *const c_char, _2: *mut *mut c_char, _1: *mut XrmValue) -> c_int,
+  pub fn XrmGetStringDatabase (_1: *const c_char) -> XrmDatabase,
+  pub fn XrmInitialize () -> (),
+  pub fn XrmLocaleOfDatabase (_1: XrmDatabase) -> *const c_char,
+  pub fn XrmMergeDatabases (_2: XrmDatabase, _1: *mut XrmDatabase) -> (),
+  pub fn XrmParseCommand (_6: *mut XrmDatabase, _5: XrmOptionDescList, _4: c_int, _3: *const c_char, _2: *mut c_int, _1: *mut *mut c_char) -> (),
+  pub fn XrmPermStringToQuark (_1: *const c_char) -> c_int,
+  pub fn XrmPutFileDatabase (_2: XrmDatabase, _1: *const c_char) -> (),
+  pub fn XrmPutLineResource (_2: *mut XrmDatabase, _1: *const c_char) -> (),
+  pub fn XrmPutResource (_4: *mut XrmDatabase, _3: *const c_char, _2: *const c_char, _1: *mut XrmValue) -> (),
+  pub fn XrmPutStringResource (_3: *mut XrmDatabase, _2: *const c_char, _1: *const c_char) -> (),
+  pub fn XrmQGetResource (_5: XrmDatabase, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut XrmValue) -> c_int,
+  pub fn XrmQGetSearchList (_5: XrmDatabase, _4: *mut c_int, _3: *mut c_int, _2: *mut *mut XrmDatabase, _1: c_int) -> c_int,
+  pub fn XrmQGetSearchResource (_5: *mut *mut XrmDatabase, _4: c_int, _3: c_int, _2: *mut c_int, _1: *mut XrmValue) -> c_int,
+  pub fn XrmQPutResource (_5: *mut XrmDatabase, _4: *mut XrmBinding, _3: *mut c_int, _2: c_int, _1: *mut XrmValue) -> (),
+  pub fn XrmQPutStringResource (_4: *mut XrmDatabase, _3: *mut XrmBinding, _2: *mut c_int, _1: *const c_char) -> (),
+  pub fn XrmQuarkToString (_1: c_int) -> *mut c_char,
+  pub fn XrmSetDatabase (_2: *mut Display, _1: XrmDatabase) -> (),
+  pub fn XrmStringToBindingQuarkList (_3: *const c_char, _2: *mut XrmBinding, _1: *mut c_int) -> (),
+  pub fn XrmStringToQuark (_1: *const c_char) -> c_int,
+  pub fn XrmStringToQuarkList (_2: *const c_char, _1: *mut c_int) -> (),
+  pub fn XrmUniqueQuark () -> c_int,
+  pub fn XRootWindow (_2: *mut Display, _1: c_int) -> c_ulong,
+  pub fn XRootWindowOfScreen (_1: *mut Screen) -> c_ulong,
+  pub fn XRotateBuffers (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XRotateWindowProperties (_5: *mut Display, _4: c_ulong, _3: *mut c_ulong, _2: c_int, _1: c_int) -> c_int,
+  pub fn XSaveContext (_4: *mut Display, _3: c_ulong, _2: c_int, _1: *const c_char) -> c_int,
+  pub fn XScreenCount (_1: *mut Display) -> c_int,
+  pub fn XScreenNumberOfScreen (_1: *mut Screen) -> c_int,
+  pub fn XScreenOfDisplay (_2: *mut Display, _1: c_int) -> *mut Screen,
+  pub fn XScreenResourceString (_1: *mut Screen) -> *mut c_char,
+  pub fn XSelectInput (_3: *mut Display, _2: c_ulong, _1: c_long) -> c_int,
+  pub fn XSendEvent (_5: *mut Display, _4: c_ulong, _3: c_int, _2: c_long, _1: *mut XEvent) -> c_int,
+  pub fn XServerVendor (_1: *mut Display) -> *mut c_char,
+  pub fn XSetAccessControl (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XSetAfterFunction (_2: *mut Display, _1: Option<unsafe extern "C" fn (*mut Display) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display) -> c_int>,
+  pub fn XSetArcMode (_3: *mut Display, _2: GC, _1: c_int) -> c_int,
+  pub fn XSetAuthorization (_4: *mut c_char, _3: c_int, _2: *mut c_char, _1: c_int) -> (),
+  pub fn XSetBackground (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int,
+  pub fn XSetClassHint (_3: *mut Display, _2: c_ulong, _1: *mut XClassHint) -> c_int,
+  pub fn XSetClipMask (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int,
+  pub fn XSetClipOrigin (_4: *mut Display, _3: GC, _2: c_int, _1: c_int) -> c_int,
+  pub fn XSetClipRectangles (_7: *mut Display, _6: GC, _5: c_int, _4: c_int, _3: *mut XRectangle, _2: c_int, _1: c_int) -> c_int,
+  pub fn XSetCloseDownMode (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XSetCommand (_4: *mut Display, _3: c_ulong, _2: *mut *mut c_char, _1: c_int) -> c_int,
+  pub fn XSetDashes (_5: *mut Display, _4: GC, _3: c_int, _2: *const c_char, _1: c_int) -> c_int,
+  pub fn XSetErrorHandler (_1: Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display, *mut XErrorEvent) -> c_int>,
+  pub fn XSetFillRule (_3: *mut Display, _2: GC, _1: c_int) -> c_int,
+  pub fn XSetFillStyle (_3: *mut Display, _2: GC, _1: c_int) -> c_int,
+  pub fn XSetFont (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int,
+  pub fn XSetFontPath (_3: *mut Display, _2: *mut *mut c_char, _1: c_int) -> c_int,
+  pub fn XSetForeground (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int,
+  pub fn XSetFunction (_3: *mut Display, _2: GC, _1: c_int) -> c_int,
+  pub fn XSetGraphicsExposures (_3: *mut Display, _2: GC, _1: c_int) -> c_int,
+  pub fn XSetICFocus (_1: XIC) -> (),
+  pub fn XSetIconName (_3: *mut Display, _2: c_ulong, _1: *const c_char) -> c_int,
+  pub fn XSetIconSizes (_4: *mut Display, _3: c_ulong, _2: *mut XIconSize, _1: c_int) -> c_int,
+  pub fn XSetInputFocus (_4: *mut Display, _3: c_ulong, _2: c_int, _1: c_ulong) -> c_int,
+  pub fn XSetIOErrorHandler (_1: Option<unsafe extern "C" fn (*mut Display) -> c_int>) -> Option<unsafe extern "C" fn (*mut Display) -> c_int>,
+  pub fn XSetLineAttributes (_6: *mut Display, _5: GC, _4: c_uint, _3: c_int, _2: c_int, _1: c_int) -> c_int,
+  pub fn XSetLocaleModifiers (_1: *const c_char) -> *mut c_char,
+  pub fn XSetModifierMapping (_2: *mut Display, _1: *mut XModifierKeymap) -> c_int,
+  pub fn XSetNormalHints (_3: *mut Display, _2: c_ulong, _1: *mut XSizeHints) -> c_int,
+  pub fn XSetPlaneMask (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int,
+  pub fn XSetPointerMapping (_3: *mut Display, _2: *const c_uchar, _1: c_int) -> c_int,
+  pub fn XSetRegion (_3: *mut Display, _2: GC, _1: Region) -> c_int,
+  pub fn XSetRGBColormaps (_5: *mut Display, _4: c_ulong, _3: *mut XStandardColormap, _2: c_int, _1: c_ulong) -> (),
+  pub fn XSetScreenSaver (_5: *mut Display, _4: c_int, _3: c_int, _2: c_int, _1: c_int) -> c_int,
+  pub fn XSetSelectionOwner (_4: *mut Display, _3: c_ulong, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XSetSizeHints (_4: *mut Display, _3: c_ulong, _2: *mut XSizeHints, _1: c_ulong) -> c_int,
+  pub fn XSetStandardColormap (_4: *mut Display, _3: c_ulong, _2: *mut XStandardColormap, _1: c_ulong) -> (),
+  pub fn XSetStandardProperties (_8: *mut Display, _7: c_ulong, _6: *const c_char, _5: *const c_char, _4: c_ulong, _3: *mut *mut c_char, _2: c_int, _1: *mut XSizeHints) -> c_int,
+  pub fn XSetState (_6: *mut Display, _5: GC, _4: c_ulong, _3: c_ulong, _2: c_int, _1: c_ulong) -> c_int,
+  pub fn XSetStipple (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int,
+  pub fn XSetSubwindowMode (_3: *mut Display, _2: GC, _1: c_int) -> c_int,
+  pub fn XSetTextProperty (_4: *mut Display, _3: c_ulong, _2: *mut XTextProperty, _1: c_ulong) -> (),
+  pub fn XSetTile (_3: *mut Display, _2: GC, _1: c_ulong) -> c_int,
+  pub fn XSetTransientForHint (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XSetTSOrigin (_4: *mut Display, _3: GC, _2: c_int, _1: c_int) -> c_int,
+  pub fn XSetWindowBackground (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XSetWindowBackgroundPixmap (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XSetWindowBorder (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XSetWindowBorderPixmap (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XSetWindowBorderWidth (_3: *mut Display, _2: c_ulong, _1: c_uint) -> c_int,
+  pub fn XSetWindowColormap (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int,
+  pub fn XSetWMClientMachine (_3: *mut Display, _2: c_ulong, _1: *mut XTextProperty) -> (),
+  pub fn XSetWMColormapWindows (_4: *mut Display, _3: c_ulong, _2: *mut c_ulong, _1: c_int) -> c_int,
+  pub fn XSetWMHints (_3: *mut Display, _2: c_ulong, _1: *mut XWMHints) -> c_int,
+  pub fn XSetWMIconName (_3: *mut Display, _2: c_ulong, _1: *mut XTextProperty) -> (),
+  pub fn XSetWMName (_3: *mut Display, _2: c_ulong, _1: *mut XTextProperty) -> (),
+  pub fn XSetWMNormalHints (_3: *mut Display, _2: c_ulong, _1: *mut XSizeHints) -> (),
+  pub fn XSetWMProperties (_9: *mut Display, _8: c_ulong, _7: *mut XTextProperty, _6: *mut XTextProperty, _5: *mut *mut c_char, _4: c_int, _3: *mut XSizeHints, _2: *mut XWMHints, _1: *mut XClassHint) -> (),
+  pub fn XSetWMProtocols (_4: *mut Display, _3: c_ulong, _2: *mut c_ulong, _1: c_int) -> c_int,
+  pub fn XSetWMSizeHints (_4: *mut Display, _3: c_ulong, _2: *mut XSizeHints, _1: c_ulong) -> (),
+  pub fn XSetZoomHints (_3: *mut Display, _2: c_ulong, _1: *mut XSizeHints) -> c_int,
+  pub fn XShrinkRegion (_3: Region, _2: c_int, _1: c_int) -> c_int,
+  pub fn XStoreBuffer (_4: *mut Display, _3: *const c_char, _2: c_int, _1: c_int) -> c_int,
+  pub fn XStoreBytes (_3: *mut Display, _2: *const c_char, _1: c_int) -> c_int,
+  pub fn XStoreColor (_3: *mut Display, _2: c_ulong, _1: *mut XColor) -> c_int,
+  pub fn XStoreColors (_4: *mut Display, _3: c_ulong, _2: *mut XColor, _1: c_int) -> c_int,
+  pub fn XStoreName (_3: *mut Display, _2: c_ulong, _1: *const c_char) -> c_int,
+  pub fn XStoreNamedColor (_5: *mut Display, _4: c_ulong, _3: *const c_char, _2: c_ulong, _1: c_int) -> c_int,
+  pub fn XStringListToTextProperty (_3: *mut *mut c_char, _2: c_int, _1: *mut XTextProperty) -> c_int,
+  pub fn XStringToKeysym (_1: *const c_char) -> c_ulong,
+  pub fn XSubImage (_5: *mut XImage, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -> *mut XImage,
+  pub fn XSubtractRegion (_3: Region, _2: Region, _1: Region) -> c_int,
+  pub fn XSupportsLocale () -> c_int,
+  pub fn XSync (_2: *mut Display, _1: c_int) -> c_int,
+  pub fn XSynchronize (_2: *mut Display, _1: c_int) -> Option<unsafe extern "C" fn (*mut Display) -> c_int>,
+  pub fn XTextExtents (_7: *mut XFontStruct, _6: *const c_char, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut XCharStruct) -> c_int,
+  pub fn XTextExtents16 (_7: *mut XFontStruct, _6: *const XChar2b, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut XCharStruct) -> c_int,
+  pub fn XTextPropertyToStringList (_3: *mut XTextProperty, _2: *mut *mut *mut c_char, _1: *mut c_int) -> c_int,
+  pub fn XTextWidth (_3: *mut XFontStruct, _2: *const c_char, _1: c_int) -> c_int,
+  pub fn XTextWidth16 (_3: *mut XFontStruct, _2: *const XChar2b, _1: c_int) -> c_int,
+  pub fn XTranslateCoordinates (_8: *mut Display, _7: c_ulong, _6: c_ulong, _5: c_int, _4: c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_ulong) -> c_int,
+  pub fn XUndefineCursor (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XUngrabButton (_4: *mut Display, _3: c_uint, _2: c_uint, _1: c_ulong) -> c_int,
+  pub fn XUngrabKey (_4: *mut Display, _3: c_int, _2: c_uint, _1: c_ulong) -> c_int,
+  pub fn XUngrabKeyboard (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XUngrabPointer (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XUngrabServer (_1: *mut Display) -> c_int,
+  pub fn XUninstallColormap (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XUnionRectWithRegion (_3: *mut XRectangle, _2: Region, _1: Region) -> c_int,
+  pub fn XUnionRegion (_3: Region, _2: Region, _1: Region) -> c_int,
+  pub fn XUnloadFont (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XUnlockDisplay (_1: *mut Display) -> (),
+  pub fn XUnmapSubwindows (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XUnmapWindow (_2: *mut Display, _1: c_ulong) -> c_int,
+  pub fn XUnregisterIMInstantiateCallback (_6: *mut Display, _5: XrmDatabase, _4: *mut c_char, _3: *mut c_char, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, *mut c_char)>, _1: *mut c_char) -> c_int,
+  pub fn XUnsetICFocus (_1: XIC) -> (),
+  pub fn Xutf8DrawImageString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int) -> (),
+  pub fn Xutf8DrawString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const c_char, _1: c_int) -> (),
+  pub fn Xutf8DrawText (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *mut XmbTextItem, _1: c_int) -> (),
+  pub fn Xutf8LookupString (_6: XIC, _5: *mut XKeyEvent, _4: *mut c_char, _3: c_int, _2: *mut c_ulong, _1: *mut c_int) -> c_int,
+  pub fn Xutf8ResetIC (_1: XIC) -> *mut c_char,
+  pub fn Xutf8SetWMProperties (_9: *mut Display, _8: c_ulong, _7: *const c_char, _6: *const c_char, _5: *mut *mut c_char, _4: c_int, _3: *mut XSizeHints, _2: *mut XWMHints, _1: *mut XClassHint) -> (),
+  pub fn Xutf8TextEscapement (_3: XFontSet, _2: *const c_char, _1: c_int) -> c_int,
+  pub fn Xutf8TextExtents (_5: XFontSet, _4: *const c_char, _3: c_int, _2: *mut XRectangle, _1: *mut XRectangle) -> c_int,
+  pub fn Xutf8TextListToTextProperty (_5: *mut Display, _4: *mut *mut c_char, _3: c_int, _2: XICCEncodingStyle, _1: *mut XTextProperty) -> c_int,
+  pub fn Xutf8TextPerCharExtents (_9: XFontSet, _8: *const c_char, _7: c_int, _6: *mut XRectangle, _5: *mut XRectangle, _4: c_int, _3: *mut c_int, _2: *mut XRectangle, _1: *mut XRectangle) -> c_int,
+  pub fn Xutf8TextPropertyToTextList (_4: *mut Display, _3: *const XTextProperty, _2: *mut *mut *mut c_char, _1: *mut c_int) -> c_int,
+  pub fn XVendorRelease (_1: *mut Display) -> c_int,
+  pub fn XVisualIDFromVisual (_1: *mut Visual) -> c_ulong,
+  pub fn XWarpPointer (_9: *mut Display, _8: c_ulong, _7: c_ulong, _6: c_int, _5: c_int, _4: c_uint, _3: c_uint, _2: c_int, _1: c_int) -> c_int,
+  pub fn XwcDrawImageString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const wchar_t, _1: c_int) -> (),
+  pub fn XwcDrawString (_8: *mut Display, _7: c_ulong, _6: XFontSet, _5: GC, _4: c_int, _3: c_int, _2: *const wchar_t, _1: c_int) -> (),
+  pub fn XwcDrawText (_7: *mut Display, _6: c_ulong, _5: GC, _4: c_int, _3: c_int, _2: *mut XwcTextItem, _1: c_int) -> (),
+  pub fn XwcFreeStringList (_1: *mut *mut wchar_t) -> (),
+  pub fn XwcLookupString (_6: XIC, _5: *mut XKeyEvent, _4: *mut wchar_t, _3: c_int, _2: *mut c_ulong, _1: *mut c_int) -> c_int,
+  pub fn XwcResetIC (_1: XIC) -> *mut wchar_t,
+  pub fn XwcTextEscapement (_3: XFontSet, _2: *const wchar_t, _1: c_int) -> c_int,
+  pub fn XwcTextExtents (_5: XFontSet, _4: *const wchar_t, _3: c_int, _2: *mut XRectangle, _1: *mut XRectangle) -> c_int,
+  pub fn XwcTextListToTextProperty (_5: *mut Display, _4: *mut *mut wchar_t, _3: c_int, _2: XICCEncodingStyle, _1: *mut XTextProperty) -> c_int,
+  pub fn XwcTextPerCharExtents (_9: XFontSet, _8: *const wchar_t, _7: c_int, _6: *mut XRectangle, _5: *mut XRectangle, _4: c_int, _3: *mut c_int, _2: *mut XRectangle, _1: *mut XRectangle) -> c_int,
+  pub fn XwcTextPropertyToTextList (_4: *mut Display, _3: *const XTextProperty, _2: *mut *mut *mut wchar_t, _1: *mut c_int) -> c_int,
+  pub fn XWhitePixel (_2: *mut Display, _1: c_int) -> c_ulong,
+  pub fn XWhitePixelOfScreen (_1: *mut Screen) -> c_ulong,
+  pub fn XWidthMMOfScreen (_1: *mut Screen) -> c_int,
+  pub fn XWidthOfScreen (_1: *mut Screen) -> c_int,
+  pub fn XWindowEvent (_4: *mut Display, _3: c_ulong, _2: c_long, _1: *mut XEvent) -> c_int,
+  pub fn XWithdrawWindow (_3: *mut Display, _2: c_ulong, _1: c_int) -> c_int,
+  pub fn XWMGeometry (_11: *mut Display, _10: c_int, _9: *const c_char, _8: *const c_char, _7: c_uint, _6: *mut XSizeHints, _5: *mut c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XWriteBitmapFile (_7: *mut Display, _6: *const c_char, _5: c_ulong, _4: c_uint, _3: c_uint, _2: c_int, _1: c_int) -> c_int,
+  pub fn XXorRegion (_3: Region, _2: Region, _1: Region) -> c_int,
+variadic:
+  pub fn XCreateIC (_1: XIM) -> XIC,
+  pub fn XCreateOC (_1: XOM) -> XFontSet,
+  pub fn XGetICValues (_1: XIC) -> *mut c_char,
+  pub fn XGetIMValues (_1: XIM) -> *mut c_char,
+  pub fn XGetOCValues (_1: XFontSet) -> *mut c_char,
+  pub fn XGetOMValues (_1: XOM) -> *mut c_char,
+  pub fn XSetICValues (_1: XIC) -> *mut c_char,
+  pub fn XSetIMValues (_1: XIM) -> *mut c_char,
+  pub fn XSetOCValues (_1: XFontSet) -> *mut c_char,
+  pub fn XSetOMValues (_1: XOM) -> *mut c_char,
+  pub fn XVaCreateNestedList (_1: c_int) -> *mut c_void,
 }
 
 

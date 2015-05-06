@@ -25,29 +25,29 @@ use ::xlib::{
 //
 
 
-extern "C" {
-  pub fn XF86VidModeAddModeLine (_4: *mut Display, _3: c_int, _2: *mut XF86VidModeModeInfo, _1: *mut XF86VidModeModeInfo) -> c_int;
-  pub fn XF86VidModeDeleteModeLine (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeModeInfo) -> c_int;
-  pub fn XF86VidModeGetAllModeLines (_4: *mut Display, _3: c_int, _2: *mut c_int, _1: *mut *mut *mut XF86VidModeModeInfo) -> c_int;
-  pub fn XF86VidModeGetDotClocks (_6: *mut Display, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut *mut c_int) -> c_int;
-  pub fn XF86VidModeGetGamma (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeGamma) -> c_int;
-  pub fn XF86VidModeGetGammaRamp (_6: *mut Display, _5: c_int, _4: c_int, _3: *mut c_ushort, _2: *mut c_ushort, _1: *mut c_ushort) -> c_int;
-  pub fn XF86VidModeGetGammaRampSize (_3: *mut Display, _2: c_int, _1: *mut c_int) -> c_int;
-  pub fn XF86VidModeGetModeLine (_4: *mut Display, _3: c_int, _2: *mut c_int, _1: *mut XF86VidModeModeLine) -> c_int;
-  pub fn XF86VidModeGetMonitor (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeMonitor) -> c_int;
-  pub fn XF86VidModeGetPermissions (_3: *mut Display, _2: c_int, _1: *mut c_int) -> c_int;
-  pub fn XF86VidModeGetViewPort (_4: *mut Display, _3: c_int, _2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XF86VidModeLockModeSwitch (_3: *mut Display, _2: c_int, _1: c_int) -> c_int;
-  pub fn XF86VidModeModModeLine (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeModeLine) -> c_int;
-  pub fn XF86VidModeQueryExtension (_3: *mut Display, _2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XF86VidModeQueryVersion (_3: *mut Display, _2: *mut c_int, _1: *mut c_int) -> c_int;
-  pub fn XF86VidModeSetClientVersion (_1: *mut Display) -> c_int;
-  pub fn XF86VidModeSetGamma (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeGamma) -> c_int;
-  pub fn XF86VidModeSetGammaRamp (_6: *mut Display, _5: c_int, _4: c_int, _3: *mut c_ushort, _2: *mut c_ushort, _1: *mut c_ushort) -> c_int;
-  pub fn XF86VidModeSetViewPort (_4: *mut Display, _3: c_int, _2: c_int, _1: c_int) -> c_int;
-  pub fn XF86VidModeSwitchMode (_3: *mut Display, _2: c_int, _1: c_int) -> c_int;
-  pub fn XF86VidModeSwitchToMode (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeModeInfo) -> c_int;
-  pub fn XF86VidModeValidateModeLine (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeModeInfo) -> c_int;
+x11_link! { Xf86vmode, "libXxf86vm.so",
+  pub fn XF86VidModeAddModeLine (_4: *mut Display, _3: c_int, _2: *mut XF86VidModeModeInfo, _1: *mut XF86VidModeModeInfo) -> c_int,
+  pub fn XF86VidModeDeleteModeLine (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeModeInfo) -> c_int,
+  pub fn XF86VidModeGetAllModeLines (_4: *mut Display, _3: c_int, _2: *mut c_int, _1: *mut *mut *mut XF86VidModeModeInfo) -> c_int,
+  pub fn XF86VidModeGetDotClocks (_6: *mut Display, _5: c_int, _4: *mut c_int, _3: *mut c_int, _2: *mut c_int, _1: *mut *mut c_int) -> c_int,
+  pub fn XF86VidModeGetGamma (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeGamma) -> c_int,
+  pub fn XF86VidModeGetGammaRamp (_6: *mut Display, _5: c_int, _4: c_int, _3: *mut c_ushort, _2: *mut c_ushort, _1: *mut c_ushort) -> c_int,
+  pub fn XF86VidModeGetGammaRampSize (_3: *mut Display, _2: c_int, _1: *mut c_int) -> c_int,
+  pub fn XF86VidModeGetModeLine (_4: *mut Display, _3: c_int, _2: *mut c_int, _1: *mut XF86VidModeModeLine) -> c_int,
+  pub fn XF86VidModeGetMonitor (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeMonitor) -> c_int,
+  pub fn XF86VidModeGetPermissions (_3: *mut Display, _2: c_int, _1: *mut c_int) -> c_int,
+  pub fn XF86VidModeGetViewPort (_4: *mut Display, _3: c_int, _2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XF86VidModeLockModeSwitch (_3: *mut Display, _2: c_int, _1: c_int) -> c_int,
+  pub fn XF86VidModeModModeLine (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeModeLine) -> c_int,
+  pub fn XF86VidModeQueryExtension (_3: *mut Display, _2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XF86VidModeQueryVersion (_3: *mut Display, _2: *mut c_int, _1: *mut c_int) -> c_int,
+  pub fn XF86VidModeSetClientVersion (_1: *mut Display) -> c_int,
+  pub fn XF86VidModeSetGamma (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeGamma) -> c_int,
+  pub fn XF86VidModeSetGammaRamp (_6: *mut Display, _5: c_int, _4: c_int, _3: *mut c_ushort, _2: *mut c_ushort, _1: *mut c_ushort) -> c_int,
+  pub fn XF86VidModeSetViewPort (_4: *mut Display, _3: c_int, _2: c_int, _1: c_int) -> c_int,
+  pub fn XF86VidModeSwitchMode (_3: *mut Display, _2: c_int, _1: c_int) -> c_int,
+  pub fn XF86VidModeSwitchToMode (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeModeInfo) -> c_int,
+  pub fn XF86VidModeValidateModeLine (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeModeInfo) -> c_int,
 }
 
 

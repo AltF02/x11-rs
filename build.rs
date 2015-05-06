@@ -4,7 +4,11 @@
 
 extern crate pkg_config;
 
+#[cfg(feature="dynamic")]
+fn main () {
+}
 
+#[cfg(not(feature="dynamic"))]
 fn main () {
   let _ = pkg_config::find_library("gl");
   let _ = pkg_config::find_library("x11");
