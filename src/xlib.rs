@@ -27,9 +27,6 @@ use ::internal::{
   transmute_union,
 };
 
-// Temporary until glutin pull request is merged:
-pub mod xkb {}
-
 
 //
 // functions
