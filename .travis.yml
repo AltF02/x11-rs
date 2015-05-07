@@ -13,4 +13,9 @@ script:
   - make docs
 
 after_script:
+  - rm -rf target
+  - mkdir target/doc
+  - echo '<html><body><ul><li><a href="x11/x11/index.html">x11</a></li><li><a href="x11-dl/x11_dl/index.html">x11-dl</a></li></ul></body></html>' > target/doc/index.html
+  - mv x11/target/doc target/doc/x11
+  - mv x11-dl/target/doc target/doc/x11-dl
   - curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh
