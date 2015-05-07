@@ -1,0 +1,36 @@
+[root]
+name = "x11-dl"
+version = "1.0.1"
+dependencies = [
+ "dylib 0.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "x11 0.0.36 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "dylib"
+version = "0.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "libc 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "libc"
+version = "0.1.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "pkg-config"
+version = "0.3.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "x11"
+version = "0.0.36"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "libc 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "pkg-config 0.3.4 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
