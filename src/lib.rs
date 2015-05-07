@@ -13,14 +13,9 @@ extern crate libc;
 mod link;
 mod internal;
 
-#[cfg(feature="glx")]
 pub mod glx;
 pub mod keysym;
-#[cfg(feature="xcursor")]
 pub mod xcursor;
-#[cfg(feature="xf86vmode")]
 pub mod xf86vmode;
-#[cfg(feature="xlib")]
 pub mod xlib;
-#[cfg(feature="xrender")]
 pub mod xrender;
