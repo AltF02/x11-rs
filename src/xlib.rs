@@ -963,7 +963,7 @@ enum TestEnum {
 
 #[test]
 fn enum_size_test () {
-  assert!(size_of::<TestEnum>() == size_of::<c_int>());
+  assert!(::std::mem::size_of::<TestEnum>() == ::std::mem::size_of::<c_int>());
 }
 
 
@@ -1168,37 +1168,37 @@ impl From<XVisibilityEvent> for XEvent {
 
 #[test]
 fn xevent_size_test () {
-  assert!(size_of::<XEvent>() >= size_of::<XAnyEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XButtonEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XCirculateEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XCirculateRequestEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XClientMessageEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XColormapEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XConfigureEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XConfigureRequestEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XCreateWindowEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XCrossingEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XDestroyWindowEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XErrorEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XExposeEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XFocusChangeEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XGraphicsExposeEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XGravityEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XKeyEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XKeymapEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XMapEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XMappingEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XMapRequestEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XMotionEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XNoExposeEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XPropertyEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XReparentEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XResizeRequestEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XSelectionClearEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XSelectionEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XSelectionRequestEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XUnmapEvent>());
-  assert!(size_of::<XEvent>() >= size_of::<XVisibilityEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XAnyEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XButtonEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XCirculateEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XCirculateRequestEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XClientMessageEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XColormapEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XConfigureEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XConfigureRequestEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XCreateWindowEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XCrossingEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XDestroyWindowEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XErrorEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XExposeEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XFocusChangeEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XGraphicsExposeEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XGravityEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XKeyEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XKeymapEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XMapEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XMappingEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XMapRequestEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XMotionEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XNoExposeEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XPropertyEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XReparentEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XResizeRequestEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XSelectionClearEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XSelectionEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XSelectionRequestEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XUnmapEvent>());
+  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XVisibilityEvent>());
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -2475,8 +2475,8 @@ impl ClientMessageData {
 
 #[test]
 fn client_message_size_test () {
-  assert!(size_of::<ClientMessageData>() >= size_of::<[c_char; 20]>());
-  assert!(size_of::<ClientMessageData>() >= size_of::<[c_short; 10]>());
+  assert!(::std::mem::size_of::<ClientMessageData>() >= ::std::mem::size_of::<[c_char; 20]>());
+  assert!(::std::mem::size_of::<ClientMessageData>() >= ::std::mem::size_of::<[c_short; 10]>());
 }
 
 #[derive(Copy)]
