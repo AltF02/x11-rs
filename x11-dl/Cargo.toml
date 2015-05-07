@@ -9,6 +9,3 @@ repository = "https://github.com/Daggerbot/x11-rs.git"
 [dependencies]
 dylib = "*"
 libc = "*"
-
-[build-dependencies.x11]
-path = "../x11"
