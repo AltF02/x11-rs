@@ -31,7 +31,7 @@ use ::xlib::{
 //
 
 
-x11_link! { Xrender, "libXrender.so",
+x11_link! { Xrender, ["libXrender.so", "libXrender.so.1"],
   pub fn XRenderAddGlyphs (_7: *mut Display, _6: c_ulong, _5: *const c_ulong, _4: *const XGlyphInfo, _3: c_int, _2: *const c_char, _1: c_int) -> (),
   pub fn XRenderAddTraps (_6: *mut Display, _5: c_ulong, _4: c_int, _3: c_int, _2: *const XTrap, _1: c_int) -> (),
   pub fn XRenderChangePicture (_4: *mut Display, _3: c_ulong, _2: c_ulong, _1: *const XRenderPictureAttributes) -> (),

@@ -14,6 +14,7 @@ extern crate libc;
 mod link_dl;
 mod internal;
 
+pub mod error;
 pub mod glx;
 pub mod keysym;
 pub mod xcursor;
