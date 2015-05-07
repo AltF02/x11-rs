@@ -19,6 +19,10 @@ macro_rules! x11_link {
   { $struct_name:ident, $lib_name:expr,
     $(pub fn $fn_name:ident ($($param_name:ident : $param_type:ty),*) -> $ret_type:ty,)*
   } => {
+    extern "C" {
+      $(pub fn $fn_name ($($param_name : $param_type),*) -> $ret_type;)*
+    }
+
     pub struct $struct_name {
       #[allow(dead_code)]
       lib: ::dylib::DynamicLibrary,
@@ -44,6 +48,11 @@ macro_rules! x11_link {
     variadic:
     $(pub fn $vfn_name:ident ($($vparam_name: ident : $vparam_type:ty),+) -> $vret_type:ty,)*
   } => {
+    extern "C" {
+      $(pub fn $fn_name ($($param_name : $param_type),*) -> $ret_type;)*
+      $(pub fn $vfn_name ($($vparam_name : $vparam_type),+, ...) -> $vret_type;)*
+    }
+
     pub struct $struct_name {
       #[allow(dead_code)]
       lib: ::dylib::DynamicLibrary,
