@@ -1,7 +1,16 @@
+env:
+  global:
+    - secure: Sf4CTvQbCEn4BYBqVTitL/c01NUB0caMd695VF5/6iazB2hurhQjY2numaT6VmhgsEiBNacLymSI94JcqLLLLyWjmwvX+aNNd3is1EQQM8qbLM6nlajQbIHe5Sl1iU6OEzobEnDtcuQh0Bk0MG/HNx8Eytt6q3SXWjFGVLgxovyWBRokSnYDWsyR+YfMsjjtY1JJh/AKUK/FQZakq/JW1x4HMwQ6v7nWNHRlk8YjIPcB2IpcYivSOt3MzWcCSZPNh67ZebC7PQa9tKQhDHIPdalTiUg6HL5YPs+oLhtJQBIJ0zV1pYWOiKj6GeSRsHqOOQNdsrVwr5KerqfEqoOdjGahe3zllIyXSZOsKSlj6daHgHpfDQ37IUbq7KLOH5WiRK4hu1O+dCX65K77pSQn9tV7s2jmq4efIOJubE4wUb0LHdWPnFDs+GurxOF2GYLcFoD3TI11TxicJWH7U59L7Pv4zAnr5LyND7gpbOyw/ubrvb7V/mW+IHJkmHk8RU5Qg//nuBHg1z5IriTajnht9GlJ6Dcg/fBTS3SedIpAUxoEusa8QwokfIyfiYvWzlcGxvL/1ot5YqzQTwbyUp8CVErBbE4YBJUhOyIsBltr3G0kDZi/Nczlvc5JSnLxi/RkS6xQE5+9ErDqNTCzpm3xTW2umMvvFG/UylLtc8a5JuU=
+
 language: rust
 
 rust:
   - 1.0.0-beta.3
   - nightly
 
-script: make all
+script:
+  - make tests
+  - make docs
+
+after_script:
+  - curl http://www.rust-ci.org/artifacts/put?t=$RUSTCI_TOKEN | sh
