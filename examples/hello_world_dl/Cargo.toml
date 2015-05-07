@@ -5,8 +5,8 @@ version = "0.0.0"
 [dependencies]
 libc = "*"
 
-[dependencies.x11]
-path = "../.."
+[dependencies.x11-dl]
+path = "../../x11-dl"
 
 [[bin]]
 name = "_"

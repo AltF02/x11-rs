@@ -7,6 +7,7 @@ libc = "*"
 
 [dependencies.x11]
 path = "../.."
+features = ["xlib"]
 
 [[bin]]
 name = "_"
