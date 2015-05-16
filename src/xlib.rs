@@ -2699,6 +2699,11 @@ pub const GrabInvalidTime: c_int = 2;
 pub const GrabNotViewable: c_int = 3;
 pub const GrabFrozen: c_int = 4;
 
+// image format
+pub const XYBitmap: c_int = 0;
+pub const XYPixmap: c_int = 1;
+pub const ZPixmap: c_int = 2;
+
 // map state
 pub const IsUnmapped: c_int = 0;
 pub const IsUnviewable: c_int = 1;
