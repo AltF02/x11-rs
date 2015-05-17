@@ -19,3 +19,4 @@ pub mod xcursor;
 pub mod xf86vmode;
 pub mod xlib;
 pub mod xrender;
+pub mod xt;

@@ -13,6 +13,7 @@ xcursor = []
 xf86vmode = []
 xlib = []
 xrender = []
+xt = []
 
 [dependencies]
 libc = "*"
