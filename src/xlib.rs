@@ -27,6 +27,9 @@ use ::internal::{
   transmute_union,
 };
 
+// deprecated
+pub mod xkb {}
+
 
 //
 // functions
