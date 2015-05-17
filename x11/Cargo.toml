@@ -12,6 +12,7 @@ glx = []
 xcursor = []
 xf86vmode = []
 xlib = []
+xmu = []
 xrender = []
 xt = []
 
