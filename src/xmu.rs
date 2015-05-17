@@ -148,6 +148,7 @@ x11_link! { Xmu, ["libXmu.so", "libXmu.so.6"],
   pub fn XmuWnNameToNode (_3: *mut XmuWidgetNode, _2: c_int, _1: *const c_char) -> *mut XmuWidgetNode,
 variadic:
   pub fn XmuSnprintf (_3: *mut c_char, _2: c_int, _1: *const c_char) -> c_int,
+globals:
 }
 
 

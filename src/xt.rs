@@ -337,6 +337,7 @@ variadic:
   pub fn XtVaOpenApplication (_8: *mut XtAppContext, _7: *const c_char, _6: XrmOptionDescList, _5: c_uint, _4: *mut c_int, _3: *mut *mut c_char, _2: *mut *mut c_char, _1: WidgetClass) -> Widget,
   pub fn XtVaSetSubvalues (_3: *mut c_void, _2: *mut XtResource, _1: c_uint) -> (),
   pub fn XtVaSetValues (_1: Widget) -> (),
+globals:
 }
 
 

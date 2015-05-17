@@ -76,6 +76,8 @@ x11_link! { Xrender, ["libXrender.so", "libXrender.so.1"],
   pub fn XRenderSetPictureFilter (_5: *mut Display, _4: c_ulong, _3: *const c_char, _2: *mut c_int, _1: c_int) -> (),
   pub fn XRenderSetPictureTransform (_3: *mut Display, _2: c_ulong, _1: *mut XTransform) -> (),
   pub fn XRenderSetSubpixelOrder (_3: *mut Display, _2: c_int, _1: c_int) -> c_int,
+variadic:
+globals:
 }
 
 

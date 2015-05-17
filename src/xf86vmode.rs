@@ -48,6 +48,8 @@ x11_link! { Xf86vmode, ["libXxf86vm.so", "libXxf86vm.so.1"],
   pub fn XF86VidModeSwitchMode (_3: *mut Display, _2: c_int, _1: c_int) -> c_int,
   pub fn XF86VidModeSwitchToMode (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeModeInfo) -> c_int,
   pub fn XF86VidModeValidateModeLine (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeModeInfo) -> c_int,
+variadic:
+globals:
 }
 
 

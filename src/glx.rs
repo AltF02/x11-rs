@@ -62,6 +62,8 @@ x11_link! { Glx, ["libGL.so", "libGL.so.1"],
   pub fn glXUseXFont (_4: c_ulong, _3: c_int, _2: c_int, _1: c_int) -> (),
   pub fn glXWaitGL () -> (),
   pub fn glXWaitX () -> (),
+variadic:
+globals:
 }
 
 

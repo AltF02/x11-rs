@@ -20,37 +20,17 @@ use ::error::{
 macro_rules! x11_link {
   { $struct_name:ident, [$($lib_name:expr),*],
     $(pub fn $fn_name:ident ($($param_name:ident : $param_type:ty),*) -> $ret_type:ty,)*
-  } => {
-    pub struct $struct_name {
-      #[allow(dead_code)]
-      lib: ::dylib::DynamicLibrary,
-      $(pub $fn_name: unsafe extern "C" fn ($($param_type),*) -> $ret_type,)*
-    }
-
-    impl $struct_name {
-      pub fn open () -> Result<$struct_name, ::error::OpenError> {
-        unsafe {
-          let lib = try!(::link::open_lib(&[$($lib_name),*]));
-          $(let $fn_name = try!(::link::get_sym(&lib, stringify!($fn_name)));)*
-          return Ok($struct_name {
-            lib: lib,
-            $($fn_name: ::std::mem::transmute($fn_name),)*
-          });
-        }
-      }
-    }
-  };
-
-  { $struct_name:ident, [$($lib_name:expr),*],
-    $(pub fn $fn_name:ident ($($param_name:ident : $param_type:ty),*) -> $ret_type:ty,)*
     variadic:
     $(pub fn $vfn_name:ident ($($vparam_name: ident : $vparam_type:ty),+) -> $vret_type:ty,)*
+    globals:
+    $(pub static $var_name:ident : $var_type:ty,)*
   } => {
     pub struct $struct_name {
       #[allow(dead_code)]
       lib: ::dylib::DynamicLibrary,
       $(pub $fn_name: unsafe extern "C" fn ($($param_type),*) -> $ret_type,)*
       $(pub $vfn_name: unsafe extern "C" fn ($($vparam_type),+, ...) -> $vret_type,)*
+      $(pub $var_name: *mut $var_type,)*
     }
 
     impl $struct_name {
@@ -59,15 +39,17 @@ macro_rules! x11_link {
           let lib = try!(::link::open_lib(&[$($lib_name),*]));
           $(let $fn_name = try!(::link::get_sym(&lib, stringify!($fn_name)));)*
           $(let $vfn_name = try!(::link::get_sym(&lib, stringify!($vfn_name)));)*
+          $(let $var_name = try!(::link::get_sym(&lib, stringify!($var_name)));)*
           return Ok($struct_name {
             lib: lib,
             $($fn_name: ::std::mem::transmute($fn_name),)*
             $($vfn_name: ::std::mem::transmute($vfn_name),)*
+            $($var_name: $var_name as *mut $var_type,)*
           });
         }
       }
     }
-  };
+  }
 }
 
 

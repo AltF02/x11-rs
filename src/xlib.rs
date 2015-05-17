@@ -805,6 +805,7 @@ variadic:
   pub fn XSetOCValues (_1: XFontSet) -> *mut c_char,
   pub fn XSetOMValues (_1: XOM) -> *mut c_char,
   pub fn XVaCreateNestedList (_1: c_int) -> *mut c_void,
+globals:
 }
 
 

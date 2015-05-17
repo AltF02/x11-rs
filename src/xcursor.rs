@@ -86,6 +86,8 @@ x11_link! { Xcursor, ["libXcursor.so", "libXcursor.so.1"],
   pub fn XcursorXcFileLoadImage (_2: *mut XcursorFile, _1: c_int) -> *mut XcursorImage,
   pub fn XcursorXcFileLoadImages (_2: *mut XcursorFile, _1: c_int) -> *mut XcursorImages,
   pub fn XcursorXcFileSave (_3: *mut XcursorFile, _2: *const XcursorComments, _1: *const XcursorImages) -> c_int,
+variadic:
+globals:
 }
 
 
