@@ -2604,26 +2604,26 @@ pub const DoGreen: c_char = 2;
 pub const DoBlue: c_char = 4;
 
 // error codes
-pub const Success: c_int = 0;
-pub const BadRequest: c_int = 1;
-pub const BadValue: c_int = 2;
-pub const BadWindow: c_int = 3;
-pub const BadPixmap: c_int = 4;
-pub const BadAtom: c_int = 5;
-pub const BadCursor: c_int = 6;
-pub const BadFont: c_int = 7;
-pub const BadMatch: c_int = 8;
-pub const BadDrawable: c_int = 9;
-pub const BadAccess: c_int = 10;
-pub const BadAlloc: c_int = 11;
-pub const BadColor: c_int = 12;
-pub const BadGC: c_int = 13;
-pub const BadIDChoice: c_int = 14;
-pub const BadName: c_int = 15;
-pub const BadLength: c_int = 16;
-pub const BadImplementation: c_int = 17;
-pub const FirstExtensionError: c_int = 128;
-pub const LastExtensionError: c_int = 255;
+pub const Success: c_uchar = 0;
+pub const BadRequest: c_uchar = 1;
+pub const BadValue: c_uchar = 2;
+pub const BadWindow: c_uchar = 3;
+pub const BadPixmap: c_uchar = 4;
+pub const BadAtom: c_uchar = 5;
+pub const BadCursor: c_uchar = 6;
+pub const BadFont: c_uchar = 7;
+pub const BadMatch: c_uchar = 8;
+pub const BadDrawable: c_uchar = 9;
+pub const BadAccess: c_uchar = 10;
+pub const BadAlloc: c_uchar = 11;
+pub const BadColor: c_uchar = 12;
+pub const BadGC: c_uchar = 13;
+pub const BadIDChoice: c_uchar = 14;
+pub const BadName: c_uchar = 15;
+pub const BadLength: c_uchar = 16;
+pub const BadImplementation: c_uchar = 17;
+pub const FirstExtensionError: c_uchar = 128;
+pub const LastExtensionError: c_uchar = 255;
 
 // event kinds
 pub const KeyPress: c_int = 2;
