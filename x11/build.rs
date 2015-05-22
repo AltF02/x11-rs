@@ -5,11 +5,11 @@
 extern crate pkg_config;
 
 fn main () {
-  if cfg!(feature="glx") { pkg_config::find_library("gl").unwrap(); }
-  if cfg!(feature="xcursor") { pkg_config::find_library("xcursor").unwrap(); }
-  if cfg!(feature="xf86vmode") { pkg_config::find_library("xxf86vm").unwrap(); }
-  if cfg!(feature="xlib") { pkg_config::find_library("x11").unwrap(); }
-  if cfg!(feature="xmu") { pkg_config::find_library("xmu").unwrap(); }
-  if cfg!(feature="xrender") { pkg_config::find_library("xrender").unwrap(); }
-  if cfg!(feature="xt") { pkg_config::find_library("xt").unwrap(); }
+  if cfg!(feature="glx") { let _ = pkg_config::find_library("gl"); }
+  if cfg!(feature="xcursor") { let _ = pkg_config::find_library("xcursor"); }
+  if cfg!(feature="xf86vmode") { let _ = pkg_config::find_library("xxf86vm"); }
+  if cfg!(feature="xlib") { let _ = pkg_config::find_library("x11"); }
+  if cfg!(feature="xmu") { let _ = pkg_config::find_library("xmu"); }
+  if cfg!(feature="xrender") { let _ = pkg_config::find_library("xrender"); }
+  if cfg!(feature="xt") { let _ = pkg_config::find_library("xt"); }
 }
