@@ -195,7 +195,7 @@ pub struct XFeedbackState {
 pub struct XIAddMasterInfo {
   pub type_: c_int,
   pub name: *mut c_char,
-  pub send_core: bool,
+  pub send_core: Bool,
   pub enable: Bool,
 }
 
@@ -305,12 +305,14 @@ pub struct XIRemoveMasterInfo {
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XIAnyHierarchyChangeInfo {
-  data: [c_int; 5],
+  type_: c_int,
+  ptr: *mut (),
+  data: [c_int; 2],
 }
 
 impl XIAnyHierarchyChangeInfo {
   pub fn get_type (&self) -> c_int {
-    self.data[0]
+    self.type_
   }
 }
 
@@ -360,4 +362,14 @@ impl From<XIAnyHierarchyChangeInfo> for XIRemoveMasterInfo {
   fn from (other: XIAnyHierarchyChangeInfo) -> XIRemoveMasterInfo {
     unsafe { transmute_union(&other) }
   }
+}
+
+#[test]
+fn hierarchy_change_info_size_test () {
+  use std::mem::size_of;
+
+  assert!(size_of::<XIAnyHierarchyChangeInfo>() >= size_of::<XIAddMasterInfo>());
+  assert!(size_of::<XIAnyHierarchyChangeInfo>() >= size_of::<XIAttachSlaveInfo>());
+  assert!(size_of::<XIAnyHierarchyChangeInfo>() >= size_of::<XIDetachSlaveInfo>());
+  assert!(size_of::<XIAnyHierarchyChangeInfo>() >= size_of::<XIRemoveMasterInfo>());
 }

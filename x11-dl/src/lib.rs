@@ -26,3 +26,4 @@ pub mod xlib;
 pub mod xmu;
 pub mod xrender;
 pub mod xt;
+pub mod xtest;
