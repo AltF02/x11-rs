@@ -8,6 +8,7 @@ fn main () {
   if cfg!(feature="glx") { let _ = pkg_config::find_library("gl"); }
   if cfg!(feature="xcursor") { let _ = pkg_config::find_library("xcursor"); }
   if cfg!(feature="xf86vmode") { let _ = pkg_config::find_library("xxf86vm"); }
+  if cfg!(feature="xinerama") { let _ = pkg_config::find_library("xinerama"); }
   if cfg!(feature="xinput") { let _ = pkg_config::find_library("xi"); }
   if cfg!(feature="xlib") { let _ = pkg_config::find_library("x11"); }
   if cfg!(feature="xmu") { let _ = pkg_config::find_library("xmu"); }
