@@ -17,7 +17,7 @@ xlib = []
 xmu = []
 xrender = []
 xt = []
-xtest = []
+xrecord = []
 
 [dependencies]
 libc = "*"

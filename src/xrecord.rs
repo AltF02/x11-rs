@@ -133,3 +133,23 @@ pub struct XRecordState {
   pub nclients: c_ulong,
   pub client_info: *mut *mut XRecordClientInfo,
 }
+
+//
+// constants
+//
+
+
+pub const XRecordFromServerTime: c_int = 0x01;
+pub const XRecordFromClientTime: c_int = 0x02;
+pub const XRecordFromClientSequence: c_int = 0x04;
+
+pub const XRecordCurrentClients: c_ulong = 1;
+pub const XRecordFutureClients: c_ulong = 2;
+pub const XRecordAllClients: c_ulong = 3;
+
+pub const XRecordFromServer: c_int = 0;
+pub const XRecordFromClient: c_int = 1;
+pub const XRecordClientStarted: c_int = 2;
+pub const XRecordClientDied: c_int = 3;
+pub const XRecordStartOfData: c_int = 4;
+pub const XRecordEndOfData: c_int = 5;
