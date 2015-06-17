@@ -2692,6 +2692,15 @@ pub const PropertyChangeMask: c_long = 0x0040_0000;
 pub const ColormapChangeMask: c_long = 0x0080_0000;
 pub const OwnerGrabButtonMask: c_long = 0x0100_0000;
 
+// property modes
+pub const PropModeReplace: c_int = 0;
+pub const PropModePrepend: c_int = 1;
+pub const PropModeAppend: c_int = 2;
+
+// property notification
+pub const PropertyNewValue: c_int = 0;
+pub const PropertyDelete: c_int = 1;
+
 // grab modes
 pub const GrabModeSync: c_int = 0;
 pub const GrabModeAsync: c_int = 1;
