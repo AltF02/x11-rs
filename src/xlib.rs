@@ -2703,6 +2703,20 @@ pub const GrabInvalidTime: c_int = 2;
 pub const GrabNotViewable: c_int = 3;
 pub const GrabFrozen: c_int = 4;
 
+// gravity
+pub const ForgetGravity: c_int = 0;
+pub const UnmapGravity: c_int = 0;
+pub const NorthWestGravity: c_int = 1;
+pub const NorthGravity: c_int = 2;
+pub const NorthEastGravity: c_int = 3;
+pub const WestGravity: c_int = 4;
+pub const CenterGravity: c_int = 5;
+pub const EastGravity: c_int = 6;
+pub const SouthWestGravity: c_int = 7;
+pub const SouthGravity: c_int = 8;
+pub const SouthEastGravity: c_int = 9;
+pub const StaticGravity: c_int = 10;
+
 // image format
 pub const XYBitmap: c_int = 0;
 pub const XYPixmap: c_int = 1;
@@ -2798,3 +2812,4 @@ pub const XIMStatusArea: c_int = 0x0100;
 pub const XIMStatusCallbacks: c_int = 0x0200;
 pub const XIMStatusNothing: c_int = 0x0400;
 pub const XIMStatusNone: c_int = 0x0800;
+
