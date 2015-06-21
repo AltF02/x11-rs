@@ -82,14 +82,19 @@ fn main () {
         Err(err) => panic!("Failed to generate X11 constants: {:?}", err)
     }
 
-    if cfg!(feature="glx") { let _ = pkg_config::find_library("gl"); }
-    if cfg!(feature="xcursor") { let _ = pkg_config::find_library("xcursor"); }
-    if cfg!(feature="xf86vmode") { let _ = pkg_config::find_library("xxf86vm"); }
-    if cfg!(feature="xinerama") { let _ = pkg_config::find_library("xinerama"); }
-    if cfg!(feature="xinput") { let _ = pkg_config::find_library("xi"); }
-    if cfg!(feature="xlib") { let _ = pkg_config::find_library("x11"); }
-    if cfg!(feature="xmu") { let _ = pkg_config::find_library("xmu"); }
-    if cfg!(feature="xrender") { let _ = pkg_config::find_library("xrender"); }
-    if cfg!(feature="xt") { let _ = pkg_config::find_library("xt"); }
-    if cfg!(feature="xtest") { let _ = pkg_config::find_library("xtst"); }
+    // when building 'x11' crate add X11 libs to link
+    // command line. For the 'x11-dl' crate, the dependency is loaded
+    // only at runtime
+    if env!("CARGO_MANIFEST_DIR").ends_with("x11") {
+        if cfg!(feature="glx") { let _ = pkg_config::find_library("gl"); }
+        if cfg!(feature="xcursor") { let _ = pkg_config::find_library("xcursor"); }
+        if cfg!(feature="xf86vmode") { let _ = pkg_config::find_library("xxf86vm"); }
+        if cfg!(feature="xinerama") { let _ = pkg_config::find_library("xinerama"); }
+        if cfg!(feature="xinput") { let _ = pkg_config::find_library("xi"); }
+        if cfg!(feature="xlib") { let _ = pkg_config::find_library("x11"); }
+        if cfg!(feature="xmu") { let _ = pkg_config::find_library("xmu"); }
+        if cfg!(feature="xrender") { let _ = pkg_config::find_library("xrender"); }
+        if cfg!(feature="xt") { let _ = pkg_config::find_library("xt"); }
+        if cfg!(feature="xtest") { let _ = pkg_config::find_library("xtst"); }
+    }
 }
