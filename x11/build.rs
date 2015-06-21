@@ -44,13 +44,24 @@ fn generate_x11_constants(output_dir: &str) -> Result<(), GenerateErr> {
 
         let macros = try!(cmacros::extract_macros(&header_src));
         let skipped_macros = [
+            // macros with expansions that cmacros
+            // cannot yet translate
             "XIAnyPropertyType",
             "XIAnyModifier",
             "XIOwnerEvents",
             "XINoOwnerEvents"
         ];
         let mut output = cmacros::generate_rust_src(&macros, |def| {
-            if !skipped_macros.contains(&(&def.name as &str)) {
+            // older versions of XI2.h have an
+            // invalid definition of XI_TouchOwnershipChangedMask.
+            // See http://cgit.freedesktop.org/xorg/proto/inputproto/commit/XI2.h?id=c2cf8cab4aa781306ff26b171107d26f12bac015
+            if def.name == "XI_TouchOwnershipChangedMask" {
+                cmacros::translate_macro(&cmacros::CMacro{
+                    name: def.name.clone(),
+                    args: None,
+                    body: Some("(1 << XI_TouchOwnership)".to_string())
+                })
+            } else if !skipped_macros.contains(&(&def.name as &str)) {
                 cmacros::translate_macro(def)
             } else {
                 cmacros::TranslateAction::Skip
