@@ -24,3 +24,4 @@ libc = "*"
 
 [build-dependencies]
 pkg-config = "*"
+cmacros = "^0.1.0"
