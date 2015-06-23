@@ -2506,16 +2506,6 @@ impl PartialEq for ImageFns {
   }
 }
 
-
-//
-// constants
-//
-
-
-// allocate colormap
-pub const AllocNone: c_int = 0;
-pub const AllocAll: c_int = 1;
-
 // array sizes
 pub const XkbKeyNameLength: usize = 4;
 pub const XkbNumIndicators: usize = 32;
@@ -2596,38 +2586,36 @@ pub const XA_WM_TRANSIENT_FOR: Atom = 68;
 pub const False: Bool = 0;
 pub const True: Bool = 1;
 
-// clip rect ordering
-pub const Unsorted: c_int = 0;
-pub const YSorted: c_int = 1;
-pub const YXSorted: c_int = 2;
-pub const YXBanded: c_int = 3;
+// time constants
+pub const CurrentTime: Time = 0;
 
-// color component mask
-pub const DoRed: c_char = 1;
-pub const DoGreen: c_char = 2;
-pub const DoBlue: c_char = 4;
+// visual info mask
+pub const VisualNoMask: c_long = 0x0000;
+pub const VisualIDMask: c_long = 0x0001;
+pub const VisualScreenMask: c_long = 0x0002;
+pub const VisualDepthMask: c_long = 0x0004;
+pub const VisualClassMask: c_long = 0x0008;
+pub const VisualRedMaskMask: c_long = 0x0010;
+pub const VisualGreenMaskMask: c_long = 0x0020;
+pub const VisualBlueMaskMask: c_long = 0x0040;
+pub const VisualColormapSizeMask: c_long = 0x0080;
+pub const VisualBitsPerRGBMask: c_long = 0x0100;
+pub const VisualAllMask: c_long = 0x01ff;
 
-// error codes
-pub const Success: c_uchar = 0;
-pub const BadRequest: c_uchar = 1;
-pub const BadValue: c_uchar = 2;
-pub const BadWindow: c_uchar = 3;
-pub const BadPixmap: c_uchar = 4;
-pub const BadAtom: c_uchar = 5;
-pub const BadCursor: c_uchar = 6;
-pub const BadFont: c_uchar = 7;
-pub const BadMatch: c_uchar = 8;
-pub const BadDrawable: c_uchar = 9;
-pub const BadAccess: c_uchar = 10;
-pub const BadAlloc: c_uchar = 11;
-pub const BadColor: c_uchar = 12;
-pub const BadGC: c_uchar = 13;
-pub const BadIDChoice: c_uchar = 14;
-pub const BadName: c_uchar = 15;
-pub const BadLength: c_uchar = 16;
-pub const BadImplementation: c_uchar = 17;
-pub const FirstExtensionError: c_uchar = 128;
-pub const LastExtensionError: c_uchar = 255;
+// XCreateIC values
+pub const XIMPreeditArea: c_int = 0x0001;
+pub const XIMPreeditCallbacks: c_int = 0x0002;
+pub const XIMPreeditPosition: c_int = 0x0004;
+pub const XIMPreeditNothing: c_int = 0x0008;
+pub const XIMPreeditNone: c_int = 0x0010;
+pub const XIMStatusArea: c_int = 0x0100;
+pub const XIMStatusCallbacks: c_int = 0x0200;
+pub const XIMStatusNothing: c_int = 0x0400;
+pub const XIMStatusNone: c_int = 0x0800;
+
+//
+// X.h constants
+//
 
 // event kinds
 pub const KeyPress: c_int = 2;
@@ -2663,6 +2651,8 @@ pub const SelectionNotify: c_int = 31;
 pub const ColormapNotify: c_int = 32;
 pub const ClientMessage: c_int = 33;
 pub const MappingNotify: c_int = 34;
+pub const GenericEvent: c_int = 35;
+pub const LASTEvent: c_int = 36;
 
 // event mask
 pub const NoEventMask: c_long = 0;
@@ -2697,9 +2687,67 @@ pub const PropModeReplace: c_int = 0;
 pub const PropModePrepend: c_int = 1;
 pub const PropModeAppend: c_int = 2;
 
+// modifier names
+pub const ShiftMapIndex: c_int = 0;
+pub const LockMapIndex: c_int = 1;
+pub const ControlMapIndex: c_int = 2;
+pub const Mod1MapIndex: c_int = 3;
+pub const Mod2MapIndex: c_int = 4;
+pub const Mod3MapIndex: c_int = 5;
+pub const Mod4MapIndex: c_int = 6;
+pub const Mod5MapIndex: c_int = 7;
+
+// button masks
+pub const Button1Mask: c_uint = (1<<8);
+pub const Button2Mask: c_uint = (1<<9);
+pub const Button3Mask: c_uint = (1<<10);
+pub const Button4Mask: c_uint = (1<<11);
+pub const Button5Mask: c_uint = (1<<12);
+pub const AnyModifier: c_uint = (1<<15);
+
+// Notify modes
+pub const NotifyNormal: c_int = 0;
+pub const NotifyGrab: c_int = 1;
+pub const NotifyUngrab: c_int = 2;
+pub const NotifyWhileGrabbed: c_int = 3;
+
+pub const NotifyHint: c_int = 1;
+
+// Notify detail
+pub const NotifyAncestor: c_int = 0;
+pub const NotifyVirtual: c_int = 1;
+pub const NotifyInferior: c_int = 2;
+pub const NotifyNonlinear: c_int = 3;
+pub const NotifyNonlinearVirtual: c_int = 4;
+pub const NotifyPointer: c_int = 5;
+pub const NotifyPointerRoot: c_int = 6;
+pub const NotifyDetailNone: c_int = 7;
+
+// Visibility notify
+pub const VisibilityUnobscured: c_int = 0;
+pub const VisibilityPartiallyObscured: c_int = 1;
+pub const VisibilityFullyObscured: c_int = 2;
+
+// Circulation request
+pub const PlaceOnTop: c_int = 0;
+pub const PlaceOnBottom: c_int = 1;
+
+// protocol families
+pub const FamilyInternet: c_int = 0;
+pub const FamilyDECnet: c_int = 1;
+pub const FamilyChaos: c_int = 2;
+pub const FamilyInternet6: c_int = 6;
+
+// authentication families not tied to a specific protocol
+pub const FamilyServerInterpreted: c_int = 5;
+
 // property notification
 pub const PropertyNewValue: c_int = 0;
 pub const PropertyDelete: c_int = 1;
+
+// Color Map notification
+pub const ColormapUninstalled: c_int = 0;
+pub const ColormapInstalled: c_int = 1;
 
 // grab modes
 pub const GrabModeSync: c_int = 0;
@@ -2711,6 +2759,73 @@ pub const AlreadyGrabbed: c_int = 1;
 pub const GrabInvalidTime: c_int = 2;
 pub const GrabNotViewable: c_int = 3;
 pub const GrabFrozen: c_int = 4;
+
+// AllowEvents modes
+pub const AsyncPointer: c_int = 0;
+pub const SyncPointer: c_int = 1;
+pub const ReplayPointer: c_int = 2;
+pub const AsyncKeyboard: c_int = 3;
+pub const SyncKeyboard: c_int = 4;
+pub const ReplayKeyboard: c_int = 5;
+pub const AsyncBoth: c_int = 6;
+pub const SyncBoth: c_int = 7;
+
+// Used in SetInputFocus, GetInputFocus
+pub const RevertToNone: c_int = 0;
+pub const RevertToPointerRoot: c_int = 1;
+pub const RevertToParent: c_int = 2;
+
+// error codes
+pub const Success: c_uchar = 0;
+pub const BadRequest: c_uchar = 1;
+pub const BadValue: c_uchar = 2;
+pub const BadWindow: c_uchar = 3;
+pub const BadPixmap: c_uchar = 4;
+pub const BadAtom: c_uchar = 5;
+pub const BadCursor: c_uchar = 6;
+pub const BadFont: c_uchar = 7;
+pub const BadMatch: c_uchar = 8;
+pub const BadDrawable: c_uchar = 9;
+pub const BadAccess: c_uchar = 10;
+pub const BadAlloc: c_uchar = 11;
+pub const BadColor: c_uchar = 12;
+pub const BadGC: c_uchar = 13;
+pub const BadIDChoice: c_uchar = 14;
+pub const BadName: c_uchar = 15;
+pub const BadLength: c_uchar = 16;
+pub const BadImplementation: c_uchar = 17;
+pub const FirstExtensionError: c_uchar = 128;
+pub const LastExtensionError: c_uchar = 255;
+
+// window classes
+pub const InputOutput: c_int = 1;
+pub const InputOnly: c_int = 2;
+
+// window attributes
+pub const CWBackPixmap: c_ulong = 0x0001;
+pub const CWBackPixel: c_ulong = 0x0002;
+pub const CWBorderPixmap: c_ulong = 0x0004;
+pub const CWBorderPixel: c_ulong = 0x0008;
+pub const CWBitGravity: c_ulong = 0x0010;
+pub const CWWinGravity: c_ulong = 0x0020;
+pub const CWBackingStore: c_ulong = 0x0040;
+pub const CWBackingPlanes: c_ulong = 0x0080;
+pub const CWBackingPixel: c_ulong = 0x0100;
+pub const CWOverrideRedirect: c_ulong = 0x0200;
+pub const CWSaveUnder: c_ulong = 0x0400;
+pub const CWEventMask: c_ulong = 0x0800;
+pub const CWDontPropagate: c_ulong = 0x1000;
+pub const CWColormap: c_ulong = 0x2000;
+pub const CWCursor: c_ulong = 0x4000;
+
+// ConfigureWindow structure
+pub const CWX: c_ushort = (1<<0);
+pub const CWY: c_ushort = (1<<1);
+pub const CWWidth: c_ushort = (1<<2);
+pub const CWHeight: c_ushort = (1<<3);
+pub const CWBorderWidth: c_ushort = (1<<4);
+pub const CWSibling: c_ushort = (1<<5);
+pub const CWStackMode: c_ushort = (1<<6);
 
 // gravity
 pub const ForgetGravity: c_int = 0;
@@ -2730,6 +2845,11 @@ pub const StaticGravity: c_int = 10;
 pub const XYBitmap: c_int = 0;
 pub const XYPixmap: c_int = 1;
 pub const ZPixmap: c_int = 2;
+
+// Used in CreateWindow for backing-store hint
+pub const NotUseful: c_int = 0;
+pub const WhenMapped: c_int = 1;
+pub const Always: c_int = 2;
 
 // map state
 pub const IsUnmapped: c_int = 0;
@@ -2766,8 +2886,187 @@ pub const PBaseSize: c_long = 0x0100;
 pub const PWinGravity: c_long = 0x0200;
 pub const PAllHints: c_long = PPosition | PSize | PMinSize | PMaxSize | PResizeInc | PAspect;
 
-// time constants
-pub const CurrentTime: Time = 0;
+// Used in ChangeSaveSet
+pub const SetModeInsert: c_int = 0;
+pub const SetModeDelete: c_int = 1;
+
+// Used in ChangeCloseDownMode
+pub const DestroyAll: c_int = 0;
+pub const RetainPermanent: c_int = 1;
+pub const RetainTemporary: c_int = 2;
+
+// Window stacking method (in configureWindow)
+pub const Above: c_int = 0;
+pub const Below: c_int = 1;
+pub const TopIf: c_int = 2;
+pub const BottomIf: c_int = 3;
+pub const Opposite: c_int = 4;
+
+// Circulation direction
+pub const RaiseLowest: c_int = 0;
+pub const LowerHighest: c_int = 1;
+
+// graphics functions
+pub const GXclear: c_int = 0x0;
+pub const GXand: c_int = 0x1;
+pub const GXandReverse: c_int = 0x2;
+pub const GXcopy: c_int = 0x3;
+pub const GXandInverted: c_int = 0x4;
+pub const GXnoop: c_int = 0x5;
+pub const GXxor: c_int = 0x6;
+pub const GXor: c_int = 0x7;
+pub const GXnor: c_int = 0x8;
+pub const GXequiv: c_int = 0x9;
+pub const GXinvert: c_int = 0xa;
+pub const GXorReverse: c_int = 0xb;
+pub const GXcopyInverted: c_int = 0xc;
+pub const GXorInverted: c_int = 0xd;
+pub const GXnand: c_int = 0xe;
+pub const GXset: c_int = 0xf;
+
+// LineStyle
+pub const LineSolid: c_int = 0;
+pub const LineOnOffDash: c_int = 1;
+pub const LineDoubleDash: c_int = 2;
+
+// capStyle
+pub const CapNotLast: c_int = 0;
+pub const CapButt: c_int = 1;
+pub const CapRound: c_int = 2;
+pub const CapProjecting: c_int = 3;
+
+// joinStyle
+pub const JoinMiter: c_int = 0;
+pub const JoinRound: c_int = 1;
+pub const JoinBevel: c_int = 2;
+
+// fillStyle
+pub const FillSolid: c_int = 0;
+pub const FillTiled: c_int = 1;
+pub const FillStippled: c_int = 2;
+pub const FillOpaqueStippled: c_int = 3;
+
+// fillRule
+pub const EvenOddRule: c_int = 0;
+pub const WindingRule: c_int = 1;
+
+// subwindow mode
+pub const ClipByChildren: c_int = 0;
+pub const IncludeInferiors: c_int = 1;
+
+// clip rect ordering
+pub const Unsorted: c_int = 0;
+pub const YSorted: c_int = 1;
+pub const YXSorted: c_int = 2;
+pub const YXBanded: c_int = 3;
+
+// CoordinateMode for drawing routines
+pub const CoordModeOrigin: c_int = 0;
+pub const CoordModePrevious: c_int = 1;
+
+// Polygon shapes
+pub const Complex: c_int = 0;
+pub const Nonconvex: c_int = 1;
+pub const Convex: c_int = 2;
+
+// Arc modes for PolyFillArc
+pub const ArcChord: c_int = 0;
+pub const ArcPieSlice: c_int = 1;
+
+// GC components
+pub const GCFunction: c_uint = (1<<0);
+pub const GCPlaneMask: c_uint = (1<<1);
+pub const GCForeground: c_uint = (1<<2);
+pub const GCBackground: c_uint = (1<<3);
+pub const GCLineWidth: c_uint = (1<<4);
+pub const GCLineStyle: c_uint = (1<<5);
+pub const GCCapStyle: c_uint = (1<<6);
+pub const GCJoinStyle: c_uint = (1<<7);
+pub const GCFillStyle: c_uint = (1<<8);
+pub const GCFillRule: c_uint = (1<<9);
+pub const GCTile: c_uint = (1<<10);
+pub const GCStipple: c_uint = (1<<11);
+pub const GCTileStipXOrigin: c_uint = (1<<12);
+pub const GCTileStipYOrigin: c_uint = (1<<13);
+pub const GCFont : c_uint = (1<<14);
+pub const GCSubwindowMode: c_uint = (1<<15);
+pub const GCGraphicsExposures: c_uint = (1<<16);
+pub const GCClipXOrigin: c_uint = (1<<17);
+pub const GCClipYOrigin: c_uint = (1<<18);
+pub const GCClipMask: c_uint = (1<<19);
+pub const GCDashOffset: c_uint = (1<<20);
+pub const GCDashList: c_uint = (1<<21);
+pub const GCArcMode: c_uint = (1<<22);
+
+pub const GCLastBit: c_uint = 22;
+
+// draw direction
+pub const FontLeftToRight: c_int = 0;
+pub const FontRightToLeft: c_int = 1;
+
+pub const FontChange: c_uchar = 255;
+
+// allocate colormap
+pub const AllocNone: c_int = 0;
+pub const AllocAll: c_int = 1;
+
+// color component mask
+pub const DoRed: c_char = 1;
+pub const DoGreen: c_char = 2;
+pub const DoBlue: c_char = 4;
+
+// QueryBestSize Class
+pub const CursorShape: c_int = 0;
+pub const TileShape: c_int = 1;
+pub const StippleShape: c_int = 2;
+
+// keyboard autorepeat
+pub const AutoRepeatModeOff: c_int = 0;
+pub const AutoRepeatModeOn: c_int = 1;
+pub const AutoRepeatModeDefault: c_int = 2;
+
+pub const LedModeOff: c_int = 0;
+pub const LedModeOn: c_int = 1;
+
+// masks for ChangeKeyboardControl
+pub const KBKeyClickPercent: c_ulong = (1<<0);
+pub const KBBellPercent: c_ulong = (1<<1);
+pub const KBBellPitch: c_ulong = (1<<2);
+pub const KBBellDuration: c_ulong = (1<<3);
+pub const KBLed: c_ulong = (1<<4);
+pub const KBLedMode: c_ulong = (1<<5);
+pub const KBKey: c_ulong = (1<<6);
+pub const KBAutoRepeatMode: c_ulong = (1<<7);
+
+pub const MappingSuccess: c_uchar = 0;
+pub const MappingBusy: c_uchar = 1;
+pub const MappingFailed: c_uchar = 2;
+
+pub const MappingModifier: c_int = 0;
+pub const MappingKeyboard: c_int = 1;
+pub const MappingPointer: c_int = 2;
+
+// screensaver
+pub const DontPreferBlanking: c_int = 0;
+pub const PreferBlanking: c_int = 1;
+pub const DefaultBlanking: c_int = 2;
+
+pub const DisableScreenSaver: c_int = 0;
+pub const DisableScreenInterval: c_int = 0;
+
+pub const DontAllowExposures: c_int = 0;
+pub const AllowExposures: c_int = 1;
+pub const DefaultExposures: c_int = 2;
+
+pub const ScreenSaverReset: c_int = 0;
+pub const ScreenSaverActive: c_int = 1;
+
+// hosts and connections
+pub const HostInsert: c_uchar = 0;
+pub const HostDelete: c_uchar = 1;
+
+pub const EnableAccess: c_int = 1;
+pub const DisableAccess: c_int = 0;
 
 // visual class
 pub const StaticGray: c_int = 0;
@@ -2777,48 +3076,6 @@ pub const PseudoColor: c_int = 3;
 pub const TrueColor: c_int = 4;
 pub const DirectColor: c_int = 5;
 
-// visual info mask
-pub const VisualNoMask: c_long = 0x0000;
-pub const VisualIDMask: c_long = 0x0001;
-pub const VisualScreenMask: c_long = 0x0002;
-pub const VisualDepthMask: c_long = 0x0004;
-pub const VisualClassMask: c_long = 0x0008;
-pub const VisualRedMaskMask: c_long = 0x0010;
-pub const VisualGreenMaskMask: c_long = 0x0020;
-pub const VisualBlueMaskMask: c_long = 0x0040;
-pub const VisualColormapSizeMask: c_long = 0x0080;
-pub const VisualBitsPerRGBMask: c_long = 0x0100;
-pub const VisualAllMask: c_long = 0x01ff;
-
-// window attributes
-pub const CWBackPixmap: c_ulong = 0x0001;
-pub const CWBackPixel: c_ulong = 0x0002;
-pub const CWBorderPixmap: c_ulong = 0x0004;
-pub const CWBorderPixel: c_ulong = 0x0008;
-pub const CWBitGravity: c_ulong = 0x0010;
-pub const CWWinGravity: c_ulong = 0x0020;
-pub const CWBackingStore: c_ulong = 0x0040;
-pub const CWBackingPlanes: c_ulong = 0x0080;
-pub const CWBackingPixel: c_ulong = 0x0100;
-pub const CWOverrideRedirect: c_ulong = 0x0200;
-pub const CWSaveUnder: c_ulong = 0x0400;
-pub const CWEventMask: c_ulong = 0x0800;
-pub const CWDontPropagate: c_ulong = 0x1000;
-pub const CWColormap: c_ulong = 0x2000;
-pub const CWCursor: c_ulong = 0x4000;
-
-// window classes
-pub const InputOutput: c_int = 1;
-pub const InputOnly: c_int = 2;
-
-// XCreateIC values
-pub const XIMPreeditArea: c_int = 0x0001;
-pub const XIMPreeditCallbacks: c_int = 0x0002;
-pub const XIMPreeditPosition: c_int = 0x0004;
-pub const XIMPreeditNothing: c_int = 0x0008;
-pub const XIMPreeditNone: c_int = 0x0010;
-pub const XIMStatusArea: c_int = 0x0100;
-pub const XIMStatusCallbacks: c_int = 0x0200;
-pub const XIMStatusNothing: c_int = 0x0400;
-pub const XIMStatusNone: c_int = 0x0800;
-
+// Byte order  used in imageByteOrder and bitmapBitOrder
+pub const LSBFirst: c_int = 0;
+pub const MSBFirst: c_int = 1;

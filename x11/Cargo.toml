@@ -18,6 +18,7 @@ xmu = []
 xrender = []
 xt = []
 xtest = []
+xproto = []
 
 [dependencies]
 libc = "*"
