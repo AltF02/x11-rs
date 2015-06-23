@@ -13,7 +13,7 @@ extern crate libc;
 use std::ffi::CString;
 use std::mem::{transmute};
 use std::slice::from_raw_parts;
-use x11::{xlib, xinput, xinput2};
+use x11::{xlib, xinput2};
 use libc::{c_uchar, c_int, c_uint};
 
 mod demo_window;
@@ -38,14 +38,14 @@ fn main () {
     
     let mut xinput_major_ver = xinput2::XI_2_Major;
     let mut xinput_minor_ver = xinput2::XI_2_Minor;
-    if xinput::XIQueryVersion(demo_window.display, &mut xinput_major_ver, &mut xinput_minor_ver) != xlib::Success as c_int {
+    if xinput2::XIQueryVersion(demo_window.display, &mut xinput_major_ver, &mut xinput_minor_ver) != xlib::Success as c_int {
         panic!("XInput2 not available");
     }
     println!("XI version available {}.{}", xinput_major_ver, xinput_minor_ver);
 
     // init XInput events
     let mut mask: [c_uchar; 1] = [0];
-    let mut input_event_mask = xinput::XIEventMask {
+    let mut input_event_mask = xinput2::XIEventMask {
         deviceid: xinput2::XIAllDevices,
         mask_len: mask.len() as i32,
         mask: mask.as_mut_ptr()
@@ -54,7 +54,7 @@ fn main () {
     xinput2::XISetMask(&mut mask, xinput2::XI_Motion);
     xinput2::XISetMask(&mut mask, xinput2::XI_KeyPress);
 
-    match xinput::XISelectEvents(demo_window.display, demo_window.window, &mut input_event_mask, 1) {
+    match xinput2::XISelectEvents(demo_window.display, demo_window.window, &mut input_event_mask, 1) {
         status if status as u8 == xlib::Success => (),
         err => panic!("Failed to select events {:?}", err)
     }
