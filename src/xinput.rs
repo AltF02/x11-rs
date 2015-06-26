@@ -4,7 +4,6 @@
 
 use libc::{
   c_char,
-  c_double,
   c_int,
   c_long,
   c_short,
@@ -13,11 +12,8 @@ use libc::{
   c_ulong,
 };
 
-use ::internal::transmute_union;
-use ::xfixes::PointerBarrier;
 use ::xlib::{
   Atom,
-  Bool,
   Display,
   Time,
   XEvent,
@@ -25,13 +21,11 @@ use ::xlib::{
   XModifierKeymap,
 };
 
-
 //
 // functions
 //
 
-
-x11_link! { Xf86vmode, ["libXi.so", "libXi.so.6"],
+x11_link! { XInput, ["libXi.so", "libXi.so.6"],
   pub fn XAllowDeviceEvents (_4: *mut Display, _3: *mut XDevice, _2: c_int, _1: c_ulong) -> c_int,
   pub fn XChangeDeviceControl (_4: *mut Display, _3: *mut XDevice, _2: c_int, _1: *mut XDeviceControl) -> c_int,
   pub fn XChangeDeviceDontPropagateList (_5: *mut Display, _4: c_ulong, _3: c_int, _2: *mut c_ulong, _1: c_int) -> c_int,
@@ -62,40 +56,7 @@ x11_link! { Xf86vmode, ["libXi.so", "libXi.so.6"],
   pub fn XGrabDevice (_9: *mut Display, _8: *mut XDevice, _7: c_ulong, _6: c_int, _5: c_int, _4: *mut c_ulong, _3: c_int, _2: c_int, _1: c_ulong) -> c_int,
   pub fn XGrabDeviceButton (_11: *mut Display, _10: *mut XDevice, _9: c_uint, _8: c_uint, _7: *mut XDevice, _6: c_ulong, _5: c_int, _4: c_uint, _3: *mut c_ulong, _2: c_int, _1: c_int) -> c_int,
   pub fn XGrabDeviceKey (_11: *mut Display, _10: *mut XDevice, _9: c_uint, _8: c_uint, _7: *mut XDevice, _6: c_ulong, _5: c_int, _4: c_uint, _3: *mut c_ulong, _2: c_int, _1: c_int) -> c_int,
-  pub fn XIAllowEvents (_4: *mut Display, _3: c_int, _2: c_int, _1: c_ulong) -> c_int,
-  pub fn XIAllowTouchEvents (_5: *mut Display, _4: c_int, _3: c_uint, _2: c_ulong, _1: c_int) -> c_int,
-  pub fn XIBarrierReleasePointer (_4: *mut Display, _3: c_int, _2: c_ulong, _1: c_uint) -> (),
-  pub fn XIBarrierReleasePointers (_3: *mut Display, _2: *mut XIBarrierReleasePointerInfo, _1: c_int) -> (),
-  pub fn XIChangeHierarchy (_3: *mut Display, _2: *mut XIAnyHierarchyChangeInfo, _1: c_int) -> c_int,
-  pub fn XIChangeProperty (_8: *mut Display, _7: c_int, _6: c_ulong, _5: c_ulong, _4: c_int, _3: c_int, _2: *mut c_uchar, _1: c_int) -> (),
-  pub fn XIDefineCursor (_4: *mut Display, _3: c_int, _2: c_ulong, _1: c_ulong) -> c_int,
-  pub fn XIDeleteProperty (_3: *mut Display, _2: c_int, _1: c_ulong) -> (),
-  pub fn XIFreeDeviceInfo (_1: *mut XIDeviceInfo) -> (),
-  pub fn XIGetClientPointer (_3: *mut Display, _2: c_ulong, _1: *mut c_int) -> c_int,
-  pub fn XIGetFocus (_3: *mut Display, _2: c_int, _1: *mut c_ulong) -> c_int,
-  pub fn XIGetProperty (_12: *mut Display, _11: c_int, _10: c_ulong, _9: c_long, _8: c_long, _7: c_int, _6: c_ulong, _5: *mut c_ulong, _4: *mut c_int, _3: *mut c_ulong, _2: *mut c_ulong, _1: *mut *mut c_uchar) -> c_int,
-  pub fn XIGetSelectedEvents (_3: *mut Display, _2: c_ulong, _1: *mut c_int) -> *mut XIEventMask,
-  pub fn XIGrabButton (_11: *mut Display, _10: c_int, _9: c_int, _8: c_ulong, _7: c_ulong, _6: c_int, _5: c_int, _4: c_int, _3: *mut XIEventMask, _2: c_int, _1: *mut XIGrabModifiers) -> c_int,
-  pub fn XIGrabDevice (_9: *mut Display, _8: c_int, _7: c_ulong, _6: c_ulong, _5: c_ulong, _4: c_int, _3: c_int, _2: c_int, _1: *mut XIEventMask) -> c_int,
-  pub fn XIGrabEnter (_10: *mut Display, _9: c_int, _8: c_ulong, _7: c_ulong, _6: c_int, _5: c_int, _4: c_int, _3: *mut XIEventMask, _2: c_int, _1: *mut XIGrabModifiers) -> c_int,
-  pub fn XIGrabFocusIn (_9: *mut Display, _8: c_int, _7: c_ulong, _6: c_int, _5: c_int, _4: c_int, _3: *mut XIEventMask, _2: c_int, _1: *mut XIGrabModifiers) -> c_int,
-  pub fn XIGrabKeycode (_10: *mut Display, _9: c_int, _8: c_int, _7: c_ulong, _6: c_int, _5: c_int, _4: c_int, _3: *mut XIEventMask, _2: c_int, _1: *mut XIGrabModifiers) -> c_int,
-  pub fn XIGrabTouchBegin (_7: *mut Display, _6: c_int, _5: c_ulong, _4: c_int, _3: *mut XIEventMask, _2: c_int, _1: *mut XIGrabModifiers) -> c_int,
-  pub fn XIListProperties (_3: *mut Display, _2: c_int, _1: *mut c_int) -> *mut c_ulong,
-  pub fn XIQueryDevice (_3: *mut Display, _2: c_int, _1: *mut c_int) -> *mut XIDeviceInfo,
-  pub fn XIQueryPointer (_12: *mut Display, _11: c_int, _10: c_ulong, _9: *mut c_ulong, _8: *mut c_ulong, _7: *mut c_double, _6: *mut c_double, _5: *mut c_double, _4: *mut c_double, _3: *mut XIButtonState, _2: *mut XIModifierState, _1: *mut XIModifierState) -> c_int,
-  pub fn XIQueryVersion (_3: *mut Display, _2: *mut c_int, _1: *mut c_int) -> c_int,
-  pub fn XISelectEvents (_4: *mut Display, _3: c_ulong, _2: *mut XIEventMask, _1: c_int) -> c_int,
-  pub fn XISetClientPointer (_3: *mut Display, _2: c_ulong, _1: c_int) -> c_int,
-  pub fn XISetFocus (_4: *mut Display, _3: c_int, _2: c_ulong, _1: c_ulong) -> c_int,
-  pub fn XIUndefineCursor (_3: *mut Display, _2: c_int, _1: c_ulong) -> c_int,
-  pub fn XIUngrabButton (_6: *mut Display, _5: c_int, _4: c_int, _3: c_ulong, _2: c_int, _1: *mut XIGrabModifiers) -> c_int,
-  pub fn XIUngrabDevice (_3: *mut Display, _2: c_int, _1: c_ulong) -> c_int,
-  pub fn XIUngrabEnter (_5: *mut Display, _4: c_int, _3: c_ulong, _2: c_int, _1: *mut XIGrabModifiers) -> c_int,
-  pub fn XIUngrabFocusIn (_5: *mut Display, _4: c_int, _3: c_ulong, _2: c_int, _1: *mut XIGrabModifiers) -> c_int,
-  pub fn XIUngrabKeycode (_6: *mut Display, _5: c_int, _4: c_int, _3: c_ulong, _2: c_int, _1: *mut XIGrabModifiers) -> c_int,
-  pub fn XIUngrabTouchBegin (_5: *mut Display, _4: c_int, _3: c_ulong, _2: c_int, _1: *mut XIGrabModifiers) -> c_int,
-  pub fn XIWarpPointer (_10: *mut Display, _9: c_int, _8: c_ulong, _7: c_ulong, _6: c_double, _5: c_double, _4: c_uint, _3: c_uint, _2: c_double, _1: c_double) -> c_int,
+  
   pub fn XListDeviceProperties (_3: *mut Display, _2: *mut XDevice, _1: *mut c_int) -> *mut c_ulong,
   pub fn XListInputDevices (_2: *mut Display, _1: *mut c_int) -> *mut XDeviceInfo,
   pub fn XOpenDevice (_2: *mut Display, _1: c_ulong) -> *mut XDevice,
@@ -119,10 +80,8 @@ globals:
 // types
 //
 
-
 pub enum _XAnyClassinfo {}
 
-pub type BarrierEventID = c_uint;
 pub type XAnyClassPtr = *mut _XAnyClassinfo;
 
 #[derive(Clone, Copy, PartialEq)]
@@ -192,88 +151,6 @@ pub struct XFeedbackState {
 
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
-pub struct XIAddMasterInfo {
-  pub type_: c_int,
-  pub name: *mut c_char,
-  pub send_core: Bool,
-  pub enable: Bool,
-}
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub struct XIAnyClassInfo {
-  pub type_: c_int,
-  pub sourceid: c_int,
-}
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub struct XIAttachSlaveInfo {
-  pub type_: c_int,
-  pub deviceid: c_int,
-  pub new_master: c_int,
-}
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub struct XIBarrierReleasePointerInfo {
-  pub deviceid: c_int,
-  pub barrier: PointerBarrier,
-  pub eventid: BarrierEventID,
-}
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub struct XIButtonState {
-  pub mask_len: c_int,
-  pub mask: *mut c_uchar,
-}
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub struct XIDetachSlaveInfo {
-  pub type_: c_int,
-  pub deviceid: c_int,
-}
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub struct XIDeviceInfo {
-  pub deviceid: c_int,
-  pub name: *mut c_char,
-  pub use_: c_int,
-  pub attachment: c_int,
-  pub enabled: Bool,
-  pub num_classes: c_int,
-  pub classes: *mut *mut XIAnyClassInfo,
-}
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub struct XIEventMask {
-  pub deviceid: c_int,
-  pub mask_len: c_int,
-  pub mask: *mut c_uchar,
-}
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub struct XIGrabModifiers {
-  pub modifiers: c_int,
-  pub status: c_int,
-}
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub struct XIModifierState {
-  pub base: c_int,
-  pub latched: c_int,
-  pub locked: c_int,
-  pub effective: c_int,
-}
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
 pub struct XInputClass {
   pub class: c_uchar,
   pub length: c_uchar,
@@ -286,90 +163,3 @@ pub struct XInputClassInfo {
   pub event_type_base: c_uchar,
 }
 
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub struct XIRemoveMasterInfo {
-  pub type_: c_int,
-  pub deviceid: c_int,
-  pub return_mode: c_int,
-  pub return_pointer: c_int,
-  pub return_keyboard: c_int,
-}
-
-
-//
-// XIAnyHierarchyChangeInfo
-//
-
-
-#[derive(Clone, Copy, PartialEq)]
-#[repr(C)]
-pub struct XIAnyHierarchyChangeInfo {
-  type_: c_int,
-  ptr: *mut (),
-  data: [c_int; 2],
-}
-
-impl XIAnyHierarchyChangeInfo {
-  pub fn get_type (&self) -> c_int {
-    self.type_
-  }
-}
-
-impl From<XIAddMasterInfo> for XIAnyHierarchyChangeInfo {
-  fn from (other: XIAddMasterInfo) -> XIAnyHierarchyChangeInfo {
-    unsafe { transmute_union(&other) }
-  }
-}
-
-impl From<XIAnyHierarchyChangeInfo> for XIAddMasterInfo {
-  fn from (other: XIAnyHierarchyChangeInfo) -> XIAddMasterInfo {
-    unsafe { transmute_union(&other) }
-  }
-}
-
-impl From<XIAttachSlaveInfo> for XIAnyHierarchyChangeInfo {
-  fn from (other: XIAttachSlaveInfo) -> XIAnyHierarchyChangeInfo {
-    unsafe { transmute_union(&other) }
-  }
-}
-
-impl From<XIAnyHierarchyChangeInfo> for XIAttachSlaveInfo {
-  fn from (other: XIAnyHierarchyChangeInfo) -> XIAttachSlaveInfo {
-    unsafe { transmute_union(&other) }
-  }
-}
-
-impl From<XIDetachSlaveInfo> for XIAnyHierarchyChangeInfo {
-  fn from (other: XIDetachSlaveInfo) -> XIAnyHierarchyChangeInfo {
-    unsafe { transmute_union(&other) }
-  }
-}
-
-impl From<XIAnyHierarchyChangeInfo> for XIDetachSlaveInfo {
-  fn from (other: XIAnyHierarchyChangeInfo) -> XIDetachSlaveInfo {
-    unsafe { transmute_union(&other) }
-  }
-}
-
-impl From<XIRemoveMasterInfo> for XIAnyHierarchyChangeInfo {
-  fn from (other: XIRemoveMasterInfo) -> XIAnyHierarchyChangeInfo {
-    unsafe { transmute_union(&other) }
-  }
-}
-
-impl From<XIAnyHierarchyChangeInfo> for XIRemoveMasterInfo {
-  fn from (other: XIAnyHierarchyChangeInfo) -> XIRemoveMasterInfo {
-    unsafe { transmute_union(&other) }
-  }
-}
-
-#[test]
-fn hierarchy_change_info_size_test () {
-  use std::mem::size_of;
-
-  assert!(size_of::<XIAnyHierarchyChangeInfo>() >= size_of::<XIAddMasterInfo>());
-  assert!(size_of::<XIAnyHierarchyChangeInfo>() >= size_of::<XIAttachSlaveInfo>());
-  assert!(size_of::<XIAnyHierarchyChangeInfo>() >= size_of::<XIDetachSlaveInfo>());
-  assert!(size_of::<XIAnyHierarchyChangeInfo>() >= size_of::<XIRemoveMasterInfo>());
-}

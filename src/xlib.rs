@@ -2117,6 +2117,12 @@ pub struct XGenericEventCookie {
   pub data: *mut c_void,
 }
 
+impl From<XEvent> for XGenericEventCookie {
+  fn from (e: XEvent) -> XGenericEventCookie {
+    unsafe { transmute_union(&e) }
+  }
+}
+
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XHostAddress {
@@ -2663,6 +2669,7 @@ pub const SelectionNotify: c_int = 31;
 pub const ColormapNotify: c_int = 32;
 pub const ClientMessage: c_int = 33;
 pub const MappingNotify: c_int = 34;
+pub const GenericEvent: c_int = 35;
 
 // event mask
 pub const NoEventMask: c_long = 0;

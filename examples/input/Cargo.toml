@@ -1,5 +1,5 @@
 [package]
-name = "x11-hello-world"
+name = "x11-input"
 version = "0.0.0"
 
 [dependencies]
@@ -7,8 +7,8 @@ libc = "*"
 
 [dependencies.x11]
 path = "../../x11"
-features = ["xlib"]
+features = ["xlib", "xinput"]
 
 [[bin]]
-name = "x11-hello-world"
+name = "x11-xinput"
 path = "main.rs"

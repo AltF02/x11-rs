@@ -15,3 +15,7 @@ test.x11:
 
 test.x11-dl:
 	cd x11-dl && cargo build --verbose && cargo test --verbose
+
+regenerate:
+	mkdir -p src/generated
+	cd x11 && REGENERATE_BINDINGS=1 cargo build
