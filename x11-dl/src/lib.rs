@@ -28,3 +28,4 @@ pub mod xmu;
 pub mod xrender;
 pub mod xt;
 pub mod xtest;
+pub mod xproto;
