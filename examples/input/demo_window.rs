@@ -82,11 +82,10 @@ impl DemoWindow {
     /// Process events for the window. Window close events are handled automatically,
     /// other events are passed on to |event_handler|
     pub fn run_event_loop<EventHandler>(&mut self, mut event_handler: EventHandler)
-    where EventHandler: FnMut(&xlib::XEvent) {
-        unsafe {
-            let mut event: xlib::XEvent = zeroed();
+        where EventHandler: FnMut(&xlib::XEvent) {
+            let mut event: xlib::XEvent = unsafe{zeroed()};
             loop {
-                xlib::XNextEvent(self.display, &mut event);
+                unsafe{xlib::XNextEvent(self.display, &mut event)};
                 match event.get_type() {
                     xlib::ClientMessage => {
                         let xclient: xlib::XClientMessageEvent = From::from(event);
@@ -105,7 +104,6 @@ impl DemoWindow {
                 }
             }
         }
-    }
 }
 
 impl Drop for DemoWindow {
