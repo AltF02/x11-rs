@@ -81,8 +81,8 @@ impl DemoWindow {
 
     /// Process events for the window. Window close events are handled automatically,
     /// other events are passed on to |event_handler|
-    pub fn run_event_loop<EventHandler>(&mut self, event_handler: EventHandler) 
-    where EventHandler: Fn(&xlib::XEvent) {
+    pub fn run_event_loop<EventHandler>(&mut self, mut event_handler: EventHandler)
+    where EventHandler: FnMut(&xlib::XEvent) {
         unsafe {
             let mut event: xlib::XEvent = zeroed();
             loop {
