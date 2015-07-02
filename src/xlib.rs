@@ -3081,7 +3081,7 @@ pub const LSBFirst: c_int = 0;
 pub const MSBFirst: c_int = 1;
 
 // Reserved resource and constant definitions
-pub const None: c_int = 0;
+//pub const None: c_int = 0;
 pub const ParentRelative: c_int = 1;
 pub const CopyFromParent: c_int = 0;
 pub const PointerWindow: c_int = 0;
@@ -3097,3 +3097,53 @@ pub const NoSymbol: c_int = 0;
 /* Definitions for the X window system likely to be used by applications */
 pub const X_PROTOCOL: c_int = 11;
 pub const X_PROTOCOL_REVISION: c_int = 0;
+
+pub const XNVaNestedList: &'static str = "XNVaNestedList";
+pub const XNQueryInputStyle: &'static str = "queryInputStyle";
+pub const XNClientWindow: &'static str = "clientWindow";
+pub const XNInputStyle: &'static str = "inputStyle";
+pub const XNFocusWindow: &'static str = "focusWindow";
+pub const XNResourceName: &'static str = "resourceName";
+pub const XNResourceClass: &'static str = "resourceClass";
+pub const XNGeometryCallback: &'static str = "geometryCallback";
+pub const XNDestroyCallback: &'static str = "destroyCallback";
+pub const XNFilterEvents: &'static str = "filterEvents";
+pub const XNPreeditStartCallback: &'static str = "preeditStartCallback";
+pub const XNPreeditDoneCallback: &'static str = "preeditDoneCallback";
+pub const XNPreeditDrawCallback: &'static str = "preeditDrawCallback";
+pub const XNPreeditCaretCallback: &'static str = "preeditCaretCallback";
+pub const XNPreeditStateNotifyCallback: &'static str = "preeditStateNotifyCallback";
+pub const XNPreeditAttributes: &'static str = "preeditAttributes";
+pub const XNStatusStartCallback: &'static str = "statusStartCallback";
+pub const XNStatusDoneCallback: &'static str = "statusDoneCallback";
+pub const XNStatusDrawCallback: &'static str = "statusDrawCallback";
+pub const XNStatusAttributes: &'static str = "statusAttributes";
+pub const XNArea: &'static str = "area";
+pub const XNAreaNeeded: &'static str = "areaNeeded";
+pub const XNSpotLocation: &'static str = "spotLocation";
+pub const XNColormap: &'static str = "colorMap";
+pub const XNStdColormap: &'static str = "stdColorMap";
+pub const XNForeground: &'static str = "foreground";
+pub const XNBackground: &'static str = "background";
+pub const XNBackgroundPixmap: &'static str = "backgroundPixmap";
+pub const XNFontSet: &'static str = "fontSet";
+pub const XNLineSpace: &'static str = "lineSpace";
+pub const XNCursor: &'static str = "cursor";
+
+pub const XNQueryIMValuesList: &'static str = "queryIMValuesList";
+pub const XNQueryICValuesList: &'static str = "queryICValuesList";
+pub const XNVisiblePosition: &'static str = "visiblePosition";
+pub const XNR6PreeditCallback: &'static str = "r6PreeditCallback";
+pub const XNStringConversionCallback: &'static str = "stringConversionCallback";
+pub const XNStringConversion: &'static str = "stringConversion";
+pub const XNResetState: &'static str = "resetState";
+pub const XNHotKey: &'static str = "hotKey";
+pub const XNHotKeyState: &'static str = "hotKeyState";
+pub const XNPreeditState: &'static str = "preeditState";
+pub const XNSeparatorofNestedList: &'static str = "separatorofNestedList";
+
+pub const XBufferOverflow: i32 = -1;
+pub const XLookupNone: i32 = 1;
+pub const XLookupChars: i32 = 2;
+pub const XLookupKeySym: i32 = 3;
+pub const XLookupBoth: i32 = 4;
