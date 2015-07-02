@@ -20,6 +20,7 @@ pub mod xf86vmode;
 pub mod xfixes;
 pub mod xinerama;
 pub mod xinput;
+pub mod xinput2;
 pub mod xlib;
 pub mod xmu;
 pub mod xrender;

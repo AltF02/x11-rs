@@ -2117,6 +2117,12 @@ pub struct XGenericEventCookie {
   pub data: *mut c_void,
 }
 
+impl From<XEvent> for XGenericEventCookie {
+  fn from (e: XEvent) -> XGenericEventCookie {
+    unsafe { transmute_union(&e) }
+  }
+}
+
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XHostAddress {
