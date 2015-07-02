@@ -12,6 +12,7 @@ fn main () {
   if cfg!(feature="xinput") { let _ = pkg_config::find_library("xi"); }
   if cfg!(feature="xlib") { let _ = pkg_config::find_library("x11"); }
   if cfg!(feature="xmu") { let _ = pkg_config::find_library("xmu"); }
+  if cfg!(feature="xrecord") { let _ = pkg_config::find_library("xtst"); }
   if cfg!(feature="xrender") { let _ = pkg_config::find_library("xrender"); }
   if cfg!(feature="xt") { let _ = pkg_config::find_library("xt"); }
   if cfg!(feature="xtest") { let _ = pkg_config::find_library("xtst"); }

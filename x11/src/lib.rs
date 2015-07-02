@@ -23,6 +23,7 @@ pub mod xinput;
 pub mod xinput2;
 pub mod xlib;
 pub mod xmu;
+pub mod xrecord;
 pub mod xrender;
 pub mod xt;
 pub mod xtest;
