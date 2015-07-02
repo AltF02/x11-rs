@@ -74,6 +74,7 @@ pub struct XF86VidModeModeInfo {
   pub hsyncstart: c_ushort,
   pub hsyncend: c_ushort,
   pub htotal: c_ushort,
+  pub hskew: c_ushort,
   pub vdisplay: c_ushort,
   pub vsyncstart: c_ushort,
   pub vsyncend: c_ushort,
