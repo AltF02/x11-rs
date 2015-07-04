@@ -1,5 +1,5 @@
 [package]
-name = "_"
+name = "hello_world"
 version = "0.0.0"
 
 [dependencies]
@@ -10,5 +10,5 @@ path = "../../x11"
 features = ["xlib"]
 
 [[bin]]
-name = "_"
+name = "hello_world"
 path = "main.rs"

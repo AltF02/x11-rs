@@ -36,12 +36,16 @@ macro_rules! x11_link {
     impl $struct_name {
       pub fn open () -> Result<$struct_name, ::error::OpenError> {
         unsafe {
-          let mut s: $struct_name = ::std::mem::uninitialized();
-          s.lib = try!(::link::open_lib(&[$($lib_name),*]));
-          $(s.$fn_name = ::std::mem::transmute(try!(::link::get_sym(&s.lib, stringify!($fn_name))));)*
-          $(s.$vfn_name = ::std::mem::transmute(try!(::link::get_sym(&s.lib, stringify!($vfn_name))));)*
-          $(s.$var_name = ::std::mem::transmute(try!(::link::get_sym(&s.lib, stringify!($var_name))));)*
-          Ok(s)
+          let lib = try!(::link::open_lib(&[$($lib_name),*]));
+          $(let $fn_name = try!(::link::get_sym(&lib, stringify!($fn_name)));)*
+          $(let $vfn_name = try!(::link::get_sym(&lib, stringify!($vfn_name)));)*
+          $(let $var_name = try!(::link::get_sym(&lib, stringify!($var_name)));)*
+          return Ok($struct_name {
+            lib: lib,
+            $($fn_name: ::std::mem::transmute($fn_name),)*
+            $($vfn_name: ::std::mem::transmute($vfn_name),)*
+            $($var_name: $var_name as *mut $var_type,)*
+          });
         }
       }
     }

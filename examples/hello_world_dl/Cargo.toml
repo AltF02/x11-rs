@@ -1,5 +1,5 @@
 [package]
-name = "_"
+name = "hello_world_dl"
 version = "0.0.0"
 
 [dependencies]
@@ -9,5 +9,5 @@ libc = "*"
 path = "../../x11-dl"
 
 [[bin]]
-name = "_"
+name = "hello_world_dl"
 path = "main.rs"
