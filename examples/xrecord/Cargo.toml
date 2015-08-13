@@ -1,5 +1,5 @@
 [package]
-name = "_"
+name = "x11-xrecord"
 version = "0.0.0"
 
 [dependencies]
@@ -10,5 +10,5 @@ path = "../../x11"
 features = ["xlib", "xrecord"]
 
 [[bin]]
-name = "_"
+name = "x11-xrecord"
 path = "main.rs"
