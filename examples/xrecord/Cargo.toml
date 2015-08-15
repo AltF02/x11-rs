@@ -1,0 +1,14 @@
+[package]
+name = "x11-xrecord"
+version = "0.0.0"
+
+[dependencies]
+libc = "*"
+
+[dependencies.x11]
+path = "../../x11"
+features = ["xlib", "xrecord"]
+
+[[bin]]
+name = "x11-xrecord"
+path = "main.rs"
