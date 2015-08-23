@@ -1,17 +1,17 @@
-all: tests docs
+all: build-x11 build-x11-dl
 
-docs: docs.x11 docs.x11-dl
+build: build-x11 build-x11-dl
 
-docs.x11:
-	cd x11 && cargo doc --verbose
+build-x11:
+	cd x11 && cargo build
 
-docs.x11-dl:
-	cd x11-dl && cargo doc --verbose
+build-x11-dl:
+	cd x11-dl && cargo build
 
-tests: test.x11 test.x11-dl
+tests: tests-x11 tests-x11-dl
 
-test.x11:
-	cd x11 && cargo build --verbose && cargo test --verbose
+tests-x11:
+	cd x11 && cargo test
 
-test.x11-dl:
-	cd x11-dl && cargo build --verbose && cargo test --verbose
+tests-x11-dl:
+	cd x11-dl && cargo test

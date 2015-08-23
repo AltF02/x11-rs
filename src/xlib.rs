@@ -2151,7 +2151,7 @@ pub struct XImage {
   pub format: c_int,
   pub data: *mut c_char,
   pub byte_order: c_int,
-  pub bitmap_unity: c_int,
+  pub bitmap_unit: c_int,
   pub bitmap_bit_order: c_int,
   pub bitmap_pad: c_int,
   pub depth: c_int,
