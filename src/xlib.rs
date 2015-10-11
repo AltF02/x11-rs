@@ -1447,11 +1447,11 @@ impl From<XEvent> for XDestroyWindowEvent {
 pub struct XErrorEvent {
   pub type_: c_int,
   pub display: *mut Display,
+  pub resourceid: XID,
   pub serial: c_ulong,
   pub error_code: c_uchar,
   pub request_code: c_uchar,
   pub minor_code: c_uchar,
-  pub resourceid: XID,
 }
 
 impl From<XEvent> for XErrorEvent {
