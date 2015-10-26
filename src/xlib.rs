@@ -2450,6 +2450,10 @@ pub struct ClientMessageData {
 }
 
 impl ClientMessageData {
+  pub fn new() -> ClientMessageData {
+    ClientMessageData { longs: [0; 5] }
+  }
+
   pub fn get_byte (&self, index: usize) -> c_char {
     unsafe {
       from_raw_parts(&self.longs[0] as *const c_long as *const c_char, 20)[index]
