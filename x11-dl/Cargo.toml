@@ -7,5 +7,5 @@ license = "CC0-1.0"
 repository = "https://github.com/Daggerbot/x11-rs.git"
 
 [dependencies]
-dylib = "*"
-libc = "*"
+dylib = "0.0.1"
+libc = "0.1"
