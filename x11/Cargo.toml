@@ -24,4 +24,4 @@ xtest = []
 libc = "0.1"
 
 [build-dependencies]
-pkg-config = "*"
+pkg-config = "0.3.6"
