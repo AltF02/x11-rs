@@ -18,7 +18,7 @@ pub unsafe fn mem_eq<T: Sized> (a: &T, b: &T) -> bool {
   let a_addr = a as *const T as usize;
   let b_addr = b as *const T as usize;
 
-  for i in (0..size_of::<T>()) {
+  for i in 0..size_of::<T>() {
     if *((a_addr + i) as *const u8) != *((b_addr + i) as *const u8) {
       return false;
     }
