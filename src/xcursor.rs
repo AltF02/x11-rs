@@ -2,7 +2,7 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use libc::{
+use std::os::raw::{
   c_char,
   c_int,
   c_long,
@@ -10,8 +10,8 @@ use libc::{
   c_uint,
   c_ulong,
   c_void,
-  FILE,
 };
+use libc::FILE;
 
 use ::xlib::{
   Cursor,

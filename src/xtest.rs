@@ -2,7 +2,7 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use libc::{
+use std::os::raw::{
   c_int,
   c_uint,
   c_ulong,

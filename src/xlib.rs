@@ -7,8 +7,7 @@ use std::slice::{
   from_raw_parts,
   from_raw_parts_mut,
 };
-
-use libc::{
+use std::os::raw::{
   c_char,
   c_double,
   c_int,
@@ -19,8 +18,9 @@ use libc::{
   c_ulong,
   c_ushort,
   c_void,
-  wchar_t,
 };
+
+use libc::wchar_t;
 
 use ::internal::{
   mem_eq,

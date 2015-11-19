@@ -1,6 +1,6 @@
 use xfixes::PointerBarrier;
 use xlib::{Atom, Display, Time, Window};
-use libc::{c_int, c_uint, c_long, c_double, c_ulong, c_uchar};
+use std::os::raw::{c_int, c_uint, c_long, c_double, c_ulong, c_uchar};
 
 //
 // macro translations
@@ -9,15 +9,15 @@ fn mask_byte(mask_flag: i32) -> usize {
     (mask_flag >> 3) as usize
 }
 
-pub fn XISetMask(mask: &mut [::libc::c_uchar], event: i32) {
+pub fn XISetMask(mask: &mut [::std::os::raw::c_uchar], event: i32) {
     mask[mask_byte(event)] |= 1 << (event & 7);
 }
 
-pub fn XIClearMask(mask: &mut [::libc::c_uchar], event: i32) {
+pub fn XIClearMask(mask: &mut [::std::os::raw::c_uchar], event: i32) {
     mask[mask_byte(event)] &= 1 << (event & 7);
 }
 
-pub fn XIMaskIsSet(mask: &[::libc::c_uchar], event: i32) -> bool {
+pub fn XIMaskIsSet(mask: &[::std::os::raw::c_uchar], event: i32) -> bool {
     (mask[mask_byte(event)] & (1 << (event & 7))) != 0
 }
 
@@ -218,10 +218,10 @@ pub const XI_BarrierLeaveMask: i32 = (1 << XI_BarrierLeave);
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed1 {
-    pub _type: ::libc::c_int,
-    pub name: *mut ::libc::c_char,
-    pub send_core: ::libc::c_int,
-    pub enable: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub name: *mut ::std::os::raw::c_char,
+    pub send_core: ::std::os::raw::c_int,
+    pub enable: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed1 {
     fn clone(&self) -> Self { *self }
@@ -233,11 +233,11 @@ pub type XIAddMasterInfo = Struct_Unnamed1;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed2 {
-    pub _type: ::libc::c_int,
-    pub deviceid: ::libc::c_int,
-    pub return_mode: ::libc::c_int,
-    pub return_pointer: ::libc::c_int,
-    pub return_keyboard: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub deviceid: ::std::os::raw::c_int,
+    pub return_mode: ::std::os::raw::c_int,
+    pub return_pointer: ::std::os::raw::c_int,
+    pub return_keyboard: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed2 {
     fn clone(&self) -> Self { *self }
@@ -249,9 +249,9 @@ pub type XIRemoveMasterInfo = Struct_Unnamed2;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed3 {
-    pub _type: ::libc::c_int,
-    pub deviceid: ::libc::c_int,
-    pub new_master: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub deviceid: ::std::os::raw::c_int,
+    pub new_master: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed3 {
     fn clone(&self) -> Self { *self }
@@ -263,8 +263,8 @@ pub type XIAttachSlaveInfo = Struct_Unnamed3;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed4 {
-    pub _type: ::libc::c_int,
-    pub deviceid: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub deviceid: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed4 {
     fn clone(&self) -> Self { *self }
@@ -279,7 +279,7 @@ pub struct Union_Unnamed5 {
     pub _bindgen_data_: [u64; 3usize],
 }
 impl Union_Unnamed5 {
-    pub unsafe fn _type(&mut self) -> *mut ::libc::c_int {
+    pub unsafe fn _type(&mut self) -> *mut ::std::os::raw::c_int {
         let raw: *mut u8 = ::std::mem::transmute(&self._bindgen_data_);
         ::std::mem::transmute(raw.offset(0))
     }
@@ -310,10 +310,10 @@ pub type XIAnyHierarchyChangeInfo = Union_Unnamed5;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed6 {
-    pub base: ::libc::c_int,
-    pub latched: ::libc::c_int,
-    pub locked: ::libc::c_int,
-    pub effective: ::libc::c_int,
+    pub base: ::std::os::raw::c_int,
+    pub latched: ::std::os::raw::c_int,
+    pub locked: ::std::os::raw::c_int,
+    pub effective: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed6 {
     fn clone(&self) -> Self { *self }
@@ -326,8 +326,8 @@ pub type XIGroupState = XIModifierState;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed7 {
-    pub mask_len: ::libc::c_int,
-    pub mask: *mut ::libc::c_uchar,
+    pub mask_len: ::std::os::raw::c_int,
+    pub mask: *mut ::std::os::raw::c_uchar,
 }
 impl ::std::clone::Clone for Struct_Unnamed7 {
     fn clone(&self) -> Self { *self }
@@ -339,9 +339,9 @@ pub type XIButtonState = Struct_Unnamed7;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed8 {
-    pub mask_len: ::libc::c_int,
-    pub mask: *mut ::libc::c_uchar,
-    pub values: *mut ::libc::c_double,
+    pub mask_len: ::std::os::raw::c_int,
+    pub mask: *mut ::std::os::raw::c_uchar,
+    pub values: *mut ::std::os::raw::c_double,
 }
 impl ::std::clone::Clone for Struct_Unnamed8 {
     fn clone(&self) -> Self { *self }
@@ -353,9 +353,9 @@ pub type XIValuatorState = Struct_Unnamed8;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed9 {
-    pub deviceid: ::libc::c_int,
-    pub mask_len: ::libc::c_int,
-    pub mask: *mut ::libc::c_uchar,
+    pub deviceid: ::std::os::raw::c_int,
+    pub mask_len: ::std::os::raw::c_int,
+    pub mask: *mut ::std::os::raw::c_uchar,
 }
 impl ::std::clone::Clone for Struct_Unnamed9 {
     fn clone(&self) -> Self { *self }
@@ -367,8 +367,8 @@ pub type XIEventMask = Struct_Unnamed9;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed10 {
-    pub _type: ::libc::c_int,
-    pub sourceid: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub sourceid: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed10 {
     fn clone(&self) -> Self { *self }
@@ -380,9 +380,9 @@ pub type XIAnyClassInfo = Struct_Unnamed10;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed11 {
-    pub _type: ::libc::c_int,
-    pub sourceid: ::libc::c_int,
-    pub num_buttons: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub sourceid: ::std::os::raw::c_int,
+    pub num_buttons: ::std::os::raw::c_int,
     pub labels: *mut Atom,
     pub state: XIButtonState,
 }
@@ -396,10 +396,10 @@ pub type XIButtonClassInfo = Struct_Unnamed11;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed12 {
-    pub _type: ::libc::c_int,
-    pub sourceid: ::libc::c_int,
-    pub num_keycodes: ::libc::c_int,
-    pub keycodes: *mut ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub sourceid: ::std::os::raw::c_int,
+    pub num_keycodes: ::std::os::raw::c_int,
+    pub keycodes: *mut ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed12 {
     fn clone(&self) -> Self { *self }
@@ -411,15 +411,15 @@ pub type XIKeyClassInfo = Struct_Unnamed12;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed13 {
-    pub _type: ::libc::c_int,
-    pub sourceid: ::libc::c_int,
-    pub number: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub sourceid: ::std::os::raw::c_int,
+    pub number: ::std::os::raw::c_int,
     pub label: Atom,
-    pub min: ::libc::c_double,
-    pub max: ::libc::c_double,
-    pub value: ::libc::c_double,
-    pub resolution: ::libc::c_int,
-    pub mode: ::libc::c_int,
+    pub min: ::std::os::raw::c_double,
+    pub max: ::std::os::raw::c_double,
+    pub value: ::std::os::raw::c_double,
+    pub resolution: ::std::os::raw::c_int,
+    pub mode: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed13 {
     fn clone(&self) -> Self { *self }
@@ -431,12 +431,12 @@ pub type XIValuatorClassInfo = Struct_Unnamed13;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed14 {
-    pub _type: ::libc::c_int,
-    pub sourceid: ::libc::c_int,
-    pub number: ::libc::c_int,
-    pub scroll_type: ::libc::c_int,
-    pub increment: ::libc::c_double,
-    pub flags: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub sourceid: ::std::os::raw::c_int,
+    pub number: ::std::os::raw::c_int,
+    pub scroll_type: ::std::os::raw::c_int,
+    pub increment: ::std::os::raw::c_double,
+    pub flags: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed14 {
     fn clone(&self) -> Self { *self }
@@ -448,10 +448,10 @@ pub type XIScrollClassInfo = Struct_Unnamed14;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed15 {
-    pub _type: ::libc::c_int,
-    pub sourceid: ::libc::c_int,
-    pub mode: ::libc::c_int,
-    pub num_touches: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub sourceid: ::std::os::raw::c_int,
+    pub mode: ::std::os::raw::c_int,
+    pub num_touches: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed15 {
     fn clone(&self) -> Self { *self }
@@ -463,12 +463,12 @@ pub type XITouchClassInfo = Struct_Unnamed15;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed16 {
-    pub deviceid: ::libc::c_int,
-    pub name: *mut ::libc::c_char,
-    pub _use: ::libc::c_int,
-    pub attachment: ::libc::c_int,
-    pub enabled: ::libc::c_int,
-    pub num_classes: ::libc::c_int,
+    pub deviceid: ::std::os::raw::c_int,
+    pub name: *mut ::std::os::raw::c_char,
+    pub _use: ::std::os::raw::c_int,
+    pub attachment: ::std::os::raw::c_int,
+    pub enabled: ::std::os::raw::c_int,
+    pub num_classes: ::std::os::raw::c_int,
     pub classes: *mut *mut XIAnyClassInfo,
 }
 impl ::std::clone::Clone for Struct_Unnamed16 {
@@ -481,8 +481,8 @@ pub type XIDeviceInfo = Struct_Unnamed16;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed17 {
-    pub modifiers: ::libc::c_int,
-    pub status: ::libc::c_int,
+    pub modifiers: ::std::os::raw::c_int,
+    pub status: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed17 {
     fn clone(&self) -> Self { *self }
@@ -491,11 +491,11 @@ impl ::std::default::Default for Struct_Unnamed17 {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
 pub type XIGrabModifiers = Struct_Unnamed17;
-pub type BarrierEventID = ::libc::c_uint;
+pub type BarrierEventID = ::std::os::raw::c_uint;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed18 {
-    pub deviceid: ::libc::c_int,
+    pub deviceid: ::std::os::raw::c_int,
     pub barrier: PointerBarrier,
     pub eventid: BarrierEventID,
 }
@@ -509,12 +509,12 @@ pub type XIBarrierReleasePointerInfo = Struct_Unnamed18;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed19 {
-    pub _type: ::libc::c_int,
-    pub serial: ::libc::c_ulong,
-    pub send_event: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub serial: ::std::os::raw::c_ulong,
+    pub send_event: ::std::os::raw::c_int,
     pub display: *mut Display,
-    pub extension: ::libc::c_int,
-    pub evtype: ::libc::c_int,
+    pub extension: ::std::os::raw::c_int,
+    pub evtype: ::std::os::raw::c_int,
     pub time: Time,
 }
 impl ::std::clone::Clone for Struct_Unnamed19 {
@@ -527,11 +527,11 @@ pub type XIEvent = Struct_Unnamed19;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed20 {
-    pub deviceid: ::libc::c_int,
-    pub attachment: ::libc::c_int,
-    pub _use: ::libc::c_int,
-    pub enabled: ::libc::c_int,
-    pub flags: ::libc::c_int,
+    pub deviceid: ::std::os::raw::c_int,
+    pub attachment: ::std::os::raw::c_int,
+    pub _use: ::std::os::raw::c_int,
+    pub enabled: ::std::os::raw::c_int,
+    pub flags: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed20 {
     fn clone(&self) -> Self { *self }
@@ -543,15 +543,15 @@ pub type XIHierarchyInfo = Struct_Unnamed20;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed21 {
-    pub _type: ::libc::c_int,
-    pub serial: ::libc::c_ulong,
-    pub send_event: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub serial: ::std::os::raw::c_ulong,
+    pub send_event: ::std::os::raw::c_int,
     pub display: *mut Display,
-    pub extension: ::libc::c_int,
-    pub evtype: ::libc::c_int,
+    pub extension: ::std::os::raw::c_int,
+    pub evtype: ::std::os::raw::c_int,
     pub time: Time,
-    pub flags: ::libc::c_int,
-    pub num_info: ::libc::c_int,
+    pub flags: ::std::os::raw::c_int,
+    pub num_info: ::std::os::raw::c_int,
     pub info: *mut XIHierarchyInfo,
 }
 impl ::std::clone::Clone for Struct_Unnamed21 {
@@ -564,17 +564,17 @@ pub type XIHierarchyEvent = Struct_Unnamed21;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed22 {
-    pub _type: ::libc::c_int,
-    pub serial: ::libc::c_ulong,
-    pub send_event: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub serial: ::std::os::raw::c_ulong,
+    pub send_event: ::std::os::raw::c_int,
     pub display: *mut Display,
-    pub extension: ::libc::c_int,
-    pub evtype: ::libc::c_int,
+    pub extension: ::std::os::raw::c_int,
+    pub evtype: ::std::os::raw::c_int,
     pub time: Time,
-    pub deviceid: ::libc::c_int,
-    pub sourceid: ::libc::c_int,
-    pub reason: ::libc::c_int,
-    pub num_classes: ::libc::c_int,
+    pub deviceid: ::std::os::raw::c_int,
+    pub sourceid: ::std::os::raw::c_int,
+    pub reason: ::std::os::raw::c_int,
+    pub num_classes: ::std::os::raw::c_int,
     pub classes: *mut *mut XIAnyClassInfo,
 }
 impl ::std::clone::Clone for Struct_Unnamed22 {
@@ -587,24 +587,24 @@ pub type XIDeviceChangedEvent = Struct_Unnamed22;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed23 {
-    pub _type: ::libc::c_int,
-    pub serial: ::libc::c_ulong,
-    pub send_event: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub serial: ::std::os::raw::c_ulong,
+    pub send_event: ::std::os::raw::c_int,
     pub display: *mut Display,
-    pub extension: ::libc::c_int,
-    pub evtype: ::libc::c_int,
+    pub extension: ::std::os::raw::c_int,
+    pub evtype: ::std::os::raw::c_int,
     pub time: Time,
-    pub deviceid: ::libc::c_int,
-    pub sourceid: ::libc::c_int,
-    pub detail: ::libc::c_int,
+    pub deviceid: ::std::os::raw::c_int,
+    pub sourceid: ::std::os::raw::c_int,
+    pub detail: ::std::os::raw::c_int,
     pub root: Window,
     pub event: Window,
     pub child: Window,
-    pub root_x: ::libc::c_double,
-    pub root_y: ::libc::c_double,
-    pub event_x: ::libc::c_double,
-    pub event_y: ::libc::c_double,
-    pub flags: ::libc::c_int,
+    pub root_x: ::std::os::raw::c_double,
+    pub root_y: ::std::os::raw::c_double,
+    pub event_x: ::std::os::raw::c_double,
+    pub event_y: ::std::os::raw::c_double,
+    pub flags: ::std::os::raw::c_int,
     pub buttons: XIButtonState,
     pub valuators: XIValuatorState,
     pub mods: XIModifierState,
@@ -620,19 +620,19 @@ pub type XIDeviceEvent = Struct_Unnamed23;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed24 {
-    pub _type: ::libc::c_int,
-    pub serial: ::libc::c_ulong,
-    pub send_event: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub serial: ::std::os::raw::c_ulong,
+    pub send_event: ::std::os::raw::c_int,
     pub display: *mut Display,
-    pub extension: ::libc::c_int,
-    pub evtype: ::libc::c_int,
+    pub extension: ::std::os::raw::c_int,
+    pub evtype: ::std::os::raw::c_int,
     pub time: Time,
-    pub deviceid: ::libc::c_int,
-    pub sourceid: ::libc::c_int,
-    pub detail: ::libc::c_int,
-    pub flags: ::libc::c_int,
+    pub deviceid: ::std::os::raw::c_int,
+    pub sourceid: ::std::os::raw::c_int,
+    pub detail: ::std::os::raw::c_int,
+    pub flags: ::std::os::raw::c_int,
     pub valuators: XIValuatorState,
-    pub raw_values: *mut ::libc::c_double,
+    pub raw_values: *mut ::std::os::raw::c_double,
 }
 impl ::std::clone::Clone for Struct_Unnamed24 {
     fn clone(&self) -> Self { *self }
@@ -644,26 +644,26 @@ pub type XIRawEvent = Struct_Unnamed24;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed25 {
-    pub _type: ::libc::c_int,
-    pub serial: ::libc::c_ulong,
-    pub send_event: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub serial: ::std::os::raw::c_ulong,
+    pub send_event: ::std::os::raw::c_int,
     pub display: *mut Display,
-    pub extension: ::libc::c_int,
-    pub evtype: ::libc::c_int,
+    pub extension: ::std::os::raw::c_int,
+    pub evtype: ::std::os::raw::c_int,
     pub time: Time,
-    pub deviceid: ::libc::c_int,
-    pub sourceid: ::libc::c_int,
-    pub detail: ::libc::c_int,
+    pub deviceid: ::std::os::raw::c_int,
+    pub sourceid: ::std::os::raw::c_int,
+    pub detail: ::std::os::raw::c_int,
     pub root: Window,
     pub event: Window,
     pub child: Window,
-    pub root_x: ::libc::c_double,
-    pub root_y: ::libc::c_double,
-    pub event_x: ::libc::c_double,
-    pub event_y: ::libc::c_double,
-    pub mode: ::libc::c_int,
-    pub focus: ::libc::c_int,
-    pub same_screen: ::libc::c_int,
+    pub root_x: ::std::os::raw::c_double,
+    pub root_y: ::std::os::raw::c_double,
+    pub event_x: ::std::os::raw::c_double,
+    pub event_y: ::std::os::raw::c_double,
+    pub mode: ::std::os::raw::c_int,
+    pub focus: ::std::os::raw::c_int,
+    pub same_screen: ::std::os::raw::c_int,
     pub buttons: XIButtonState,
     pub mods: XIModifierState,
     pub group: XIGroupState,
@@ -681,16 +681,16 @@ pub type XIFocusOutEvent = XIEnterEvent;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed26 {
-    pub _type: ::libc::c_int,
-    pub serial: ::libc::c_ulong,
-    pub send_event: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub serial: ::std::os::raw::c_ulong,
+    pub send_event: ::std::os::raw::c_int,
     pub display: *mut Display,
-    pub extension: ::libc::c_int,
-    pub evtype: ::libc::c_int,
+    pub extension: ::std::os::raw::c_int,
+    pub evtype: ::std::os::raw::c_int,
     pub time: Time,
-    pub deviceid: ::libc::c_int,
+    pub deviceid: ::std::os::raw::c_int,
     pub property: Atom,
-    pub what: ::libc::c_int,
+    pub what: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed26 {
     fn clone(&self) -> Self { *self }
@@ -702,20 +702,20 @@ pub type XIPropertyEvent = Struct_Unnamed26;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed27 {
-    pub _type: ::libc::c_int,
-    pub serial: ::libc::c_ulong,
-    pub send_event: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub serial: ::std::os::raw::c_ulong,
+    pub send_event: ::std::os::raw::c_int,
     pub display: *mut Display,
-    pub extension: ::libc::c_int,
-    pub evtype: ::libc::c_int,
+    pub extension: ::std::os::raw::c_int,
+    pub evtype: ::std::os::raw::c_int,
     pub time: Time,
-    pub deviceid: ::libc::c_int,
-    pub sourceid: ::libc::c_int,
-    pub touchid: ::libc::c_uint,
+    pub deviceid: ::std::os::raw::c_int,
+    pub sourceid: ::std::os::raw::c_int,
+    pub touchid: ::std::os::raw::c_uint,
     pub root: Window,
     pub event: Window,
     pub child: Window,
-    pub flags: ::libc::c_int,
+    pub flags: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for Struct_Unnamed27 {
     fn clone(&self) -> Self { *self }
@@ -727,23 +727,23 @@ pub type XITouchOwnershipEvent = Struct_Unnamed27;
 #[repr(C)]
 #[derive(Copy)]
 pub struct Struct_Unnamed28 {
-    pub _type: ::libc::c_int,
-    pub serial: ::libc::c_ulong,
-    pub send_event: ::libc::c_int,
+    pub _type: ::std::os::raw::c_int,
+    pub serial: ::std::os::raw::c_ulong,
+    pub send_event: ::std::os::raw::c_int,
     pub display: *mut Display,
-    pub extension: ::libc::c_int,
-    pub evtype: ::libc::c_int,
+    pub extension: ::std::os::raw::c_int,
+    pub evtype: ::std::os::raw::c_int,
     pub time: Time,
-    pub deviceid: ::libc::c_int,
-    pub sourceid: ::libc::c_int,
+    pub deviceid: ::std::os::raw::c_int,
+    pub sourceid: ::std::os::raw::c_int,
     pub event: Window,
     pub root: Window,
-    pub root_x: ::libc::c_double,
-    pub root_y: ::libc::c_double,
-    pub dx: ::libc::c_double,
-    pub dy: ::libc::c_double,
-    pub dtime: ::libc::c_int,
-    pub flags: ::libc::c_int,
+    pub root_x: ::std::os::raw::c_double,
+    pub root_y: ::std::os::raw::c_double,
+    pub dx: ::std::os::raw::c_double,
+    pub dy: ::std::os::raw::c_double,
+    pub dtime: ::std::os::raw::c_int,
+    pub flags: ::std::os::raw::c_int,
     pub barrier: PointerBarrier,
     pub eventid: BarrierEventID,
 }

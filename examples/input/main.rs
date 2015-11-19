@@ -14,7 +14,7 @@ use std::ffi::{CString};
 use std::mem::{transmute};
 use std::slice::from_raw_parts;
 use x11::{xlib, xinput2};
-use libc::{c_uchar, c_int, c_uint};
+use std::os::raw::{c_uchar, c_int, c_uint};
 
 mod demo_window;
 use demo_window::DemoWindow;

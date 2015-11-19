@@ -9,7 +9,7 @@ use std::ptr::{
   null_mut,
 };
 
-use libc::{
+use std::os::raw::{
     c_int
 };
 use x11::xlib;

@@ -2,7 +2,7 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use libc::{
+use std::os::raw::{
   c_char,
   c_int,
   c_uchar,
@@ -159,7 +159,7 @@ pub const GLX_STATIC_GRAY: c_int = 0x8007;
 
 
 pub mod arb {
-  use libc::c_int;
+  use std::os::raw::c_int;
 
   // context attributes
   pub const GLX_CONTEXT_MAJOR_VERSION_ARB: c_int = 0x2091;
@@ -183,7 +183,7 @@ pub mod arb {
 
 
 pub mod ext {
-  use libc::c_int;
+  use std::os::raw::c_int;
 
   // drawable attributes
   pub const GLX_SWAP_INTERVAL_EXT: c_int = 0x20f1;

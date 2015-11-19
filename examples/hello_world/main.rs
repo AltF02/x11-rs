@@ -10,7 +10,7 @@ use std::ptr::{
   null_mut,
 };
 
-use libc::c_uint;
+use std::os::raw::c_uint;
 use x11::xlib;
 
 const TITLE: &'static str = "Hello World!";

@@ -7,7 +7,7 @@ use std::ptr::{
   null_mut,
 };
 use std::mem::{zeroed};
-use libc::{c_uint};
+use std::os::raw::{c_uint};
 use x11::{xlib};
 
 /// Provides a basic framework for connecting to an X Display,
