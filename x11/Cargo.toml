@@ -1,6 +1,6 @@
 [package]
 name = "x11"
-version = "2.2.1"
+version = "2.3.0"
 authors = ["Daggerbot <daggerbot@gmail.com>"]
 description = "X11 library bindings for Rust"
 license = "CC0-1.0"
@@ -21,7 +21,7 @@ xt = []
 xtest = []
 
 [dependencies]
-libc = "0.1"
+libc = "0.2"
 
 [build-dependencies]
 pkg-config = "0.3.6"
