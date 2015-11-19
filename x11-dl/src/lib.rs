@@ -2,9 +2,11 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
+#![allow(unknown_lints)]
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 #![allow(non_upper_case_globals)]
+#![allow(raw_pointer_derive)]
 
 extern crate dylib;
 extern crate libc;
