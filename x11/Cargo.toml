@@ -1,6 +1,6 @@
 [package]
 name = "x11"
-version = "2.3.1"
+version = "2.4.0"
 authors = ["Daggerbot <daggerbot@gmail.com>"]
 description = "X11 library bindings for Rust"
 license = "CC0-1.0"
@@ -15,6 +15,7 @@ xinerama = []
 xinput = []
 xlib = []
 xmu = []
+xrandr = []
 xrecord = []
 xrender = []
 xt = []
