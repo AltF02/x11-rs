@@ -25,8 +25,12 @@ pub mod xinput;
 pub mod xinput2;
 pub mod xlib;
 pub mod xmu;
-pub mod xrandr;
 pub mod xrecord;
 pub mod xrender;
 pub mod xt;
 pub mod xtest;
+
+pub mod xrandr {
+    include!("xrandr.rs");
+    include!("old_xrandr.rs");
+}
