@@ -15,3 +15,11 @@ tests-x11:
 
 tests-x11-dl:
 	cd x11-dl && cargo test
+
+docs: docs-x11 docs-x11-dl
+
+docs-x11:
+	cd x11 && cargo doc
+
+docs-x11-dl:
+	cd x11-dl && cargo doc

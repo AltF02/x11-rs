@@ -2,11 +2,8 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::convert::From;
-use std::slice::{
-  from_raw_parts,
-  from_raw_parts_mut,
-};
+use std::mem;
+use std::slice;
 use std::os::raw::{
   c_char,
   c_double,
@@ -990,219 +987,87 @@ impl XEvent {
   }
 }
 
-impl From<XAnyEvent> for XEvent {
-  fn from (e: XAnyEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
+macro_rules! event_conversions_and_tests {
+  { $($ty:ty,)* } => {
+    #[test]
+    fn xevent_size_test () {
+      use std::mem::size_of;
+      let xevent_size = size_of::<XEvent>();
+      $(assert!(xevent_size >= size_of::<$ty>());)*
+    }
+
+    $(
+      impl AsMut<$ty> for XEvent {
+        fn as_mut (&mut self) -> &mut $ty {
+          unsafe { mem::transmute(self) }
+        }
+      }
+
+      impl AsRef<$ty> for XEvent {
+        fn as_ref (&self) -> &$ty {
+          unsafe { mem::transmute(self) }
+        }
+      }
+
+      impl From<$ty> for XEvent {
+        fn from (other: $ty) -> XEvent {
+          unsafe { transmute_union(&other) }
+        }
+      }
+
+      impl<'a> From<&'a $ty> for XEvent {
+        fn from (other: &'a $ty) -> XEvent {
+          unsafe { transmute_union(other) }
+        }
+      }
+
+      impl From<XEvent> for $ty {
+        fn from (xevent: XEvent) -> $ty {
+          unsafe { transmute_union(&xevent) }
+        }
+      }
+
+      impl<'a> From<&'a XEvent> for $ty {
+        fn from (xevent: &'a XEvent) -> $ty {
+          unsafe { transmute_union(&xevent) }
+        }
+      }
+    )*
+  };
 }
 
-impl From<XButtonEvent> for XEvent {
-  fn from (e: XButtonEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XCirculateEvent> for XEvent {
-  fn from (e: XCirculateEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XCirculateRequestEvent> for XEvent {
-  fn from (e: XCirculateRequestEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XClientMessageEvent> for XEvent {
-  fn from (e: XClientMessageEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XColormapEvent> for XEvent {
-  fn from (e: XColormapEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XConfigureEvent> for XEvent {
-  fn from (e: XConfigureEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XConfigureRequestEvent> for XEvent {
-  fn from (e: XConfigureRequestEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XCreateWindowEvent> for XEvent {
-  fn from (e: XCreateWindowEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XCrossingEvent> for XEvent {
-  fn from (e: XCrossingEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XDestroyWindowEvent> for XEvent {
-  fn from (e: XDestroyWindowEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XErrorEvent> for XEvent {
-  fn from (e: XErrorEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XExposeEvent> for XEvent {
-  fn from (e: XExposeEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XFocusChangeEvent> for XEvent {
-  fn from (e: XFocusChangeEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XGraphicsExposeEvent> for XEvent {
-  fn from (e: XGraphicsExposeEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XGravityEvent> for XEvent {
-  fn from (e: XGravityEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XKeyEvent> for XEvent {
-  fn from (e: XKeyEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XKeymapEvent> for XEvent {
-  fn from (e: XKeymapEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XMapEvent> for XEvent {
-  fn from (e: XMapEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XMappingEvent> for XEvent {
-  fn from (e: XMappingEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XMotionEvent> for XEvent {
-  fn from (e: XMotionEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XNoExposeEvent> for XEvent {
-  fn from (e: XNoExposeEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XPropertyEvent> for XEvent {
-  fn from (e: XPropertyEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XReparentEvent> for XEvent {
-  fn from (e: XReparentEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XResizeRequestEvent> for XEvent {
-  fn from (e: XResizeRequestEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XSelectionClearEvent> for XEvent {
-  fn from (e: XSelectionClearEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XSelectionEvent> for XEvent {
-  fn from (e: XSelectionEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XSelectionRequestEvent> for XEvent {
-  fn from (e: XSelectionRequestEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XUnmapEvent> for XEvent {
-  fn from (e: XUnmapEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-impl From<XVisibilityEvent> for XEvent {
-  fn from (e: XVisibilityEvent) -> XEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
-#[test]
-fn xevent_size_test () {
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XAnyEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XButtonEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XCirculateEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XCirculateRequestEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XClientMessageEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XColormapEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XConfigureEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XConfigureRequestEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XCreateWindowEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XCrossingEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XDestroyWindowEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XErrorEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XExposeEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XFocusChangeEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XGraphicsExposeEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XGravityEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XKeyEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XKeymapEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XMapEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XMappingEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XMapRequestEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XMotionEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XNoExposeEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XPropertyEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XReparentEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XResizeRequestEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XSelectionClearEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XSelectionEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XSelectionRequestEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XUnmapEvent>());
-  assert!(::std::mem::size_of::<XEvent>() >= ::std::mem::size_of::<XVisibilityEvent>());
+event_conversions_and_tests! {
+  XAnyEvent,
+  XButtonEvent,
+  XCirculateEvent,
+  XCirculateRequestEvent,
+  XClientMessageEvent,
+  XColormapEvent,
+  XConfigureEvent,
+  XConfigureRequestEvent,
+  XCreateWindowEvent,
+  XCrossingEvent,
+  XDestroyWindowEvent,
+  XErrorEvent,
+  XExposeEvent,
+  XFocusChangeEvent,
+  XGraphicsExposeEvent,
+  XGravityEvent,
+  XKeyEvent,
+  XKeymapEvent,
+  XMapEvent,
+  XMappingEvent,
+  XMapRequestEvent,
+  XMotionEvent,
+  XNoExposeEvent,
+  XPropertyEvent,
+  XReparentEvent,
+  XResizeRequestEvent,
+  XSelectionClearEvent,
+  XSelectionEvent,
+  XSelectionRequestEvent,
+  XUnmapEvent,
+  XVisibilityEvent,
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1213,12 +1078,6 @@ pub struct XAnyEvent {
   pub send_event: Bool,
   pub display: *mut Display,
   pub window: Window,
-}
-
-impl From<XEvent> for XAnyEvent {
-  fn from (e: XEvent) -> XAnyEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1243,12 +1102,6 @@ pub struct XButtonEvent {
 pub type XButtonPressedEvent = XButtonEvent;
 pub type XButtonReleasedEvent = XButtonEvent;
 
-impl From<XEvent> for XButtonEvent {
-  fn from (e: XEvent) -> XButtonEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCirculateEvent {
@@ -1261,12 +1114,6 @@ pub struct XCirculateEvent {
   pub place: c_int,
 }
 
-impl From<XEvent> for XCirculateEvent {
-  fn from (e: XEvent) -> XCirculateEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCirculateRequestEvent {
@@ -1277,12 +1124,6 @@ pub struct XCirculateRequestEvent {
   pub parent: Window,
   pub window: Window,
   pub place: c_int,
-}
-
-impl From<XEvent> for XCirculateRequestEvent {
-  fn from (e: XEvent) -> XCirculateRequestEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1298,12 +1139,6 @@ pub struct XClientMessageEvent {
   pub data: ClientMessageData,
 }
 
-impl From<XEvent> for XClientMessageEvent {
-  fn from (e: XEvent) -> XClientMessageEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XColormapEvent {
@@ -1315,12 +1150,6 @@ pub struct XColormapEvent {
   pub colormap: Colormap,
   pub new: Bool,
   pub state: c_int,
-}
-
-impl From<XEvent> for XColormapEvent {
-  fn from (e: XEvent) -> XColormapEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1339,12 +1168,6 @@ pub struct XConfigureEvent {
   pub border_width: c_int,
   pub above: Window,
   pub override_redirect: Bool,
-}
-
-impl From<XEvent> for XConfigureEvent {
-  fn from (e: XEvent) -> XConfigureEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1366,12 +1189,6 @@ pub struct XConfigureRequestEvent {
   pub value_mask: c_ulong,
 }
 
-impl From<XEvent> for XConfigureRequestEvent {
-  fn from (e: XEvent) -> XConfigureRequestEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCreateWindowEvent {
@@ -1387,12 +1204,6 @@ pub struct XCreateWindowEvent {
   pub height: c_int,
   pub border_width: c_int,
   pub override_redirect: Bool,
-}
-
-impl From<XEvent> for XCreateWindowEvent {
-  fn from (e: XEvent) -> XCreateWindowEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1419,12 +1230,6 @@ pub struct XCrossingEvent {
 pub type XEnterWindowEvent = XCrossingEvent;
 pub type XLeaveWindowEvent = XCrossingEvent;
 
-impl From<XEvent> for XCrossingEvent {
-  fn from (e: XEvent) -> XCrossingEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDestroyWindowEvent {
@@ -1434,12 +1239,6 @@ pub struct XDestroyWindowEvent {
   pub display: *mut Display,
   pub event: Window,
   pub window: Window,
-}
-
-impl From<XEvent> for XDestroyWindowEvent {
-  fn from (e: XEvent) -> XDestroyWindowEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1452,12 +1251,6 @@ pub struct XErrorEvent {
   pub error_code: c_uchar,
   pub request_code: c_uchar,
   pub minor_code: c_uchar,
-}
-
-impl From<XEvent> for XErrorEvent {
-  fn from (e: XEvent) -> XErrorEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1475,12 +1268,6 @@ pub struct XExposeEvent {
   pub count: c_int,
 }
 
-impl From<XEvent> for XExposeEvent {
-  fn from (e: XEvent) -> XExposeEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XFocusChangeEvent {
@@ -1494,12 +1281,6 @@ pub struct XFocusChangeEvent {
 }
 pub type XFocusInEvent = XFocusChangeEvent;
 pub type XFocusOutEvent = XFocusChangeEvent;
-
-impl From<XEvent> for XFocusChangeEvent {
-  fn from (e: XEvent) -> XFocusChangeEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
 
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
@@ -1518,12 +1299,6 @@ pub struct XGraphicsExposeEvent {
   pub minor_code: c_int,
 }
 
-impl From<XEvent> for XGraphicsExposeEvent {
-  fn from (e: XEvent) -> XGraphicsExposeEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XGravityEvent {
@@ -1535,12 +1310,6 @@ pub struct XGravityEvent {
   pub window: Window,
   pub x: c_int,
   pub y: c_int,
-}
-
-impl From<XEvent> for XGravityEvent {
-  fn from (e: XEvent) -> XGravityEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1565,12 +1334,6 @@ pub struct XKeyEvent {
 pub type XKeyPressedEvent = XKeyEvent;
 pub type XKeyReleasedEvent = XKeyEvent;
 
-impl From<XEvent> for XKeyEvent {
-  fn from (e: XEvent) -> XKeyEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XKeymapEvent {
@@ -1580,12 +1343,6 @@ pub struct XKeymapEvent {
   pub display: *mut Display,
   pub window: Window,
   pub key_vector: [c_char; 32],
-}
-
-impl From<XEvent> for XKeymapEvent {
-  fn from (e: XEvent) -> XKeymapEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1598,12 +1355,6 @@ pub struct XMapEvent {
   pub event: Window,
   pub window: Window,
   pub override_redirect: Bool,
-}
-
-impl From<XEvent> for XMapEvent {
-  fn from (e: XEvent) -> XMapEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1619,12 +1370,6 @@ pub struct XMappingEvent {
   pub count: c_int,
 }
 
-impl From<XEvent> for XMappingEvent {
-  fn from (e: XEvent) -> XMappingEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XMapRequestEvent {
@@ -1634,12 +1379,6 @@ pub struct XMapRequestEvent {
   pub display: *mut Display,
   pub parent: Window,
   pub window: Window,
-}
-
-impl From<XEvent> for XMapRequestEvent {
-  fn from (e: XEvent) -> XMapRequestEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1663,12 +1402,6 @@ pub struct XMotionEvent {
 }
 pub type XPointerMovedEvent = XMotionEvent;
 
-impl From<XEvent> for XMotionEvent {
-  fn from (e: XEvent) -> XMotionEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XNoExposeEvent {
@@ -1679,12 +1412,6 @@ pub struct XNoExposeEvent {
   pub drawable: Drawable,
   pub major_code: c_int,
   pub minor_code: c_int,
-}
-
-impl From<XEvent> for XNoExposeEvent {
-  fn from (e: XEvent) -> XNoExposeEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1698,12 +1425,6 @@ pub struct XPropertyEvent {
   pub atom: Atom,
   pub time: Time,
   pub state: c_int,
-}
-
-impl From<XEvent> for XPropertyEvent {
-  fn from (e: XEvent) -> XPropertyEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1721,12 +1442,6 @@ pub struct XReparentEvent {
   pub override_redirect: Bool,
 }
 
-impl From<XEvent> for XReparentEvent {
-  fn from (e: XEvent) -> XReparentEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XResizeRequestEvent {
@@ -1737,12 +1452,6 @@ pub struct XResizeRequestEvent {
   pub window: Window,
   pub width: c_int,
   pub height: c_int,
-}
-
-impl From<XEvent> for XResizeRequestEvent {
-  fn from (e: XEvent) -> XResizeRequestEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1757,12 +1466,6 @@ pub struct XSelectionClearEvent {
   pub time: Time,
 }
 
-impl From<XEvent> for XSelectionClearEvent {
-  fn from (e: XEvent) -> XSelectionClearEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XSelectionEvent {
@@ -1775,12 +1478,6 @@ pub struct XSelectionEvent {
   pub target: Atom,
   pub property: Atom,
   pub time: Time,
-}
-
-impl From<XEvent> for XSelectionEvent {
-  fn from (e: XEvent) -> XSelectionEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
@@ -1798,12 +1495,6 @@ pub struct XSelectionRequestEvent {
   pub time: Time,
 }
 
-impl From<XEvent> for XSelectionRequestEvent {
-  fn from (e: XEvent) -> XSelectionRequestEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XUnmapEvent {
@@ -1816,12 +1507,6 @@ pub struct XUnmapEvent {
   pub from_configure: Bool,
 }
 
-impl From<XEvent> for XUnmapEvent {
-  fn from (e: XEvent) -> XUnmapEvent {
-    unsafe { transmute_union(&e) }
-  }
-}
-
 #[derive(Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XVisibilityEvent {
@@ -1831,12 +1516,6 @@ pub struct XVisibilityEvent {
   pub display: *mut Display,
   pub window: Window,
   pub state: c_int,
-}
-
-impl From<XEvent> for XVisibilityEvent {
-  fn from (e: XEvent) -> XVisibilityEvent {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 
@@ -2443,21 +2122,39 @@ pub struct AspectRatio {
   pub y: c_int,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Clone, Copy, Default, PartialEq)]
 #[repr(C)]
 pub struct ClientMessageData {
   longs: [c_long; 5],
 }
 
 impl ClientMessageData {
-  pub fn new() -> ClientMessageData {
-    ClientMessageData { longs: [0; 5] }
+  pub fn as_bytes (&self) -> &[c_char] {
+    self.as_ref()
+  }
+
+  pub fn as_bytes_mut (&mut self) -> &mut [c_char] {
+    self.as_mut()
+  }
+
+  pub fn as_longs (&self) -> &[c_long] {
+    self.as_ref()
+  }
+
+  pub fn as_longs_mut (&mut self) -> &mut [c_long] {
+    self.as_mut()
+  }
+
+  pub fn as_shorts (&self) -> &[c_short] {
+    self.as_ref()
+  }
+
+  pub fn as_shorts_mut (&mut self) -> &mut [c_short] {
+    self.as_mut()
   }
 
   pub fn get_byte (&self, index: usize) -> c_char {
-    unsafe {
-      from_raw_parts(&self.longs[0] as *const c_long as *const c_char, 20)[index]
-    }
+    self.as_bytes()[index]
   }
 
   pub fn get_long (&self, index: usize) -> c_long {
@@ -2465,15 +2162,15 @@ impl ClientMessageData {
   }
 
   pub fn get_short (&self, index: usize) -> c_short {
-    unsafe {
-      from_raw_parts(&self.longs[0] as *const c_long as *const c_short, 10)[index]
-    }
+    self.as_shorts()[index]
+  }
+
+  pub fn new() -> ClientMessageData {
+    ClientMessageData { longs: [0; 5] }
   }
 
   pub fn set_byte (&mut self, index: usize, value: c_char) {
-    unsafe {
-      from_raw_parts_mut(&mut self.longs[0] as *mut c_long as *mut c_char, 20)[index] = value;
-    }
+    self.as_bytes_mut()[index] = value;
   }
 
   pub fn set_long (&mut self, index: usize, value: c_long) {
@@ -2481,10 +2178,41 @@ impl ClientMessageData {
   }
 
   pub fn set_short (&mut self, index: usize, value: c_short) {
-    unsafe {
-      from_raw_parts_mut(&mut self.longs[0] as *mut c_long as *mut c_short, 10)[index] = value;
-    }
+    self.as_shorts_mut()[index] = value;
   }
+}
+
+macro_rules! client_message_data_conversions {
+  { $($ty:ty[$n:expr],)* } => {
+    $(
+      impl AsMut<[$ty]> for ClientMessageData {
+        fn as_mut (&mut self) -> &mut [$ty] {
+          unsafe { slice::from_raw_parts_mut(self.longs.as_mut_ptr() as *mut $ty, $n) }
+        }
+      }
+
+      impl AsRef<[$ty]> for ClientMessageData {
+        fn as_ref (&self) -> &[$ty] {
+          unsafe { slice::from_raw_parts(self.longs.as_ptr() as *mut $ty, $n) }
+        }
+      }
+
+      impl From<[$ty; $n]> for ClientMessageData {
+        fn from (array: [$ty; $n]) -> ClientMessageData {
+          unsafe { transmute_union(&array) }
+        }
+      }
+    )*
+  };
+}
+
+client_message_data_conversions! {
+  c_char[20],
+  c_uchar[20],
+  c_short[10],
+  c_ushort[10],
+  c_long[5],
+  c_ulong[5],
 }
 
 #[test]
