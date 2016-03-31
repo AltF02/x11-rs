@@ -25,6 +25,10 @@ impl OpenError {
     self.detail.as_ref()
   }
 
+  pub fn kind (&self) -> OpenErrorKind {
+    self.kind
+  }
+
   pub fn new (kind: OpenErrorKind, detail: String) -> OpenError {
     OpenError {
       kind: kind,
@@ -57,7 +61,7 @@ impl Error for OpenError {
 //
 
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
 pub enum OpenErrorKind {
   Library,
   Symbol,
