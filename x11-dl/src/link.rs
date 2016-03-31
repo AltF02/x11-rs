@@ -31,6 +31,9 @@ macro_rules! x11_link {
       $(pub $var_name: *mut $var_type,)*
     }
 
+    unsafe impl Send for $struct_name {}
+    unsafe impl Sync for $struct_name {}
+
     impl $struct_name {
       pub fn open () -> Result<$struct_name, $crate::error::OpenError> {
         unsafe {
