@@ -16,7 +16,7 @@ use error::{ OpenError, OpenErrorKind };
 
 
 macro_rules! x11_link {
-  { $struct_name:ident, [$($lib_name:expr),*],
+  { $struct_name:ident, [$($lib_name:expr),*], $nsyms:expr,
     $(pub fn $fn_name:ident ($($param_name:ident : $param_type:ty),*) -> $ret_type:ty,)*
     variadic:
     $(pub fn $vfn_name:ident ($($vparam_name: ident : $vparam_type:ty),+) -> $vret_type:ty,)*
@@ -25,7 +25,7 @@ macro_rules! x11_link {
   } => {
     pub struct $struct_name {
       #[allow(dead_code)]
-      lib: $crate::link::DynamicLibrary,
+      lib: ::link::DynamicLibrary,
       $(pub $fn_name: unsafe extern "C" fn ($($param_type),*) -> $ret_type,)*
       $(pub $vfn_name: unsafe extern "C" fn ($($vparam_type),+, ...) -> $vret_type,)*
       $(pub $var_name: *mut $var_type,)*
@@ -35,18 +35,29 @@ macro_rules! x11_link {
     unsafe impl Sync for $struct_name {}
 
     impl $struct_name {
+      unsafe fn init (&mut self) -> Result<(), $crate::error::OpenError> {
+        lazy_static! {
+          static ref SYMS: [(&'static str, usize); $nsyms] = unsafe {[
+            $((stringify!($fn_name), &((*(0 as *const $struct_name)).$fn_name) as *const _ as usize),)*
+            $((stringify!($vfn_name), &((*(0 as *const $struct_name)).$vfn_name) as *const _ as usize),)*
+            $((stringify!($var_name), &((*(0 as *const $struct_name)).$var_name) as *const _ as usize),)*
+          ]};
+        }
+        let offset = self as *mut $struct_name as usize;
+        for &(name, sym_offset) in SYMS.iter() {
+          *((offset + sym_offset) as *mut *mut _) = try!(self.lib.symbol(name));
+        }
+        Ok(())
+      }
+
       pub fn open () -> Result<$struct_name, $crate::error::OpenError> {
         unsafe {
-          let lib = try!($crate::link::DynamicLibrary::open_multi(&[$($lib_name),*]));
-          $(let $fn_name = try!(lib.symbol(stringify!($fn_name)));)*
-          $(let $vfn_name = try!(lib.symbol(stringify!($vfn_name)));)*
-          $(let $var_name = try!(lib.symbol(stringify!($var_name)));)*
-          return Ok($struct_name {
-            lib: lib,
-            $($fn_name: ::std::mem::transmute($fn_name),)*
-            $($vfn_name: ::std::mem::transmute($vfn_name),)*
-            $($var_name: $var_name as *mut $var_type,)*
-          });
+          let mut lib = try!($crate::link::DynamicLibrary::open_multi(&[$($lib_name),*]));
+          let mut this: $struct_name = ::std::mem::zeroed();
+          ::std::mem::swap(&mut lib, &mut this.lib);
+          ::std::mem::forget(lib);
+          try!(this.init());
+          Ok(this)
         }
       }
     }

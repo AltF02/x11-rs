@@ -25,7 +25,7 @@ use ::xlib::{
 // functions
 //
 
-x11_link! { XInput, ["libXi.so", "libXi.so.6"],
+x11_link! { XInput, ["libXi.so", "libXi.so.6"], 44,
   pub fn XAllowDeviceEvents (_4: *mut Display, _3: *mut XDevice, _2: c_int, _1: c_ulong) -> c_int,
   pub fn XChangeDeviceControl (_4: *mut Display, _3: *mut XDevice, _2: c_int, _1: *mut XDeviceControl) -> c_int,
   pub fn XChangeDeviceDontPropagateList (_5: *mut Display, _4: c_ulong, _3: c_int, _2: *mut c_ulong, _1: c_int) -> c_int,
@@ -56,7 +56,7 @@ x11_link! { XInput, ["libXi.so", "libXi.so.6"],
   pub fn XGrabDevice (_9: *mut Display, _8: *mut XDevice, _7: c_ulong, _6: c_int, _5: c_int, _4: *mut c_ulong, _3: c_int, _2: c_int, _1: c_ulong) -> c_int,
   pub fn XGrabDeviceButton (_11: *mut Display, _10: *mut XDevice, _9: c_uint, _8: c_uint, _7: *mut XDevice, _6: c_ulong, _5: c_int, _4: c_uint, _3: *mut c_ulong, _2: c_int, _1: c_int) -> c_int,
   pub fn XGrabDeviceKey (_11: *mut Display, _10: *mut XDevice, _9: c_uint, _8: c_uint, _7: *mut XDevice, _6: c_ulong, _5: c_int, _4: c_uint, _3: *mut c_ulong, _2: c_int, _1: c_int) -> c_int,
-  
+
   pub fn XListDeviceProperties (_3: *mut Display, _2: *mut XDevice, _1: *mut c_int) -> *mut c_ulong,
   pub fn XListInputDevices (_2: *mut Display, _1: *mut c_int) -> *mut XDeviceInfo,
   pub fn XOpenDevice (_2: *mut Display, _1: c_ulong) -> *mut XDevice,

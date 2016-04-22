@@ -26,7 +26,7 @@ use ::xlib::{
 //
 
 
-x11_link! { Xcursor, ["libXcursor.so", "libXcursor.so.1"],
+x11_link! { Xcursor, ["libXcursor.so", "libXcursor.so.1"], 59,
   pub fn XcursorAnimateCreate (_1: *mut XcursorCursors) -> *mut XcursorAnimate,
   pub fn XcursorAnimateDestroy (_1: *mut XcursorAnimate) -> (),
   pub fn XcursorAnimateNext (_1: *mut XcursorAnimate) -> c_ulong,

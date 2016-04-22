@@ -22,7 +22,7 @@ use ::xlib::{
 //
 
 
-x11_link! { Xlib, ["libXinerama.so", "libXinerama.so.1"],
+x11_link! { Xlib, ["libXinerama.so", "libXinerama.so.1"], 10,
   pub fn XineramaIsActive (dpy: *mut Display) -> Bool,
   pub fn XineramaQueryExtension (dpy: *mut Display, event_base: c_int, error_base: c_int) -> Bool,
   pub fn XineramaQueryScreens (dpy: *mut Display, number: *mut c_int) -> *mut XineramaScreenInfo,

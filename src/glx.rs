@@ -22,7 +22,7 @@ use ::xlib::{
 //
 
 
-x11_link! { Glx, ["libGL.so", "libGL.so.1"],
+x11_link! { Glx, ["libGL.so", "libGL.so.1"], 39,
   pub fn glXChooseFBConfig (_4: *mut Display, _3: c_int, _2: *const c_int, _1: *mut c_int) -> *mut GLXFBConfig,
   pub fn glXChooseVisual (_3: *mut Display, _2: c_int, _1: *mut c_int) -> *mut XVisualInfo,
   pub fn glXCopyContext (_4: *mut Display, _3: GLXContext, _2: GLXContext, _1: c_ulong) -> (),
