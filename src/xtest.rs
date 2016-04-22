@@ -21,7 +21,7 @@ use ::xlib::{
 //
 
 
-x11_link! { Xf86vmode, ["libXtst.so", "libXtst.so.6"], 15,
+x11_link! { Xf86vmode, ["libXtst.so.6", "libXtst.so"], 15,
   pub fn XTestCompareCurrentCursorWithWindow (_2: *mut Display, _1: c_ulong) -> c_int,
   pub fn XTestCompareCursorWithWindow (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int,
   pub fn XTestDiscard (_1: *mut Display) -> c_int,

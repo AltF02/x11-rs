@@ -35,7 +35,7 @@ use ::xlib::{
 //
 
 
-x11_link! { Xt, ["libXt.so", "libXt.so.6"], 300,
+x11_link! { Xt, ["libXt.so.6", "libXt.so"], 300,
   pub fn XtAddActions (_2: *mut XtActionsRec, _1: c_uint) -> (),
   pub fn XtAddCallback (_4: Widget, _3: *const c_char, _2: Option<unsafe extern "C" fn (Widget, *mut c_void, *mut c_void)>, _1: *mut c_void) -> (),
   pub fn XtAddCallbacks (_3: Widget, _2: *const c_char, _1: XtCallbackList) -> (),

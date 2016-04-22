@@ -23,7 +23,7 @@ use ::xlib::{
 //
 
 
-x11_link! { Xf86vmode, ["libXtst.so", "libXtst.so.6"], 14,
+x11_link! { Xf86vmode, ["libXtst.so.6", "libXtst.so"], 14,
   pub fn XRecordAllocRange () -> *mut XRecordRange,
   pub fn XRecordCreateContext (_6: *mut Display, _5: c_int, _4: *mut c_ulong, _3: c_int, _2: *mut *mut XRecordRange, _1: c_int) -> c_ulong,
   pub fn XRecordDisableContext (_2: *mut Display, _1: c_ulong) -> c_int,

@@ -24,7 +24,7 @@ pub fn XIMaskIsSet(mask: &[::std::os::raw::c_uchar], event: i32) -> bool {
 //
 // functions
 //
-x11_link! { XInput2, ["libXi.so", "libXi.so.6"], 34,
+x11_link! { XInput2, ["libXi.so.6", "libXi.so"], 34,
   pub fn XIAllowEvents (_4: *mut Display, _3: c_int, _2: c_int, _1: c_ulong) -> c_int,
   pub fn XIAllowTouchEvents (_5: *mut Display, _4: c_int, _3: c_uint, _2: c_ulong, _1: c_int) -> c_int,
   pub fn XIBarrierReleasePointer (_4: *mut Display, _3: c_int, _2: c_ulong, _1: c_uint) -> (),
