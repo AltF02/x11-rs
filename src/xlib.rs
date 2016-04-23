@@ -1051,6 +1051,7 @@ event_conversions_and_tests! {
   XErrorEvent,
   XExposeEvent,
   XFocusChangeEvent,
+  XGenericEventCookie,
   XGraphicsExposeEvent,
   XGravityEvent,
   XKeyEvent,
@@ -1794,12 +1795,6 @@ pub struct XGenericEventCookie {
   pub evtype: c_int,
   pub cookie: c_uint,
   pub data: *mut c_void,
-}
-
-impl From<XEvent> for XGenericEventCookie {
-  fn from (e: XEvent) -> XGenericEventCookie {
-    unsafe { transmute_union(&e) }
-  }
 }
 
 #[derive(Clone, Copy, PartialEq)]
