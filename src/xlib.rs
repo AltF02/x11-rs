@@ -10,6 +10,7 @@ use std::os::raw::{
   c_int,
   c_long,
   c_short,
+  c_schar,
   c_uchar,
   c_uint,
   c_ulong,
@@ -2202,7 +2203,7 @@ macro_rules! client_message_data_conversions {
 }
 
 client_message_data_conversions! {
-  c_char[20],
+  c_schar[20],
   c_uchar[20],
   c_short[10],
   c_ushort[10],
