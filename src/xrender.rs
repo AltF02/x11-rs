@@ -317,3 +317,147 @@ pub struct _XTransform {
   pub matrix: [[XFixed; 3]; 3],
 }
 pub type XTransform = _XTransform;
+
+
+//
+// constants
+//
+
+
+// pict format mask
+pub const PictFormatID: c_ulong = 1 << 0;
+pub const PictFormatType: c_ulong = 1 << 1;
+pub const PictFormatDepth: c_ulong = 1 << 2;
+pub const PictFormatRed: c_ulong = 1 << 3;
+pub const PictFormatRedMask: c_ulong = 1 << 4;
+pub const PictFormatGreen: c_ulong = 1 << 5;
+pub const PictFormatGreenMask: c_ulong = 1 << 6;
+pub const PictFormatBlue: c_ulong = 1 << 7;
+pub const PictFormatBlueMask: c_ulong = 1 << 8;
+pub const PictFormatAlpha: c_ulong = 1 << 9;
+pub const PictFormatAlphaMask: c_ulong = 1 << 10;
+pub const PictFormatColormap: c_ulong = 1 << 11;
+
+// error codes
+pub const BadPictFormat: c_int = 0;
+pub const BadPicture: c_int = 1;
+pub const BadPictOp: c_int = 2;
+pub const BadGlyphSet: c_int = 3;
+pub const BadGlyph: c_int = 4;
+pub const RenderNumberErrors: c_int = BadGlyph + 1;
+
+// pict types
+pub const PictTypeIndexed: c_int = 0;
+pub const PictTypeDirect: c_int = 1;
+
+// ops
+pub const PictOpMinimum: c_int = 0;
+pub const PictOpClear: c_int = 0;
+pub const PictOpSrc: c_int = 1;
+pub const PictOpDst: c_int = 2;
+pub const PictOpOver: c_int = 3;
+pub const PictOpOverReverse: c_int = 4;
+pub const PictOpIn: c_int = 5;
+pub const PictOpInReverse: c_int = 6;
+pub const PictOpOut: c_int = 7;
+pub const PictOpOutReverse: c_int = 8;
+pub const PictOpAtop: c_int = 9;
+pub const PictOpAtopReverse: c_int = 10;
+pub const PictOpXor: c_int = 11;
+pub const PictOpAdd: c_int = 12;
+pub const PictOpSaturate: c_int = 13;
+pub const PictOpMaximum: c_int = 13;
+
+pub const PictOpDisjointMinimum: c_int = 0x10;
+pub const PictOpDisjointClear: c_int = 0x10;
+pub const PictOpDisjointSrc: c_int = 0x11;
+pub const PictOpDisjointDst: c_int = 0x12;
+pub const PictOpDisjointOver: c_int = 0x13;
+pub const PictOpDisjointOverReverse: c_int = 0x14;
+pub const PictOpDisjointIn: c_int = 0x15;
+pub const PictOpDisjointInReverse: c_int = 0x16;
+pub const PictOpDisjointOut: c_int = 0x17;
+pub const PictOpDisjointOutReverse: c_int = 0x18;
+pub const PictOpDisjointAtop: c_int = 0x19;
+pub const PictOpDisjointAtopReverse: c_int = 0x1a;
+pub const PictOpDisjointXor: c_int = 0x1b;
+pub const PictOpDisjointMaximum: c_int = 0x1b;
+
+pub const PictOpConjointMinimum: c_int = 0x20;
+pub const PictOpConjointClear: c_int = 0x20;
+pub const PictOpConjointSrc: c_int = 0x21;
+pub const PictOpConjointDst: c_int = 0x22;
+pub const PictOpConjointOver: c_int = 0x23;
+pub const PictOpConjointOverReverse: c_int = 0x24;
+pub const PictOpConjointIn: c_int = 0x25;
+pub const PictOpConjointInReverse: c_int = 0x26;
+pub const PictOpConjointOut: c_int = 0x27;
+pub const PictOpConjointOutReverse: c_int = 0x28;
+pub const PictOpConjointAtop: c_int = 0x29;
+pub const PictOpConjointAtopReverse: c_int = 0x2a;
+pub const PictOpConjointXor: c_int = 0x2b;
+pub const PictOpConjointMaximum: c_int = 0x2b;
+
+pub const PictOpBlendMinimum: c_int = 0x30;
+pub const PictOpMultiply: c_int = 0x30;
+pub const PictOpScreen: c_int = 0x31;
+pub const PictOpOverlay: c_int = 0x32;
+pub const PictOpDarken: c_int = 0x33;
+pub const PictOpLighten: c_int = 0x34;
+pub const PictOpColorDodge: c_int = 0x35;
+pub const PictOpColorBurn: c_int = 0x36;
+pub const PictOpHardLight: c_int = 0x37;
+pub const PictOpSoftLight: c_int = 0x38;
+pub const PictOpDifference: c_int = 0x39;
+pub const PictOpExclusion: c_int = 0x3a;
+pub const PictOpHSLHue: c_int = 0x3b;
+pub const PictOpHSLSaturation: c_int = 0x3c;
+pub const PictOpHSLColor: c_int = 0x3d;
+pub const PictOpHSLLuminosity: c_int = 0x3e;
+pub const PictOpBlendMaximum: c_int = 0x3e;
+
+// poly edge types
+pub const PolyEdgeSharp: c_int = 0;
+pub const PolyEdgeSmooth: c_int = 1;
+
+// poly modes
+pub const PolyModePrecise: c_int = 0;
+pub const PolyModeImprecise: c_int = 1;
+
+// picture attributes mask
+pub const CPRepeat: c_int = 1 << 0;
+pub const CPAlphaMap: c_int = 1 << 1;
+pub const CPAlphaXOrigin: c_int = 1 << 2;
+pub const CPAlphaYOrigin: c_int = 1 << 3;
+pub const CPClipXOrigin: c_int = 1 << 4;
+pub const CPClipYOrigin: c_int = 1 << 5;
+pub const CPClipMask: c_int = 1 << 6;
+pub const CPGraphicsExposure: c_int = 1 << 7;
+pub const CPSubwindowMode: c_int = 1 << 8;
+pub const CPPolyEdge: c_int = 1 << 9;
+pub const CPPolyMode: c_int = 1 << 10;
+pub const CPDither: c_int = 1 << 11;
+pub const CPComponentAlpha: c_int = 1 << 12;
+pub const CPLastBit: c_int = 12;
+
+// filter methods
+pub const FilterNearest: &'static str = "nearest";
+pub const FilterBilinear: &'static str = "bilinear";
+pub const FilterConvolution: &'static str = "convolution";
+pub const FilterFast: &'static str = "fast";
+pub const FilterGood: &'static str = "good";
+pub const FilterBest: &'static str = "best";
+
+// subpixel orders
+pub const SubPixelUnknown: c_int = 0;
+pub const SubPixelHorizontalRGB: c_int = 1;
+pub const SubPixelHorizontalBGR: c_int = 2;
+pub const SubPixelVerticalRGB: c_int = 3;
+pub const SubPixelVerticalBGR: c_int = 4;
+pub const SubPixelNone: c_int = 5;
+
+// repeat attributes
+pub const RepeatNone: c_int = 0;
+pub const RepeatNormal: c_int = 1;
+pub const RepeatPad: c_int = 2;
+pub const RepeatReflect: c_int = 3;
