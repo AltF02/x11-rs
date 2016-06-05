@@ -8,6 +8,7 @@
 
 #[macro_use]
 extern crate lazy_static;
+
 extern crate libc;
 
 #[macro_use]
@@ -21,6 +22,7 @@ pub mod keysym;
 pub mod xcursor;
 pub mod xf86vmode;
 pub mod xfixes;
+pub mod xft;
 pub mod xinerama;
 pub mod xinput;
 pub mod xinput2;
