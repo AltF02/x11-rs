@@ -1030,7 +1030,7 @@ macro_rules! event_conversions_and_tests {
 
       impl<'a> From<&'a XEvent> for $ty {
         fn from (xevent: &'a XEvent) -> $ty {
-          unsafe { transmute_union(&xevent) }
+          unsafe { transmute_union(xevent) }
         }
       }
     )*
