@@ -17,6 +17,9 @@ mod internal;
 
 pub mod error;
 
+#[macro_use]
+pub mod xlib;
+
 pub mod glx;
 pub mod keysym;
 pub mod xcursor;
@@ -26,7 +29,6 @@ pub mod xft;
 pub mod xinerama;
 pub mod xinput;
 pub mod xinput2;
-pub mod xlib;
 pub mod xmu;
 pub mod xrecord;
 pub mod xrender;
