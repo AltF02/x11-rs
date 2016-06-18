@@ -16,6 +16,7 @@ fn main () {
   if cfg!(feature="xrandr") { pkg_config::find_library("xrandr").unwrap(); }
   if cfg!(feature="xrecord") { pkg_config::find_library("xtst").unwrap(); }
   if cfg!(feature="xrender") { pkg_config::find_library("xrender").unwrap(); }
+  if cfg!(feature="xss") { pkg_config::find_library("xscrnsaver").unwrap(); }
   if cfg!(feature="xt") { pkg_config::find_library("xt").unwrap(); }
   if cfg!(feature="xtest") { pkg_config::find_library("xtst").unwrap(); }
 }

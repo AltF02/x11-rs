@@ -13,6 +13,9 @@ extern crate libc;
 mod link;
 mod internal;
 
+#[macro_use]
+pub mod xlib;
+
 pub mod glx;
 pub mod keysym;
 pub mod xcursor;
@@ -22,10 +25,10 @@ pub mod xft;
 pub mod xinerama;
 pub mod xinput;
 pub mod xinput2;
-pub mod xlib;
 pub mod xmu;
 pub mod xrandr;
 pub mod xrecord;
 pub mod xrender;
+pub mod xss;
 pub mod xt;
 pub mod xtest;

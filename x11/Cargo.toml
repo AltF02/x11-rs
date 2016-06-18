@@ -19,6 +19,7 @@ xmu = []
 xrandr = []
 xrecord = []
 xrender = []
+xss = []
 xt = []
 xtest = []
 
