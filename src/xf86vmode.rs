@@ -12,11 +12,15 @@ use std::os::raw::{
   c_ushort,
 };
 
+use std::mem;
+use ::internal::transmute_union;
+
 use ::xlib::{
   Bool,
   Display,
   Time,
   Window,
+  XEvent,
 };
 
 
@@ -115,6 +119,19 @@ pub struct XF86VidModeMonitor {
 
 #[derive(Clone, Copy)]
 #[repr(C)]
+pub struct XF86VidModeSyncRange {
+  pub hi: c_float,
+  pub lo: c_float,
+}
+
+
+//
+// event structures
+//
+
+
+#[derive(Clone, Copy)]
+#[repr(C)]
 pub struct XF86VidModeNotifyEvent {
   pub type_: c_int,
   pub serial: c_ulong,
@@ -127,9 +144,6 @@ pub struct XF86VidModeNotifyEvent {
   pub time: Time,
 }
 
-#[derive(Clone, Copy)]
-#[repr(C)]
-pub struct XF86VidModeSyncRange {
-  pub hi: c_float,
-  pub lo: c_float,
+event_conversions_and_tests! {
+  XF86VidModeNotifyEvent,
 }

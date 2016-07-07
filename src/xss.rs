@@ -2,7 +2,7 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::os::raw::{ c_int, c_uint, c_long, c_ulong };
+use std::os::raw::{ c_int, c_uint, c_ulong };
 use std::mem;
 
 use ::internal::transmute_union;

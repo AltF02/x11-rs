@@ -16,6 +16,7 @@ mod internal;
 #[macro_use]
 pub mod xlib;
 
+pub mod dpms;
 pub mod glx;
 pub mod keysym;
 pub mod xcursor;
@@ -25,6 +26,7 @@ pub mod xft;
 pub mod xinerama;
 pub mod xinput;
 pub mod xinput2;
+pub mod xmd;
 pub mod xmu;
 pub mod xrandr;
 pub mod xrecord;

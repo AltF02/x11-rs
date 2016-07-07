@@ -8,6 +8,7 @@ repository = "https://github.com/Daggerbot/x11-rs.git"
 build = "build.rs"
 
 [features]
+dpms = []
 glx = []
 xcursor = []
 xf86vmode = []
