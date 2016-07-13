@@ -3,7 +3,7 @@
 // These bindings are public domain.
 
 macro_rules! x11_link {
-  { $struct_name:ident, [$($lib_name:expr),*], $nsyms:expr,
+  { $struct_name:ident, $pkg_name:expr, [$($lib_name:expr),*], $nsyms:expr,
     $(pub fn $fn_name:ident ($($param_name:ident : $param_type:ty),*) -> $ret_type:ty,)*
     variadic:
     $(pub fn $vfn_name:ident ($($vparam_name: ident : $vparam_type:ty),+) -> $vret_type:ty,)*

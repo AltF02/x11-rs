@@ -2,7 +2,7 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-x11_link! { Xrandr_2_2_0, ["libXrandr.so.2.2.0", "libXrandr.so.2", "libXrandr.so"], 65,
+x11_link! { Xrandr_2_2_0, xrandr, ["libXrandr.so.2.2.0", "libXrandr.so.2", "libXrandr.so"], 65,
     pub fn XRRAddOutputMode (dpy: *mut Display, output: RROutput, mode: RRMode) -> (),
     pub fn XRRAllocGamma (size: c_int) -> *mut XRRCrtcGamma,
     pub fn XRRAllocModeInfo (name: *const c_char, nameLength: c_int) -> *mut XRRModeInfo,

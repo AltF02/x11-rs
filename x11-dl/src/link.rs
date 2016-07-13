@@ -3,20 +3,21 @@
 // These bindings are public domain.
 
 use std::ffi::{ CStr, CString };
+use std::path::Path;
 use std::os::raw::{ c_char, c_void };
 
 use libc;
 
 use error::{ OpenError, OpenErrorKind };
 
+include!(concat!(env!("OUT_DIR"), "/config.rs"));
 
 //
 // x11_link!
 //
 
-
 macro_rules! x11_link {
-  { $struct_name:ident, [$($lib_name:expr),*], $nsyms:expr,
+  { $struct_name:ident, $pkg_name:ident, [$($lib_name:expr),*], $nsyms:expr,
     $(pub fn $fn_name:ident ($($param_name:ident : $param_type:ty),*) -> $ret_type:ty,)*
     variadic:
     $(pub fn $vfn_name:ident ($($vparam_name: ident : $vparam_type:ty),+) -> $vret_type:ty,)*
@@ -52,7 +53,8 @@ macro_rules! x11_link {
 
       pub fn open () -> Result<$struct_name, $crate::error::OpenError> {
         unsafe {
-          let mut lib = try!($crate::link::DynamicLibrary::open_multi(&[$($lib_name),*]));
+          let libdir = $crate::link::config::libdir::$pkg_name;
+          let mut lib = try!($crate::link::DynamicLibrary::open_multi(libdir, &[$($lib_name),*]));
           let mut this: $struct_name = ::std::mem::zeroed();
           ::std::mem::swap(&mut lib, &mut this.lib);
           ::std::mem::forget(lib);
@@ -103,12 +105,18 @@ impl DynamicLibrary {
     }
   }
 
-  pub fn open_multi (names: &[&str]) -> Result<DynamicLibrary, OpenError> {
+  pub fn open_multi (libdir: Option<&'static str>, names: &[&str]) -> Result<DynamicLibrary, OpenError> {
     assert!(!names.is_empty());
+
+    let paths = libdir.map_or(Vec::new(), |dir| {
+        let path = Path::new(dir);
+        names.iter().map(|name| path.join(name).to_str().unwrap().to_string()).collect::<Vec<_>>()
+    });
+
     let mut msgs = Vec::new();
 
-    for name in names.iter() {
-      match DynamicLibrary::open(*name) {
+    for name in names.iter().map(|x| *x).chain(paths.iter().map(|x| &**x)) {
+      match DynamicLibrary::open(name) {
         Ok(lib) => { return Ok(lib); },
         Err(err) => { msgs.push(format!("{}", err)); },
       }
