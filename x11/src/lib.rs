@@ -34,3 +34,4 @@ pub mod xrender;
 pub mod xss;
 pub mod xt;
 pub mod xtest;
+pub mod xlib_xcb;
