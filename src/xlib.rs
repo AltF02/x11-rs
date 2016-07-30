@@ -34,7 +34,7 @@ pub mod xkb {}
 //
 
 
-x11_link! { Xlib, ["libX11.so.6", "libX11.so"], 767,
+x11_link! { Xlib, x11, ["libX11.so.6", "libX11.so"], 767,
   pub fn XActivateScreenSaver (_1: *mut Display) -> c_int,
   pub fn XAddConnectionWatch (_3: *mut Display, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char, c_int, c_int, *mut *mut c_char)>, _1: *mut c_char) -> c_int,
   pub fn XAddExtension (_1: *mut Display) -> *mut XExtCodes,

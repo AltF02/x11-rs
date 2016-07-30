@@ -10,3 +10,6 @@ build = "build.rs"
 [dependencies]
 lazy_static = "0.2.0"
 libc = "0.2"
+
+[build-dependencies]
+pkg-config = "0.3.8"

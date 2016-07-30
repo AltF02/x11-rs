@@ -14,7 +14,7 @@ use xlib::{ Atom, Bool, Display, Drawable, Status, Time, Visual, XEvent, XID, XS
 //
 
 
-x11_link! { Xss, ["libXss.so.2", "libXss.so"], 11,
+x11_link! { Xss, xscrnsaver, ["libXss.so.2", "libXss.so"], 11,
   pub fn XScreenSaverQueryExtension (_1: *mut Display, _2: *mut c_int, _3: *mut c_int) -> Bool,
   pub fn XScreenSaverQueryVersion (_1: *mut Display, _2: *mut c_int, _3: *mut c_int) -> Status,
   pub fn XScreenSaverAllocInfo () -> *mut XScreenSaverInfo,
