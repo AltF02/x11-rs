@@ -18,6 +18,7 @@ fn main() {
                      "xinerama",
                      "xi",
                      "x11",
+                     "xlib_xcb",
                      "xmu",
                      "xrandr",
                      "xtst",
