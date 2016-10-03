@@ -869,7 +869,6 @@ pub enum _XrmHashBucketRec {}
 #[repr(C)] pub struct _XkbKey;
 #[repr(C)] pub struct _XkbKeyType;
 #[repr(C)] pub struct _XkbMapChanges;
-#[repr(C)] pub struct _XkbMapNotifyEvent;
 #[repr(C)] pub struct _XkbMods;
 #[repr(C)] pub struct _XkbNameChanges;
 #[repr(C)] pub struct _XkbNamesNotify;
@@ -1589,6 +1588,288 @@ pub struct _XkbNamesRec {
   pub num_key_aliases: c_uchar,
   pub num_rg: c_ushort,
 }
+
+
+//
+// Xkb event structs
+//
+
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct XkbAnyEvent {
+  pub type_: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub time: Time,
+  pub xkb_type: c_int,
+  pub device: c_uint,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct XkbNewKeyboardNotifyEvent {
+  pub type_: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub time: Time,
+  pub xkb_type: c_int,
+  pub device: c_int,
+  pub old_device: c_int,
+  pub min_key_code: c_int,
+  pub max_key_code: c_int,
+  pub old_min_key_code: c_int,
+  pub old_max_key_code: c_int,
+  pub changed: c_uint,
+  pub req_major: c_char,
+  pub req_minor: c_char,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct _XkbMapNotifyEvent {
+  pub type_: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub time: Time,
+  pub xkb_type: c_int,
+  pub device: c_int,
+  pub changed: c_uint,
+  pub flags: c_uint,
+  pub first_type: c_int,
+  pub num_types: c_int,
+  pub min_key_code: KeyCode,
+  pub max_key_code: KeyCode,
+  pub first_key_sym: KeyCode,
+  pub first_key_act: KeyCode,
+  pub first_key_bahavior: KeyCode,
+  pub first_key_explicit: KeyCode,
+  pub first_modmap_key: KeyCode,
+  pub first_vmodmap_key: KeyCode,
+  pub num_key_syms: c_int,
+  pub num_key_acts: c_int,
+  pub num_key_behaviors: c_int,
+  pub num_key_explicit: c_int,
+  pub num_modmap_keys: c_int,
+  pub num_vmodmap_keys: c_int,
+  pub vmods: c_uint,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct XkbStateNotifyEvent {
+  pub type_: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub time: Time,
+  pub xkb_type: c_int,
+  pub device: c_int,
+  pub changed: c_uint,
+  pub group: c_int,
+  pub base_group: c_int,
+  pub latched_group: c_int,
+  pub locked_group: c_int,
+  pub mods: c_uint,
+  pub base_mods: c_uint,
+  pub latched_mods: c_uint,
+  pub locked_mods: c_uint,
+  pub compat_state: c_int,
+  pub grab_mods: c_uchar,
+  pub compat_grab_mods: c_uchar,
+  pub lookup_mods: c_uchar,
+  pub compat_lookup_mods: c_uchar,
+  pub ptr_buttons: c_int,
+  pub keycode: KeyCode,
+  pub event_type: c_char,
+  pub req_major: c_char,
+  pub req_minor: c_char,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct _XkbControlsNotifyEvent {
+  pub type_: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub time: Time,
+  pub xkb_type: c_int,
+  pub device: c_int,
+  pub changed_ctrls: c_uint,
+  pub enabled_ctrls: c_uint,
+  pub enabled_ctrl_changes: c_uint,
+  pub num_groups: c_int,
+  pub keycode: KeyCode,
+  pub event_type: c_char,
+  pub req_major: c_char,
+  pub req_minor: c_char,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct XkbIndicatorNotifyEvent {
+  pub type_: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub time: Time,
+  pub xkb_type: c_int,
+  pub device: c_int,
+  pub changed: c_uint,
+  pub state: c_uint,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct _XkbNamesNotifyEvent {
+  pub type_: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub time: Time,
+  pub xkb_type: c_int,
+  pub device: c_int,
+  pub changed: c_uint,
+  pub first_type: c_int,
+  pub num_types: c_int,
+  pub first_lvl: c_int,
+  pub num_lvls: c_int,
+  pub num_aliases: c_int,
+  pub num_radio_groups: c_int,
+  pub changed_vmods: c_uint,
+  pub changed_groups: c_uint,
+  pub changed_indicators: c_uint,
+  pub first_key: c_int,
+  pub num_keys: c_int,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct XkbCompatMapNotifyEvent {
+  pub type_: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub time: Time,
+  pub xkb_type: c_int,
+  pub device: c_int,
+  pub changed_groups: c_uint,
+  pub first_si: c_int,
+  pub num_si: c_int,
+  pub num_total_si: c_int,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct XkbBellNotifyEvent {
+  pub type_: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub time: Time,
+  pub xkb_type: c_int,
+  pub device: c_int,
+  pub percent: c_int,
+  pub pitch: c_int,
+  pub duration: c_int,
+  pub bell_class: c_int,
+  pub bell_id: c_int,
+  pub name: Atom,
+  pub window: Window,
+  pub event_only: Bool,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct XkbActionMessageEvent {
+  pub type_: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub time: Time,
+  pub xkb_type: c_int,
+  pub device: c_int,
+  pub keycode: KeyCode,
+  pub press: Bool,
+  pub key_event_follows: Bool,
+  pub group: c_int,
+  pub mods: c_uint,
+  pub message: [c_char; XkbActionMessageLength + 1],
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct XkbAccessXNotifyEvent {
+  pub type_: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub time: Time,
+  pub xkb_type: c_int,
+  pub device: c_int,
+  pub detail: c_int,
+  pub keycode: c_int,
+  pub sk_delay: c_int,
+  pub debounce_delay: c_int,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct _XkbExtensionDeviceNotifyEvent {
+  pub type_: c_int,
+  pub serial: c_ulong,
+  pub send_event: Bool,
+  pub display: *mut Display,
+  pub time: Time,
+  pub xkb_type: c_int,
+  pub device: c_int,
+  pub reason: c_uint,
+  pub supported: c_uint,
+  pub unsupported: c_uint,
+  pub first_btn: c_int,
+  pub num_btns: c_int,
+  pub leds_defined: c_uint,
+  pub led_state: c_uint,
+  pub led_class: c_int,
+  pub led_id: c_int,
+}
+
+#[derive(Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct XkbEvent {
+  _pad: [c_long; 24],
+}
+
+macro_rules! test_xkb_event_size {
+  { $($ty:ty,)* } => { $(
+    assert!(::std::mem::size_of::<XkbEvent>() >= ::std::mem::size_of::<$ty>());
+  )* };
+}
+
+#[test]
+fn xkb_event_size_test () {
+  test_xkb_event_size! {
+    XkbAnyEvent,
+    XkbNewKeyboardNotifyEvent,
+    XkbMapNotifyEvent,
+    XkbStateNotifyEvent,
+    XkbControlsNotifyEvent,
+    XkbIndicatorNotifyEvent,
+    XkbNamesNotifyEvent,
+    XkbCompatMapNotifyEvent,
+    XkbBellNotifyEvent,
+    XkbActionMessageEvent,
+    XkbAccessXNotifyEvent,
+    XkbExtensionDeviceNotifyEvent,
+  }
+}
+
+pub enum XkbKbdDpyStateRec {}
+pub type XkbKbdDpyStatePtr = *mut XkbKbdDpyStateRec;
 
 
 //
@@ -2881,3 +3162,24 @@ pub const XLookupNone: i32 = 1;
 pub const XLookupChars: i32 = 2;
 pub const XLookupKeySym: i32 = 3;
 pub const XLookupBoth: i32 = 4;
+
+// Xkb constants
+pub const XkbActionMessageLength: usize = 6;
+
+pub const XkbOD_Success: c_int = 0;
+pub const XkbOD_BadLibraryVersion: c_int = 1;
+pub const XkbOD_ConnectionRefused: c_int = 2;
+pub const XkbOD_NonXkbServer: c_int = 3;
+pub const XkbOD_BadServerVersion: c_int = 4;
+
+pub const XkbLC_ForceLatinLookup: c_uint = 1 << 0;
+pub const XkbLC_ConsumeLookupMods: c_uint = 1 << 1;
+pub const XkbLC_AlwaysConsumeShiftAndLock: c_uint = 1 << 2;
+pub const XkbLC_IgnoreNewKeyboards: c_uint = 1 << 3;
+pub const XkbLC_ControlFallback: c_uint = 1 << 4;
+pub const XkbLC_ConsumeKeysOnComposeFail: c_uint = 1 << 29;
+pub const XkbLC_ComposeLED: c_uint = 1 << 30;
+pub const XkbLC_BeepOnComposeFail: c_uint = 1 << 31;
+
+pub const XkbLC_AllComposeControls: c_uint = 0xc000_0000;
+pub const XkbLC_AllControls: c_uint = 0xc000_001f;
