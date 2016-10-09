@@ -3183,3 +3183,30 @@ pub const XkbLC_BeepOnComposeFail: c_uint = 1 << 31;
 
 pub const XkbLC_AllComposeControls: c_uint = 0xc000_0000;
 pub const XkbLC_AllControls: c_uint = 0xc000_001f;
+
+pub const XkbNewKeyboardNotify: c_int = 0;
+pub const XkbMapNotify: c_int = 1;
+pub const XkbStateNotify: c_int = 2;
+pub const XkbControlsNotify: c_int = 3;
+pub const XkbIndicatorStateNotify: c_int = 4;
+pub const XkbIndicatorMapNotify: c_int = 5;
+pub const XkbNamesNotify: c_int = 6;
+pub const XkbCompatMapNotify: c_int = 7;
+pub const XkbBellNotify: c_int = 8;
+pub const XkbActionMessage: c_int = 9;
+pub const XkbAccessXNotify: c_int = 10;
+pub const XkbExtensionDeviceNotify: c_int = 11;
+
+pub const XkbNewKeyboardNotifyMask: c_ulong = 1 << 0;
+pub const XkbMapNotifyMask: c_ulong = 1 << 1;
+pub const XkbStateNotifyMask: c_ulong = 1 << 2;
+pub const XkbControlsNotifyMask: c_ulong = 1 << 3;
+pub const XkbIndicatorStateNotifyMask: c_ulong = 1 << 4;
+pub const XkbIndicatorMapNotifyMask: c_ulong = 1 << 5;
+pub const XkbNamesNotifyMask: c_ulong = 1 << 6;
+pub const XkbCompatMapNotifyMask: c_ulong = 1 << 7;
+pub const XkbBellNotifyMask: c_ulong = 1 << 8;
+pub const XkbActionMessageMask: c_ulong = 1 << 9;
+pub const XkbAccessXNotifyMask: c_ulong = 1 << 10;
+pub const XkbExtensionDeviceNotifyMask: c_ulong = 1 << 11;
+pub const XkbAllEventsMask: c_ulong = 0xfff;
