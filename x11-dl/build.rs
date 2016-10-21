@@ -40,5 +40,10 @@ fn main() {
     let mut f = File::create(&dest_path).unwrap();
     f.write_all(&config.into_bytes()).unwrap();
 
-    println!("cargo:rustc-link-lib=dl");
+    let target = env::var("TARGET").unwrap();
+    if target.contains("linux") {
+        println!("cargo:rustc-link-lib=dl");
+    } else if target.contains("freebsd") || target.contains("dragonfly") {
+        println!("cargo:rustc-link-lib=c");
+    }
 }
