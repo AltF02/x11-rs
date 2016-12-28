@@ -1,0 +1,2 @@
+[workspace]
+members = ["x11", "x11-dl"]
