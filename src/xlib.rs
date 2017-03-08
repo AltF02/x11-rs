@@ -3210,3 +3210,13 @@ pub const XkbActionMessageMask: c_ulong = 1 << 9;
 pub const XkbAccessXNotifyMask: c_ulong = 1 << 10;
 pub const XkbExtensionDeviceNotifyMask: c_ulong = 1 << 11;
 pub const XkbAllEventsMask: c_ulong = 0xfff;
+
+// Bitmask returned by XParseGeometry
+pub const NoValue: c_int = 0x0000;
+pub const XValue: c_int = 0x0001;
+pub const YValue: c_int = 0x0002;
+pub const WidthValue: c_int = 0x0004;
+pub const HeightValue: c_int = 0x0008;
+pub const AllValues: c_int = 0x000f;
+pub const XNegative: c_int = 0x0010;
+pub const YNegative: c_int = 0x0020;
