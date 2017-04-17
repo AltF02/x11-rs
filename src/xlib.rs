@@ -3220,3 +3220,14 @@ pub const HeightValue: c_int = 0x0008;
 pub const AllValues: c_int = 0x000f;
 pub const XNegative: c_int = 0x0010;
 pub const YNegative: c_int = 0x0020;
+
+// Definition for flags of XWMHints
+pub const InputHint: c_long = 1 << 0;
+pub const StateHint: c_long = 1 << 1;
+pub const IconPixmapHint: c_long = 1 << 2;
+pub const IconWindowHint: c_long = 1 << 3;
+pub const IconPositionHint: c_long = 1 << 4;
+pub const IconMaskHint: c_long = 1 << 5;
+pub const WindowGroupHint: c_long = 1 << 6;
+pub const AllHints: c_long = InputHint | StateHint | IconPixmapHint | IconWindowHint | IconPositionHint | IconMaskHint | WindowGroupHint;
+pub const XUrgencyHint: c_long = 1 << 8;
