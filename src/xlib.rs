@@ -3231,3 +3231,10 @@ pub const IconMaskHint: c_long = 1 << 5;
 pub const WindowGroupHint: c_long = 1 << 6;
 pub const AllHints: c_long = InputHint | StateHint | IconPixmapHint | IconWindowHint | IconPositionHint | IconMaskHint | WindowGroupHint;
 pub const XUrgencyHint: c_long = 1 << 8;
+
+// XICCEncodingStyle
+pub const XStringStyle: c_int = 0;
+pub const XCompoundTextStyle: c_int = 1;
+pub const XTextStyle: c_int = 2;
+pub const XStdICCTextStyle: c_int = 3;
+pub const XUTF8StringStyle: c_int = 4;
