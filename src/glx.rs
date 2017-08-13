@@ -22,7 +22,7 @@ use ::xlib::{
 //
 
 
-x11_link! { Glx, gl, ["libGL.so.1", "libGL.so"], 39,
+x11_link! { Glx, gl, ["libGL.so.1", "libGL.so"], 40,
   pub fn glXChooseFBConfig (_4: *mut Display, _3: c_int, _2: *const c_int, _1: *mut c_int) -> *mut GLXFBConfig,
   pub fn glXChooseVisual (_3: *mut Display, _2: c_int, _1: *mut c_int) -> *mut XVisualInfo,
   pub fn glXCopyContext (_4: *mut Display, _3: GLXContext, _2: GLXContext, _1: c_ulong) -> (),
@@ -46,6 +46,7 @@ x11_link! { Glx, gl, ["libGL.so.1", "libGL.so"], 39,
   pub fn glXGetFBConfigAttrib (_4: *mut Display, _3: GLXFBConfig, _2: c_int, _1: *mut c_int) -> c_int,
   pub fn glXGetFBConfigs (_3: *mut Display, _2: c_int, _1: *mut c_int) -> *mut GLXFBConfig,
   pub fn glXGetProcAddress (_1: *const c_uchar) -> Option<unsafe extern "C" fn ()>,
+  pub fn glXGetProcAddressARB (_1: *const c_uchar) -> Option<unsafe extern "C" fn ()>,
   pub fn glXGetSelectedEvent (_3: *mut Display, _2: c_ulong, _1: *mut c_ulong) -> (),
   pub fn glXGetVisualFromFBConfig (_2: *mut Display, _1: GLXFBConfig) -> *mut XVisualInfo,
   pub fn glXIsDirect (_2: *mut Display, _1: GLXContext) -> c_int,

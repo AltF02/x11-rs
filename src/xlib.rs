@@ -1844,6 +1844,7 @@ pub struct XkbEvent {
   _pad: [c_long; 24],
 }
 
+#[cfg(test)]
 macro_rules! test_xkb_event_size {
   { $($ty:ty,)* } => { $(
     assert!(::std::mem::size_of::<XkbEvent>() >= ::std::mem::size_of::<$ty>());
