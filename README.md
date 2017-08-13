@@ -9,4 +9,5 @@
 The X11 libraries written in C are available under the terms of the MIT license.
 These bindings are available as public domain.
 
-Feel free to contribute with an issue or a pull request if you need anything that's missing!
+As of 2017 I don't have as much time to work on this myself as I once did (due to school and work,
+both full time), but feel free to submit a pull request if anything you need is missing!
