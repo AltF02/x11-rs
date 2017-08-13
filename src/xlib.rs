@@ -894,6 +894,7 @@ pub type Region = *mut _XRegion;
 pub type XcmsCCC = *mut _XcmsCCC;
 pub type XcmsColorSpace = _XcmsColorSpace;
 pub type XcmsFunctionSet = _XcmsFunctionSet;
+pub type XContext = c_int;
 pub type XFontSet = *mut _XOC;
 pub type XIC = *mut _XIC;
 pub type XIM = *mut _XIM;
@@ -3283,3 +3284,13 @@ pub const XCompoundTextStyle: c_int = 1;
 pub const XTextStyle: c_int = 2;
 pub const XStdICCTextStyle: c_int = 3;
 pub const XUTF8StringStyle: c_int = 4;
+
+
+//
+// inline functions
+//
+
+
+#[cfg(feature = "xlib")]
+#[inline]
+pub unsafe fn XUniqueContext () -> XContext { XrmUniqueQuark() }
