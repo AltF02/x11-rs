@@ -128,10 +128,17 @@ pub const GLX_TRANSPARENT_RED_VALUE: c_int = 0x0025;
 pub const GLX_TRANSPARENT_GREEN_VALUE: c_int = 0x0026;
 pub const GLX_TRANSPARENT_BLUE_VALUE: c_int = 0x0027;
 pub const GLX_TRANSPARENT_ALPHA_VALUE: c_int = 0x0028;
+pub const GLX_VISUAL_ID: c_int = 0x800B;
+pub const GLX_SCREEN: c_int = 0x800C;
 pub const GLX_DRAWABLE_TYPE: c_int = 0x8010;
 pub const GLX_RENDER_TYPE: c_int = 0x8011;
 pub const GLX_X_RENDERABLE: c_int = 0x8012;
 pub const GLX_FBCONFIG_ID: c_int = 0x8013;
+pub const GLX_MAX_PBUFFER_WIDTH: c_int = 0x8016;
+pub const GLX_MAX_PBUFFER_HEIGHT: c_int = 0x8017;
+pub const GLX_MAX_PBUFFER_PIXELS: c_int = 0x8018;
+pub const GLX_SAMPLE_BUFFERS: c_int = 0x1_86a0;
+pub const GLX_SAMPLES: c_int = 0x1_86a1;
 
 // misc
 pub const GLX_DONT_CARE: c_int = -1;
@@ -152,6 +159,56 @@ pub const GLX_PSEUDO_COLOR: c_int = 0x8004;
 pub const GLX_STATIC_COLOR: c_int = 0x8005;
 pub const GLX_GRAY_SCALE: c_int = 0x8006;
 pub const GLX_STATIC_GRAY: c_int = 0x8007;
+
+// glXGetConfig errors
+pub const GLX_BAD_SCREEN: c_int = 1;
+pub const GLX_BAD_ATTRIBUTE: c_int = 2;
+pub const GLX_NO_EXTENSION: c_int = 3;
+pub const GLX_BAD_VISUAL: c_int = 4;
+pub const GLX_BAD_CONTEXT: c_int = 5;
+pub const GLX_BAD_VALUE: c_int = 6;
+pub const GLX_BAD_ENUM: c_int = 7;
+
+// glXGetClientString names
+pub const GLX_VENDOR: c_int = 1;
+pub const GLX_VERSION: c_int = 2;
+pub const GLX_EXTENSIONS: c_int = 3;
+
+// drawable type mask?
+pub const GLX_FRONT_LEFT_BUFFER_BIT: c_uint = 0x0001;
+pub const GLX_FRONT_RIGHT_BUFFER_BIT: c_uint = 0x0002;
+pub const GLX_BACK_LEFT_BUFFER_BIT: c_uint = 0x0004;
+pub const GLX_BACK_RIGHT_BUFFER_BIT: c_uint = 0x0008;
+pub const GLX_AUX_BUFFERS_BIT: c_uint = 0x0010;
+pub const GLX_DEPTH_BUFFER_BIT: c_uint = 0x0020;
+pub const GLX_STENCIL_BUFFER_BIT: c_uint = 0x0040;
+pub const GLX_ACCUM_BUFFER_BIT: c_uint = 0080;
+
+// render type for glXCreateNewContext
+pub const GLX_RGBA_TYPE: c_int = 0x8014;
+pub const GLX_COLOR_INDEX_TYPE: c_int = 0x8015;
+
+// drawable attributes
+pub const GLX_PRESERVED_CONTENTS: c_int = 0x801B;
+pub const GLX_LARGEST_PBUFFER: c_int = 0x801C;
+pub const GLX_WIDTH: c_int = 0x801D;
+pub const GLX_HEIGHT: c_int = 0x801E;
+pub const GLX_PBUFFER_HEIGHT: c_int = 0x8040;
+pub const GLX_PBUFFER_WIDTH: c_int = 0x8041;
+
+// other?
+pub const GLX_EVENT_MASK: c_int = 0x801F;
+
+// event mask
+pub const GLX_PBUFFER_CLOBBER_MASK: c_ulong = 0x0800_0000;
+
+// event types
+pub const GLX_DAMAGED: c_int = 0x8020;
+pub const GLX_SAVED: c_int = 0x8021;
+
+// drawable types
+pub const GLX_WINDOW: c_int = 0x8022;
+pub const GLX_PBUFFER: c_int = 0x8023;
 
 
 //
