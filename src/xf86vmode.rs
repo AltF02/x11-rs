@@ -12,9 +12,6 @@ use std::os::raw::{
   c_ushort,
 };
 
-use std::mem;
-use ::internal::transmute_union;
-
 use ::xlib::{
   Bool,
   Display,
@@ -145,5 +142,5 @@ pub struct XF86VidModeNotifyEvent {
 }
 
 event_conversions_and_tests! {
-  XF86VidModeNotifyEvent,
+  xf86vm_notify: XF86VidModeNotifyEvent,
 }
