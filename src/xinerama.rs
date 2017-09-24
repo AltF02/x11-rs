@@ -24,7 +24,7 @@ use ::xlib::{
 
 x11_link! { Xlib, xinerama, ["libXinerama.so.1", "libXinerama.so"], 10,
   pub fn XineramaIsActive (dpy: *mut Display) -> Bool,
-  pub fn XineramaQueryExtension (dpy: *mut Display, event_base: c_int, error_base: c_int) -> Bool,
+  pub fn XineramaQueryExtension (dpy: *mut Display, event_base: *mut c_int, error_base: *mut c_int) -> Bool,
   pub fn XineramaQueryScreens (dpy: *mut Display, number: *mut c_int) -> *mut XineramaScreenInfo,
   pub fn XineramaQueryVersion (dpy: *mut Display, major_versionp: *mut c_int, minor_versionp: *mut c_int) -> Status,
   pub fn XPanoramiXAllocInfo () -> *mut XPanoramiXInfo,
