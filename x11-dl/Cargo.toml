@@ -8,6 +8,7 @@ repository = "https://github.com/Daggerbot/x11-rs.git"
 build = "build.rs"
 documentation = "https://docs.rs/x11-dl"
 workspace = ".."
+readme = "../README.md"
 
 [dependencies]
 lazy_static = "0.2.0"
