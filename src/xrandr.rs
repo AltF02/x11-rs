@@ -3,9 +3,7 @@
 // These bindings are public domain.
 
 use std::os::raw::{ c_char, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort };
-use std::mem;
 
-use ::internal::transmute_union;
 use xlib::{ Atom, Bool, Display, Drawable, Status, Time, XEvent, XID, Window };
 use xrender::{ XFixed, XTransform };
 
@@ -406,9 +404,14 @@ pub struct XRRResourceChangeNotifyEvent {
 }
 
 event_conversions_and_tests! {
-  XRRScreenChangeNotifyEvent, XRRNotifyEvent, XRROutputChangeNotifyEvent,
-  XRRCrtcChangeNotifyEvent, XRROutputPropertyNotifyEvent, XRRProviderChangeNotifyEvent,
-  XRRProviderPropertyNotifyEvent, XRRResourceChangeNotifyEvent, 
+  xrr_screen_change_notify: XRRScreenChangeNotifyEvent,
+  xrr_notify: XRRNotifyEvent,
+  xrr_output_change_notify: XRROutputChangeNotifyEvent,
+  xrr_crtc_change_notify: XRRCrtcChangeNotifyEvent,
+  xrr_output_property_notify: XRROutputPropertyNotifyEvent,
+  xrr_provider_change_notify: XRRProviderChangeNotifyEvent,
+  xrr_provider_property_notify: XRRProviderPropertyNotifyEvent,
+  xrr_resource_change_notify: XRRResourceChangeNotifyEvent,
 }
 
 

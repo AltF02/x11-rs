@@ -3,9 +3,7 @@
 // These bindings are public domain.
 
 use std::os::raw::{ c_int, c_uint, c_ulong };
-use std::mem;
 
-use ::internal::transmute_union;
 use xlib::{ Atom, Bool, Display, Drawable, Status, Time, Visual, XEvent, XID, XSetWindowAttributes, Window };
 
 
@@ -69,7 +67,7 @@ pub struct XScreenSaverNotifyEvent {
 }
 
 event_conversions_and_tests! {
-  XScreenSaverNotifyEvent,
+  xss_notify: XScreenSaverNotifyEvent,
 }
 
 

@@ -2,7 +2,6 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::mem;
 use std::slice;
 use std::os::raw::{
   c_char,
@@ -24,6 +23,10 @@ use ::internal::{
   mem_eq,
   transmute_union,
 };
+use xf86vmode;
+use xrandr;
+use xss;
+
 
 // deprecated
 pub mod xkb {}
@@ -974,22 +977,68 @@ fn enum_size_test () {
 //
 
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Clone, Copy)]
 #[repr(C)]
-pub struct XEvent {
+pub union XEvent {
+  pub type_: c_int,
+  pub any: XAnyEvent,
+  pub button: XButtonEvent,
+  pub circulate: XCirculateEvent,
+  pub circulate_request: XCirculateRequestEvent,
+  pub client_message: XClientMessageEvent,
+  pub colormap: XColormapEvent,
+  pub configure: XConfigureEvent,
+  pub configure_request: XConfigureRequestEvent,
+  pub create_window: XCreateWindowEvent,
+  pub crossing: XCrossingEvent,
+  pub destroy_window: XDestroyWindowEvent,
+  pub error: XErrorEvent,
+  pub expose: XExposeEvent,
+  pub focus_change: XFocusChangeEvent,
+  pub generic_event_cookie: XGenericEventCookie,
+  pub graphics_expose: XGraphicsExposeEvent,
+  pub gravity: XGravityEvent,
+  pub key: XKeyEvent,
+  pub keymap: XKeymapEvent,
+  pub map: XMapEvent,
+  pub mapping: XMappingEvent,
+  pub map_request: XMapRequestEvent,
+  pub motion: XMotionEvent,
+  pub no_expose: XNoExposeEvent,
+  pub property: XPropertyEvent,
+  pub reparent: XReparentEvent,
+  pub resize_request: XResizeRequestEvent,
+  pub selection_clear: XSelectionClearEvent,
+  pub selection: XSelectionEvent,
+  pub selection_request: XSelectionRequestEvent,
+  pub unmap: XUnmapEvent,
+  pub visibility: XVisibilityEvent,
   pub pad: [c_long; 24],
+  // xf86vidmode
+  pub xf86vm_notify: xf86vmode::XF86VidModeNotifyEvent,
+  // xrandr
+  pub xrr_screen_change_notify: xrandr::XRRScreenChangeNotifyEvent,
+  pub xrr_notify: xrandr::XRRNotifyEvent,
+  pub xrr_output_change_notify: xrandr::XRROutputChangeNotifyEvent,
+  pub xrr_crtc_change_notify: xrandr::XRRCrtcChangeNotifyEvent,
+  pub xrr_output_property_notify: xrandr::XRROutputPropertyNotifyEvent,
+  pub xrr_provider_change_notify: xrandr::XRRProviderChangeNotifyEvent,
+  pub xrr_provider_property_notify: xrandr::XRRProviderPropertyNotifyEvent,
+  pub xrr_resource_change_notify: xrandr::XRRResourceChangeNotifyEvent,
+  // xscreensaver
+  pub xss_notify: xss::XScreenSaverNotifyEvent,
 }
 
 impl XEvent {
   pub fn get_type (&self) -> c_int {
     unsafe {
-      *(self as *const XEvent as *const c_int)
+      self.type_
     }
   }
 }
 
 macro_rules! event_conversions_and_tests {
-  { $($ty:ty,)* } => {
+  { $($field:ident: $ty:ty,)* } => {
     #[test]
     fn xevent_size_test () {
       use std::mem::size_of;
@@ -1000,37 +1049,37 @@ macro_rules! event_conversions_and_tests {
     $(
       impl AsMut<$ty> for XEvent {
         fn as_mut (&mut self) -> &mut $ty {
-          unsafe { mem::transmute(self) }
+          unsafe { &mut self.$field }
         }
       }
 
       impl AsRef<$ty> for XEvent {
         fn as_ref (&self) -> &$ty {
-          unsafe { mem::transmute(self) }
+          unsafe { &self.$field }
         }
       }
 
       impl From<$ty> for XEvent {
         fn from (other: $ty) -> XEvent {
-          unsafe { transmute_union(&other) }
+          XEvent{ $field: other }
         }
       }
 
       impl<'a> From<&'a $ty> for XEvent {
         fn from (other: &'a $ty) -> XEvent {
-          unsafe { transmute_union(other) }
+          XEvent{ $field: other.clone() }
         }
       }
 
       impl From<XEvent> for $ty {
         fn from (xevent: XEvent) -> $ty {
-          unsafe { transmute_union(&xevent) }
+          unsafe { xevent.$field }
         }
       }
 
       impl<'a> From<&'a XEvent> for $ty {
         fn from (xevent: &'a XEvent) -> $ty {
-          unsafe { transmute_union(xevent) }
+          unsafe { xevent.$field }
         }
       }
     )*
@@ -1038,38 +1087,38 @@ macro_rules! event_conversions_and_tests {
 }
 
 event_conversions_and_tests! {
-  XAnyEvent,
-  XButtonEvent,
-  XCirculateEvent,
-  XCirculateRequestEvent,
-  XClientMessageEvent,
-  XColormapEvent,
-  XConfigureEvent,
-  XConfigureRequestEvent,
-  XCreateWindowEvent,
-  XCrossingEvent,
-  XDestroyWindowEvent,
-  XErrorEvent,
-  XExposeEvent,
-  XFocusChangeEvent,
-  XGenericEventCookie,
-  XGraphicsExposeEvent,
-  XGravityEvent,
-  XKeyEvent,
-  XKeymapEvent,
-  XMapEvent,
-  XMappingEvent,
-  XMapRequestEvent,
-  XMotionEvent,
-  XNoExposeEvent,
-  XPropertyEvent,
-  XReparentEvent,
-  XResizeRequestEvent,
-  XSelectionClearEvent,
-  XSelectionEvent,
-  XSelectionRequestEvent,
-  XUnmapEvent,
-  XVisibilityEvent,
+  any: XAnyEvent,
+  button: XButtonEvent,
+  circulate: XCirculateEvent,
+  circulate_request: XCirculateRequestEvent,
+  client_message: XClientMessageEvent,
+  colormap: XColormapEvent,
+  configure: XConfigureEvent,
+  configure_request: XConfigureRequestEvent,
+  create_window: XCreateWindowEvent,
+  crossing: XCrossingEvent,
+  destroy_window: XDestroyWindowEvent,
+  error: XErrorEvent,
+  expose: XExposeEvent,
+  focus_change: XFocusChangeEvent,
+  generic_event_cookie: XGenericEventCookie,
+  graphics_expose: XGraphicsExposeEvent,
+  gravity: XGravityEvent,
+  key: XKeyEvent,
+  keymap: XKeymapEvent,
+  map: XMapEvent,
+  mapping: XMappingEvent,
+  map_request: XMapRequestEvent,
+  motion: XMotionEvent,
+  no_expose: XNoExposeEvent,
+  property: XPropertyEvent,
+  reparent: XReparentEvent,
+  resize_request: XResizeRequestEvent,
+  selection_clear: XSelectionClearEvent,
+  selection: XSelectionEvent,
+  selection_request: XSelectionRequestEvent,
+  unmap: XUnmapEvent,
+  visibility: XVisibilityEvent,
 }
 
 #[derive(Clone, Copy, PartialEq)]
