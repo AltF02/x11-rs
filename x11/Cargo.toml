@@ -27,6 +27,7 @@ xss = []
 xt = []
 xtest = ["xtst"]
 xtst = []
+dox = []
 
 [dependencies]
 libc = "0.2"
