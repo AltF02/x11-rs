@@ -5,5 +5,6 @@
 extern crate metadeps;
 
 fn main () {
+  if cfg!(feature = "dox") { return; }
   metadeps::probe().unwrap();
 }
