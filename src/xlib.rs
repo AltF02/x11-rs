@@ -16,6 +16,7 @@ use std::os::raw::{
   c_ushort,
   c_void,
 };
+use std::fmt;
 
 use libc::wchar_t;
 
@@ -1034,6 +1035,51 @@ impl XEvent {
     unsafe {
       self.type_
     }
+  }
+}
+
+impl fmt::Debug for XEvent {
+  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    let mut d = f.debug_struct("XEvent");
+    unsafe {
+      match self.type_ {
+        KeyPress => d.field("key", &self.key),
+        KeyRelease => d.field("key", &self.key),
+        ButtonPress => d.field("button", &self.button),
+        ButtonRelease => d.field("button", &self.button),
+        MotionNotify => d.field("motion", &self.motion),
+        EnterNotify => d.field("crossing", &self.crossing),
+        LeaveNotify => d.field("crossing", &self.crossing),
+        FocusIn => d.field("focus_change", &self.focus_change),
+        FocusOut => d.field("focus_change", &self.focus_change),
+        KeymapNotify => d.field("keymap", &self.keymap),
+        Expose => d.field("expose", &self.expose),
+        GraphicsExpose => d.field("graphics_expose", &self.graphics_expose),
+        NoExpose => d.field("no_expose", &self.no_expose),
+        VisibilityNotify => d.field("visibility", &self.visibility),
+        CreateNotify => d.field("create_window", &self.create_window),
+        DestroyNotify => d.field("destroy_window", &self.destroy_window),
+        UnmapNotify => d.field("unmap", &self.unmap),
+        MapNotify => d.field("map", &self.map),
+        MapRequest => d.field("map_request", &self.map_request),
+        ReparentNotify => d.field("reparent", &self.reparent),
+        ConfigureNotify => d.field("configure", &self.configure),
+        ConfigureRequest => d.field("configure_request", &self.configure_request),
+        GravityNotify => d.field("gravity", &self.gravity),
+        ResizeRequest => d.field("resize_request", &self.resize_request),
+        CirculateNotify => d.field("circulate", &self.circulate),
+        CirculateRequest => d.field("circulate_request", &self.circulate_request),
+        PropertyNotify => d.field("property", &self.property),
+        SelectionClear => d.field("selection_clear", &self.selection_clear),
+        SelectionRequest => d.field("selection_request", &self.selection_request),
+        SelectionNotify => d.field("selection", &self.selection),
+        ColormapNotify => d.field("colormap", &self.colormap),
+        ClientMessage => d.field("client_message", &self.client_message),
+        MappingNotify => d.field("mapping", &self.mapping),
+        GenericEvent => d.field("generic_event_cookie", &self.generic_event_cookie),
+        _ => d.field("any", &self.any),
+      }
+    }.finish()
   }
 }
 
