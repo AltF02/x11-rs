@@ -93,7 +93,7 @@ pub type Picture = XID;
 pub type XDouble = c_double;
 pub type XFixed = c_int;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XAnimCursor {
   pub cursor: Cursor,
@@ -101,7 +101,7 @@ pub struct _XAnimCursor {
 }
 pub type XAnimCursor = _XAnimCursor;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XCircle {
   pub x: XFixed,
@@ -110,7 +110,7 @@ pub struct _XCircle {
 }
 pub type XCircle = _XCircle;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XConicalGradient {
   pub center: XPointFixed,
@@ -118,7 +118,7 @@ pub struct _XConicalGradient {
 }
 pub type XConicalGradient = _XConicalGradient;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XFilters {
   pub nfilter: c_int,
@@ -128,7 +128,7 @@ pub struct _XFilters {
 }
 pub type XFilters = _XFilters;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XGlyphElt8 {
   pub glyphset: GlyphSet,
@@ -139,7 +139,7 @@ pub struct _XGlyphElt8 {
 }
 pub type XGlyphElt8 = _XGlyphElt8;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XGlyphElt16 {
   pub glyphset: GlyphSet,
@@ -150,7 +150,7 @@ pub struct _XGlyphElt16 {
 }
 pub type XGlyphElt16 = _XGlyphElt16;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XGlyphElt32 {
   pub glyphset: GlyphSet,
@@ -161,7 +161,7 @@ pub struct _XGlyphElt32 {
 }
 pub type XGlyphElt32 = _XGlyphElt32;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XGlyphInfo {
   pub width: c_ushort,
@@ -173,7 +173,7 @@ pub struct _XGlyphInfo {
 }
 pub type XGlyphInfo = _XGlyphInfo;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XIndexValue {
   pub pixel: c_ulong,
@@ -184,7 +184,7 @@ pub struct _XIndexValue {
 }
 pub type XIndexValue = _XIndexValue;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XLinearGradient {
   pub p1: XPointFixed,
@@ -192,7 +192,7 @@ pub struct _XLinearGradient {
 }
 pub type XLinearGradient = _XLinearGradient;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XLineFixed {
   pub p1: XPointFixed,
@@ -200,7 +200,7 @@ pub struct _XLineFixed {
 }
 pub type XLineFixed = _XLineFixed;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XPointDouble {
   pub x: XDouble,
@@ -208,7 +208,7 @@ pub struct _XPointDouble {
 }
 pub type XPointDouble = _XPointDouble;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XPointFixed {
   pub x: XFixed,
@@ -216,7 +216,7 @@ pub struct _XPointFixed {
 }
 pub type XPointFixed = _XPointFixed;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XRadialGradient {
   pub inner: XCircle,
@@ -224,7 +224,7 @@ pub struct _XRadialGradient {
 }
 pub type XRadialGradient = _XRadialGradient;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRenderColor {
   pub red: c_ushort,
@@ -233,7 +233,7 @@ pub struct XRenderColor {
   pub alpha: c_ushort,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRenderDirectFormat {
   pub red: c_short,
@@ -246,7 +246,7 @@ pub struct XRenderDirectFormat {
   pub alphaMask: c_short,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRenderPictFormat {
   pub id: PictFormat,
@@ -256,7 +256,7 @@ pub struct XRenderPictFormat {
   pub colormap: Colormap,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XRenderPictureAttributes {
   pub repeat: c_int,
@@ -275,7 +275,7 @@ pub struct _XRenderPictureAttributes {
 }
 pub type XRenderPictureAttributes = _XRenderPictureAttributes;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XSpanFix {
   pub left: XFixed,
@@ -284,7 +284,7 @@ pub struct _XSpanFix {
 }
 pub type XSpanFix = _XSpanFix;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XTrap {
   pub top: XSpanFix,
@@ -292,7 +292,7 @@ pub struct _XTrap {
 }
 pub type XTrap = _XTrap;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XTrapezoid {
   pub top: XFixed,
@@ -302,7 +302,7 @@ pub struct _XTrapezoid {
 }
 pub type XTrapezoid = _XTrapezoid;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XTriangle {
   pub p1: XPointFixed,
@@ -311,7 +311,7 @@ pub struct _XTriangle {
 }
 pub type XTriangle = _XTriangle;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XTransform {
   pub matrix: [[XFixed; 3]; 3],

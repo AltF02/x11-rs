@@ -216,7 +216,7 @@ pub const XI_BarrierLeaveMask: i32 = (1 << XI_BarrierLeave);
 //
 
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed1 {
     pub _type: ::std::os::raw::c_int,
     pub name: *mut ::std::os::raw::c_char,
@@ -231,7 +231,7 @@ impl ::std::default::Default for Struct_Unnamed1 {
 }
 pub type XIAddMasterInfo = Struct_Unnamed1;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed2 {
     pub _type: ::std::os::raw::c_int,
     pub deviceid: ::std::os::raw::c_int,
@@ -247,7 +247,7 @@ impl ::std::default::Default for Struct_Unnamed2 {
 }
 pub type XIRemoveMasterInfo = Struct_Unnamed2;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed3 {
     pub _type: ::std::os::raw::c_int,
     pub deviceid: ::std::os::raw::c_int,
@@ -261,7 +261,7 @@ impl ::std::default::Default for Struct_Unnamed3 {
 }
 pub type XIAttachSlaveInfo = Struct_Unnamed3;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed4 {
     pub _type: ::std::os::raw::c_int,
     pub deviceid: ::std::os::raw::c_int,
@@ -274,7 +274,7 @@ impl ::std::default::Default for Struct_Unnamed4 {
 }
 pub type XIDetachSlaveInfo = Struct_Unnamed4;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Union_Unnamed5 {
     pub _bindgen_data_: [u64; 3usize],
 }
@@ -308,7 +308,7 @@ impl ::std::default::Default for Union_Unnamed5 {
 }
 pub type XIAnyHierarchyChangeInfo = Union_Unnamed5;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed6 {
     pub base: ::std::os::raw::c_int,
     pub latched: ::std::os::raw::c_int,
@@ -324,7 +324,7 @@ impl ::std::default::Default for Struct_Unnamed6 {
 pub type XIModifierState = Struct_Unnamed6;
 pub type XIGroupState = XIModifierState;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed7 {
     pub mask_len: ::std::os::raw::c_int,
     pub mask: *mut ::std::os::raw::c_uchar,
@@ -337,7 +337,7 @@ impl ::std::default::Default for Struct_Unnamed7 {
 }
 pub type XIButtonState = Struct_Unnamed7;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed8 {
     pub mask_len: ::std::os::raw::c_int,
     pub mask: *mut ::std::os::raw::c_uchar,
@@ -351,7 +351,7 @@ impl ::std::default::Default for Struct_Unnamed8 {
 }
 pub type XIValuatorState = Struct_Unnamed8;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed9 {
     pub deviceid: ::std::os::raw::c_int,
     pub mask_len: ::std::os::raw::c_int,
@@ -365,7 +365,7 @@ impl ::std::default::Default for Struct_Unnamed9 {
 }
 pub type XIEventMask = Struct_Unnamed9;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed10 {
     pub _type: ::std::os::raw::c_int,
     pub sourceid: ::std::os::raw::c_int,
@@ -378,7 +378,7 @@ impl ::std::default::Default for Struct_Unnamed10 {
 }
 pub type XIAnyClassInfo = Struct_Unnamed10;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed11 {
     pub _type: ::std::os::raw::c_int,
     pub sourceid: ::std::os::raw::c_int,
@@ -394,7 +394,7 @@ impl ::std::default::Default for Struct_Unnamed11 {
 }
 pub type XIButtonClassInfo = Struct_Unnamed11;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed12 {
     pub _type: ::std::os::raw::c_int,
     pub sourceid: ::std::os::raw::c_int,
@@ -409,7 +409,7 @@ impl ::std::default::Default for Struct_Unnamed12 {
 }
 pub type XIKeyClassInfo = Struct_Unnamed12;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed13 {
     pub _type: ::std::os::raw::c_int,
     pub sourceid: ::std::os::raw::c_int,
@@ -429,7 +429,7 @@ impl ::std::default::Default for Struct_Unnamed13 {
 }
 pub type XIValuatorClassInfo = Struct_Unnamed13;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed14 {
     pub _type: ::std::os::raw::c_int,
     pub sourceid: ::std::os::raw::c_int,
@@ -446,7 +446,7 @@ impl ::std::default::Default for Struct_Unnamed14 {
 }
 pub type XIScrollClassInfo = Struct_Unnamed14;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed15 {
     pub _type: ::std::os::raw::c_int,
     pub sourceid: ::std::os::raw::c_int,
@@ -461,7 +461,7 @@ impl ::std::default::Default for Struct_Unnamed15 {
 }
 pub type XITouchClassInfo = Struct_Unnamed15;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed16 {
     pub deviceid: ::std::os::raw::c_int,
     pub name: *mut ::std::os::raw::c_char,
@@ -479,7 +479,7 @@ impl ::std::default::Default for Struct_Unnamed16 {
 }
 pub type XIDeviceInfo = Struct_Unnamed16;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed17 {
     pub modifiers: ::std::os::raw::c_int,
     pub status: ::std::os::raw::c_int,
@@ -493,7 +493,7 @@ impl ::std::default::Default for Struct_Unnamed17 {
 pub type XIGrabModifiers = Struct_Unnamed17;
 pub type BarrierEventID = ::std::os::raw::c_uint;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed18 {
     pub deviceid: ::std::os::raw::c_int,
     pub barrier: PointerBarrier,
@@ -507,7 +507,7 @@ impl ::std::default::Default for Struct_Unnamed18 {
 }
 pub type XIBarrierReleasePointerInfo = Struct_Unnamed18;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed19 {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
@@ -525,7 +525,7 @@ impl ::std::default::Default for Struct_Unnamed19 {
 }
 pub type XIEvent = Struct_Unnamed19;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed20 {
     pub deviceid: ::std::os::raw::c_int,
     pub attachment: ::std::os::raw::c_int,
@@ -541,7 +541,7 @@ impl ::std::default::Default for Struct_Unnamed20 {
 }
 pub type XIHierarchyInfo = Struct_Unnamed20;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed21 {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
@@ -562,7 +562,7 @@ impl ::std::default::Default for Struct_Unnamed21 {
 }
 pub type XIHierarchyEvent = Struct_Unnamed21;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed22 {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
@@ -585,7 +585,7 @@ impl ::std::default::Default for Struct_Unnamed22 {
 }
 pub type XIDeviceChangedEvent = Struct_Unnamed22;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed23 {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
@@ -618,7 +618,7 @@ impl ::std::default::Default for Struct_Unnamed23 {
 }
 pub type XIDeviceEvent = Struct_Unnamed23;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed24 {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
@@ -642,7 +642,7 @@ impl ::std::default::Default for Struct_Unnamed24 {
 }
 pub type XIRawEvent = Struct_Unnamed24;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed25 {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
@@ -679,7 +679,7 @@ pub type XILeaveEvent = XIEnterEvent;
 pub type XIFocusInEvent = XIEnterEvent;
 pub type XIFocusOutEvent = XIEnterEvent;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed26 {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
@@ -700,7 +700,7 @@ impl ::std::default::Default for Struct_Unnamed26 {
 }
 pub type XIPropertyEvent = Struct_Unnamed26;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed27 {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
@@ -725,7 +725,7 @@ impl ::std::default::Default for Struct_Unnamed27 {
 }
 pub type XITouchOwnershipEvent = Struct_Unnamed27;
 #[repr(C)]
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 pub struct Struct_Unnamed28 {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,

@@ -84,7 +84,7 @@ pub enum _XAnyClassinfo {}
 
 pub type XAnyClassPtr = *mut _XAnyClassinfo;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDevice {
   pub device_id: XID,
@@ -92,14 +92,14 @@ pub struct XDevice {
   pub classes: *mut XInputClassInfo,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDeviceControl {
   pub control: XID,
   pub length: c_int,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDeviceInfo {
   pub id: XID,
@@ -110,7 +110,7 @@ pub struct XDeviceInfo {
   pub inputclassinfo: XAnyClassPtr,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDeviceState {
   pub device_id: XID,
@@ -118,14 +118,14 @@ pub struct XDeviceState {
   pub data: *mut XInputClass,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDeviceTimeCoord {
   pub time: Time,
   pub data: *mut c_int,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XExtensionVersion {
   pub present: c_int,
@@ -133,7 +133,7 @@ pub struct XExtensionVersion {
   pub minor_version: c_short,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XFeedbackControl {
   pub class: XID,
@@ -141,7 +141,7 @@ pub struct XFeedbackControl {
   pub id: XID,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XFeedbackState {
   pub class: XID,
@@ -149,14 +149,14 @@ pub struct XFeedbackState {
   pub id: XID,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XInputClass {
   pub class: c_uchar,
   pub length: c_uchar,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XInputClassInfo {
   pub input_class: c_uchar,
