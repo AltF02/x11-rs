@@ -72,7 +72,7 @@ pub const XRecordEndOfData: c_int = 5;
 pub type XRecordClientSpec = c_ulong;
 pub type XRecordContext = c_ulong;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordClientInfo {
   pub client: XRecordClientSpec,
@@ -80,14 +80,14 @@ pub struct XRecordClientInfo {
   pub ranges: *mut *mut XRecordRange,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordExtRange {
   pub ext_major: XRecordRange8,
   pub ext_minor: XRecordRange16,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordInterceptData {
   pub id_base: XID,
@@ -99,7 +99,7 @@ pub struct XRecordInterceptData {
   pub data_len: c_ulong,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordRange {
   pub core_requests: XRecordRange8,
@@ -113,21 +113,21 @@ pub struct XRecordRange {
   pub client_died: Bool,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordRange8 {
   pub first: c_uchar,
   pub last: c_uchar,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordRange16 {
   pub first: c_ushort,
   pub last: c_ushort,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordState {
   pub enabled: Bool,

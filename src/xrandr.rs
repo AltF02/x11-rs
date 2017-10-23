@@ -104,7 +104,7 @@ pub type RRCrtc = XID;
 pub type RRMode = XID;
 pub type RRProvider = XID;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRScreenSize {
     pub width: c_int,
@@ -117,7 +117,7 @@ pub struct XRRScreenSize {
 
 pub type XRRModeFlags = c_ulong;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRModeInfo {
     pub id: RRMode,
@@ -136,7 +136,7 @@ pub struct XRRModeInfo {
     pub modeFlags: XRRModeFlags,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRScreenResources {
     pub timestamp: Time,
@@ -149,7 +149,7 @@ pub struct XRRScreenResources {
     pub modes: *mut XRRModeInfo,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRROutputInfo {
     pub timestamp: Time,
@@ -169,7 +169,7 @@ pub struct XRROutputInfo {
     pub modes: *mut RRMode,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRPropertyInfo {
     pub pending: Bool,
@@ -179,7 +179,7 @@ pub struct XRRPropertyInfo {
     pub values: *mut c_long,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRCrtcInfo {
     pub timestamp: Time,
@@ -196,7 +196,7 @@ pub struct XRRCrtcInfo {
     pub possible: *mut RROutput,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRCrtcGamma {
     pub size: c_int,
@@ -205,7 +205,7 @@ pub struct XRRCrtcGamma {
     pub blue: *mut c_ushort,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRCrtcTransformAttributes {
     pub pendingTransform: XTransform,
@@ -218,7 +218,7 @@ pub struct XRRCrtcTransformAttributes {
     pub currentParams: *mut XFixed,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRPanning {
     pub timestamp: Time,
@@ -236,7 +236,7 @@ pub struct XRRPanning {
     pub border_bottom: c_int,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRProviderResources {
     pub timestamp: Time,
@@ -244,7 +244,7 @@ pub struct XRRProviderResources {
     pub providers: *mut RRProvider,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRProviderInfo {
     pub capabilities: c_uint,
@@ -259,7 +259,7 @@ pub struct XRRProviderInfo {
     pub nameLen: c_int,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRMonitorInfo {
     pub name: Atom,
@@ -281,7 +281,7 @@ pub struct XRRMonitorInfo {
 //
 
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRScreenChangeNotifyEvent {
     pub type_: c_int,
@@ -301,7 +301,7 @@ pub struct XRRScreenChangeNotifyEvent {
     pub mheight: c_int,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRNotifyEvent {
     pub type_: c_int,
@@ -312,7 +312,7 @@ pub struct XRRNotifyEvent {
     pub subtype: c_int,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRROutputChangeNotifyEvent {
     pub type_: c_int,
@@ -329,7 +329,7 @@ pub struct XRROutputChangeNotifyEvent {
     pub subpixel_order: SubpixelOrder,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRCrtcChangeNotifyEvent {
     pub type_: c_int,
@@ -347,7 +347,7 @@ pub struct XRRCrtcChangeNotifyEvent {
     pub height: c_uint,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRROutputPropertyNotifyEvent {
     pub type_: c_int,
@@ -362,7 +362,7 @@ pub struct XRROutputPropertyNotifyEvent {
     pub state: c_int,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRProviderChangeNotifyEvent {
     pub type_: c_int,
@@ -376,7 +376,7 @@ pub struct XRRProviderChangeNotifyEvent {
     pub current_role: c_uint,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRProviderPropertyNotifyEvent {
     pub type_: c_int,
@@ -391,7 +391,7 @@ pub struct XRRProviderPropertyNotifyEvent {
     pub state: c_int,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRRResourceChangeNotifyEvent {
     pub type_: c_int,

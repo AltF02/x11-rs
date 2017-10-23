@@ -34,7 +34,7 @@ globals:
 //
 
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XScreenSaverInfo {
   pub window: Window,
@@ -51,7 +51,7 @@ pub struct XScreenSaverInfo {
 //
 
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XScreenSaverNotifyEvent {
   pub type_: c_int,

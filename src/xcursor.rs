@@ -101,7 +101,7 @@ pub type XcursorDim = XcursorUInt;
 pub type XcursorPixel = XcursorUInt;
 pub type XcursorUInt = c_uint;
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorAnimate {
   pub cursors: *mut XcursorCursors,
@@ -109,7 +109,7 @@ pub struct _XcursorAnimate {
 }
 pub type XcursorAnimate = _XcursorAnimate;
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorChunkHeader {
   pub header: XcursorUInt,
@@ -119,7 +119,7 @@ pub struct _XcursorChunkHeader {
 }
 pub type XcursorChunkHeader = _XcursorChunkHeader;
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorComment {
   pub version: XcursorUInt,
@@ -128,7 +128,7 @@ pub struct _XcursorComment {
 }
 pub type XcursorComment = _XcursorComment;
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorComments {
   pub ncomment: c_int,
@@ -136,7 +136,7 @@ pub struct _XcursorComments {
 }
 pub type XcursorComments = _XcursorComments;
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorCursors {
   pub dpy: *mut Display,
@@ -146,7 +146,7 @@ pub struct _XcursorCursors {
 }
 pub type XcursorCursors = _XcursorCursors;
 
-#[derive(Copy)]
+#[derive(Debug, Copy)]
 #[repr(C)]
 pub struct _XcursorFile {
   pub closure: *mut c_void,
@@ -167,7 +167,7 @@ impl Clone for _XcursorFile {
   }
 }
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorFileHeader {
   pub magic: XcursorUInt,
@@ -178,7 +178,7 @@ pub struct _XcursorFileHeader {
 }
 pub type XcursorFileHeader = _XcursorFileHeader;
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorFileToc {
   pub type_: XcursorUInt,
@@ -187,7 +187,7 @@ pub struct _XcursorFileToc {
 }
 pub type XcursorFileToc = _XcursorFileToc;
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorImage {
   pub version: XcursorUInt,
@@ -201,7 +201,7 @@ pub struct _XcursorImage {
 }
 pub type XcursorImage = _XcursorImage;
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct _XcursorImages {
   pub nimage: c_int,

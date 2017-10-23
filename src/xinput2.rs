@@ -216,69 +216,69 @@ pub const XI_BarrierLeaveMask: i32 = (1 << XI_BarrierLeave);
 //
 
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed1 {
+#[derive(Debug, Copy)]
+pub struct XIAddMasterInfo {
     pub _type: ::std::os::raw::c_int,
     pub name: *mut ::std::os::raw::c_char,
     pub send_core: ::std::os::raw::c_int,
     pub enable: ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed1 {
+impl ::std::clone::Clone for XIAddMasterInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed1 {
+impl ::std::default::Default for XIAddMasterInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIAddMasterInfo = Struct_Unnamed1;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed2 {
+#[derive(Debug, Copy)]
+pub struct XIRemoveMasterInfo {
     pub _type: ::std::os::raw::c_int,
     pub deviceid: ::std::os::raw::c_int,
     pub return_mode: ::std::os::raw::c_int,
     pub return_pointer: ::std::os::raw::c_int,
     pub return_keyboard: ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed2 {
+impl ::std::clone::Clone for XIRemoveMasterInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed2 {
+impl ::std::default::Default for XIRemoveMasterInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIRemoveMasterInfo = Struct_Unnamed2;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed3 {
+#[derive(Debug, Copy)]
+pub struct XIAttachSlaveInfo {
     pub _type: ::std::os::raw::c_int,
     pub deviceid: ::std::os::raw::c_int,
     pub new_master: ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed3 {
+impl ::std::clone::Clone for XIAttachSlaveInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed3 {
+impl ::std::default::Default for XIAttachSlaveInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIAttachSlaveInfo = Struct_Unnamed3;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed4 {
+#[derive(Debug, Copy)]
+pub struct XIDetachSlaveInfo {
     pub _type: ::std::os::raw::c_int,
     pub deviceid: ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed4 {
+impl ::std::clone::Clone for XIDetachSlaveInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed4 {
+impl ::std::default::Default for XIDetachSlaveInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIDetachSlaveInfo = Struct_Unnamed4;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Union_Unnamed5 {
+#[derive(Debug, Copy)]
+pub struct XIAnyHierarchyChangeInfo {
     pub _bindgen_data_: [u64; 3usize],
 }
-impl Union_Unnamed5 {
+impl XIAnyHierarchyChangeInfo {
     pub unsafe fn _type(&mut self) -> *mut ::std::os::raw::c_int {
         let raw: *mut u8 = ::std::mem::transmute(&self._bindgen_data_);
         ::std::mem::transmute(raw.offset(0))
@@ -300,117 +300,118 @@ impl Union_Unnamed5 {
         ::std::mem::transmute(raw.offset(0))
     }
 }
-impl ::std::clone::Clone for Union_Unnamed5 {
+impl ::std::clone::Clone for XIAnyHierarchyChangeInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Union_Unnamed5 {
+impl ::std::default::Default for XIAnyHierarchyChangeInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIAnyHierarchyChangeInfo = Union_Unnamed5;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed6 {
+#[derive(Debug, Copy)]
+pub struct XIModifierState {
     pub base: ::std::os::raw::c_int,
     pub latched: ::std::os::raw::c_int,
     pub locked: ::std::os::raw::c_int,
     pub effective: ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed6 {
+impl ::std::clone::Clone for XIModifierState {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed6 {
+impl ::std::default::Default for XIModifierState {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIModifierState = Struct_Unnamed6;
+
 pub type XIGroupState = XIModifierState;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed7 {
+#[derive(Debug, Copy)]
+pub struct XIButtonState {
     pub mask_len: ::std::os::raw::c_int,
     pub mask: *mut ::std::os::raw::c_uchar,
 }
-impl ::std::clone::Clone for Struct_Unnamed7 {
+impl ::std::clone::Clone for XIButtonState {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed7 {
+impl ::std::default::Default for XIButtonState {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIButtonState = Struct_Unnamed7;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed8 {
+#[derive(Debug, Copy)]
+pub struct XIValuatorState {
     pub mask_len: ::std::os::raw::c_int,
     pub mask: *mut ::std::os::raw::c_uchar,
     pub values: *mut ::std::os::raw::c_double,
 }
-impl ::std::clone::Clone for Struct_Unnamed8 {
+impl ::std::clone::Clone for XIValuatorState {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed8 {
+impl ::std::default::Default for XIValuatorState {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIValuatorState = Struct_Unnamed8;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed9 {
+#[derive(Debug, Copy)]
+pub struct XIEventMask {
     pub deviceid: ::std::os::raw::c_int,
     pub mask_len: ::std::os::raw::c_int,
     pub mask: *mut ::std::os::raw::c_uchar,
 }
-impl ::std::clone::Clone for Struct_Unnamed9 {
+impl ::std::clone::Clone for XIEventMask {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed9 {
+impl ::std::default::Default for XIEventMask {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIEventMask = Struct_Unnamed9;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed10 {
+#[derive(Debug, Copy)]
+pub struct XIAnyClassInfo {
     pub _type: ::std::os::raw::c_int,
     pub sourceid: ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed10 {
+impl ::std::clone::Clone for XIAnyClassInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed10 {
+impl ::std::default::Default for XIAnyClassInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIAnyClassInfo = Struct_Unnamed10;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed11 {
+#[derive(Debug, Copy)]
+pub struct XIButtonClassInfo {
     pub _type: ::std::os::raw::c_int,
     pub sourceid: ::std::os::raw::c_int,
     pub num_buttons: ::std::os::raw::c_int,
     pub labels: *mut Atom,
     pub state: XIButtonState,
 }
-impl ::std::clone::Clone for Struct_Unnamed11 {
+impl ::std::clone::Clone for XIButtonClassInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed11 {
+impl ::std::default::Default for XIButtonClassInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIButtonClassInfo = Struct_Unnamed11;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed12 {
+#[derive(Debug, Copy)]
+pub struct XIKeyClassInfo {
     pub _type: ::std::os::raw::c_int,
     pub sourceid: ::std::os::raw::c_int,
     pub num_keycodes: ::std::os::raw::c_int,
     pub keycodes: *mut ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed12 {
+impl ::std::clone::Clone for XIKeyClassInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed12 {
+impl ::std::default::Default for XIKeyClassInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIKeyClassInfo = Struct_Unnamed12;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed13 {
+#[derive(Debug, Copy)]
+pub struct XIValuatorClassInfo {
     pub _type: ::std::os::raw::c_int,
     pub sourceid: ::std::os::raw::c_int,
     pub number: ::std::os::raw::c_int,
@@ -421,16 +422,16 @@ pub struct Struct_Unnamed13 {
     pub resolution: ::std::os::raw::c_int,
     pub mode: ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed13 {
+impl ::std::clone::Clone for XIValuatorClassInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed13 {
+impl ::std::default::Default for XIValuatorClassInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIValuatorClassInfo = Struct_Unnamed13;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed14 {
+#[derive(Debug, Copy)]
+pub struct XIScrollClassInfo {
     pub _type: ::std::os::raw::c_int,
     pub sourceid: ::std::os::raw::c_int,
     pub number: ::std::os::raw::c_int,
@@ -438,31 +439,31 @@ pub struct Struct_Unnamed14 {
     pub increment: ::std::os::raw::c_double,
     pub flags: ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed14 {
+impl ::std::clone::Clone for XIScrollClassInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed14 {
+impl ::std::default::Default for XIScrollClassInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIScrollClassInfo = Struct_Unnamed14;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed15 {
+#[derive(Debug, Copy)]
+pub struct XITouchClassInfo {
     pub _type: ::std::os::raw::c_int,
     pub sourceid: ::std::os::raw::c_int,
     pub mode: ::std::os::raw::c_int,
     pub num_touches: ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed15 {
+impl ::std::clone::Clone for XITouchClassInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed15 {
+impl ::std::default::Default for XITouchClassInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XITouchClassInfo = Struct_Unnamed15;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed16 {
+#[derive(Debug, Copy)]
+pub struct XIDeviceInfo {
     pub deviceid: ::std::os::raw::c_int,
     pub name: *mut ::std::os::raw::c_char,
     pub _use: ::std::os::raw::c_int,
@@ -471,44 +472,45 @@ pub struct Struct_Unnamed16 {
     pub num_classes: ::std::os::raw::c_int,
     pub classes: *mut *mut XIAnyClassInfo,
 }
-impl ::std::clone::Clone for Struct_Unnamed16 {
+impl ::std::clone::Clone for XIDeviceInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed16 {
+impl ::std::default::Default for XIDeviceInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIDeviceInfo = Struct_Unnamed16;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed17 {
+#[derive(Debug, Copy)]
+pub struct XIGrabModifiers {
     pub modifiers: ::std::os::raw::c_int,
     pub status: ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed17 {
+impl ::std::clone::Clone for XIGrabModifiers {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed17 {
+impl ::std::default::Default for XIGrabModifiers {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIGrabModifiers = Struct_Unnamed17;
+
 pub type BarrierEventID = ::std::os::raw::c_uint;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed18 {
+#[derive(Debug, Copy)]
+pub struct XIBarrierReleasePointerInfo {
     pub deviceid: ::std::os::raw::c_int,
     pub barrier: PointerBarrier,
     pub eventid: BarrierEventID,
 }
-impl ::std::clone::Clone for Struct_Unnamed18 {
+impl ::std::clone::Clone for XIBarrierReleasePointerInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed18 {
+impl ::std::default::Default for XIBarrierReleasePointerInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIBarrierReleasePointerInfo = Struct_Unnamed18;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed19 {
+#[derive(Debug, Copy)]
+pub struct XIEvent {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
     pub send_event: ::std::os::raw::c_int,
@@ -517,32 +519,32 @@ pub struct Struct_Unnamed19 {
     pub evtype: ::std::os::raw::c_int,
     pub time: Time,
 }
-impl ::std::clone::Clone for Struct_Unnamed19 {
+impl ::std::clone::Clone for XIEvent {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed19 {
+impl ::std::default::Default for XIEvent {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIEvent = Struct_Unnamed19;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed20 {
+#[derive(Debug, Copy)]
+pub struct XIHierarchyInfo {
     pub deviceid: ::std::os::raw::c_int,
     pub attachment: ::std::os::raw::c_int,
     pub _use: ::std::os::raw::c_int,
     pub enabled: ::std::os::raw::c_int,
     pub flags: ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed20 {
+impl ::std::clone::Clone for XIHierarchyInfo {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed20 {
+impl ::std::default::Default for XIHierarchyInfo {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIHierarchyInfo = Struct_Unnamed20;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed21 {
+#[derive(Debug, Copy)]
+pub struct XIHierarchyEvent {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
     pub send_event: ::std::os::raw::c_int,
@@ -554,16 +556,16 @@ pub struct Struct_Unnamed21 {
     pub num_info: ::std::os::raw::c_int,
     pub info: *mut XIHierarchyInfo,
 }
-impl ::std::clone::Clone for Struct_Unnamed21 {
+impl ::std::clone::Clone for XIHierarchyEvent {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed21 {
+impl ::std::default::Default for XIHierarchyEvent {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIHierarchyEvent = Struct_Unnamed21;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed22 {
+#[derive(Debug, Copy)]
+pub struct XIDeviceChangedEvent {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
     pub send_event: ::std::os::raw::c_int,
@@ -577,16 +579,16 @@ pub struct Struct_Unnamed22 {
     pub num_classes: ::std::os::raw::c_int,
     pub classes: *mut *mut XIAnyClassInfo,
 }
-impl ::std::clone::Clone for Struct_Unnamed22 {
+impl ::std::clone::Clone for XIDeviceChangedEvent {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed22 {
+impl ::std::default::Default for XIDeviceChangedEvent {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIDeviceChangedEvent = Struct_Unnamed22;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed23 {
+#[derive(Debug, Copy)]
+pub struct XIDeviceEvent {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
     pub send_event: ::std::os::raw::c_int,
@@ -610,16 +612,16 @@ pub struct Struct_Unnamed23 {
     pub mods: XIModifierState,
     pub group: XIGroupState,
 }
-impl ::std::clone::Clone for Struct_Unnamed23 {
+impl ::std::clone::Clone for XIDeviceEvent {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed23 {
+impl ::std::default::Default for XIDeviceEvent {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIDeviceEvent = Struct_Unnamed23;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed24 {
+#[derive(Debug, Copy)]
+pub struct XIRawEvent {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
     pub send_event: ::std::os::raw::c_int,
@@ -634,16 +636,16 @@ pub struct Struct_Unnamed24 {
     pub valuators: XIValuatorState,
     pub raw_values: *mut ::std::os::raw::c_double,
 }
-impl ::std::clone::Clone for Struct_Unnamed24 {
+impl ::std::clone::Clone for XIRawEvent {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed24 {
+impl ::std::default::Default for XIRawEvent {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIRawEvent = Struct_Unnamed24;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed25 {
+#[derive(Debug, Copy)]
+pub struct XIEnterEvent {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
     pub send_event: ::std::os::raw::c_int,
@@ -668,19 +670,20 @@ pub struct Struct_Unnamed25 {
     pub mods: XIModifierState,
     pub group: XIGroupState,
 }
-impl ::std::clone::Clone for Struct_Unnamed25 {
+impl ::std::clone::Clone for XIEnterEvent {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed25 {
+impl ::std::default::Default for XIEnterEvent {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIEnterEvent = Struct_Unnamed25;
+
 pub type XILeaveEvent = XIEnterEvent;
 pub type XIFocusInEvent = XIEnterEvent;
 pub type XIFocusOutEvent = XIEnterEvent;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed26 {
+#[derive(Debug, Copy)]
+pub struct XIPropertyEvent {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
     pub send_event: ::std::os::raw::c_int,
@@ -692,16 +695,16 @@ pub struct Struct_Unnamed26 {
     pub property: Atom,
     pub what: ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed26 {
+impl ::std::clone::Clone for XIPropertyEvent {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed26 {
+impl ::std::default::Default for XIPropertyEvent {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIPropertyEvent = Struct_Unnamed26;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed27 {
+#[derive(Debug, Copy)]
+pub struct XITouchOwnershipEvent {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
     pub send_event: ::std::os::raw::c_int,
@@ -717,16 +720,16 @@ pub struct Struct_Unnamed27 {
     pub child: Window,
     pub flags: ::std::os::raw::c_int,
 }
-impl ::std::clone::Clone for Struct_Unnamed27 {
+impl ::std::clone::Clone for XITouchOwnershipEvent {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed27 {
+impl ::std::default::Default for XITouchOwnershipEvent {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XITouchOwnershipEvent = Struct_Unnamed27;
+
 #[repr(C)]
-#[derive(Copy)]
-pub struct Struct_Unnamed28 {
+#[derive(Debug, Copy)]
+pub struct XIBarrierEvent {
     pub _type: ::std::os::raw::c_int,
     pub serial: ::std::os::raw::c_ulong,
     pub send_event: ::std::os::raw::c_int,
@@ -747,11 +750,9 @@ pub struct Struct_Unnamed28 {
     pub barrier: PointerBarrier,
     pub eventid: BarrierEventID,
 }
-impl ::std::clone::Clone for Struct_Unnamed28 {
+impl ::std::clone::Clone for XIBarrierEvent {
     fn clone(&self) -> Self { *self }
 }
-impl ::std::default::Default for Struct_Unnamed28 {
+impl ::std::default::Default for XIBarrierEvent {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
-pub type XIBarrierEvent = Struct_Unnamed28;
-

@@ -124,7 +124,7 @@ globals:
 
 pub enum XftFontInfo {}
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XftFont {
     pub ascent: c_int,
@@ -137,14 +137,14 @@ pub struct XftFont {
 
 pub enum XftDraw {}
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XftColor {
     pub pixel: c_ulong,
     pub color: XRenderColor,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XftCharSpec {
     pub ucs4: FcChar32,
@@ -152,7 +152,7 @@ pub struct XftCharSpec {
     pub y: c_short,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XftCharFontSpec {
     pub font: *mut XftFont,
@@ -161,7 +161,7 @@ pub struct XftCharFontSpec {
     pub y: c_short,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XftFontSet {
     pub nfont: c_int,
@@ -169,7 +169,7 @@ pub struct XftFontSet {
     pub fonts: *mut *mut XftPattern,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XftGlyphSpec {
     pub glyph: FT_UInt,
@@ -177,7 +177,7 @@ pub struct XftGlyphSpec {
     pub y: c_short,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XftGlyphFontSpec {
     pub font: *mut XftFont,

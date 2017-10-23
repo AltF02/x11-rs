@@ -59,7 +59,7 @@ globals:
 //
 
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct XF86VidModeGamma {
   pub red: c_float,
@@ -67,7 +67,7 @@ pub struct XF86VidModeGamma {
   pub blue: c_float,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XF86VidModeModeInfo {
   pub dotclock: c_uint,
@@ -85,7 +85,7 @@ pub struct XF86VidModeModeInfo {
   pub private: *mut i32,
 }
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct XF86VidModeModeLine {
   pub hdisplay: c_ushort,
@@ -102,7 +102,7 @@ pub struct XF86VidModeModeLine {
   pub private: *mut i32,
 }
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct XF86VidModeMonitor {
   pub vendor: *mut c_char,
@@ -114,7 +114,7 @@ pub struct XF86VidModeMonitor {
   pub vsync: *mut XF86VidModeSyncRange,
 }
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct XF86VidModeSyncRange {
   pub hi: c_float,
@@ -127,7 +127,7 @@ pub struct XF86VidModeSyncRange {
 //
 
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct XF86VidModeNotifyEvent {
   pub type_: c_int,

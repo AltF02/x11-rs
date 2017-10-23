@@ -43,7 +43,7 @@ globals:
 //
 
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XineramaScreenInfo {
   pub screen_number: c_int,
@@ -53,7 +53,7 @@ pub struct XineramaScreenInfo {
   pub height: c_short,
 }
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XPanoramiXInfo {
   pub window: Window,
