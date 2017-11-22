@@ -36,7 +36,7 @@ macro_rules! x11_link {
     unsafe impl Sync for $struct_name {}
 
     impl $struct_name {
-      unsafe fn init (&mut self) -> Result<(), $crate::error::OpenError> {
+      unsafe fn init (this: *mut Self) -> Result<(), $crate::error::OpenError> {
         lazy_static! {
           static ref SYMS: [(&'static str, usize); $nsyms] = unsafe {[
             $((stringify!($fn_name), &((*(0 as *const $struct_name)).$fn_name) as *const _ as usize),)*
@@ -44,9 +44,9 @@ macro_rules! x11_link {
             $((stringify!($var_name), &((*(0 as *const $struct_name)).$var_name) as *const _ as usize),)*
           ]};
         }
-        let offset = self as *mut $struct_name as usize;
+        let offset = this as usize;
         for &(name, sym_offset) in SYMS.iter() {
-          *((offset + sym_offset) as *mut *mut _) = try!(self.lib.symbol(name));
+          *((offset + sym_offset) as *mut *mut _) = try!((*this).lib.symbol(name));
         }
         Ok(())
       }
@@ -54,12 +54,13 @@ macro_rules! x11_link {
       pub fn open () -> Result<$struct_name, $crate::error::OpenError> {
         unsafe {
           let libdir = $crate::link::config::libdir::$pkg_name;
-          let mut lib = try!($crate::link::DynamicLibrary::open_multi(libdir, &[$($lib_name),*]));
-          let mut this: $struct_name = ::std::mem::zeroed();
-          ::std::mem::swap(&mut lib, &mut this.lib);
-          ::std::mem::forget(lib);
-          try!(this.init());
-          Ok(this)
+          let lib = try!($crate::link::DynamicLibrary::open_multi(libdir, &[$($lib_name),*]));
+          let mut this: ::std::mem::ManuallyDrop<$struct_name>
+              = ::std::mem::zeroed();
+          let this_ptr = &mut this as *mut _ as *mut $struct_name;
+          ::std::ptr::write(&mut (*this_ptr).lib, lib);
+          try!(Self::init(this_ptr));
+          Ok(::std::mem::ManuallyDrop::into_inner(this))
         }
       }
     }
