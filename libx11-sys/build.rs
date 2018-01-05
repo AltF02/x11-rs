@@ -1,8 +1,8 @@
 // This software is available under the terms of the MIT license.
 
-extern crate x11_registry;
+extern crate x11_registry as reg;
 
 fn main () {
-    x11_registry::StaticFn::write_out_file(&x11_registry::LIBX11, "bindings.rs").unwrap();
+    reg::write_out_file(reg::StaticGenerator(reg::LIBX11), "bindings.rs").unwrap();
     println!("cargo:rustc-link-lib=X11");
 }

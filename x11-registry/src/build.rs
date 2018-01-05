@@ -44,7 +44,7 @@ fn gen (name: &str, namecaps: &str) {
     let parser = parse::Parser::new(lexer);
     let fns: Vec<parse::Fn> = parser.collect();
 
-    writeln!(outfile, "pub static {}: [Fn; {}] = [", namecaps, fns.len()).unwrap();
+    writeln!(outfile, "pub static {}: Registry = Registry {{ fns: &[", namecaps).unwrap();
 
     for f in fns.iter() {
         write!(outfile, "Fn {{ name: \"{}\", return_type: ", str::from_utf8(f.name).unwrap()).unwrap();
@@ -68,7 +68,7 @@ fn gen (name: &str, namecaps: &str) {
         writeln!(outfile, "] }},").unwrap();
     }
 
-    writeln!(outfile, "];").unwrap();
+    writeln!(outfile, "] }};").unwrap();
 }
 
 fn main () {

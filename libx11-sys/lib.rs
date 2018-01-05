@@ -1,5 +1,7 @@
 // This software is available under the terms of the MIT license.
 
+#![cfg(unix)]
+
 extern crate libc;
 extern crate x11;
 
