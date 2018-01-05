@@ -1,0 +1,2 @@
+fn XCloseDisplay (*mut Display);
+fn XOpenDisplay (*const c_char) -> *mut Display;

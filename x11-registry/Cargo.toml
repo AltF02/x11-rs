@@ -1,0 +1,11 @@
+# This software is available under the terms of the MIT license.
+
+[package]
+name = "x11-registry"
+version = "0.1.0"
+build = "src/build.rs"
+workspace = ".."
+
+[features]
+default = []
+libx11 = []

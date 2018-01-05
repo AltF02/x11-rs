@@ -1,0 +1,8 @@
+# This software is available under the terms of the MIT license.
+
+[workspace]
+members = [
+    "libx11-sys",
+    "x11",
+    "x11-registry",
+]

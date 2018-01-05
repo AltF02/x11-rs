@@ -1,0 +1,18 @@
+# This software is available under the terms of the MIT license.
+
+[package]
+name = "libx11-sys"
+version = "0.1.0"
+workspace = ".."
+build = "build.rs"
+
+[lib]
+name = "libx11"
+path = "lib.rs"
+
+[dependencies]
+libc = "0.2.35"
+x11 = { path = "../x11" }
+
+[build-dependencies]
+x11-registry = { path = "../x11-registry", features = ["libx11"] }

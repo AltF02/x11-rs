@@ -1,0 +1,9 @@
+# This software is available under the terms of the MIT license.
+
+[package]
+name = "x11"
+version = "3.0.0"
+workspace = ".."
+
+[dependencies]
+libc = "0.2.35"
