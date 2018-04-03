@@ -952,6 +952,8 @@ pub type XrmOptionDescList = *mut XrmOptionDescRec;
 
 // function pointers
 pub type XConnectionWatchProc = Option<unsafe extern "C" fn (*mut Display, XPointer, c_int, Bool, XPointer)>;
+pub type XIMProc = Option<unsafe extern "C" fn (XIM, XPointer, XPointer)>;
+pub type XICProc = Option<unsafe extern "C" fn (XIC, XPointer, XPointer) -> Bool>;
 
 // C enums
 pub type XICCEncodingStyle = c_int;
@@ -2483,6 +2485,17 @@ pub struct XWMHints {
   pub window_group: XID,
 }
 
+#[repr(C)]
+pub struct XIMCallback {
+    pub client_data: XPointer,
+    pub callback: XIMProc,
+}
+
+#[repr(C)]
+pub struct XICCallback {
+    pub client_data: XPointer,
+    pub callback: XICProc,
+}
 
 //
 // anonymous structures
