@@ -10,25 +10,28 @@ use std::io::Write;
 use std::path::Path;
 
 fn main() {
-    let libraries = ["xext",
-                     "gl",
-                     "xcursor",
-                     "xxf86vm",
-                     "xft",
-                     "xinerama",
-                     "xi",
-                     "x11",
-                     "xlib_xcb",
-                     "xmu",
-                     "xrandr",
-                     "xtst",
-                     "xrender",
-                     "xscrnsaver",
-                     "xt"];
+    let libraries = [
+        // lib           pkgconfig name
+        ("xext",        "xext"),
+        ("gl",          "gl"),
+        ("xcursor",     "xcursor"),
+        ("xxf86vm",     "xxf86vm"),
+        ("xft",         "xft"),
+        ("xinerama",    "xinerama"),
+        ("xi",          "xi"),
+        ("x11",         "x11"),
+        ("xlib_xcb",    "x11-xcb"),
+        ("xmu",         "xmu"),
+        ("xrandr",      "xrandr"),
+        ("xtst",        "xtst"),
+        ("xrender",     "xrender"),
+        ("xscrnsaver",  "xscrnsaver"),
+        ("xt",          "xt"),
+    ];
 
     let mut config = String::new();
-    for lib in libraries.iter() {
-        let libdir = match pkg_config::get_variable(lib, "libdir") {
+    for (lib, pcname) in libraries.iter() {
+        let libdir = match pkg_config::get_variable(pcname, "libdir") {
             Ok(libdir) => format!("Some(\"{}\")", libdir),
             Err(_) => "None".to_string(),
         };
