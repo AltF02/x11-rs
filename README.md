@@ -1,11 +1,19 @@
 # x11-rs - X11 library bindings for Rust
 
-[![Build Status](https://travis-ci.org/Daggerbot/x11-rs.svg?branch=master)](https://travis-ci.org/Daggerbot/x11-rs)
+[![Build Status](https://travis-ci.org/erlepereira/x11-rs.svg?branch=master)](https://travis-ci.org/erlepereira/x11-rs.svg?branch=master)
 
 `x11`: [![](http://meritbadge.herokuapp.com/x11)](https://crates.io/crates/x11)
 
 `x11-dl`: [![](http://meritbadge.herokuapp.com/x11-dl)](https://crates.io/crates/x11-dl)
 
+Hey all, have recently jumped on board here. Hoping to continue the good work already done and contribute more. 
+Still getting my head around to things. 
+
+I do apologise for the slight delays there might be whilst I catch up to speed..
+Thanks for all the issues and PRs, keep them coming - Erle Pereira (updated: Aug 2018)
+
+
+---
 The X11 libraries written in C are available under the terms of the MIT license.
 These bindings are available as public domain.
 
