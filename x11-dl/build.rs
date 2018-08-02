@@ -30,7 +30,7 @@ fn main() {
     ];
 
     let mut config = String::new();
-    for (lib, pcname) in libraries.iter() {
+    for &(lib, pcname) in libraries.iter() {
         let libdir = match pkg_config::get_variable(pcname, "libdir") {
             Ok(libdir) => format!("Some(\"{}\")", libdir),
             Err(_) => "None".to_string(),
