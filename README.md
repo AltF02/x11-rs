@@ -1,6 +1,6 @@
 # x11-rs - X11 library bindings for Rust
 
-[![Build Status](https://travis-ci.org/erlepereira/x11-rs.svg?branch=master)](https://travis-ci.org/erlepereira/x11-rs.svg?branch=master)
+[![Build Status](https://travis-ci.org/erlepereira/x11-rs.svg?branch=master)](https://travis-ci.org/erlepereira/x11-rs)
 
 `x11`: [![](http://meritbadge.herokuapp.com/x11)](https://crates.io/crates/x11)
 
