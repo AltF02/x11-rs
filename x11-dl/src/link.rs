@@ -56,7 +56,7 @@ macro_rules! x11_link {
           let libdir = $crate::link::config::libdir::$pkg_name;
           let lib = try!($crate::link::DynamicLibrary::open_multi(libdir, &[$($lib_name),*]));
           let mut this: ::std::mem::ManuallyDrop<$struct_name>
-              = ::std::mem::zeroed();
+              = ::std::mem::uninitialized();
           let this_ptr = &mut this as *mut _ as *mut $struct_name;
           ::std::ptr::write(&mut (*this_ptr).lib, lib);
           try!(Self::init(this_ptr));
