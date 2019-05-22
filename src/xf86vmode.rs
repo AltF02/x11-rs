@@ -137,7 +137,7 @@ pub struct XF86VidModeNotifyEvent {
   pub root: Window,
   pub state: c_int,
   pub kind: c_int,
-  pub forced: bool,
+  pub forced: Bool,
   pub time: Time,
 }
 
