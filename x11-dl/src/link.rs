@@ -55,7 +55,7 @@ macro_rules! x11_link {
         unsafe {
           let libdir = $crate::link::config::libdir::$pkg_name;
           let lib = try!($crate::link::DynamicLibrary::open_multi(libdir, &[$($lib_name),*]));
-          let mut this = ::std::mem::MaybeUninit::<$struct_name>::uninit();
+          let mut this = ::maybe_uninit::MaybeUninit::<$struct_name>::uninit();
           let this_ptr = this.as_mut_ptr();
           ::std::ptr::write(&mut (*this_ptr).lib, lib);
           try!(Self::init(this_ptr));
