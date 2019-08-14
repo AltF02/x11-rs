@@ -1,6 +1,12 @@
 language: rust
-rust:
- - nightly
- - stable
- - 1.24.1
-script: make tests
+jobs:
+  include:
+  - rust: nightly
+    script: make tests
+  - rust: stable
+    script: make tests
+  - rust: 1.24.1
+    install:
+      - cargo update
+      - cargo update -p pkg-config --precise 0.3.10
+    script: make tests
