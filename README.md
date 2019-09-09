@@ -6,14 +6,21 @@
 
 `x11-dl`: [![](http://meritbadge.herokuapp.com/x11-dl)](https://crates.io/crates/x11-dl)
 
-Hey all, have recently jumped on board here. Hoping to continue the good work already done and contribute more. 
-Still getting my head around to things. 
+Hey everyone, have recently jumped on board here, still getting my head around things. I do apologise for any delays whilst I catch up to speed. Thanks for all the issues and PRs, keep them coming - Erle Pereira (updated: Sept 2019)
 
-I do apologise for the slight delays there might be whilst I catch up to speed..
-Thanks for all the issues and PRs, keep them coming - Erle Pereira (updated: Aug 2018)
+A new [wiki page](https://github.com/erlepereira/x11-rs/wiki) has been created with the intention of a detaling a roadmap and a focal point for a broader vision around this codebase.
+
+## License
+
+Licensed under 
+
+ * MIT license
+   ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+
+  for related Discussion with contributors see #82
 
 
----
+--- 
 The X11 libraries written in C are available under the terms of the MIT license.
 These bindings are available as public domain.
 
