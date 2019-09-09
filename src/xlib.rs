@@ -885,7 +885,6 @@ pub enum _XrmHashBucketRec {}
 #[repr(C)] pub struct _XkbSection;
 #[repr(C)] pub struct _XkbServerMapRec;
 #[repr(C)] pub struct _XkbShape;
-#[repr(C)] pub struct _XkbStateRec;
 #[repr(C)] pub struct _XkbSymInterpretRec;
 
 // union placeholders
@@ -1685,6 +1684,25 @@ pub struct _XkbNamesRec {
   pub num_keys: c_uchar,
   pub num_key_aliases: c_uchar,
   pub num_rg: c_ushort,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct _XkbStateRec {
+  pub group: c_uchar,
+  pub locked_group: c_uchar,
+  pub base_group: c_ushort,
+  pub latched_group: c_ushort,
+  pub mods: c_uchar,
+  pub base_mods: c_uchar,
+  pub latched_mods: c_uchar,
+  pub locked_mods: c_uchar,
+  pub compat_state: c_uchar,
+  pub grab_mods: c_uchar,
+  pub compat_grab_mods: c_uchar,
+  pub lookup_mods: c_uchar,
+  pub compat_lookup_mods: c_uchar,
+  pub ptr_buttons: c_ushort,
 }
 
 
