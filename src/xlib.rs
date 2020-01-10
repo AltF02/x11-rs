@@ -2509,6 +2509,66 @@ pub struct XIMCallback {
     pub callback: XIMProc,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+pub enum XIMCaretDirection {
+    XIMForwardChar,
+    XIMBackwardChar,
+    XIMForwardWord,
+    XIMBackwardWord,
+    XIMCaretUp,
+    XIMCaretDown,
+    XIMNextLine,
+    XIMPreviousLine,
+    XIMLineStart,
+    XIMLineEnd,
+    XIMAbsolutePosition,
+    XIMDontChange,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+pub enum XIMCaretStyle {
+    XIMIsInvisible,
+    XIMIsPrimary,
+    XIMIsSecondary,
+}
+
+pub type XIMFeedback = c_ulong;
+
+#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct XIMPreeditCaretCallbackStruct {
+    pub caret: c_int,
+    pub chg_first: c_int,
+    pub chg_length: c_int,
+    pub text: *mut XIMText,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+pub struct XIMPreeditDrawCallbackStruct {
+    pub position: c_int,
+    pub direction: XIMCaretDirection,
+    pub style: XIMCaretStyle,
+}
+
+#[derive(Clone, Copy)]
+#[repr(C)]
+pub union XIMTextString {
+  pub multi_byte: *mut c_char,
+  pub wide_char: wchar_t,
+}
+
+#[derive(Clone, Copy)]
+#[repr(C)]
+pub struct XIMText {
+  pub length: c_ushort,
+  pub feedback: *mut XIMFeedback,
+  pub encoding_is_wchar: Bool,
+  pub string: XIMTextString,
+}
+
 #[repr(C)]
 pub struct XICCallback {
     pub client_data: XPointer,
