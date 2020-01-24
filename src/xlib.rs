@@ -3224,7 +3224,7 @@ pub const LSBFirst: c_int = 0;
 pub const MSBFirst: c_int = 1;
 
 // Reserved resource and constant definitions
-//pub const None: c_int = 0;
+pub const None: c_int = 0;
 pub const ParentRelative: c_int = 1;
 pub const CopyFromParent: c_int = 0;
 pub const PointerWindow: c_int = 0;
