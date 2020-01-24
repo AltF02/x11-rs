@@ -15,6 +15,7 @@ workspace = ".."
 [features]
 dpms = []
 glx = []
+none-symbol = ["xlib"]
 xcursor = []
 xf86vmode = []
 xft = []

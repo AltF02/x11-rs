@@ -12,6 +12,9 @@ build = "build.rs"
 documentation = "https://docs.rs/x11-dl"
 workspace = ".."
 
+[features]
+none-symbol = []
+
 [dependencies]
 lazy_static = "1"
 libc = "0.2"
