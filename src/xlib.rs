@@ -2538,7 +2538,7 @@ pub type XIMFeedback = c_ulong;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
-pub struct XIMPreeditCaretCallbackStruct {
+pub struct XIMPreeditDrawCallbackStruct {
     pub caret: c_int,
     pub chg_first: c_int,
     pub chg_length: c_int,
@@ -2547,7 +2547,7 @@ pub struct XIMPreeditCaretCallbackStruct {
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
-pub struct XIMPreeditDrawCallbackStruct {
+pub struct XIMPreeditCaretCallbackStruct {
     pub position: c_int,
     pub direction: XIMCaretDirection,
     pub style: XIMCaretStyle,
