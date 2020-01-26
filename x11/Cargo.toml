@@ -1,6 +1,6 @@
 [package]
 name = "x11"
-version = "2.18.1"
+version = "2.18.2"
 authors = [
     "daggerbot <daggerbot@gmail.com>",
     "Erle Pereira <erle@erlepereira.com>",
