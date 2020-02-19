@@ -154,7 +154,7 @@ impl DynamicLibrary {
         }
 
         let cmsg = CStr::from_ptr(msg as *const c_char);
-        let detail = format!("{} - {}", name, cmsg.to_string_lossy().into_owned());;
+        let detail = format!("{} - {}", name, cmsg.to_string_lossy().into_owned());
         return Err(OpenError::new(OpenErrorKind::Symbol, detail));
       }
 
