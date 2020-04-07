@@ -859,7 +859,30 @@ pub enum _XrmHashBucketRec {}
 #[repr(C)] pub struct _XkbColor;
 #[repr(C)] pub struct _XkbComponentList;
 #[repr(C)] pub struct _XkbComponentNames;
-#[repr(C)] pub struct _XkbControls;
+#[repr(C)] pub struct _XkbControls {
+  pub mk_dflt_btn: c_uchar,
+  pub num_groups: c_uchar,
+  pub groups_wrap: c_uchar,
+  pub internal: XkbModsRec,
+  pub ignore_loc: XkbModsRec,
+  pub enabled_ctrls: c_uint,
+  pub repeat_delay: c_ushort,
+  pub repeat_interval: c_ushort,
+  pub slow_keys_delay: c_ushort,
+  pub debounce_delay: c_ushort,
+  pub mk_delay: c_ushort,
+  pub mk_interval: c_ushort,
+  pub mk_time_to_max: c_ushort,
+  pub mk_max_speed: c_ushort,
+  pub mk_curve: c_short,
+  pub ax_options: c_ushort,
+  pub ax_timeout: c_ushort,
+  pub axt_opts_mask: c_ushort,
+  pub axt_opts_values: c_ushort,
+  pub axt_ctrls_mask: c_uint,
+  pub axt_ctrls_values: c_uint,
+  pub per_key_repeat: [c_uchar; 32],
+}
 #[repr(C)] pub struct _XkbControlsChanges;
 #[repr(C)] pub struct _XkbControlsNotify;
 #[repr(C)] pub struct _XkbDeviceChanges;
@@ -873,7 +896,11 @@ pub enum _XrmHashBucketRec {}
 #[repr(C)] pub struct _XkbKey;
 #[repr(C)] pub struct _XkbKeyType;
 #[repr(C)] pub struct _XkbMapChanges;
-#[repr(C)] pub struct _XkbMods;
+#[repr(C)] pub struct _XkbMods {
+  pub mask: c_uchar,
+  pub real_mods: c_uchar,
+  pub vmods: c_ushort,
+}
 #[repr(C)] pub struct _XkbNameChanges;
 #[repr(C)] pub struct _XkbNamesNotify;
 #[repr(C)] pub struct _XkbOutline;
@@ -944,6 +971,7 @@ pub type XkbSectionPtr = *mut _XkbSection;
 pub type XkbServerMapPtr = *mut _XkbServerMapRec;
 pub type XkbShapePtr = *mut _XkbShape;
 pub type XkbStatePtr = *mut _XkbStateRec;
+pub type XkbStateRec = _XkbStateRec;
 pub type XkbSymInterpretPtr = *mut _XkbSymInterpretRec;
 pub type XOM = *mut _XOM;
 pub type XrmDatabase = *mut _XrmHashBucketRec;
@@ -1690,18 +1718,23 @@ pub struct _XkbNamesRec {
 #[repr(C)]
 pub struct _XkbStateRec {
   pub group: c_uchar,
-  pub locked_group: c_uchar,
   pub base_group: c_ushort,
   pub latched_group: c_ushort,
+  pub locked_group: c_uchar,
+
   pub mods: c_uchar,
   pub base_mods: c_uchar,
   pub latched_mods: c_uchar,
   pub locked_mods: c_uchar,
+
   pub compat_state: c_uchar,
+
   pub grab_mods: c_uchar,
   pub compat_grab_mods: c_uchar,
+
   pub lookup_mods: c_uchar,
   pub compat_lookup_mods: c_uchar,
+
   pub ptr_buttons: c_ushort,
 }
 
