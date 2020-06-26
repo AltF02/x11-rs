@@ -2913,12 +2913,12 @@ pub const Mod4MapIndex: c_int = 6;
 pub const Mod5MapIndex: c_int = 7;
 
 // button masks
-pub const Button1Mask: c_uint = (1<<8);
-pub const Button2Mask: c_uint = (1<<9);
-pub const Button3Mask: c_uint = (1<<10);
-pub const Button4Mask: c_uint = (1<<11);
-pub const Button5Mask: c_uint = (1<<12);
-pub const AnyModifier: c_uint = (1<<15);
+pub const Button1Mask: c_uint = 1<<8;
+pub const Button2Mask: c_uint = 1<<9;
+pub const Button3Mask: c_uint = 1<<10;
+pub const Button4Mask: c_uint = 1<<11;
+pub const Button5Mask: c_uint = 1<<12;
+pub const AnyModifier: c_uint = 1<<15;
 
 // Notify modes
 pub const NotifyNormal: c_int = 0;
@@ -2992,13 +2992,13 @@ pub const RevertToParent: c_int = 2;
 
 
 // ConfigureWindow structure
-pub const CWX: c_ushort = (1<<0);
-pub const CWY: c_ushort = (1<<1);
-pub const CWWidth: c_ushort = (1<<2);
-pub const CWHeight: c_ushort = (1<<3);
-pub const CWBorderWidth: c_ushort = (1<<4);
-pub const CWSibling: c_ushort = (1<<5);
-pub const CWStackMode: c_ushort = (1<<6);
+pub const CWX: c_ushort = 1<<0;
+pub const CWY: c_ushort = 1<<1;
+pub const CWWidth: c_ushort = 1<<2;
+pub const CWHeight: c_ushort = 1<<3;
+pub const CWBorderWidth: c_ushort = 1<<4;
+pub const CWSibling: c_ushort = 1<<5;
+pub const CWStackMode: c_ushort = 1<<6;
 
 // gravity
 pub const ForgetGravity: c_int = 0;
@@ -3141,29 +3141,29 @@ pub const ArcChord: c_int = 0;
 pub const ArcPieSlice: c_int = 1;
 
 // GC components
-pub const GCFunction: c_uint = (1<<0);
-pub const GCPlaneMask: c_uint = (1<<1);
-pub const GCForeground: c_uint = (1<<2);
-pub const GCBackground: c_uint = (1<<3);
-pub const GCLineWidth: c_uint = (1<<4);
-pub const GCLineStyle: c_uint = (1<<5);
-pub const GCCapStyle: c_uint = (1<<6);
-pub const GCJoinStyle: c_uint = (1<<7);
-pub const GCFillStyle: c_uint = (1<<8);
-pub const GCFillRule: c_uint = (1<<9);
-pub const GCTile: c_uint = (1<<10);
-pub const GCStipple: c_uint = (1<<11);
-pub const GCTileStipXOrigin: c_uint = (1<<12);
-pub const GCTileStipYOrigin: c_uint = (1<<13);
-pub const GCFont : c_uint = (1<<14);
-pub const GCSubwindowMode: c_uint = (1<<15);
-pub const GCGraphicsExposures: c_uint = (1<<16);
-pub const GCClipXOrigin: c_uint = (1<<17);
-pub const GCClipYOrigin: c_uint = (1<<18);
-pub const GCClipMask: c_uint = (1<<19);
-pub const GCDashOffset: c_uint = (1<<20);
-pub const GCDashList: c_uint = (1<<21);
-pub const GCArcMode: c_uint = (1<<22);
+pub const GCFunction: c_uint = 1<<0;
+pub const GCPlaneMask: c_uint = 1<<1;
+pub const GCForeground: c_uint = 1<<2;
+pub const GCBackground: c_uint = 1<<3;
+pub const GCLineWidth: c_uint = 1<<4;
+pub const GCLineStyle: c_uint = 1<<5;
+pub const GCCapStyle: c_uint = 1<<6;
+pub const GCJoinStyle: c_uint = 1<<7;
+pub const GCFillStyle: c_uint = 1<<8;
+pub const GCFillRule: c_uint = 1<<9;
+pub const GCTile: c_uint = 1<<10;
+pub const GCStipple: c_uint = 1<<11;
+pub const GCTileStipXOrigin: c_uint = 1<<12;
+pub const GCTileStipYOrigin: c_uint = 1<<13;
+pub const GCFont : c_uint = 1<<14;
+pub const GCSubwindowMode: c_uint = 1<<15;
+pub const GCGraphicsExposures: c_uint = 1<<16;
+pub const GCClipXOrigin: c_uint = 1<<17;
+pub const GCClipYOrigin: c_uint = 1<<18;
+pub const GCClipMask: c_uint = 1<<19;
+pub const GCDashOffset: c_uint = 1<<20;
+pub const GCDashList: c_uint = 1<<21;
+pub const GCArcMode: c_uint = 1<<22;
 
 pub const GCLastBit: c_uint = 22;
 
@@ -3187,14 +3187,14 @@ pub const LedModeOff: c_int = 0;
 pub const LedModeOn: c_int = 1;
 
 // masks for ChangeKeyboardControl
-pub const KBKeyClickPercent: c_ulong = (1<<0);
-pub const KBBellPercent: c_ulong = (1<<1);
-pub const KBBellPitch: c_ulong = (1<<2);
-pub const KBBellDuration: c_ulong = (1<<3);
-pub const KBLed: c_ulong = (1<<4);
-pub const KBLedMode: c_ulong = (1<<5);
-pub const KBKey: c_ulong = (1<<6);
-pub const KBAutoRepeatMode: c_ulong = (1<<7);
+pub const KBKeyClickPercent: c_ulong = 1<<0;
+pub const KBBellPercent: c_ulong = 1<<1;
+pub const KBBellPitch: c_ulong = 1<<2;
+pub const KBBellDuration: c_ulong = 1<<3;
+pub const KBLed: c_ulong = 1<<4;
+pub const KBLedMode: c_ulong = 1<<5;
+pub const KBKey: c_ulong = 1<<6;
+pub const KBAutoRepeatMode: c_ulong = 1<<7;
 
 pub const MappingSuccess: c_uchar = 0;
 pub const MappingBusy: c_uchar = 1;
