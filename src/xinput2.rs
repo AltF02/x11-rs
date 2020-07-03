@@ -1,6 +1,6 @@
+use crate::os_primitives::{c_double, c_int, c_long, c_uint, c_ulong, c_uchar};
 use xfixes::PointerBarrier;
 use xlib::{Atom, Display, Time, Window};
-use std::os::raw::{c_int, c_uint, c_long, c_double, c_ulong, c_uchar};
 
 //
 // macro translations
@@ -9,15 +9,15 @@ fn mask_byte(mask_flag: i32) -> usize {
     (mask_flag >> 3) as usize
 }
 
-pub fn XISetMask(mask: &mut [::std::os::raw::c_uchar], event: i32) {
+pub fn XISetMask(mask: &mut [c_uchar], event: i32) {
     mask[mask_byte(event)] |= 1 << (event & 7);
 }
 
-pub fn XIClearMask(mask: &mut [::std::os::raw::c_uchar], event: i32) {
+pub fn XIClearMask(mask: &mut [c_uchar], event: i32) {
     mask[mask_byte(event)] &= 1 << (event & 7);
 }
 
-pub fn XIMaskIsSet(mask: &[::std::os::raw::c_uchar], event: i32) -> bool {
+pub fn XIMaskIsSet(mask: &[c_uchar], event: i32) -> bool {
     (mask[mask_byte(event)] & (1 << (event & 7))) != 0
 }
 
@@ -218,59 +218,75 @@ pub const XI_BarrierLeaveMask: i32 = (1 << XI_BarrierLeave);
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIAddMasterInfo {
-    pub _type: ::std::os::raw::c_int,
-    pub name: *mut ::std::os::raw::c_char,
-    pub send_core: ::std::os::raw::c_int,
-    pub enable: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub name: *mut crate::os_primitives::c_char,
+    pub send_core: crate::os_primitives::c_int,
+    pub enable: crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XIAddMasterInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIAddMasterInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIAddMasterInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIAddMasterInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIRemoveMasterInfo {
-    pub _type: ::std::os::raw::c_int,
-    pub deviceid: ::std::os::raw::c_int,
-    pub return_mode: ::std::os::raw::c_int,
-    pub return_pointer: ::std::os::raw::c_int,
-    pub return_keyboard: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub deviceid: crate::os_primitives::c_int,
+    pub return_mode: crate::os_primitives::c_int,
+    pub return_pointer: crate::os_primitives::c_int,
+    pub return_keyboard: crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XIRemoveMasterInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIRemoveMasterInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIRemoveMasterInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIRemoveMasterInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIAttachSlaveInfo {
-    pub _type: ::std::os::raw::c_int,
-    pub deviceid: ::std::os::raw::c_int,
-    pub new_master: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub deviceid: crate::os_primitives::c_int,
+    pub new_master: crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XIAttachSlaveInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIAttachSlaveInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIAttachSlaveInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIAttachSlaveInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIDetachSlaveInfo {
-    pub _type: ::std::os::raw::c_int,
-    pub deviceid: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub deviceid: crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XIDetachSlaveInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIDetachSlaveInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIDetachSlaveInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIDetachSlaveInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -279,47 +295,55 @@ pub struct XIAnyHierarchyChangeInfo {
     pub _bindgen_data_: [u64; 3usize],
 }
 impl XIAnyHierarchyChangeInfo {
-    pub unsafe fn _type(&mut self) -> *mut ::std::os::raw::c_int {
-        let raw: *mut u8 = ::std::mem::transmute(&self._bindgen_data_);
-        ::std::mem::transmute(raw.offset(0))
+    pub unsafe fn _type(&mut self) -> *mut crate::os_primitives::c_int {
+        let raw: *mut u8 = ::core::mem::transmute(&self._bindgen_data_);
+        ::core::mem::transmute(raw.offset(0))
     }
     pub unsafe fn add(&mut self) -> *mut XIAddMasterInfo {
-        let raw: *mut u8 = ::std::mem::transmute(&self._bindgen_data_);
-        ::std::mem::transmute(raw.offset(0))
+        let raw: *mut u8 = ::core::mem::transmute(&self._bindgen_data_);
+        ::core::mem::transmute(raw.offset(0))
     }
     pub unsafe fn remove(&mut self) -> *mut XIRemoveMasterInfo {
-        let raw: *mut u8 = ::std::mem::transmute(&self._bindgen_data_);
-        ::std::mem::transmute(raw.offset(0))
+        let raw: *mut u8 = ::core::mem::transmute(&self._bindgen_data_);
+        ::core::mem::transmute(raw.offset(0))
     }
     pub unsafe fn attach(&mut self) -> *mut XIAttachSlaveInfo {
-        let raw: *mut u8 = ::std::mem::transmute(&self._bindgen_data_);
-        ::std::mem::transmute(raw.offset(0))
+        let raw: *mut u8 = ::core::mem::transmute(&self._bindgen_data_);
+        ::core::mem::transmute(raw.offset(0))
     }
     pub unsafe fn detach(&mut self) -> *mut XIDetachSlaveInfo {
-        let raw: *mut u8 = ::std::mem::transmute(&self._bindgen_data_);
-        ::std::mem::transmute(raw.offset(0))
+        let raw: *mut u8 = ::core::mem::transmute(&self._bindgen_data_);
+        ::core::mem::transmute(raw.offset(0))
     }
 }
-impl ::std::clone::Clone for XIAnyHierarchyChangeInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIAnyHierarchyChangeInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIAnyHierarchyChangeInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIAnyHierarchyChangeInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIModifierState {
-    pub base: ::std::os::raw::c_int,
-    pub latched: ::std::os::raw::c_int,
-    pub locked: ::std::os::raw::c_int,
-    pub effective: ::std::os::raw::c_int,
+    pub base: crate::os_primitives::c_int,
+    pub latched: crate::os_primitives::c_int,
+    pub locked: crate::os_primitives::c_int,
+    pub effective: crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XIModifierState {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIModifierState {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIModifierState {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIModifierState {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 pub type XIGroupState = XIModifierState;
@@ -327,354 +351,430 @@ pub type XIGroupState = XIModifierState;
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIButtonState {
-    pub mask_len: ::std::os::raw::c_int,
-    pub mask: *mut ::std::os::raw::c_uchar,
+    pub mask_len: crate::os_primitives::c_int,
+    pub mask: *mut crate::os_primitives::c_uchar,
 }
-impl ::std::clone::Clone for XIButtonState {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIButtonState {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIButtonState {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIButtonState {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIValuatorState {
-    pub mask_len: ::std::os::raw::c_int,
-    pub mask: *mut ::std::os::raw::c_uchar,
-    pub values: *mut ::std::os::raw::c_double,
+    pub mask_len: crate::os_primitives::c_int,
+    pub mask: *mut crate::os_primitives::c_uchar,
+    pub values: *mut crate::os_primitives::c_double,
 }
-impl ::std::clone::Clone for XIValuatorState {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIValuatorState {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIValuatorState {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIValuatorState {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIEventMask {
-    pub deviceid: ::std::os::raw::c_int,
-    pub mask_len: ::std::os::raw::c_int,
-    pub mask: *mut ::std::os::raw::c_uchar,
+    pub deviceid: crate::os_primitives::c_int,
+    pub mask_len: crate::os_primitives::c_int,
+    pub mask: *mut crate::os_primitives::c_uchar,
 }
-impl ::std::clone::Clone for XIEventMask {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIEventMask {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIEventMask {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIEventMask {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIAnyClassInfo {
-    pub _type: ::std::os::raw::c_int,
-    pub sourceid: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub sourceid: crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XIAnyClassInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIAnyClassInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIAnyClassInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIAnyClassInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIButtonClassInfo {
-    pub _type: ::std::os::raw::c_int,
-    pub sourceid: ::std::os::raw::c_int,
-    pub num_buttons: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub sourceid: crate::os_primitives::c_int,
+    pub num_buttons: crate::os_primitives::c_int,
     pub labels: *mut Atom,
     pub state: XIButtonState,
 }
-impl ::std::clone::Clone for XIButtonClassInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIButtonClassInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIButtonClassInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIButtonClassInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIKeyClassInfo {
-    pub _type: ::std::os::raw::c_int,
-    pub sourceid: ::std::os::raw::c_int,
-    pub num_keycodes: ::std::os::raw::c_int,
-    pub keycodes: *mut ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub sourceid: crate::os_primitives::c_int,
+    pub num_keycodes: crate::os_primitives::c_int,
+    pub keycodes: *mut crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XIKeyClassInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIKeyClassInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIKeyClassInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIKeyClassInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIValuatorClassInfo {
-    pub _type: ::std::os::raw::c_int,
-    pub sourceid: ::std::os::raw::c_int,
-    pub number: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub sourceid: crate::os_primitives::c_int,
+    pub number: crate::os_primitives::c_int,
     pub label: Atom,
-    pub min: ::std::os::raw::c_double,
-    pub max: ::std::os::raw::c_double,
-    pub value: ::std::os::raw::c_double,
-    pub resolution: ::std::os::raw::c_int,
-    pub mode: ::std::os::raw::c_int,
+    pub min: crate::os_primitives::c_double,
+    pub max: crate::os_primitives::c_double,
+    pub value: crate::os_primitives::c_double,
+    pub resolution: crate::os_primitives::c_int,
+    pub mode: crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XIValuatorClassInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIValuatorClassInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIValuatorClassInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIValuatorClassInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIScrollClassInfo {
-    pub _type: ::std::os::raw::c_int,
-    pub sourceid: ::std::os::raw::c_int,
-    pub number: ::std::os::raw::c_int,
-    pub scroll_type: ::std::os::raw::c_int,
-    pub increment: ::std::os::raw::c_double,
-    pub flags: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub sourceid: crate::os_primitives::c_int,
+    pub number: crate::os_primitives::c_int,
+    pub scroll_type: crate::os_primitives::c_int,
+    pub increment: crate::os_primitives::c_double,
+    pub flags: crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XIScrollClassInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIScrollClassInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIScrollClassInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIScrollClassInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XITouchClassInfo {
-    pub _type: ::std::os::raw::c_int,
-    pub sourceid: ::std::os::raw::c_int,
-    pub mode: ::std::os::raw::c_int,
-    pub num_touches: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub sourceid: crate::os_primitives::c_int,
+    pub mode: crate::os_primitives::c_int,
+    pub num_touches: crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XITouchClassInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XITouchClassInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XITouchClassInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XITouchClassInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIDeviceInfo {
-    pub deviceid: ::std::os::raw::c_int,
-    pub name: *mut ::std::os::raw::c_char,
-    pub _use: ::std::os::raw::c_int,
-    pub attachment: ::std::os::raw::c_int,
-    pub enabled: ::std::os::raw::c_int,
-    pub num_classes: ::std::os::raw::c_int,
+    pub deviceid: crate::os_primitives::c_int,
+    pub name: *mut crate::os_primitives::c_char,
+    pub _use: crate::os_primitives::c_int,
+    pub attachment: crate::os_primitives::c_int,
+    pub enabled: crate::os_primitives::c_int,
+    pub num_classes: crate::os_primitives::c_int,
     pub classes: *mut *mut XIAnyClassInfo,
 }
-impl ::std::clone::Clone for XIDeviceInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIDeviceInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIDeviceInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIDeviceInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIGrabModifiers {
-    pub modifiers: ::std::os::raw::c_int,
-    pub status: ::std::os::raw::c_int,
+    pub modifiers: crate::os_primitives::c_int,
+    pub status: crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XIGrabModifiers {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIGrabModifiers {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIGrabModifiers {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIGrabModifiers {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
-pub type BarrierEventID = ::std::os::raw::c_uint;
+pub type BarrierEventID = crate::os_primitives::c_uint;
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIBarrierReleasePointerInfo {
-    pub deviceid: ::std::os::raw::c_int,
+    pub deviceid: crate::os_primitives::c_int,
     pub barrier: PointerBarrier,
     pub eventid: BarrierEventID,
 }
-impl ::std::clone::Clone for XIBarrierReleasePointerInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIBarrierReleasePointerInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIBarrierReleasePointerInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIBarrierReleasePointerInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIEvent {
-    pub _type: ::std::os::raw::c_int,
-    pub serial: ::std::os::raw::c_ulong,
-    pub send_event: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub serial: crate::os_primitives::c_ulong,
+    pub send_event: crate::os_primitives::c_int,
     pub display: *mut Display,
-    pub extension: ::std::os::raw::c_int,
-    pub evtype: ::std::os::raw::c_int,
+    pub extension: crate::os_primitives::c_int,
+    pub evtype: crate::os_primitives::c_int,
     pub time: Time,
 }
-impl ::std::clone::Clone for XIEvent {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIEvent {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIEvent {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIHierarchyInfo {
-    pub deviceid: ::std::os::raw::c_int,
-    pub attachment: ::std::os::raw::c_int,
-    pub _use: ::std::os::raw::c_int,
-    pub enabled: ::std::os::raw::c_int,
-    pub flags: ::std::os::raw::c_int,
+    pub deviceid: crate::os_primitives::c_int,
+    pub attachment: crate::os_primitives::c_int,
+    pub _use: crate::os_primitives::c_int,
+    pub enabled: crate::os_primitives::c_int,
+    pub flags: crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XIHierarchyInfo {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIHierarchyInfo {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIHierarchyInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIHierarchyInfo {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIHierarchyEvent {
-    pub _type: ::std::os::raw::c_int,
-    pub serial: ::std::os::raw::c_ulong,
-    pub send_event: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub serial: crate::os_primitives::c_ulong,
+    pub send_event: crate::os_primitives::c_int,
     pub display: *mut Display,
-    pub extension: ::std::os::raw::c_int,
-    pub evtype: ::std::os::raw::c_int,
+    pub extension: crate::os_primitives::c_int,
+    pub evtype: crate::os_primitives::c_int,
     pub time: Time,
-    pub flags: ::std::os::raw::c_int,
-    pub num_info: ::std::os::raw::c_int,
+    pub flags: crate::os_primitives::c_int,
+    pub num_info: crate::os_primitives::c_int,
     pub info: *mut XIHierarchyInfo,
 }
-impl ::std::clone::Clone for XIHierarchyEvent {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIHierarchyEvent {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIHierarchyEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIHierarchyEvent {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIDeviceChangedEvent {
-    pub _type: ::std::os::raw::c_int,
-    pub serial: ::std::os::raw::c_ulong,
-    pub send_event: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub serial: crate::os_primitives::c_ulong,
+    pub send_event: crate::os_primitives::c_int,
     pub display: *mut Display,
-    pub extension: ::std::os::raw::c_int,
-    pub evtype: ::std::os::raw::c_int,
+    pub extension: crate::os_primitives::c_int,
+    pub evtype: crate::os_primitives::c_int,
     pub time: Time,
-    pub deviceid: ::std::os::raw::c_int,
-    pub sourceid: ::std::os::raw::c_int,
-    pub reason: ::std::os::raw::c_int,
-    pub num_classes: ::std::os::raw::c_int,
+    pub deviceid: crate::os_primitives::c_int,
+    pub sourceid: crate::os_primitives::c_int,
+    pub reason: crate::os_primitives::c_int,
+    pub num_classes: crate::os_primitives::c_int,
     pub classes: *mut *mut XIAnyClassInfo,
 }
-impl ::std::clone::Clone for XIDeviceChangedEvent {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIDeviceChangedEvent {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIDeviceChangedEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIDeviceChangedEvent {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIDeviceEvent {
-    pub _type: ::std::os::raw::c_int,
-    pub serial: ::std::os::raw::c_ulong,
-    pub send_event: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub serial: crate::os_primitives::c_ulong,
+    pub send_event: crate::os_primitives::c_int,
     pub display: *mut Display,
-    pub extension: ::std::os::raw::c_int,
-    pub evtype: ::std::os::raw::c_int,
+    pub extension: crate::os_primitives::c_int,
+    pub evtype: crate::os_primitives::c_int,
     pub time: Time,
-    pub deviceid: ::std::os::raw::c_int,
-    pub sourceid: ::std::os::raw::c_int,
-    pub detail: ::std::os::raw::c_int,
+    pub deviceid: crate::os_primitives::c_int,
+    pub sourceid: crate::os_primitives::c_int,
+    pub detail: crate::os_primitives::c_int,
     pub root: Window,
     pub event: Window,
     pub child: Window,
-    pub root_x: ::std::os::raw::c_double,
-    pub root_y: ::std::os::raw::c_double,
-    pub event_x: ::std::os::raw::c_double,
-    pub event_y: ::std::os::raw::c_double,
-    pub flags: ::std::os::raw::c_int,
+    pub root_x: crate::os_primitives::c_double,
+    pub root_y: crate::os_primitives::c_double,
+    pub event_x: crate::os_primitives::c_double,
+    pub event_y: crate::os_primitives::c_double,
+    pub flags: crate::os_primitives::c_int,
     pub buttons: XIButtonState,
     pub valuators: XIValuatorState,
     pub mods: XIModifierState,
     pub group: XIGroupState,
 }
-impl ::std::clone::Clone for XIDeviceEvent {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIDeviceEvent {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIDeviceEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIDeviceEvent {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIRawEvent {
-    pub _type: ::std::os::raw::c_int,
-    pub serial: ::std::os::raw::c_ulong,
-    pub send_event: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub serial: crate::os_primitives::c_ulong,
+    pub send_event: crate::os_primitives::c_int,
     pub display: *mut Display,
-    pub extension: ::std::os::raw::c_int,
-    pub evtype: ::std::os::raw::c_int,
+    pub extension: crate::os_primitives::c_int,
+    pub evtype: crate::os_primitives::c_int,
     pub time: Time,
-    pub deviceid: ::std::os::raw::c_int,
-    pub sourceid: ::std::os::raw::c_int,
-    pub detail: ::std::os::raw::c_int,
-    pub flags: ::std::os::raw::c_int,
+    pub deviceid: crate::os_primitives::c_int,
+    pub sourceid: crate::os_primitives::c_int,
+    pub detail: crate::os_primitives::c_int,
+    pub flags: crate::os_primitives::c_int,
     pub valuators: XIValuatorState,
-    pub raw_values: *mut ::std::os::raw::c_double,
+    pub raw_values: *mut crate::os_primitives::c_double,
 }
-impl ::std::clone::Clone for XIRawEvent {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIRawEvent {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIRawEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIRawEvent {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIEnterEvent {
-    pub _type: ::std::os::raw::c_int,
-    pub serial: ::std::os::raw::c_ulong,
-    pub send_event: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub serial: crate::os_primitives::c_ulong,
+    pub send_event: crate::os_primitives::c_int,
     pub display: *mut Display,
-    pub extension: ::std::os::raw::c_int,
-    pub evtype: ::std::os::raw::c_int,
+    pub extension: crate::os_primitives::c_int,
+    pub evtype: crate::os_primitives::c_int,
     pub time: Time,
-    pub deviceid: ::std::os::raw::c_int,
-    pub sourceid: ::std::os::raw::c_int,
-    pub detail: ::std::os::raw::c_int,
+    pub deviceid: crate::os_primitives::c_int,
+    pub sourceid: crate::os_primitives::c_int,
+    pub detail: crate::os_primitives::c_int,
     pub root: Window,
     pub event: Window,
     pub child: Window,
-    pub root_x: ::std::os::raw::c_double,
-    pub root_y: ::std::os::raw::c_double,
-    pub event_x: ::std::os::raw::c_double,
-    pub event_y: ::std::os::raw::c_double,
-    pub mode: ::std::os::raw::c_int,
-    pub focus: ::std::os::raw::c_int,
-    pub same_screen: ::std::os::raw::c_int,
+    pub root_x: crate::os_primitives::c_double,
+    pub root_y: crate::os_primitives::c_double,
+    pub event_x: crate::os_primitives::c_double,
+    pub event_y: crate::os_primitives::c_double,
+    pub mode: crate::os_primitives::c_int,
+    pub focus: crate::os_primitives::c_int,
+    pub same_screen: crate::os_primitives::c_int,
     pub buttons: XIButtonState,
     pub mods: XIModifierState,
     pub group: XIGroupState,
 }
-impl ::std::clone::Clone for XIEnterEvent {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIEnterEvent {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIEnterEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIEnterEvent {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 pub type XILeaveEvent = XIEnterEvent;
@@ -684,75 +784,87 @@ pub type XIFocusOutEvent = XIEnterEvent;
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIPropertyEvent {
-    pub _type: ::std::os::raw::c_int,
-    pub serial: ::std::os::raw::c_ulong,
-    pub send_event: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub serial: crate::os_primitives::c_ulong,
+    pub send_event: crate::os_primitives::c_int,
     pub display: *mut Display,
-    pub extension: ::std::os::raw::c_int,
-    pub evtype: ::std::os::raw::c_int,
+    pub extension: crate::os_primitives::c_int,
+    pub evtype: crate::os_primitives::c_int,
     pub time: Time,
-    pub deviceid: ::std::os::raw::c_int,
+    pub deviceid: crate::os_primitives::c_int,
     pub property: Atom,
-    pub what: ::std::os::raw::c_int,
+    pub what: crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XIPropertyEvent {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIPropertyEvent {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIPropertyEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIPropertyEvent {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XITouchOwnershipEvent {
-    pub _type: ::std::os::raw::c_int,
-    pub serial: ::std::os::raw::c_ulong,
-    pub send_event: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub serial: crate::os_primitives::c_ulong,
+    pub send_event: crate::os_primitives::c_int,
     pub display: *mut Display,
-    pub extension: ::std::os::raw::c_int,
-    pub evtype: ::std::os::raw::c_int,
+    pub extension: crate::os_primitives::c_int,
+    pub evtype: crate::os_primitives::c_int,
     pub time: Time,
-    pub deviceid: ::std::os::raw::c_int,
-    pub sourceid: ::std::os::raw::c_int,
-    pub touchid: ::std::os::raw::c_uint,
+    pub deviceid: crate::os_primitives::c_int,
+    pub sourceid: crate::os_primitives::c_int,
+    pub touchid: crate::os_primitives::c_uint,
     pub root: Window,
     pub event: Window,
     pub child: Window,
-    pub flags: ::std::os::raw::c_int,
+    pub flags: crate::os_primitives::c_int,
 }
-impl ::std::clone::Clone for XITouchOwnershipEvent {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XITouchOwnershipEvent {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XITouchOwnershipEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XITouchOwnershipEvent {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
 #[derive(Debug, Copy)]
 pub struct XIBarrierEvent {
-    pub _type: ::std::os::raw::c_int,
-    pub serial: ::std::os::raw::c_ulong,
-    pub send_event: ::std::os::raw::c_int,
+    pub _type: crate::os_primitives::c_int,
+    pub serial: crate::os_primitives::c_ulong,
+    pub send_event: crate::os_primitives::c_int,
     pub display: *mut Display,
-    pub extension: ::std::os::raw::c_int,
-    pub evtype: ::std::os::raw::c_int,
+    pub extension: crate::os_primitives::c_int,
+    pub evtype: crate::os_primitives::c_int,
     pub time: Time,
-    pub deviceid: ::std::os::raw::c_int,
-    pub sourceid: ::std::os::raw::c_int,
+    pub deviceid: crate::os_primitives::c_int,
+    pub sourceid: crate::os_primitives::c_int,
     pub event: Window,
     pub root: Window,
-    pub root_x: ::std::os::raw::c_double,
-    pub root_y: ::std::os::raw::c_double,
-    pub dx: ::std::os::raw::c_double,
-    pub dy: ::std::os::raw::c_double,
-    pub dtime: ::std::os::raw::c_int,
-    pub flags: ::std::os::raw::c_int,
+    pub root_x: crate::os_primitives::c_double,
+    pub root_y: crate::os_primitives::c_double,
+    pub dx: crate::os_primitives::c_double,
+    pub dy: crate::os_primitives::c_double,
+    pub dtime: crate::os_primitives::c_int,
+    pub flags: crate::os_primitives::c_int,
     pub barrier: PointerBarrier,
     pub eventid: BarrierEventID,
 }
-impl ::std::clone::Clone for XIBarrierEvent {
-    fn clone(&self) -> Self { *self }
+impl ::core::clone::Clone for XIBarrierEvent {
+    fn clone(&self) -> Self {
+        *self
+    }
 }
-impl ::std::default::Default for XIBarrierEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+impl ::core::default::Default for XIBarrierEvent {
+    fn default() -> Self {
+        unsafe { ::core::mem::zeroed() }
+    }
 }

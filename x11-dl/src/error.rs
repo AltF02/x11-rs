@@ -39,11 +39,11 @@ impl OpenError {
 
 impl Display for OpenError {
   fn fmt (&self, f: &mut Formatter) -> Result<(), ::std::fmt::Error> {
-    try!(f.write_str(self.kind.as_str()));
+    f.write_str(self.kind.as_str())?;
     if !self.detail.is_empty() {
-      try!(f.write_str(" ("));
-      try!(f.write_str(self.detail.as_ref()));
-      try!(f.write_str(")"));
+      f.write_str(" (")?;
+      f.write_str(self.detail.as_ref())?;
+      f.write_str(")")?;
     }
     return Ok(());
   }

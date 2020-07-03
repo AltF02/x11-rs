@@ -2,25 +2,13 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::os::raw::{
-  c_char,
-  c_int,
-  c_uchar,
-  c_uint,
-  c_ulong,
-};
+use crate::os_primitives::{c_char, c_int, c_uchar, c_uint, c_ulong};
 
-use ::xlib::{
-  Display,
-  XID,
-  XVisualInfo,
-};
-
+use ::xlib::{Display, XVisualInfo, XID};
 
 //
 // functions
 //
-
 
 x11_link! { Glx, gl, ["libGL.so.1", "libGL.so"], 40,
   pub fn glXChooseFBConfig (_4: *mut Display, _3: c_int, _2: *const c_int, _1: *mut c_int) -> *mut GLXFBConfig,
@@ -67,15 +55,15 @@ variadic:
 globals:
 }
 
-
 //
 // types
 //
 
-
 // opaque structures
-#[repr(C)] pub struct __GLXcontextRec;
-#[repr(C)] pub struct __GLXFBConfigRec;
+#[repr(C)]
+pub struct __GLXcontextRec;
+#[repr(C)]
+pub struct __GLXFBConfigRec;
 
 // types
 pub type GLXContext = *mut __GLXcontextRec;
@@ -87,11 +75,9 @@ pub type GLXPbuffer = XID;
 pub type GLXPixmap = XID;
 pub type GLXWindow = XID;
 
-
 //
 // constants
 //
-
 
 // config caveats
 pub const GLX_SLOW_CONFIG: c_int = 0x8001;
@@ -210,40 +196,36 @@ pub const GLX_SAVED: c_int = 0x8021;
 pub const GLX_WINDOW: c_int = 0x8022;
 pub const GLX_PBUFFER: c_int = 0x8023;
 
-
 //
 // ARB extensions
 //
 
-
 pub mod arb {
-  use std::os::raw::c_int;
+    use crate::os_primitives::c_int;
 
-  // context attributes
-  pub const GLX_CONTEXT_MAJOR_VERSION_ARB: c_int = 0x2091;
-  pub const GLX_CONTEXT_MINOR_VERSION_ARB: c_int = 0x2092;
-  pub const GLX_CONTEXT_FLAGS_ARB: c_int = 0x2094;
-  pub const GLX_CONTEXT_PROFILE_MASK_ARB: c_int = 0x9126;
+    // context attributes
+    pub const GLX_CONTEXT_MAJOR_VERSION_ARB: c_int = 0x2091;
+    pub const GLX_CONTEXT_MINOR_VERSION_ARB: c_int = 0x2092;
+    pub const GLX_CONTEXT_FLAGS_ARB: c_int = 0x2094;
+    pub const GLX_CONTEXT_PROFILE_MASK_ARB: c_int = 0x9126;
 
-  // context flags
-  pub const GLX_CONTEXT_DEBUG_BIT_ARB: c_int = 0x0001;
-  pub const GLX_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB: c_int = 0x0002;
+    // context flags
+    pub const GLX_CONTEXT_DEBUG_BIT_ARB: c_int = 0x0001;
+    pub const GLX_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB: c_int = 0x0002;
 
-  // context profile mask
-  pub const GLX_CONTEXT_CORE_PROFILE_BIT_ARB: c_int = 0x0001;
-  pub const GLX_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB: c_int = 0x0002;
+    // context profile mask
+    pub const GLX_CONTEXT_CORE_PROFILE_BIT_ARB: c_int = 0x0001;
+    pub const GLX_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB: c_int = 0x0002;
 }
-
 
 //
 // EXT extensions
 //
 
-
 pub mod ext {
-  use std::os::raw::c_int;
+    use crate::os_primitives::c_int;
 
-  // drawable attributes
-  pub const GLX_SWAP_INTERVAL_EXT: c_int = 0x20f1;
-  pub const GLX_MAX_SWAP_INTERVAL_EXT: c_int = 0x20f2;
+    // drawable attributes
+    pub const GLX_SWAP_INTERVAL_EXT: c_int = 0x20f1;
+    pub const GLX_MAX_SWAP_INTERVAL_EXT: c_int = 0x20f2;
 }

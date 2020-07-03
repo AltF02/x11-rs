@@ -4,10 +4,8 @@
 
 use ::xlib::XID;
 
-
 //
 // types
 //
-
 
 pub type PointerBarrier = XID;

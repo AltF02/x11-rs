@@ -5,12 +5,20 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 #![allow(non_upper_case_globals)]
+#![allow(unused_parens)]
 
 #[macro_use]
 extern crate lazy_static;
 
 extern crate libc;
 extern crate maybe_uninit;
+extern crate std as core;
+
+// usage of c primitives
+pub(crate) mod os_primitives {
+    // just re-use the std primitives, since this library isn't no_std
+    pub use std::os::raw::*;
+}
 
 #[macro_use]
 mod link;

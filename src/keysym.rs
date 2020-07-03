@@ -2,7 +2,7 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::os::raw::c_uint;
+use crate::os_primitives::c_uint;
 
 pub const XK_BackSpace: c_uint = 0xFF08;
 pub const XK_Tab: c_uint = 0xFF09;

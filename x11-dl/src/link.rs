@@ -46,7 +46,7 @@ macro_rules! x11_link {
         }
         let offset = this as usize;
         for &(name, sym_offset) in SYMS.iter() {
-          *((offset + sym_offset) as *mut *mut _) = try!((*this).lib.symbol(name));
+          *((offset + sym_offset) as *mut *mut _) = (*this).lib.symbol(name)?;
         }
         Ok(())
       }
@@ -54,11 +54,11 @@ macro_rules! x11_link {
       pub fn open () -> Result<$struct_name, $crate::error::OpenError> {
         unsafe {
           let libdir = $crate::link::config::libdir::$pkg_name;
-          let lib = try!($crate::link::DynamicLibrary::open_multi(libdir, &[$($lib_name),*]));
+          let lib = $crate::link::DynamicLibrary::open_multi(libdir, &[$($lib_name),*])?;
           let mut this = ::maybe_uninit::MaybeUninit::<$struct_name>::uninit();
           let this_ptr = this.as_mut_ptr();
           ::std::ptr::write(&mut (*this_ptr).lib, lib);
-          try!(Self::init(this_ptr));
+          Self::init(this_ptr)?;
           Ok(this.assume_init())
         }
       }
@@ -154,7 +154,7 @@ impl DynamicLibrary {
         }
 
         let cmsg = CStr::from_ptr(msg as *const c_char);
-        let detail = format!("{} - {}", name, cmsg.to_string_lossy().into_owned());;
+        let detail = format!("{} - {}", name, cmsg.to_string_lossy().into_owned());
         return Err(OpenError::new(OpenErrorKind::Symbol, detail));
       }
 

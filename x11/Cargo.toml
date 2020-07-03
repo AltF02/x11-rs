@@ -13,8 +13,10 @@ documentation = "https://docs.rs/x11"
 workspace = ".."
 
 [features]
+default = ["std"]
 dpms = []
 glx = []
+std = []
 xcursor = []
 xf86vmode = []
 xft = []
