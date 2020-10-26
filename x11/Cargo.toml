@@ -1,6 +1,6 @@
 [package]
 name = "x11"
-version = "2.18.2"
+version = "2.18.3"
 authors = [
     "daggerbot <daggerbot@gmail.com>",
     "Erle Pereira <erle@erlepereira.com>",
@@ -15,6 +15,7 @@ workspace = ".."
 [features]
 dpms = []
 glx = []
+xcomposite = []
 xcursor = []
 xf86vmode = []
 xft = []

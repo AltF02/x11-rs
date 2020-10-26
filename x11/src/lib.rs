@@ -19,6 +19,7 @@ pub mod xlib;
 pub mod dpms;
 pub mod glx;
 pub mod keysym;
+pub mod xcomposite;
 pub mod xcursor;
 pub mod xf86vmode;
 pub mod xfixes;

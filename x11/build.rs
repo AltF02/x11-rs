@@ -13,6 +13,7 @@ fn main () {
     ("gl", "1", "glx"),
     ("x11", "1.4.99.1", "xlib"),
     ("x11-xcb", "1.6", "xlib_xcb"),
+    ("xcomposite", "0.4.5", "xcomposite"),
     ("xcursor", "1.1", "xcursor"),
     ("xext", "1.3", "dpms"),
     ("xft", "2.1", "xft"),

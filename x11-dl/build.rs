@@ -14,6 +14,7 @@ fn main() {
         // lib           pkgconfig name
         ("xext",        "xext"),
         ("gl",          "gl"),
+        ("xcomposite",  "xcomposite"),
         ("xcursor",     "xcursor"),
         ("xxf86vm",     "xxf86vm"),
         ("xft",         "xft"),
