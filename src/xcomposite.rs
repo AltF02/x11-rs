@@ -14,6 +14,7 @@ use ::xlib::{
   Display,
 };
 
+
 //
 // functions
 //
@@ -41,3 +42,11 @@ globals:
 
 pub type XserverRegion = XID;
 pub type Pixmap = XID;
+
+
+//
+// constants
+//
+
+pub const CompositeRedirectAutomatic: c_int = 0;
+pub const CompositeRedirectManual: c_int = 1;
