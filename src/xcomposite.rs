@@ -30,7 +30,7 @@ x11_link! { Xcomposite, xcomposite, ["libXcomposite.so.1", "libXcomposite.so"], 
   pub fn XCompisiteCreateRegionFromBorderClip(_2: *mut Display, _1: Window) -> XserverRegion,
   pub fn XCompositeNameWindowPixmap(_2: *mut Display, _1: Window) -> Pixmap,
   pub fn XCompositeGetOverlayWindow(_2: *mut Display, _1: Window) -> Window,
-  pub fn XCompisiteReleaseOverlayWindow(_2: *mut Display, _1: Window) -> (),
+  pub fn XCompositeReleaseOverlayWindow(_2: *mut Display, _1: Window) -> (),
 variadic:
 globals:
 }
