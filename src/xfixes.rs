@@ -11,3 +11,4 @@ use ::xlib::XID;
 
 
 pub type PointerBarrier = XID;
+pub type XserverRegion = XID;
