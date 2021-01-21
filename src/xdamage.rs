@@ -56,5 +56,5 @@ struct XDamageNotifyEvent {
   more: Bool,
   timestamp: Time,
   area: XRectangle,
-  geometry: XRectange,
+  geometry: XRectangle,
 }
