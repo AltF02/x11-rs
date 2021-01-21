@@ -58,3 +58,30 @@ struct XDamageNotifyEvent {
   area: XRectangle,
   geometry: XRectangle,
 }
+
+
+//
+// constants
+//
+
+pub const DAMAGE_NAME: &'static str = "DAMAGE";
+pub const DAMAGE_MAJOR: c_int = 1;
+pub const DAMAGE_MINOR: c_int = 1;
+
+pub const XDamageReportRawRectangles:   c_int = 0;
+pub const XDamageReportDeltaRectangles: c_int = 1;
+pub const XDamageReportBoundingBox:     c_int = 2;
+pub const XDamageReportNonEmpty:        c_int = 3;
+
+pub const X_DamageQueryVersion:  c_int = 0;
+pub const X_DamageCreate:        c_int = 1;
+pub const X_DamageDestroy:       c_int = 2;
+pub const X_DamageSubtract:      c_int = 3;
+pub const X_DamageAdd:           c_int = 4;
+pub const XDamageNumberRequests: c_int = 5;
+
+pub const XDamageNotify: c_int = 0;
+pub const XDamageNumberEvents: c_int = 1;
+
+pub const BadDamage: c_int = 0;
+pub const XDamageNumberErrors: c_int = 0;
