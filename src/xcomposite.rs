@@ -12,6 +12,7 @@ use ::xlib::{
   Status,
   Window,
   Display,
+  Pixmap
 };
 
 
@@ -25,9 +26,9 @@ x11_link! { Xcomposite, xcomposite, ["libXcomposite.so.1", "libXcomposite.so"], 
   pub fn XCompositeVersion() -> c_int,
   pub fn XCompositeRedirectWindow(_3: *mut Display, _2: Window, _1: c_int) -> (),
   pub fn XCompositeRedirectSubwindows(_3: *mut Display, _2: Window, _1: c_int) -> (),
-  pub fn XCompisiteUnredirectWindow(_3: *mut Display, _2: Window, _1: c_int) -> (),
-  pub fn XCompisiteUnredirectSubwindows(_3: *mut Display, _2: Window, _1: c_int) -> (),
-  pub fn XCompisiteCreateRegionFromBorderClip(_2: *mut Display, _1: Window) -> XserverRegion,
+  pub fn XCompositeUnredirectWindow(_3: *mut Display, _2: Window, _1: c_int) -> (),
+  pub fn XCompositeUnredirectSubwindows(_3: *mut Display, _2: Window, _1: c_int) -> (),
+  pub fn XCompositeCreateRegionFromBorderClip(_2: *mut Display, _1: Window) -> XserverRegion,
   pub fn XCompositeNameWindowPixmap(_2: *mut Display, _1: Window) -> Pixmap,
   pub fn XCompositeGetOverlayWindow(_2: *mut Display, _1: Window) -> Window,
   pub fn XCompositeReleaseOverlayWindow(_2: *mut Display, _1: Window) -> (),
@@ -41,7 +42,6 @@ globals:
 //
 
 pub type XserverRegion = XID;
-pub type Pixmap = XID;
 
 
 //
