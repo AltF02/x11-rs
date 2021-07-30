@@ -2,34 +2,13 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::os::raw::{
-  c_char,
-  c_double,
-  c_int,
-  c_short,
-  c_uint,
-  c_ulong,
-  c_ushort,
-};
+use std::os::raw::{c_char, c_double, c_int, c_short, c_uint, c_ulong, c_ushort};
 
-use ::xlib::{
-  Atom,
-  Bool,
-  Colormap,
-  Cursor,
-  Display,
-  Pixmap,
-  Region,
-  Visual,
-  XID,
-  XRectangle,
-};
-
+use super::xlib::{Atom, Bool, Colormap, Cursor, Display, Pixmap, Region, Visual, XRectangle, XID};
 
 //
 // functions
 //
-
 
 x11_link! { Xrender, xrender, ["libXrender.so.1", "libXrender.so"], 44,
   pub fn XRenderAddGlyphs (_7: *mut Display, _6: c_ulong, _5: *const c_ulong, _4: *const XGlyphInfo, _3: c_int, _2: *const c_char, _1: c_int) -> (),
@@ -80,11 +59,9 @@ variadic:
 globals:
 }
 
-
 //
 // types
 //
-
 
 pub type Glyph = XID;
 pub type GlyphSet = XID;
@@ -96,233 +73,231 @@ pub type XFixed = c_int;
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XAnimCursor {
-  pub cursor: Cursor,
-  pub delay: c_ulong,
+    pub cursor: Cursor,
+    pub delay: c_ulong,
 }
 pub type XAnimCursor = _XAnimCursor;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XCircle {
-  pub x: XFixed,
-  pub y: XFixed,
-  pub radius: XFixed,
+    pub x: XFixed,
+    pub y: XFixed,
+    pub radius: XFixed,
 }
 pub type XCircle = _XCircle;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XConicalGradient {
-  pub center: XPointFixed,
-  pub angle: XFixed,
+    pub center: XPointFixed,
+    pub angle: XFixed,
 }
 pub type XConicalGradient = _XConicalGradient;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XFilters {
-  pub nfilter: c_int,
-  pub filter: *mut *mut c_char,
-  pub nalias: c_int,
-  pub alias: *mut c_short,
+    pub nfilter: c_int,
+    pub filter: *mut *mut c_char,
+    pub nalias: c_int,
+    pub alias: *mut c_short,
 }
 pub type XFilters = _XFilters;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XGlyphElt8 {
-  pub glyphset: GlyphSet,
-  pub chars: *mut c_char,
-  pub nchars: c_int,
-  pub xOff: c_int,
-  pub yOff: c_int,
+    pub glyphset: GlyphSet,
+    pub chars: *mut c_char,
+    pub nchars: c_int,
+    pub xOff: c_int,
+    pub yOff: c_int,
 }
 pub type XGlyphElt8 = _XGlyphElt8;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XGlyphElt16 {
-  pub glyphset: GlyphSet,
-  pub chars: *mut c_ushort,
-  pub nchars: c_int,
-  pub xOff: c_int,
-  pub yOff: c_int,
+    pub glyphset: GlyphSet,
+    pub chars: *mut c_ushort,
+    pub nchars: c_int,
+    pub xOff: c_int,
+    pub yOff: c_int,
 }
 pub type XGlyphElt16 = _XGlyphElt16;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XGlyphElt32 {
-  pub glyphset: GlyphSet,
-  pub chars: *mut c_uint,
-  pub nchars: c_int,
-  pub xOff: c_int,
-  pub yOff: c_int,
+    pub glyphset: GlyphSet,
+    pub chars: *mut c_uint,
+    pub nchars: c_int,
+    pub xOff: c_int,
+    pub yOff: c_int,
 }
 pub type XGlyphElt32 = _XGlyphElt32;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XGlyphInfo {
-  pub width: c_ushort,
-  pub height: c_ushort,
-  pub x: c_short,
-  pub y: c_short,
-  pub xOff: c_short,
-  pub yOff: c_short,
+    pub width: c_ushort,
+    pub height: c_ushort,
+    pub x: c_short,
+    pub y: c_short,
+    pub xOff: c_short,
+    pub yOff: c_short,
 }
 pub type XGlyphInfo = _XGlyphInfo;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XIndexValue {
-  pub pixel: c_ulong,
-  pub red: c_ushort,
-  pub green: c_ushort,
-  pub blue: c_ushort,
-  pub alpha: c_ushort,
+    pub pixel: c_ulong,
+    pub red: c_ushort,
+    pub green: c_ushort,
+    pub blue: c_ushort,
+    pub alpha: c_ushort,
 }
 pub type XIndexValue = _XIndexValue;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XLinearGradient {
-  pub p1: XPointFixed,
-  pub p2: XPointFixed,
+    pub p1: XPointFixed,
+    pub p2: XPointFixed,
 }
 pub type XLinearGradient = _XLinearGradient;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XLineFixed {
-  pub p1: XPointFixed,
-  pub p2: XPointFixed,
+    pub p1: XPointFixed,
+    pub p2: XPointFixed,
 }
 pub type XLineFixed = _XLineFixed;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XPointDouble {
-  pub x: XDouble,
-  pub y: XDouble,
+    pub x: XDouble,
+    pub y: XDouble,
 }
 pub type XPointDouble = _XPointDouble;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XPointFixed {
-  pub x: XFixed,
-  pub y: XFixed,
+    pub x: XFixed,
+    pub y: XFixed,
 }
 pub type XPointFixed = _XPointFixed;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XRadialGradient {
-  pub inner: XCircle,
-  pub outer: XCircle,
+    pub inner: XCircle,
+    pub outer: XCircle,
 }
 pub type XRadialGradient = _XRadialGradient;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRenderColor {
-  pub red: c_ushort,
-  pub green: c_ushort,
-  pub blue: c_ushort,
-  pub alpha: c_ushort,
+    pub red: c_ushort,
+    pub green: c_ushort,
+    pub blue: c_ushort,
+    pub alpha: c_ushort,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRenderDirectFormat {
-  pub red: c_short,
-  pub redMask: c_short,
-  pub green: c_short,
-  pub greenMask: c_short,
-  pub blue: c_short,
-  pub blueMask: c_short,
-  pub alpha: c_short,
-  pub alphaMask: c_short,
+    pub red: c_short,
+    pub redMask: c_short,
+    pub green: c_short,
+    pub greenMask: c_short,
+    pub blue: c_short,
+    pub blueMask: c_short,
+    pub alpha: c_short,
+    pub alphaMask: c_short,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRenderPictFormat {
-  pub id: PictFormat,
-  pub type_: c_int,
-  pub depth: c_int,
-  pub direct: XRenderDirectFormat,
-  pub colormap: Colormap,
+    pub id: PictFormat,
+    pub type_: c_int,
+    pub depth: c_int,
+    pub direct: XRenderDirectFormat,
+    pub colormap: Colormap,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XRenderPictureAttributes {
-  pub repeat: c_int,
-  pub alpha_map: Picture,
-  pub alpha_x_origin: c_int,
-  pub alpha_y_origin: c_int,
-  pub clip_x_origin: c_int,
-  pub clip_y_origin: c_int,
-  pub clip_mask: Pixmap,
-  pub graphics_exposures: Bool,
-  pub subwindow_mode: c_int,
-  pub poly_edge: c_int,
-  pub poly_mode: c_int,
-  pub dither: Atom,
-  pub component_alpha: Bool,
+    pub repeat: c_int,
+    pub alpha_map: Picture,
+    pub alpha_x_origin: c_int,
+    pub alpha_y_origin: c_int,
+    pub clip_x_origin: c_int,
+    pub clip_y_origin: c_int,
+    pub clip_mask: Pixmap,
+    pub graphics_exposures: Bool,
+    pub subwindow_mode: c_int,
+    pub poly_edge: c_int,
+    pub poly_mode: c_int,
+    pub dither: Atom,
+    pub component_alpha: Bool,
 }
 pub type XRenderPictureAttributes = _XRenderPictureAttributes;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XSpanFix {
-  pub left: XFixed,
-  pub right: XFixed,
-  pub y: XFixed,
+    pub left: XFixed,
+    pub right: XFixed,
+    pub y: XFixed,
 }
 pub type XSpanFix = _XSpanFix;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XTrap {
-  pub top: XSpanFix,
-  pub bottom: XSpanFix,
+    pub top: XSpanFix,
+    pub bottom: XSpanFix,
 }
 pub type XTrap = _XTrap;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XTrapezoid {
-  pub top: XFixed,
-  pub bottom: XFixed,
-  pub left: XLineFixed,
-  pub right: XLineFixed,
+    pub top: XFixed,
+    pub bottom: XFixed,
+    pub left: XLineFixed,
+    pub right: XLineFixed,
 }
 pub type XTrapezoid = _XTrapezoid;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XTriangle {
-  pub p1: XPointFixed,
-  pub p2: XPointFixed,
-  pub p3: XPointFixed,
+    pub p1: XPointFixed,
+    pub p2: XPointFixed,
+    pub p3: XPointFixed,
 }
 pub type XTriangle = _XTriangle;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XTransform {
-  pub matrix: [[XFixed; 3]; 3],
+    pub matrix: [[XFixed; 3]; 3],
 }
 pub type XTransform = _XTransform;
-
 
 //
 // constants
 //
-
 
 // pict format mask
 pub const PictFormatID: c_ulong = 1 << 0;
