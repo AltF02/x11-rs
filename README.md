@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/erlepereira/x11-rs.svg?branch=master)](https://travis-ci.org/erlepereira/x11-rs)
 
-`x11`: [![](http://meritbadge.herokuapp.com/x11)](https://crates.io/crates/x11)
+`x11`: [![](https://img.shields.io/crates/v/x11.svg)](https://crates.io/crates/x11)
 
-`x11-dl`: [![](http://meritbadge.herokuapp.com/x11-dl)](https://crates.io/crates/x11-dl)
+`x11-dl`: [![](https://img.shields.io/crates/v/x11-dl.svg)](https://crates.io/crates/x11-dl)
 
 Hey everyone, have recently jumped on board here, still getting my head around things. I do apologise for any delays whilst I catch up to speed. Thanks for all the issues and PRs, keep them coming - Erle Pereira (updated: Sept 2019)
 
