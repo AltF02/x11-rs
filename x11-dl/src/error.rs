@@ -27,8 +27,8 @@ impl OpenError {
 
     pub fn new(kind: OpenErrorKind, detail: String) -> OpenError {
         OpenError {
-            kind: kind,
-            detail: detail,
+            kind,
+            detail,
         }
     }
 }
@@ -42,7 +42,7 @@ impl Display for OpenError {
             f.write_str(self.detail.as_ref())?;
             f.write_str(")")?;
         }
-        return Ok(());
+        Ok(())
     }
 }
 

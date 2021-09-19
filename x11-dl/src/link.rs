@@ -6,8 +6,6 @@ use std::ffi::{CStr, CString};
 use std::os::raw::{c_char, c_void};
 use std::path::Path;
 
-use libc;
-
 use super::error::{OpenError, OpenErrorKind};
 
 include!(concat!(env!("OUT_DIR"), "/config.rs"));
@@ -39,9 +37,9 @@ macro_rules! x11_link {
       unsafe fn init (this: *mut Self) -> Result<(), $crate::error::OpenError> {
         lazy_static! {
           static ref SYMS: [(&'static str, usize); $nsyms] = unsafe {[
-            $((stringify!($fn_name), &((*(0 as *const $struct_name)).$fn_name) as *const _ as usize),)*
-            $((stringify!($vfn_name), &((*(0 as *const $struct_name)).$vfn_name) as *const _ as usize),)*
-            $((stringify!($var_name), &((*(0 as *const $struct_name)).$var_name) as *const _ as usize),)*
+            $((stringify!($fn_name), &((*core::ptr::null::<$struct_name>()).$fn_name) as *const _ as usize),)*
+            $((stringify!($vfn_name), &((*core::ptr::null::<$struct_name>()).$vfn_name) as *const _ as usize),)*
+            $((stringify!($var_name), &((*core::ptr::null::<$struct_name>()).$var_name) as *const _ as usize),)*
           ]};
         }
         let offset = this as usize;
@@ -123,7 +121,7 @@ impl DynamicLibrary {
 
         let mut msgs = Vec::new();
 
-        for name in names.iter().map(|x| *x).chain(paths.iter().map(|x| &**x)) {
+        for name in names.iter().copied().chain(paths.iter().map(|x| &**x)) {
             match DynamicLibrary::open(name) {
                 Ok(lib) => {
                     return Ok(lib);
@@ -136,11 +134,11 @@ impl DynamicLibrary {
 
         let mut detail = String::new();
 
-        for i in 0..msgs.len() {
+        for (i, msg) in msgs.iter().enumerate() {
             if i != 0 {
                 detail.push_str("; ");
             }
-            detail.push_str(msgs[i].as_ref());
+            detail.push_str(msg.as_ref());
         }
 
         Err(OpenError::new(OpenErrorKind::Library, detail))

@@ -32,7 +32,7 @@ globals:
 pub const DPMSMajorVersion: c_int = 1;
 pub const DPMSMinorVersion: c_int = 1;
 
-pub const DPMSExtensionName: &'static str = "DPMS";
+pub const DPMSExtensionName: &str = "DPMS";
 
 pub const DPMSModeOn: CARD16 = 0;
 pub const DPMSModeStandby: CARD16 = 1;

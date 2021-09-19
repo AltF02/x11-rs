@@ -413,7 +413,7 @@ event_conversions_and_tests! {
 // constants
 //
 
-pub const RANDR_NAME: &'static str = "RANDR";
+pub const RANDR_NAME: &str = "RANDR";
 pub const RANDR_MAJOR: c_int = 1;
 pub const RANDR_MINOR: c_int = 5;
 
@@ -530,18 +530,18 @@ pub const BadRRCrtc: c_int = 1;
 pub const BadRRMode: c_int = 2;
 pub const BadRRProvider: c_int = 3;
 
-pub const RR_PROPERTY_BACKLIGHT: &'static str = "Backlight";
-pub const RR_PROPERTY_RANDR_EDID: &'static str = "EDID";
-pub const RR_PROPERTY_SIGNAL_FORMAT: &'static str = "SignalFormat";
-pub const RR_PROPERTY_SIGNAL_PROPERTIES: &'static str = "SignalProperties";
-pub const RR_PROPERTY_CONNECTOR_TYPE: &'static str = "ConnectorType";
-pub const RR_PROPERTY_CONNECTOR_NUMBER: &'static str = "ConnectorNumber";
-pub const RR_PROPERTY_COMPATIBILITY_LIST: &'static str = "CompatibilityList";
-pub const RR_PROPERTY_CLONE_LIST: &'static str = "CloneList";
-pub const RR_PROPERTY_BORDER: &'static str = "Border";
-pub const RR_PROPERTY_BORDER_DIMENSIONS: &'static str = "BorderDimensions";
-pub const RR_PROPERTY_GUID: &'static str = "GUID";
-pub const RR_PROPERTY_RANDR_TILE: &'static str = "TILE";
+pub const RR_PROPERTY_BACKLIGHT: &str = "Backlight";
+pub const RR_PROPERTY_RANDR_EDID: &str = "EDID";
+pub const RR_PROPERTY_SIGNAL_FORMAT: &str = "SignalFormat";
+pub const RR_PROPERTY_SIGNAL_PROPERTIES: &str = "SignalProperties";
+pub const RR_PROPERTY_CONNECTOR_TYPE: &str = "ConnectorType";
+pub const RR_PROPERTY_CONNECTOR_NUMBER: &str = "ConnectorNumber";
+pub const RR_PROPERTY_COMPATIBILITY_LIST: &str = "CompatibilityList";
+pub const RR_PROPERTY_CLONE_LIST: &str = "CloneList";
+pub const RR_PROPERTY_BORDER: &str = "Border";
+pub const RR_PROPERTY_BORDER_DIMENSIONS: &str = "BorderDimensions";
+pub const RR_PROPERTY_GUID: &str = "GUID";
+pub const RR_PROPERTY_RANDR_TILE: &str = "TILE";
 
 pub const RR_Capability_None: c_int = 0;
 pub const RR_Capability_SourceOutput: c_int = 1;
