@@ -2,24 +2,9 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::os::raw::{
-  c_char,
-  c_int,
-  c_long,
-  c_short,
-  c_uchar,
-  c_uint,
-  c_ulong,
-};
+use std::os::raw::{c_char, c_int, c_long, c_short, c_uchar, c_uint, c_ulong};
 
-use ::xlib::{
-  Atom,
-  Display,
-  Time,
-  XEvent,
-  XID,
-  XModifierKeymap,
-};
+use super::xlib::{Atom, Display, Time, XEvent, XModifierKeymap, XID};
 
 //
 // functions
@@ -75,7 +60,6 @@ variadic:
 globals:
 }
 
-
 //
 // types
 //
@@ -87,79 +71,78 @@ pub type XAnyClassPtr = *mut _XAnyClassinfo;
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDevice {
-  pub device_id: XID,
-  pub num_classes: c_int,
-  pub classes: *mut XInputClassInfo,
+    pub device_id: XID,
+    pub num_classes: c_int,
+    pub classes: *mut XInputClassInfo,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDeviceControl {
-  pub control: XID,
-  pub length: c_int,
+    pub control: XID,
+    pub length: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDeviceInfo {
-  pub id: XID,
-  pub type_: Atom,
-  pub name: *mut c_char,
-  pub num_classes: c_int,
-  pub use_: c_int,
-  pub inputclassinfo: XAnyClassPtr,
+    pub id: XID,
+    pub type_: Atom,
+    pub name: *mut c_char,
+    pub num_classes: c_int,
+    pub use_: c_int,
+    pub inputclassinfo: XAnyClassPtr,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDeviceState {
-  pub device_id: XID,
-  pub num_classes: c_int,
-  pub data: *mut XInputClass,
+    pub device_id: XID,
+    pub num_classes: c_int,
+    pub data: *mut XInputClass,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDeviceTimeCoord {
-  pub time: Time,
-  pub data: *mut c_int,
+    pub time: Time,
+    pub data: *mut c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XExtensionVersion {
-  pub present: c_int,
-  pub major_version: c_short,
-  pub minor_version: c_short,
+    pub present: c_int,
+    pub major_version: c_short,
+    pub minor_version: c_short,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XFeedbackControl {
-  pub class: XID,
-  pub length: c_int,
-  pub id: XID,
+    pub class: XID,
+    pub length: c_int,
+    pub id: XID,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XFeedbackState {
-  pub class: XID,
-  pub length: c_int,
-  pub id: XID,
+    pub class: XID,
+    pub length: c_int,
+    pub id: XID,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XInputClass {
-  pub class: c_uchar,
-  pub length: c_uchar,
+    pub class: c_uchar,
+    pub length: c_uchar,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XInputClassInfo {
-  pub input_class: c_uchar,
-  pub event_type_base: c_uchar,
+    pub input_class: c_uchar,
+    pub event_type_base: c_uchar,
 }
-
