@@ -8,14 +8,14 @@
 
 Hey everyone, have recently jumped on board here, still getting my head around things. I do apologise for any delays whilst I catch up to speed. Thanks for all the issues and PRs, keep them coming - Erle Pereira (updated: Sept 2019)
 
-A new [wiki page](https://github.com/erlepereira/x11-rs/wiki) has been created with the intention of a detaling a roadmap and a focal point for a broader vision around this codebase.
+A new [wiki page](https://github.com/AltF02/x11-rs/wiki) has been created with the intention of a detaling a roadmap and a focal point for a broader vision around this codebase.
 
 ## License
 
 Licensed under 
 
  * MIT license
-   ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+   ([LICENSE-MIT](LICENSE-MIT) or https://opensource.org/licenses/MIT)
 
   for related Discussion with contributors see #82
 
