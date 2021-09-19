@@ -196,15 +196,15 @@ pub enum XftPattern {}
 //
 
 // font attributes
-pub const XFT_FAMILY: &'static str = "family";
-pub const XFT_STYLE: &'static str = "style";
-pub const XFT_SLANT: &'static str = "slant";
-pub const XFT_WEIGHT: &'static str = "weight";
-pub const XFT_SIZE: &'static str = "size";
-pub const XFT_PIXEL_SIZE: &'static str = "pixelsize";
-pub const XFT_SPACING: &'static str = "spacing";
-pub const XFT_FOUNDRY: &'static str = "foundry";
-pub const XFT_ANTIALIAS: &'static str = "antialias";
+pub const XFT_FAMILY: &str = "family";
+pub const XFT_STYLE: &str = "style";
+pub const XFT_SLANT: &str = "slant";
+pub const XFT_WEIGHT: &str = "weight";
+pub const XFT_SIZE: &str = "size";
+pub const XFT_PIXEL_SIZE: &str = "pixelsize";
+pub const XFT_SPACING: &str = "spacing";
+pub const XFT_FOUNDRY: &str = "foundry";
+pub const XFT_ANTIALIAS: &str = "antialias";
 
 // slant values
 pub const XFT_SLANT_ROMAN: c_int = 0;

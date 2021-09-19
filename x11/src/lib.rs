@@ -6,6 +6,8 @@
 #![allow(non_snake_case)]
 #![allow(non_upper_case_globals)]
 #![allow(improper_ctypes)]
+#![allow(deref_nullptr)]
+#![allow(clippy::missing_safety_doc)]
 
 extern crate libc;
 

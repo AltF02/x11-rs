@@ -19,7 +19,7 @@ pub unsafe fn mem_eq<T: Sized>(a: &T, b: &T) -> bool {
         }
     }
 
-    return true;
+    true
 }
 
 pub unsafe fn transmute_union<I, O>(input: &I) -> O
@@ -35,5 +35,5 @@ where
             *((input as *const I as usize + i) as *const u8);
     }
 
-    return output;
+    output
 }
