@@ -2,38 +2,16 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::os::raw::{
-  c_char,
-  c_int,
-  c_long,
-  c_short,
-  c_uchar,
-  c_uint,
-  c_ulong,
-  c_ushort,
-  c_void,
-};
+use std::os::raw::{c_char, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void};
 
-use ::xlib::{
-  Display,
-  GC,
-  Region,
-  Screen,
-  Visual,
-  XEvent,
-  XGCValues,
-  _XrmHashBucketRec,
-  XrmOptionDescList,
-  XrmValue,
-  XSelectionRequestEvent,
-  XSetWindowAttributes,
+use super::xlib::{
+    Display, Region, Screen, Visual, XEvent, XGCValues, XSelectionRequestEvent,
+    XSetWindowAttributes, XrmOptionDescList, XrmValue, _XrmHashBucketRec, GC,
 };
-
 
 //
 // functions
 //
-
 
 x11_link! { Xt, xt, ["libXt.so.6", "libXt.so"], 300,
   pub fn XtAddActions (_2: *mut XtActionsRec, _1: c_uint) -> (),
@@ -340,25 +318,35 @@ variadic:
 globals:
 }
 
-
 //
 // types
 //
 
-
 // TODO structs
-#[repr(C)] pub struct Arg;
-#[repr(C)] pub struct SubstitutionRec;
-#[repr(C)] pub struct _TranslationData;
-#[repr(C)] pub struct _WidgetClassRec;
-#[repr(C)] pub struct _WidgetRec;
-#[repr(C)] pub struct _XtActionsRec;
-#[repr(C)] pub struct _XtAppStruct;
-#[repr(C)] pub struct _XtCallbackRec;
-#[repr(C)] pub struct _XtCheckpointTokenRec;
-#[repr(C)] pub struct XtConvertArgRec;
-#[repr(C)] pub struct _XtResource;
-#[repr(C)] pub struct XtWidgetGeometry;
+#[repr(C)]
+pub struct Arg;
+#[repr(C)]
+pub struct SubstitutionRec;
+#[repr(C)]
+pub struct _TranslationData;
+#[repr(C)]
+pub struct _WidgetClassRec;
+#[repr(C)]
+pub struct _WidgetRec;
+#[repr(C)]
+pub struct _XtActionsRec;
+#[repr(C)]
+pub struct _XtAppStruct;
+#[repr(C)]
+pub struct _XtCallbackRec;
+#[repr(C)]
+pub struct _XtCheckpointTokenRec;
+#[repr(C)]
+pub struct XtConvertArgRec;
+#[repr(C)]
+pub struct _XtResource;
+#[repr(C)]
+pub struct XtWidgetGeometry;
 
 // C enums
 pub type XtCallbackStatus = c_int;
@@ -370,13 +358,13 @@ pub type XtListPosition = c_int;
 #[cfg(test)]
 #[repr(C)]
 enum TestEnum {
-  Variant1,
-  Variant2,
+    Variant1,
+    Variant2,
 }
 
 #[test]
-fn enum_size_test () {
-  assert!(::std::mem::size_of::<TestEnum>() == ::std::mem::size_of::<c_int>());
+fn enum_size_test() {
+    assert!(::std::mem::size_of::<TestEnum>() == ::std::mem::size_of::<c_int>());
 }
 
 // struct typedefs

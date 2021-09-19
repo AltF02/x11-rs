@@ -11,6 +11,7 @@ repository = "https://github.com/erlepereira/x11-rs.git"
 build = "build.rs"
 documentation = "https://docs.rs/x11-dl"
 workspace = ".."
+edition = "2018"
 
 [dependencies]
 lazy_static = "1"

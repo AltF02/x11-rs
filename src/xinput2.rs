@@ -1,6 +1,6 @@
-use xfixes::PointerBarrier;
-use xlib::{Atom, Display, Time, Window};
-use std::os::raw::{c_int, c_uint, c_long, c_double, c_ulong, c_uchar};
+use super::xfixes::PointerBarrier;
+use super::xlib::{Atom, Display, Time, Window};
+use std::os::raw::{c_double, c_int, c_long, c_uchar, c_uint, c_ulong};
 
 //
 // macro translations
@@ -224,10 +224,14 @@ pub struct XIAddMasterInfo {
     pub enable: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XIAddMasterInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIAddMasterInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -240,10 +244,14 @@ pub struct XIRemoveMasterInfo {
     pub return_keyboard: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XIRemoveMasterInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIRemoveMasterInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -254,10 +262,14 @@ pub struct XIAttachSlaveInfo {
     pub new_master: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XIAttachSlaveInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIAttachSlaveInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -267,10 +279,14 @@ pub struct XIDetachSlaveInfo {
     pub deviceid: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XIDetachSlaveInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIDetachSlaveInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -301,10 +317,14 @@ impl XIAnyHierarchyChangeInfo {
     }
 }
 impl ::std::clone::Clone for XIAnyHierarchyChangeInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIAnyHierarchyChangeInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -316,10 +336,14 @@ pub struct XIModifierState {
     pub effective: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XIModifierState {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIModifierState {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 pub type XIGroupState = XIModifierState;
@@ -331,10 +355,14 @@ pub struct XIButtonState {
     pub mask: *mut ::std::os::raw::c_uchar,
 }
 impl ::std::clone::Clone for XIButtonState {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIButtonState {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -345,10 +373,14 @@ pub struct XIValuatorState {
     pub values: *mut ::std::os::raw::c_double,
 }
 impl ::std::clone::Clone for XIValuatorState {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIValuatorState {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -359,10 +391,14 @@ pub struct XIEventMask {
     pub mask: *mut ::std::os::raw::c_uchar,
 }
 impl ::std::clone::Clone for XIEventMask {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIEventMask {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -372,10 +408,14 @@ pub struct XIAnyClassInfo {
     pub sourceid: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XIAnyClassInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIAnyClassInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -388,10 +428,14 @@ pub struct XIButtonClassInfo {
     pub state: XIButtonState,
 }
 impl ::std::clone::Clone for XIButtonClassInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIButtonClassInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -403,10 +447,14 @@ pub struct XIKeyClassInfo {
     pub keycodes: *mut ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XIKeyClassInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIKeyClassInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -423,10 +471,14 @@ pub struct XIValuatorClassInfo {
     pub mode: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XIValuatorClassInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIValuatorClassInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -440,10 +492,14 @@ pub struct XIScrollClassInfo {
     pub flags: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XIScrollClassInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIScrollClassInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -455,10 +511,14 @@ pub struct XITouchClassInfo {
     pub num_touches: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XITouchClassInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XITouchClassInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -473,10 +533,14 @@ pub struct XIDeviceInfo {
     pub classes: *mut *mut XIAnyClassInfo,
 }
 impl ::std::clone::Clone for XIDeviceInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIDeviceInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -486,10 +550,14 @@ pub struct XIGrabModifiers {
     pub status: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XIGrabModifiers {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIGrabModifiers {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 pub type BarrierEventID = ::std::os::raw::c_uint;
@@ -502,10 +570,14 @@ pub struct XIBarrierReleasePointerInfo {
     pub eventid: BarrierEventID,
 }
 impl ::std::clone::Clone for XIBarrierReleasePointerInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIBarrierReleasePointerInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -520,10 +592,14 @@ pub struct XIEvent {
     pub time: Time,
 }
 impl ::std::clone::Clone for XIEvent {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -536,10 +612,14 @@ pub struct XIHierarchyInfo {
     pub flags: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XIHierarchyInfo {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIHierarchyInfo {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -557,10 +637,14 @@ pub struct XIHierarchyEvent {
     pub info: *mut XIHierarchyInfo,
 }
 impl ::std::clone::Clone for XIHierarchyEvent {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIHierarchyEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -580,10 +664,14 @@ pub struct XIDeviceChangedEvent {
     pub classes: *mut *mut XIAnyClassInfo,
 }
 impl ::std::clone::Clone for XIDeviceChangedEvent {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIDeviceChangedEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -613,10 +701,14 @@ pub struct XIDeviceEvent {
     pub group: XIGroupState,
 }
 impl ::std::clone::Clone for XIDeviceEvent {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIDeviceEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -637,10 +729,14 @@ pub struct XIRawEvent {
     pub raw_values: *mut ::std::os::raw::c_double,
 }
 impl ::std::clone::Clone for XIRawEvent {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIRawEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -671,10 +767,14 @@ pub struct XIEnterEvent {
     pub group: XIGroupState,
 }
 impl ::std::clone::Clone for XIEnterEvent {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIEnterEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 pub type XILeaveEvent = XIEnterEvent;
@@ -696,10 +796,14 @@ pub struct XIPropertyEvent {
     pub what: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XIPropertyEvent {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIPropertyEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -721,10 +825,14 @@ pub struct XITouchOwnershipEvent {
     pub flags: ::std::os::raw::c_int,
 }
 impl ::std::clone::Clone for XITouchOwnershipEvent {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XITouchOwnershipEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 
 #[repr(C)]
@@ -751,8 +859,12 @@ pub struct XIBarrierEvent {
     pub eventid: BarrierEventID,
 }
 impl ::std::clone::Clone for XIBarrierEvent {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for XIBarrierEvent {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }

@@ -4,14 +4,12 @@
 
 use std::os::raw::*;
 
-use xlib::{Display, Region, Visual, XRectangle};
-use xrender::{XGlyphInfo, XRenderColor};
-
+use super::xlib::{Display, Region, Visual, XRectangle};
+use super::xrender::{XGlyphInfo, XRenderColor};
 
 //
 // external types
 //
-
 
 // freetype
 pub enum FT_FaceRec {}
@@ -23,16 +21,23 @@ pub enum FcCharSet {}
 pub enum FcPattern {}
 
 #[repr(C)]
-pub enum FcEndian { Big, Little }
+pub enum FcEndian {
+    Big,
+    Little,
+}
 
 #[repr(C)]
-pub enum FcResult { Match, NoMatch, TypeMismatch, NoId, OutOfMemory }
-
+pub enum FcResult {
+    Match,
+    NoMatch,
+    TypeMismatch,
+    NoId,
+    OutOfMemory,
+}
 
 //
 // functions
 //
-
 
 x11_link! { Xft, xft, ["libXft.so.2", "libXft.so"], 77,
     pub fn XftCharExists (_2: *mut Display, _1: *mut XftFont, _0: c_uint) -> c_int,
@@ -116,11 +121,9 @@ variadic:
 globals:
 }
 
-
 //
 // types
 //
-
 
 pub enum XftFontInfo {}
 
@@ -188,11 +191,9 @@ pub struct XftGlyphFontSpec {
 
 pub enum XftPattern {}
 
-
 //
 // constants
 //
-
 
 // font attributes
 pub const XFT_FAMILY: &'static str = "family";

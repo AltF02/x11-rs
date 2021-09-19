@@ -11,6 +11,7 @@ repository = "https://github.com/erlepereira/x11-rs.git"
 build = "build.rs"
 documentation = "https://docs.rs/x11"
 workspace = ".."
+edition = "2018"
 
 [features]
 dpms = []
