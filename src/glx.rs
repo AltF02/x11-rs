@@ -168,7 +168,7 @@ pub const GLX_BACK_RIGHT_BUFFER_BIT: c_uint = 0x0008;
 pub const GLX_AUX_BUFFERS_BIT: c_uint = 0x0010;
 pub const GLX_DEPTH_BUFFER_BIT: c_uint = 0x0020;
 pub const GLX_STENCIL_BUFFER_BIT: c_uint = 0x0040;
-pub const GLX_ACCUM_BUFFER_BIT: c_uint = 0080;
+pub const GLX_ACCUM_BUFFER_BIT: c_uint = 0x0080;
 
 // render type for glXCreateNewContext
 pub const GLX_RGBA_TYPE: c_int = 0x8014;

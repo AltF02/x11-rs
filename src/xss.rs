@@ -69,8 +69,8 @@ event_conversions_and_tests! {
 // constants
 //
 
-pub const ScreenSaverName: &'static str = "MIT-SCREEN-SAVER";
-pub const ScreenSaverPropertyName: &'static str = "_MIT_SCREEN_SAVER_ID";
+pub const ScreenSaverName: &str = "MIT-SCREEN-SAVER";
+pub const ScreenSaverPropertyName: &str = "_MIT_SCREEN_SAVER_ID";
 
 pub const ScreenSaverNotifyMask: c_ulong = 0x00000001;
 pub const ScreenSaverCycleMask: c_ulong = 0x00000002;

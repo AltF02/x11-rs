@@ -416,12 +416,12 @@ pub const CPComponentAlpha: c_int = 1 << 12;
 pub const CPLastBit: c_int = 12;
 
 // filter methods
-pub const FilterNearest: &'static str = "nearest";
-pub const FilterBilinear: &'static str = "bilinear";
-pub const FilterConvolution: &'static str = "convolution";
-pub const FilterFast: &'static str = "fast";
-pub const FilterGood: &'static str = "good";
-pub const FilterBest: &'static str = "best";
+pub const FilterNearest: &str = "nearest";
+pub const FilterBilinear: &str = "bilinear";
+pub const FilterConvolution: &str = "convolution";
+pub const FilterFast: &str = "fast";
+pub const FilterGood: &str = "good";
+pub const FilterBest: &str = "best";
 
 // subpixel orders
 pub const SubPixelUnknown: c_int = 0;
