@@ -2,40 +2,18 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::os::raw::{
-  c_char,
-  c_int,
-  c_uchar,
-  c_uint,
-  c_ulong,
-  c_void,
-};
 use libc::FILE;
+use std::os::raw::{c_char, c_int, c_uchar, c_uint, c_ulong, c_void};
 
-use ::xlib::{
-  Display,
-  GC,
-  Screen,
-  XColor,
-  XComposeStatus,
-  XErrorEvent,
-  XEvent,
-  XKeyEvent,
-  XrmValue,
-  XSizeHints,
-  XStandardColormap,
-  XVisualInfo,
+use super::xlib::{
+    Display, Screen, XColor, XComposeStatus, XErrorEvent, XEvent, XKeyEvent, XSizeHints,
+    XStandardColormap, XVisualInfo, XrmValue, GC,
 };
-use ::xt::{
-  Widget,
-  XtAppContext,
-};
-
+use super::xt::{Widget, XtAppContext};
 
 //
 // functions
 //
-
 
 x11_link! { Xmu, xmu, ["libXmu.so.6", "libXmu.so"], 132,
   pub fn XmuAddCloseDisplayHook (_3: *mut Display, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char) -> c_int>, _1: *mut c_char) -> *mut c_char,
@@ -174,20 +152,25 @@ globals:
   pub static _XA_UTF8_STRING: AtomPtr,
 }
 
-
 //
 // types
 //
 
-
 // TODO structs
-#[repr(C)] pub struct _AtomRec;
-#[repr(C)] pub struct _XmuArea;
-#[repr(C)] pub struct _XmuDisplayQueue;
-#[repr(C)] pub struct _XmuDisplayQueueEntry;
-#[repr(C)] pub struct _XmuScanline;
-#[repr(C)] pub struct _XmuSegment;
-#[repr(C)] pub struct _XmuWidgetNode;
+#[repr(C)]
+pub struct _AtomRec;
+#[repr(C)]
+pub struct _XmuArea;
+#[repr(C)]
+pub struct _XmuDisplayQueue;
+#[repr(C)]
+pub struct _XmuDisplayQueueEntry;
+#[repr(C)]
+pub struct _XmuScanline;
+#[repr(C)]
+pub struct _XmuSegment;
+#[repr(C)]
+pub struct _XmuWidgetNode;
 
 // struct typedefs
 pub type AtomPtr = *mut _AtomRec;

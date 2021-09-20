@@ -2,24 +2,14 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::os::raw::{
-  c_int,
-  c_uint,
-  c_ulong,
-};
+use std::os::raw::{c_int, c_uint, c_ulong};
 
-use ::xinput::XDevice;
-use ::xlib::{
-  Display,
-  GC,
-  Visual,
-};
-
+use super::xinput::XDevice;
+use super::xlib::{Display, Visual, GC};
 
 //
 // functions
 //
-
 
 x11_link! { Xf86vmode, xtst, ["libXtst.so.6", "libXtst.so"], 15,
   pub fn XTestCompareCurrentCursorWithWindow (_2: *mut Display, _1: c_ulong) -> c_int,

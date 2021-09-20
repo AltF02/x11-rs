@@ -2,26 +2,13 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::os::raw::{
-  c_char,
-  c_int,
-  c_uchar,
-  c_ulong,
-  c_ushort,
-};
+use std::os::raw::{c_char, c_int, c_uchar, c_ulong, c_ushort};
 
-use ::xlib::{
-  Bool,
-  Display,
-  Time,
-  XID,
-};
-
+use super::xlib::{Bool, Display, Time, XID};
 
 //
 // functions
 //
-
 
 x11_link! { Xf86vmode, xtst, ["libXtst.so.6", "libXtst.so"], 14,
   pub fn XRecordAllocRange () -> *mut XRecordRange,
@@ -42,11 +29,9 @@ variadic:
 globals:
 }
 
-
 //
 // constants
 //
-
 
 pub const XRecordFromServerTime: c_int = 0x01;
 pub const XRecordFromClientTime: c_int = 0x02;
@@ -63,11 +48,9 @@ pub const XRecordClientDied: c_int = 3;
 pub const XRecordStartOfData: c_int = 4;
 pub const XRecordEndOfData: c_int = 5;
 
-
 //
 // types
 //
-
 
 pub type XRecordClientSpec = c_ulong;
 pub type XRecordContext = c_ulong;
@@ -75,63 +58,63 @@ pub type XRecordContext = c_ulong;
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordClientInfo {
-  pub client: XRecordClientSpec,
-  pub nranges: c_ulong,
-  pub ranges: *mut *mut XRecordRange,
+    pub client: XRecordClientSpec,
+    pub nranges: c_ulong,
+    pub ranges: *mut *mut XRecordRange,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordExtRange {
-  pub ext_major: XRecordRange8,
-  pub ext_minor: XRecordRange16,
+    pub ext_major: XRecordRange8,
+    pub ext_minor: XRecordRange16,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordInterceptData {
-  pub id_base: XID,
-  pub server_time: Time,
-  pub client_seq: c_ulong,
-  pub category: c_int,
-  pub client_swapped: Bool,
-  pub data: *mut c_uchar,
-  pub data_len: c_ulong,
+    pub id_base: XID,
+    pub server_time: Time,
+    pub client_seq: c_ulong,
+    pub category: c_int,
+    pub client_swapped: Bool,
+    pub data: *mut c_uchar,
+    pub data_len: c_ulong,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordRange {
-  pub core_requests: XRecordRange8,
-  pub core_replies: XRecordRange8,
-  pub ext_requests: XRecordExtRange,
-  pub ext_replies: XRecordExtRange,
-  pub delivered_events: XRecordRange8,
-  pub device_events: XRecordRange8,
-  pub errors: XRecordRange8,
-  pub client_started: Bool,
-  pub client_died: Bool,
+    pub core_requests: XRecordRange8,
+    pub core_replies: XRecordRange8,
+    pub ext_requests: XRecordExtRange,
+    pub ext_replies: XRecordExtRange,
+    pub delivered_events: XRecordRange8,
+    pub device_events: XRecordRange8,
+    pub errors: XRecordRange8,
+    pub client_started: Bool,
+    pub client_died: Bool,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordRange8 {
-  pub first: c_uchar,
-  pub last: c_uchar,
+    pub first: c_uchar,
+    pub last: c_uchar,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordRange16 {
-  pub first: c_ushort,
-  pub last: c_ushort,
+    pub first: c_ushort,
+    pub last: c_ushort,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRecordState {
-  pub enabled: Bool,
-  pub datum_flags: c_int,
-  pub nclients: c_ulong,
-  pub client_info: *mut *mut XRecordClientInfo,
+    pub enabled: Bool,
+    pub datum_flags: c_int,
+    pub nclients: c_ulong,
+    pub client_info: *mut *mut XRecordClientInfo,
 }

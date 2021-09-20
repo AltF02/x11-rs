@@ -6,6 +6,8 @@
 #![allow(non_snake_case)]
 #![allow(non_upper_case_globals)]
 #![allow(improper_ctypes)]
+#![allow(deref_nullptr)]
+#![allow(clippy::missing_safety_doc)]
 
 extern crate libc;
 
@@ -27,6 +29,7 @@ pub mod xft;
 pub mod xinerama;
 pub mod xinput;
 pub mod xinput2;
+pub mod xlib_xcb;
 pub mod xmd;
 pub mod xmu;
 pub mod xrandr;
@@ -35,4 +38,3 @@ pub mod xrender;
 pub mod xss;
 pub mod xt;
 pub mod xtest;
-pub mod xlib_xcb;

@@ -2,16 +2,14 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::os::raw::{ c_int };
+use std::os::raw::c_int;
 
-use xlib::{ Display, Status, Bool };
-use xmd::{ CARD16, BOOL };
-
+use super::xlib::{Bool, Display, Status};
+use super::xmd::{BOOL, CARD16};
 
 //
 // functions
 //
-
 
 x11_link! { Xext, xext, ["libXext.so.6", "libXext.so"], 9,
   pub fn DPMSQueryExtension (_1: *mut Display, _2: *mut c_int, _3: *mut c_int) -> Bool,
@@ -27,16 +25,14 @@ variadic:
 globals:
 }
 
-
 //
 // constants
 //
 
-
 pub const DPMSMajorVersion: c_int = 1;
 pub const DPMSMinorVersion: c_int = 1;
 
-pub const DPMSExtensionName: &'static str = "DPMS";
+pub const DPMSExtensionName: &str = "DPMS";
 
 pub const DPMSModeOn: CARD16 = 0;
 pub const DPMSModeStandby: CARD16 = 1;

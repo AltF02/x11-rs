@@ -15,12 +15,12 @@ use std::ptr;
 use x11::xlib;
 
 #[cfg(not(feature = "xlib"))]
-fn main () {
+fn main() {
     panic!("this example requires `--features xlib`");
 }
 
 #[cfg(feature = "xlib")]
-fn main () {
+fn main() {
     unsafe {
         // Open display connection.
         let display = xlib::XOpenDisplay(ptr::null());
@@ -33,14 +33,23 @@ fn main () {
         let screen = xlib::XDefaultScreen(display);
         let root = xlib::XRootWindow(display, screen);
 
-        let mut attributes: xlib::XSetWindowAttributes = mem::uninitialized();
+        let mut attributes: xlib::XSetWindowAttributes = mem::MaybeUninit::uninit().assume_init();
         attributes.background_pixel = xlib::XWhitePixel(display, screen);
 
-        let window = xlib::XCreateWindow(display, root,
-                                         0, 0, 400, 300,
-                                         0, 0,
-                                         xlib::InputOutput as c_uint, ptr::null_mut(),
-                                         xlib::CWBackPixel, &mut attributes);
+        let window = xlib::XCreateWindow(
+            display,
+            root,
+            0,
+            0,
+            400,
+            300,
+            0,
+            0,
+            xlib::InputOutput as c_uint,
+            ptr::null_mut(),
+            xlib::CWBackPixel,
+            &mut attributes,
+        );
 
         // Set window title.
         let title_str = CString::new("hello-world").unwrap();
@@ -51,17 +60,23 @@ fn main () {
         let wm_delete_window_str = CString::new("WM_DELETE_WINDOW").unwrap();
 
         let wm_protocols = xlib::XInternAtom(display, wm_protocols_str.as_ptr(), xlib::False);
-        let wm_delete_window = xlib::XInternAtom(display, wm_delete_window_str.as_ptr(), xlib::False);
+        let wm_delete_window =
+            xlib::XInternAtom(display, wm_delete_window_str.as_ptr(), xlib::False);
 
         let mut protocols = [wm_delete_window];
 
-        xlib::XSetWMProtocols(display, window, protocols.as_mut_ptr(), protocols.len() as c_int);
+        xlib::XSetWMProtocols(
+            display,
+            window,
+            protocols.as_mut_ptr(),
+            protocols.len() as c_int,
+        );
 
         // Show window.
         xlib::XMapWindow(display, window);
 
         // Main loop.
-        let mut event: xlib::XEvent = mem::uninitialized();
+        let mut event: xlib::XEvent = mem::MaybeUninit::uninit().assume_init();
 
         loop {
             xlib::XNextEvent(display, &mut event);
@@ -77,9 +92,9 @@ fn main () {
                             break;
                         }
                     }
-                },
+                }
 
-                _ => ()
+                _ => (),
             }
         }
 
