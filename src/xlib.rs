@@ -3465,6 +3465,22 @@ pub const XkbAccessXNotifyMask: c_ulong = 1 << 10;
 pub const XkbExtensionDeviceNotifyMask: c_ulong = 1 << 11;
 pub const XkbAllEventsMask: c_ulong = 0xfff;
 
+pub const XkbModifierStateMask: c_ulong = 1 << 0;
+pub const XkbModifierBaseMask: c_ulong = 1 << 1;
+pub const XkbModifierLatchMask: c_ulong = 1 << 2;
+pub const XkbModifierLockMask: c_ulong = 1 << 3;
+pub const XkbGroupStateMask: c_ulong = 1 << 4;
+pub const XkbGroupBaseMask: c_ulong = 1 << 5;
+pub const XkbGroupLatchMask: c_ulong = 1 << 6;
+pub const XkbGroupLockMask: c_ulong = 1 << 7;
+pub const XkbCompatStateMask: c_ulong = 1 << 8;
+pub const XkbGrabModsMask: c_ulong = 1 << 9;
+pub const XkbCompatGrabModsMask: c_ulong = 1 << 10;
+pub const XkbLookupModsMask: c_ulong = 1 << 11;
+pub const XkbCompatLookupModsMask: c_ulong = 1 << 12;
+pub const XkbPointerButtonMask: c_ulong = 1 << 13;
+pub const XkbAllStateComponentsMask: c_ulong = 0x3fff;
+
 // Bitmask returned by XParseGeometry
 pub const NoValue: c_int = 0x0000;
 pub const XValue: c_int = 0x0001;
