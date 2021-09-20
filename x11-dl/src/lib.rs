@@ -12,7 +12,6 @@
 extern crate lazy_static;
 
 extern crate libc;
-extern crate maybe_uninit;
 
 #[macro_use]
 mod link;
