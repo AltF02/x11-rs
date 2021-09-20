@@ -4,7 +4,7 @@
 // keyboard, mouse and other input events in X11.
 //
 // See Pete Hutterer's "XI2 Recipes" blog series,
-// starting at http://who-t.blogspot.co.uk/2009/05/xi2-recipes-part-1.html
+// starting at https://who-t.blogspot.com/2009/05/xi2-recipes-part-1.html
 // for a guide.
 
 #![cfg_attr(not(feature = "xlib"), allow(dead_code))]
