@@ -27,7 +27,7 @@ fn main() {
         let screen = (xlib.XDefaultScreen)(display);
         let root = (xlib.XRootWindow)(display, screen);
 
-        let mut attributes: xlib::XSetWindowAttributes = mem::uninitialized();
+        let mut attributes: xlib::XSetWindowAttributes = mem::MaybeUninit::uninit().assume_init();;
         attributes.background_pixel = (xlib.XWhitePixel)(display, screen);
 
         let window = (xlib.XCreateWindow)(
@@ -70,7 +70,7 @@ fn main() {
         (xlib.XMapWindow)(display, window);
 
         // Main loop.
-        let mut event: xlib::XEvent = mem::uninitialized();
+        let mut event: xlib::XEvent = mem::MaybeUninit::uninit().assume_init();
 
         loop {
             (xlib.XNextEvent)(display, &mut event);
