@@ -2,16 +2,14 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::os::raw::{ c_char, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort };
+use std::os::raw::{c_char, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort};
 
-use xlib::{ Atom, Bool, Display, Drawable, Status, Time, XEvent, XID, Window };
-use xrender::{ XFixed, XTransform };
-
+use super::xlib::{Atom, Bool, Display, Drawable, Status, Time, Window, XEvent, XID};
+use super::xrender::{XFixed, XTransform};
 
 //
 // functions
 //
-
 
 x11_link! { Xrandr, xrandr, ["libXrandr.so.2", "libXrandr.so"], 70,
     pub fn XRRAddOutputMode (dpy: *mut Display, output: RROutput, mode: RRMode) -> (),
@@ -88,11 +86,9 @@ variadic:
 globals:
 }
 
-
 //
 // types
 //
-
 
 pub type Connection = c_ushort;
 pub type Rotation = c_ushort;
@@ -113,7 +109,8 @@ pub struct XRRScreenSize {
     pub mheight: c_int,
 }
 
-#[repr(C)] pub struct XRRScreenConfiguration;
+#[repr(C)]
+pub struct XRRScreenConfiguration;
 
 pub type XRRModeFlags = c_ulong;
 
@@ -275,11 +272,9 @@ pub struct XRRMonitorInfo {
     pub outputs: *mut RROutput,
 }
 
-
 //
 // event structures
 //
-
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
@@ -414,13 +409,11 @@ event_conversions_and_tests! {
   xrr_resource_change_notify: XRRResourceChangeNotifyEvent,
 }
 
-
 //
 // constants
 //
 
-
-pub const RANDR_NAME: &'static str = "RANDR";
+pub const RANDR_NAME: &str = "RANDR";
 pub const RANDR_MAJOR: c_int = 1;
 pub const RANDR_MINOR: c_int = 5;
 
@@ -428,131 +421,130 @@ pub const RRNumberErrors: c_int = 4;
 pub const RRNumberEvents: c_int = 2;
 pub const RRNumberRequests: c_int = 45;
 
-pub const X_RRQueryVersion:               c_int = 0;
-pub const X_RROldGetScreenInfo:           c_int = 1;
-pub const X_RRSetScreenConfig:            c_int = 2;
+pub const X_RRQueryVersion: c_int = 0;
+pub const X_RROldGetScreenInfo: c_int = 1;
+pub const X_RRSetScreenConfig: c_int = 2;
 pub const X_RROldScreenChangeSelectInput: c_int = 3;
-pub const X_RRSelectInput:                c_int = 4;
-pub const X_RRGetScreenInfo:              c_int = 5;
+pub const X_RRSelectInput: c_int = 4;
+pub const X_RRGetScreenInfo: c_int = 5;
 
-pub const X_RRGetScreenSizeRange:      c_int = 6;
-pub const X_RRSetScreenSize:           c_int = 7;
-pub const X_RRGetScreenResources:      c_int = 8;
-pub const X_RRGetOutputInfo:           c_int = 9;
-pub const X_RRListOutputProperties:    c_int = 10;
-pub const X_RRQueryOutputProperty:     c_int = 11;
+pub const X_RRGetScreenSizeRange: c_int = 6;
+pub const X_RRSetScreenSize: c_int = 7;
+pub const X_RRGetScreenResources: c_int = 8;
+pub const X_RRGetOutputInfo: c_int = 9;
+pub const X_RRListOutputProperties: c_int = 10;
+pub const X_RRQueryOutputProperty: c_int = 11;
 pub const X_RRConfigureOutputProperty: c_int = 12;
-pub const X_RRChangeOutputProperty:    c_int = 13;
-pub const X_RRDeleteOutputProperty:    c_int = 14;
-pub const X_RRGetOutputProperty:       c_int = 15;
-pub const X_RRCreateMode:              c_int = 16;
-pub const X_RRDestroyMode:             c_int = 17;
-pub const X_RRAddOutputMode:           c_int = 18;
-pub const X_RRDeleteOutputMode:        c_int = 19;
-pub const X_RRGetCrtcInfo:             c_int = 20;
-pub const X_RRSetCrtcConfig:           c_int = 21;
-pub const X_RRGetCrtcGammaSize:        c_int = 22;
-pub const X_RRGetCrtcGamma:            c_int = 23;
-pub const X_RRSetCrtcGamma:            c_int = 24;
+pub const X_RRChangeOutputProperty: c_int = 13;
+pub const X_RRDeleteOutputProperty: c_int = 14;
+pub const X_RRGetOutputProperty: c_int = 15;
+pub const X_RRCreateMode: c_int = 16;
+pub const X_RRDestroyMode: c_int = 17;
+pub const X_RRAddOutputMode: c_int = 18;
+pub const X_RRDeleteOutputMode: c_int = 19;
+pub const X_RRGetCrtcInfo: c_int = 20;
+pub const X_RRSetCrtcConfig: c_int = 21;
+pub const X_RRGetCrtcGammaSize: c_int = 22;
+pub const X_RRGetCrtcGamma: c_int = 23;
+pub const X_RRSetCrtcGamma: c_int = 24;
 
 pub const X_RRGetScreenResourcesCurrent: c_int = 25;
-pub const X_RRSetCrtcTransform:          c_int = 26;
-pub const X_RRGetCrtcTransform:          c_int = 27;
-pub const X_RRGetPanning:                c_int = 28;
-pub const X_RRSetPanning:                c_int = 29;
-pub const X_RRSetOutputPrimary:          c_int = 30;
-pub const X_RRGetOutputPrimary:          c_int = 31;
+pub const X_RRSetCrtcTransform: c_int = 26;
+pub const X_RRGetCrtcTransform: c_int = 27;
+pub const X_RRGetPanning: c_int = 28;
+pub const X_RRSetPanning: c_int = 29;
+pub const X_RRSetOutputPrimary: c_int = 30;
+pub const X_RRGetOutputPrimary: c_int = 31;
 
-pub const X_RRGetProviders:              c_int = 32;
-pub const X_RRGetProviderInfo:           c_int = 33;
-pub const X_RRSetProviderOffloadSink:    c_int = 34;
-pub const X_RRSetProviderOutputSource:   c_int = 35;
-pub const X_RRListProviderProperties:    c_int = 36;
-pub const X_RRQueryProviderProperty:     c_int = 37;
+pub const X_RRGetProviders: c_int = 32;
+pub const X_RRGetProviderInfo: c_int = 33;
+pub const X_RRSetProviderOffloadSink: c_int = 34;
+pub const X_RRSetProviderOutputSource: c_int = 35;
+pub const X_RRListProviderProperties: c_int = 36;
+pub const X_RRQueryProviderProperty: c_int = 37;
 pub const X_RRConfigureProviderProperty: c_int = 38;
-pub const X_RRChangeProviderProperty:    c_int = 39;
-pub const X_RRDeleteProviderProperty:    c_int = 40;
-pub const X_RRGetProviderProperty:       c_int = 41;
+pub const X_RRChangeProviderProperty: c_int = 39;
+pub const X_RRDeleteProviderProperty: c_int = 40;
+pub const X_RRGetProviderProperty: c_int = 41;
 
-pub const X_RRGetMonitors:   c_int = 42;
-pub const X_RRSetMonitor:    c_int = 43;
+pub const X_RRGetMonitors: c_int = 42;
+pub const X_RRSetMonitor: c_int = 43;
 pub const X_RRDeleteMonitor: c_int = 44;
 
-pub const RRTransformUnit:       c_int = 1 << 0;
-pub const RRTransformScaleUp:    c_int = 1 << 1;
-pub const RRTransformScaleDown:  c_int = 1 << 2;
+pub const RRTransformUnit: c_int = 1 << 0;
+pub const RRTransformScaleUp: c_int = 1 << 1;
+pub const RRTransformScaleDown: c_int = 1 << 2;
 pub const RRTransformProjective: c_int = 1 << 3;
 
-pub const RRScreenChangeNotifyMask:     c_int = 1 << 0;
-pub const RRCrtcChangeNotifyMask:       c_int = 1 << 1;
-pub const RROutputChangeNotifyMask:     c_int = 1 << 2;
-pub const RROutputPropertyNotifyMask:   c_int = 1 << 3;
-pub const RRProviderChangeNotifyMask:   c_int = 1 << 4;
+pub const RRScreenChangeNotifyMask: c_int = 1 << 0;
+pub const RRCrtcChangeNotifyMask: c_int = 1 << 1;
+pub const RROutputChangeNotifyMask: c_int = 1 << 2;
+pub const RROutputPropertyNotifyMask: c_int = 1 << 3;
+pub const RRProviderChangeNotifyMask: c_int = 1 << 4;
 pub const RRProviderPropertyNotifyMask: c_int = 1 << 5;
-pub const RRResourceChangeNotifyMask:   c_int = 1 << 6;
+pub const RRResourceChangeNotifyMask: c_int = 1 << 6;
 
-pub const RRScreenChangeNotify:      c_int = 0;
-pub const RRNotify:                  c_int = 1;
-pub const RRNotify_CrtcChange:       c_int = 0;
-pub const RRNotify_OutputChange:     c_int = 1;
-pub const RRNotify_OutputProperty:   c_int = 2;
-pub const RRNotify_ProviderChange:   c_int = 3;
+pub const RRScreenChangeNotify: c_int = 0;
+pub const RRNotify: c_int = 1;
+pub const RRNotify_CrtcChange: c_int = 0;
+pub const RRNotify_OutputChange: c_int = 1;
+pub const RRNotify_OutputProperty: c_int = 2;
+pub const RRNotify_ProviderChange: c_int = 3;
 pub const RRNotify_ProviderProperty: c_int = 4;
-pub const RRNotify_ResourceChange:   c_int = 5;
+pub const RRNotify_ResourceChange: c_int = 5;
 
-pub const RR_Rotate_0:   c_int = 1;
-pub const RR_Rotate_90:  c_int = 2;
+pub const RR_Rotate_0: c_int = 1;
+pub const RR_Rotate_90: c_int = 2;
 pub const RR_Rotate_180: c_int = 4;
 pub const RR_Rotate_270: c_int = 8;
 
 pub const RR_Reflect_X: c_int = 16;
 pub const RR_Reflect_Y: c_int = 32;
 
-pub const RRSetConfigSuccess:           c_int = 0;
+pub const RRSetConfigSuccess: c_int = 0;
 pub const RRSetConfigInvalidConfigTime: c_int = 1;
-pub const RRSetConfigInvalidTime:       c_int = 2;
-pub const RRSetConfigFailed:            c_int = 3;
+pub const RRSetConfigInvalidTime: c_int = 2;
+pub const RRSetConfigFailed: c_int = 3;
 
-pub const RR_HSyncPositive:  c_int = 0x00000001;
-pub const RR_HSyncNegative:  c_int = 0x00000002;
-pub const RR_VSyncPositive:  c_int = 0x00000004;
-pub const RR_VSyncNegative:  c_int = 0x00000008;
-pub const RR_Interlace:      c_int = 0x00000010;
-pub const RR_DoubleScan:     c_int = 0x00000020;
-pub const RR_CSync:          c_int = 0x00000040;
-pub const RR_CSyncPositive:  c_int = 0x00000080;
-pub const RR_CSyncNegative:  c_int = 0x00000100;
-pub const RR_HSkewPresent:   c_int = 0x00000200;
-pub const RR_BCast:          c_int = 0x00000400;
+pub const RR_HSyncPositive: c_int = 0x00000001;
+pub const RR_HSyncNegative: c_int = 0x00000002;
+pub const RR_VSyncPositive: c_int = 0x00000004;
+pub const RR_VSyncNegative: c_int = 0x00000008;
+pub const RR_Interlace: c_int = 0x00000010;
+pub const RR_DoubleScan: c_int = 0x00000020;
+pub const RR_CSync: c_int = 0x00000040;
+pub const RR_CSyncPositive: c_int = 0x00000080;
+pub const RR_CSyncNegative: c_int = 0x00000100;
+pub const RR_HSkewPresent: c_int = 0x00000200;
+pub const RR_BCast: c_int = 0x00000400;
 pub const RR_PixelMultiplex: c_int = 0x00000800;
-pub const RR_DoubleClock:    c_int = 0x00001000;
+pub const RR_DoubleClock: c_int = 0x00001000;
 pub const RR_ClockDivideBy2: c_int = 0x00002000;
 
-pub const RR_Connected:         c_int = 0;
-pub const RR_Disconnected:      c_int = 1;
+pub const RR_Connected: c_int = 0;
+pub const RR_Disconnected: c_int = 1;
 pub const RR_UnknownConnection: c_int = 2;
 
-pub const BadRROutput:   c_int = 0;
-pub const BadRRCrtc:     c_int = 1;
-pub const BadRRMode:     c_int = 2;
+pub const BadRROutput: c_int = 0;
+pub const BadRRCrtc: c_int = 1;
+pub const BadRRMode: c_int = 2;
 pub const BadRRProvider: c_int = 3;
 
-pub const RR_PROPERTY_BACKLIGHT:          &'static str = "Backlight";
-pub const RR_PROPERTY_RANDR_EDID:         &'static str = "EDID";
-pub const RR_PROPERTY_SIGNAL_FORMAT:      &'static str = "SignalFormat";
-pub const RR_PROPERTY_SIGNAL_PROPERTIES:  &'static str = "SignalProperties";
-pub const RR_PROPERTY_CONNECTOR_TYPE:     &'static str = "ConnectorType";
-pub const RR_PROPERTY_CONNECTOR_NUMBER:   &'static str = "ConnectorNumber";
-pub const RR_PROPERTY_COMPATIBILITY_LIST: &'static str = "CompatibilityList";
-pub const RR_PROPERTY_CLONE_LIST:         &'static str = "CloneList";
-pub const RR_PROPERTY_BORDER:             &'static str = "Border";
-pub const RR_PROPERTY_BORDER_DIMENSIONS:  &'static str = "BorderDimensions";
-pub const RR_PROPERTY_GUID:               &'static str = "GUID";
-pub const RR_PROPERTY_RANDR_TILE:         &'static str = "TILE";
+pub const RR_PROPERTY_BACKLIGHT: &str = "Backlight";
+pub const RR_PROPERTY_RANDR_EDID: &str = "EDID";
+pub const RR_PROPERTY_SIGNAL_FORMAT: &str = "SignalFormat";
+pub const RR_PROPERTY_SIGNAL_PROPERTIES: &str = "SignalProperties";
+pub const RR_PROPERTY_CONNECTOR_TYPE: &str = "ConnectorType";
+pub const RR_PROPERTY_CONNECTOR_NUMBER: &str = "ConnectorNumber";
+pub const RR_PROPERTY_COMPATIBILITY_LIST: &str = "CompatibilityList";
+pub const RR_PROPERTY_CLONE_LIST: &str = "CloneList";
+pub const RR_PROPERTY_BORDER: &str = "Border";
+pub const RR_PROPERTY_BORDER_DIMENSIONS: &str = "BorderDimensions";
+pub const RR_PROPERTY_GUID: &str = "GUID";
+pub const RR_PROPERTY_RANDR_TILE: &str = "TILE";
 
-pub const RR_Capability_None:          c_int = 0;
-pub const RR_Capability_SourceOutput:  c_int = 1;
-pub const RR_Capability_SinkOutput:    c_int = 2;
+pub const RR_Capability_None: c_int = 0;
+pub const RR_Capability_SourceOutput: c_int = 1;
+pub const RR_Capability_SinkOutput: c_int = 2;
 pub const RR_Capability_SourceOffload: c_int = 4;
-pub const RR_Capability_SinkOffload:   c_int = 8;
-
+pub const RR_Capability_SinkOffload: c_int = 8;

@@ -2,15 +2,14 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::os::raw::{ c_int, c_uint, c_ulong };
-
-use xlib::{ Atom, Bool, Display, Drawable, Status, Time, Visual, XEvent, XID, XSetWindowAttributes, Window };
-
+use super::xlib::{
+    Atom, Bool, Display, Drawable, Status, Time, Visual, Window, XEvent, XSetWindowAttributes, XID,
+};
+use std::os::raw::{c_int, c_uint, c_ulong};
 
 //
 // functions
 //
-
 
 x11_link! { Xss, xscrnsaver, ["libXss.so.2", "libXss.so"], 11,
   pub fn XScreenSaverQueryExtension (_1: *mut Display, _2: *mut c_int, _3: *mut c_int) -> Bool,
@@ -28,56 +27,50 @@ variadic:
 globals:
 }
 
-
 //
 // types
 //
 
-
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XScreenSaverInfo {
-  pub window: Window,
-  pub state: c_int,
-  pub kind: c_int,
-  pub til_or_since: c_ulong,
-  pub idle: c_ulong,
-  pub eventMask: c_ulong,
+    pub window: Window,
+    pub state: c_int,
+    pub kind: c_int,
+    pub til_or_since: c_ulong,
+    pub idle: c_ulong,
+    pub eventMask: c_ulong,
 }
-
 
 //
 // event structures
 //
 
-
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XScreenSaverNotifyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub root: Window,
-  pub state: c_int,
-  pub kind: c_int,
-  pub forced: Bool,
-  pub time: Time,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub root: Window,
+    pub state: c_int,
+    pub kind: c_int,
+    pub forced: Bool,
+    pub time: Time,
 }
 
 event_conversions_and_tests! {
   xss_notify: XScreenSaverNotifyEvent,
 }
 
-
 //
 // constants
 //
 
-
-pub const ScreenSaverName: &'static str = "MIT-SCREEN-SAVER";
-pub const ScreenSaverPropertyName: &'static str = "_MIT_SCREEN_SAVER_ID";
+pub const ScreenSaverName: &str = "MIT-SCREEN-SAVER";
+pub const ScreenSaverPropertyName: &str = "_MIT_SCREEN_SAVER_ID";
 
 pub const ScreenSaverNotifyMask: c_ulong = 0x00000001;
 pub const ScreenSaverCycleMask: c_ulong = 0x00000002;

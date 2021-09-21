@@ -1,16 +1,18 @@
 [package]
 name = "x11"
-version = "2.18.2"
+version = "2.19.0"
 authors = [
     "daggerbot <daggerbot@gmail.com>",
     "Erle Pereira <erle@erlepereira.com>",
+    "AltF02 <contact@altf2.dev>",
 ]
 description = "X11 library bindings for Rust"
 license = "MIT"
-repository = "https://github.com/erlepereira/x11-rs.git"
+repository = "https://github.com/AltF02/x11-rs.git"
 build = "build.rs"
 documentation = "https://docs.rs/x11"
 workspace = ".."
+edition = "2018"
 
 [features]
 dpms = []

@@ -2,29 +2,13 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::os::raw::{
-  c_char,
-  c_float,
-  c_int,
-  c_uchar,
-  c_uint,
-  c_ulong,
-  c_ushort,
-};
+use std::os::raw::{c_char, c_float, c_int, c_uchar, c_uint, c_ulong, c_ushort};
 
-use ::xlib::{
-  Bool,
-  Display,
-  Time,
-  Window,
-  XEvent,
-};
-
+use super::xlib::{Bool, Display, Time, Window, XEvent};
 
 //
 // functions
 //
-
 
 x11_link! { Xf86vmode, xxf86vm, ["libXxf86vm.so.1", "libXxf86vm.so"], 22,
   pub fn XF86VidModeAddModeLine (_4: *mut Display, _3: c_int, _2: *mut XF86VidModeModeInfo, _1: *mut XF86VidModeModeInfo) -> c_int,
@@ -53,92 +37,88 @@ variadic:
 globals:
 }
 
-
 //
 // types
 //
 
-
 #[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct XF86VidModeGamma {
-  pub red: c_float,
-  pub green: c_float,
-  pub blue: c_float,
+    pub red: c_float,
+    pub green: c_float,
+    pub blue: c_float,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XF86VidModeModeInfo {
-  pub dotclock: c_uint,
-  pub hdisplay: c_ushort,
-  pub hsyncstart: c_ushort,
-  pub hsyncend: c_ushort,
-  pub htotal: c_ushort,
-  pub hskew: c_ushort,
-  pub vdisplay: c_ushort,
-  pub vsyncstart: c_ushort,
-  pub vsyncend: c_ushort,
-  pub vtotal: c_ushort,
-  pub flags: c_uint,
-  pub privsize: c_int,
-  pub private: *mut i32,
+    pub dotclock: c_uint,
+    pub hdisplay: c_ushort,
+    pub hsyncstart: c_ushort,
+    pub hsyncend: c_ushort,
+    pub htotal: c_ushort,
+    pub hskew: c_ushort,
+    pub vdisplay: c_ushort,
+    pub vsyncstart: c_ushort,
+    pub vsyncend: c_ushort,
+    pub vtotal: c_ushort,
+    pub flags: c_uint,
+    pub privsize: c_int,
+    pub private: *mut i32,
 }
 
 #[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct XF86VidModeModeLine {
-  pub hdisplay: c_ushort,
-  pub hsyncstart: c_ushort,
-  pub hsyncend: c_ushort,
-  pub htotal: c_ushort,
-  pub hskew: c_ushort,
-  pub vdisplay: c_ushort,
-  pub vsyncstart: c_ushort,
-  pub vsyncend: c_ushort,
-  pub vtotal: c_ushort,
-  pub flags: c_uint,
-  pub privsize: c_int,
-  pub private: *mut i32,
+    pub hdisplay: c_ushort,
+    pub hsyncstart: c_ushort,
+    pub hsyncend: c_ushort,
+    pub htotal: c_ushort,
+    pub hskew: c_ushort,
+    pub vdisplay: c_ushort,
+    pub vsyncstart: c_ushort,
+    pub vsyncend: c_ushort,
+    pub vtotal: c_ushort,
+    pub flags: c_uint,
+    pub privsize: c_int,
+    pub private: *mut i32,
 }
 
 #[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct XF86VidModeMonitor {
-  pub vendor: *mut c_char,
-  pub model: *mut c_char,
-  pub EMPTY: c_float,
-  pub nhsync: c_uchar,
-  pub hsync: *mut XF86VidModeSyncRange,
-  pub nvsync: c_uchar,
-  pub vsync: *mut XF86VidModeSyncRange,
+    pub vendor: *mut c_char,
+    pub model: *mut c_char,
+    pub EMPTY: c_float,
+    pub nhsync: c_uchar,
+    pub hsync: *mut XF86VidModeSyncRange,
+    pub nvsync: c_uchar,
+    pub vsync: *mut XF86VidModeSyncRange,
 }
 
 #[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct XF86VidModeSyncRange {
-  pub hi: c_float,
-  pub lo: c_float,
+    pub hi: c_float,
+    pub lo: c_float,
 }
-
 
 //
 // event structures
 //
 
-
 #[derive(Debug, Clone, Copy)]
 #[repr(C)]
 pub struct XF86VidModeNotifyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub root: Window,
-  pub state: c_int,
-  pub kind: c_int,
-  pub forced: Bool,
-  pub time: Time,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub root: Window,
+    pub state: c_int,
+    pub kind: c_int,
+    pub forced: Bool,
+    pub time: Time,
 }
 
 event_conversions_and_tests! {
