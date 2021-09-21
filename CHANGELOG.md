@@ -15,4 +15,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Field order in [_XkbStateRec](https://github.com/freedesktop/xorg-xserver/blob/master/include/xkbstr.h#L47) struct
 
-[Unreleased]: ../../compare/2.18.2...HEAD
+[Unreleased]: ../../compare/2.19.0...HEAD
