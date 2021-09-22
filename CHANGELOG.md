@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - _XkbControls struct
 - _XkbMods struct
 - XkbStateRec type
+- All feature
 
 ### Fixed
 - Field order in [_XkbStateRec](https://github.com/freedesktop/xorg-xserver/blob/master/include/xkbstr.h#L47) struct
