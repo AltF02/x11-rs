@@ -4,14 +4,12 @@
 
 use std::os::raw::*;
 
-use xlib::{Display, Region, Visual, XRectangle};
-use xrender::{XGlyphInfo, XRenderColor};
-
+use super::xlib::{Display, Region, Visual, XRectangle};
+use super::xrender::{XGlyphInfo, XRenderColor};
 
 //
 // external types
 //
-
 
 // freetype
 pub enum FT_FaceRec {}
@@ -23,16 +21,23 @@ pub enum FcCharSet {}
 pub enum FcPattern {}
 
 #[repr(C)]
-pub enum FcEndian { Big, Little }
+pub enum FcEndian {
+    Big,
+    Little,
+}
 
 #[repr(C)]
-pub enum FcResult { Match, NoMatch, TypeMismatch, NoId, OutOfMemory }
-
+pub enum FcResult {
+    Match,
+    NoMatch,
+    TypeMismatch,
+    NoId,
+    OutOfMemory,
+}
 
 //
 // functions
 //
-
 
 x11_link! { Xft, xft, ["libXft.so.2", "libXft.so"], 77,
     pub fn XftCharExists (_2: *mut Display, _1: *mut XftFont, _0: c_uint) -> c_int,
@@ -116,11 +121,9 @@ variadic:
 globals:
 }
 
-
 //
 // types
 //
-
 
 pub enum XftFontInfo {}
 
@@ -188,22 +191,20 @@ pub struct XftGlyphFontSpec {
 
 pub enum XftPattern {}
 
-
 //
 // constants
 //
 
-
 // font attributes
-pub const XFT_FAMILY: &'static str = "family";
-pub const XFT_STYLE: &'static str = "style";
-pub const XFT_SLANT: &'static str = "slant";
-pub const XFT_WEIGHT: &'static str = "weight";
-pub const XFT_SIZE: &'static str = "size";
-pub const XFT_PIXEL_SIZE: &'static str = "pixelsize";
-pub const XFT_SPACING: &'static str = "spacing";
-pub const XFT_FOUNDRY: &'static str = "foundry";
-pub const XFT_ANTIALIAS: &'static str = "antialias";
+pub const XFT_FAMILY: &str = "family";
+pub const XFT_STYLE: &str = "style";
+pub const XFT_SLANT: &str = "slant";
+pub const XFT_WEIGHT: &str = "weight";
+pub const XFT_SIZE: &str = "size";
+pub const XFT_PIXEL_SIZE: &str = "pixelsize";
+pub const XFT_SPACING: &str = "spacing";
+pub const XFT_FOUNDRY: &str = "foundry";
+pub const XFT_ANTIALIAS: &str = "antialias";
 
 // slant values
 pub const XFT_SLANT_ROMAN: c_int = 0;

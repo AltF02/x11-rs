@@ -3,39 +3,37 @@
 // These bindings are public domain.
 
 use std::cmp::min;
-use std::mem::{
-  size_of,
-  zeroed,
-};
-
+use std::mem::{size_of, zeroed};
 
 //
 // public functions
 //
 
+pub unsafe fn mem_eq<T: Sized>(a: &T, b: &T) -> bool {
+    let a_addr = a as *const T as usize;
+    let b_addr = b as *const T as usize;
 
-pub unsafe fn mem_eq<T: Sized> (a: &T, b: &T) -> bool {
-  let a_addr = a as *const T as usize;
-  let b_addr = b as *const T as usize;
-
-  for i in 0..size_of::<T>() {
-    if *((a_addr + i) as *const u8) != *((b_addr + i) as *const u8) {
-      return false;
+    for i in 0..size_of::<T>() {
+        if *((a_addr + i) as *const u8) != *((b_addr + i) as *const u8) {
+            return false;
+        }
     }
-  }
 
-  return true;
+    true
 }
 
-pub unsafe fn transmute_union<I, O> (input: &I) -> O
-  where I : Sized, O : Sized
+pub unsafe fn transmute_union<I, O>(input: &I) -> O
+where
+    I: Sized,
+    O: Sized,
 {
-  let mut output: O = zeroed();
-  let copy_len = min(size_of::<I>(), size_of::<O>());
+    let mut output: O = zeroed();
+    let copy_len = min(size_of::<I>(), size_of::<O>());
 
-  for i in 0..copy_len {
-    *((&mut output as *mut O as usize + i) as *mut u8) = *((input as *const I as usize + i) as *const u8);
-  }
+    for i in 0..copy_len {
+        *((&mut output as *mut O as usize + i) as *mut u8) =
+            *((input as *const I as usize + i) as *const u8);
+    }
 
-  return output;
+    output
 }

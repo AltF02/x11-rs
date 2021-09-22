@@ -12,22 +12,22 @@ use std::path::Path;
 fn main() {
     let libraries = [
         // lib           pkgconfig name
-        ("xext",        "xext"),
-        ("gl",          "gl"),
-        ("xcomposite",  "xcomposite"),
-        ("xcursor",     "xcursor"),
-        ("xxf86vm",     "xxf86vm"),
-        ("xft",         "xft"),
-        ("xinerama",    "xinerama"),
-        ("xi",          "xi"),
-        ("x11",         "x11"),
-        ("xlib_xcb",    "x11-xcb"),
-        ("xmu",         "xmu"),
-        ("xrandr",      "xrandr"),
-        ("xtst",        "xtst"),
-        ("xrender",     "xrender"),
-        ("xscrnsaver",  "xscrnsaver"),
-        ("xt",          "xt"),
+        ("xext", "xext"),
+        ("gl", "gl"),
+        ("xcomposite", "xcomposite"),
+        ("xcursor", "xcursor"),
+        ("xxf86vm", "xxf86vm"),
+        ("xft", "xft"),
+        ("xinerama", "xinerama"),
+        ("xi", "xi"),
+        ("x11", "x11"),
+        ("xlib_xcb", "x11-xcb"),
+        ("xmu", "xmu"),
+        ("xrandr", "xrandr"),
+        ("xtst", "xtst"),
+        ("xrender", "xrender"),
+        ("xscrnsaver", "xscrnsaver"),
+        ("xt", "xt"),
     ];
 
     let mut config = String::new();
@@ -36,7 +36,10 @@ fn main() {
             Ok(libdir) => format!("Some(\"{}\")", libdir),
             Err(_) => "None".to_string(),
         };
-        config.push_str(&format!("pub const {}: Option<&'static str> = {};\n", lib, libdir));
+        config.push_str(&format!(
+            "pub const {}: Option<&'static str> = {};\n",
+            lib, libdir
+        ));
     }
     let config = format!("pub mod config {{ pub mod libdir {{\n{}}}\n}}", config);
     let out_dir = env::var("OUT_DIR").unwrap();

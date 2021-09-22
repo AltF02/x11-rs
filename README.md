@@ -1,21 +1,21 @@
 # x11-rs - X11 library bindings for Rust
 
-[![Build Status](https://travis-ci.org/erlepereira/x11-rs.svg?branch=master)](https://travis-ci.org/erlepereira/x11-rs)
+[![Build Status](https://github.com/AltF02/x11-rs/workflows/Build/badge.svg?style=flat-square)](https://github.com/AltF02/x11-rs/actions)
 
-`x11`: [![](http://meritbadge.herokuapp.com/x11)](https://crates.io/crates/x11)
+`x11`: [![](https://img.shields.io/crates/v/x11.svg)](https://crates.io/crates/x11)
 
-`x11-dl`: [![](http://meritbadge.herokuapp.com/x11-dl)](https://crates.io/crates/x11-dl)
+`x11-dl`: [![](https://img.shields.io/crates/v/x11-dl.svg)](https://crates.io/crates/x11-dl)
 
 Hey everyone, have recently jumped on board here, still getting my head around things. I do apologise for any delays whilst I catch up to speed. Thanks for all the issues and PRs, keep them coming - Erle Pereira (updated: Sept 2019)
 
-A new [wiki page](https://github.com/erlepereira/x11-rs/wiki) has been created with the intention of a detaling a roadmap and a focal point for a broader vision around this codebase.
+A new [wiki page](https://github.com/AltF02/x11-rs/wiki) has been created with the intention of a detaling a roadmap and a focal point for a broader vision around this codebase.
 
 ## License
 
 Licensed under 
 
  * MIT license
-   ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+   ([LICENSE-MIT](LICENSE-MIT) or https://opensource.org/licenses/MIT)
 
   for related Discussion with contributors see #82
 

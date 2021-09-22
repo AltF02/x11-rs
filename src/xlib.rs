@@ -2,41 +2,25 @@
 // The X11 libraries are available under the MIT license.
 // These bindings are public domain.
 
-use std::slice;
-use std::os::raw::{
-  c_char,
-  c_double,
-  c_int,
-  c_long,
-  c_short,
-  c_schar,
-  c_uchar,
-  c_uint,
-  c_ulong,
-  c_ushort,
-  c_void,
-};
 use std::fmt;
+use std::os::raw::{
+    c_char, c_double, c_int, c_long, c_schar, c_short, c_uchar, c_uint, c_ulong, c_ushort, c_void,
+};
+use std::slice;
 
 use libc::wchar_t;
 
-use ::internal::{
-  mem_eq,
-  transmute_union,
-};
-use xf86vmode;
-use xrandr;
-use xss;
-
+use super::internal::{mem_eq, transmute_union};
+use super::xf86vmode;
+use super::xrandr;
+use super::xss;
 
 // deprecated
 pub mod xkb {}
 
-
 //
 // functions
 //
-
 
 x11_link! { Xlib, x11, ["libX11.so.6", "libX11.so"], 767,
   pub fn XActivateScreenSaver (_1: *mut Display) -> c_int,
@@ -810,11 +794,9 @@ variadic:
 globals:
 }
 
-
 //
 // types
 //
-
 
 // common types
 pub type Atom = XID;
@@ -848,44 +830,109 @@ pub enum _XOM {}
 pub enum _XrmHashBucketRec {}
 
 // TODO structs
-#[repr(C)] pub struct _XcmsCCC;
-#[repr(C)] pub struct XcmsColor;
-#[repr(C)] pub struct _XcmsColorSpace;
-#[repr(C)] pub struct _XcmsFunctionSet;
-#[repr(C)] pub struct _XkbAction;
-#[repr(C)] pub struct _XkbBounds;
-#[repr(C)] pub struct _XkbChanges;
-#[repr(C)] pub struct _XkbClientMapRec;
-#[repr(C)] pub struct _XkbColor;
-#[repr(C)] pub struct _XkbComponentList;
-#[repr(C)] pub struct _XkbComponentNames;
-#[repr(C)] pub struct _XkbControls;
-#[repr(C)] pub struct _XkbControlsChanges;
-#[repr(C)] pub struct _XkbControlsNotify;
-#[repr(C)] pub struct _XkbDeviceChanges;
-#[repr(C)] pub struct _XkbDeviceInfo;
-#[repr(C)] pub struct _XkbDeviceLedInfo;
-#[repr(C)] pub struct _XkbDoodad;
-#[repr(C)] pub struct _XkbExtensionDeviceNotify;
-#[repr(C)] pub struct _XkbGeometry;
-#[repr(C)] pub struct _XkbGeometrySizes;
-#[repr(C)] pub struct _XkbIndicatorMapRec;
-#[repr(C)] pub struct _XkbKey;
-#[repr(C)] pub struct _XkbKeyType;
-#[repr(C)] pub struct _XkbMapChanges;
-#[repr(C)] pub struct _XkbMods;
-#[repr(C)] pub struct _XkbNameChanges;
-#[repr(C)] pub struct _XkbNamesNotify;
-#[repr(C)] pub struct _XkbOutline;
-#[repr(C)] pub struct _XkbOverlay;
-#[repr(C)] pub struct _XkbOverlayKey;
-#[repr(C)] pub struct _XkbOverlayRow;
-#[repr(C)] pub struct _XkbProperty;
-#[repr(C)] pub struct _XkbRow;
-#[repr(C)] pub struct _XkbSection;
-#[repr(C)] pub struct _XkbServerMapRec;
-#[repr(C)] pub struct _XkbShape;
-#[repr(C)] pub struct _XkbSymInterpretRec;
+#[repr(C)]
+pub struct _XcmsCCC;
+#[repr(C)]
+pub struct XcmsColor;
+#[repr(C)]
+pub struct _XcmsColorSpace;
+#[repr(C)]
+pub struct _XcmsFunctionSet;
+#[repr(C)]
+pub struct _XkbAction;
+#[repr(C)]
+pub struct _XkbBounds;
+#[repr(C)]
+pub struct _XkbChanges;
+#[repr(C)]
+pub struct _XkbClientMapRec;
+#[repr(C)]
+pub struct _XkbColor;
+#[repr(C)]
+pub struct _XkbComponentList;
+#[repr(C)]
+pub struct _XkbComponentNames;
+#[repr(C)]
+pub struct _XkbControls {
+    pub mk_dflt_btn: c_uchar,
+    pub num_groups: c_uchar,
+    pub groups_wrap: c_uchar,
+    pub internal: XkbModsRec,
+    pub ignore_loc: XkbModsRec,
+    pub enabled_ctrls: c_uint,
+    pub repeat_delay: c_ushort,
+    pub repeat_interval: c_ushort,
+    pub slow_keys_delay: c_ushort,
+    pub debounce_delay: c_ushort,
+    pub mk_delay: c_ushort,
+    pub mk_interval: c_ushort,
+    pub mk_time_to_max: c_ushort,
+    pub mk_max_speed: c_ushort,
+    pub mk_curve: c_short,
+    pub ax_options: c_ushort,
+    pub ax_timeout: c_ushort,
+    pub axt_opts_mask: c_ushort,
+    pub axt_opts_values: c_ushort,
+    pub axt_ctrls_mask: c_uint,
+    pub axt_ctrls_values: c_uint,
+    pub per_key_repeat: [c_uchar; 32],
+}
+#[repr(C)]
+pub struct _XkbControlsChanges;
+#[repr(C)]
+pub struct _XkbControlsNotify;
+#[repr(C)]
+pub struct _XkbDeviceChanges;
+#[repr(C)]
+pub struct _XkbDeviceInfo;
+#[repr(C)]
+pub struct _XkbDeviceLedInfo;
+#[repr(C)]
+pub struct _XkbDoodad;
+#[repr(C)]
+pub struct _XkbExtensionDeviceNotify;
+#[repr(C)]
+pub struct _XkbGeometry;
+#[repr(C)]
+pub struct _XkbGeometrySizes;
+#[repr(C)]
+pub struct _XkbIndicatorMapRec;
+#[repr(C)]
+pub struct _XkbKey;
+#[repr(C)]
+pub struct _XkbKeyType;
+#[repr(C)]
+pub struct _XkbMapChanges;
+#[repr(C)]
+pub struct _XkbMods {
+    pub mask: c_uchar,
+    pub real_mods: c_uchar,
+    pub vmods: c_ushort,
+}
+#[repr(C)]
+pub struct _XkbNameChanges;
+#[repr(C)]
+pub struct _XkbNamesNotify;
+#[repr(C)]
+pub struct _XkbOutline;
+#[repr(C)]
+pub struct _XkbOverlay;
+#[repr(C)]
+pub struct _XkbOverlayKey;
+#[repr(C)]
+pub struct _XkbOverlayRow;
+#[repr(C)]
+pub struct _XkbProperty;
+#[repr(C)]
+pub struct _XkbRow;
+#[repr(C)]
+pub struct _XkbSection;
+#[repr(C)]
+pub struct _XkbServerMapRec;
+#[repr(C)]
+pub struct _XkbShape;
+#[repr(C)]
+pub struct _XkbSymInterpretRec;
 
 // union placeholders
 pub type XEDataObject = *mut c_void;
@@ -944,15 +991,17 @@ pub type XkbSectionPtr = *mut _XkbSection;
 pub type XkbServerMapPtr = *mut _XkbServerMapRec;
 pub type XkbShapePtr = *mut _XkbShape;
 pub type XkbStatePtr = *mut _XkbStateRec;
+pub type XkbStateRec = _XkbStateRec;
 pub type XkbSymInterpretPtr = *mut _XkbSymInterpretRec;
 pub type XOM = *mut _XOM;
 pub type XrmDatabase = *mut _XrmHashBucketRec;
 pub type XrmOptionDescList = *mut XrmOptionDescRec;
 
 // function pointers
-pub type XConnectionWatchProc = Option<unsafe extern "C" fn (*mut Display, XPointer, c_int, Bool, XPointer)>;
-pub type XIMProc = Option<unsafe extern "C" fn (XIM, XPointer, XPointer)>;
-pub type XICProc = Option<unsafe extern "C" fn (XIC, XPointer, XPointer) -> Bool>;
+pub type XConnectionWatchProc =
+    Option<unsafe extern "C" fn(*mut Display, XPointer, c_int, Bool, XPointer)>;
+pub type XIMProc = Option<unsafe extern "C" fn(XIM, XPointer, XPointer)>;
+pub type XICProc = Option<unsafe extern "C" fn(XIC, XPointer, XPointer) -> Bool>;
 
 // C enums
 pub type XICCEncodingStyle = c_int;
@@ -964,124 +1013,121 @@ pub type XrmOptionKind = c_int;
 #[cfg(test)]
 #[repr(C)]
 enum TestEnum {
-  Variant1,
-  Variant2,
+    Variant1,
+    Variant2,
 }
 
 #[test]
-fn enum_size_test () {
-  assert!(::std::mem::size_of::<TestEnum>() == ::std::mem::size_of::<c_int>());
+fn enum_size_test() {
+    assert!(::std::mem::size_of::<TestEnum>() == ::std::mem::size_of::<c_int>());
 }
-
 
 //
 // event structures
 //
 
-
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub union XEvent {
-  pub type_: c_int,
-  pub any: XAnyEvent,
-  pub button: XButtonEvent,
-  pub circulate: XCirculateEvent,
-  pub circulate_request: XCirculateRequestEvent,
-  pub client_message: XClientMessageEvent,
-  pub colormap: XColormapEvent,
-  pub configure: XConfigureEvent,
-  pub configure_request: XConfigureRequestEvent,
-  pub create_window: XCreateWindowEvent,
-  pub crossing: XCrossingEvent,
-  pub destroy_window: XDestroyWindowEvent,
-  pub error: XErrorEvent,
-  pub expose: XExposeEvent,
-  pub focus_change: XFocusChangeEvent,
-  pub generic_event_cookie: XGenericEventCookie,
-  pub graphics_expose: XGraphicsExposeEvent,
-  pub gravity: XGravityEvent,
-  pub key: XKeyEvent,
-  pub keymap: XKeymapEvent,
-  pub map: XMapEvent,
-  pub mapping: XMappingEvent,
-  pub map_request: XMapRequestEvent,
-  pub motion: XMotionEvent,
-  pub no_expose: XNoExposeEvent,
-  pub property: XPropertyEvent,
-  pub reparent: XReparentEvent,
-  pub resize_request: XResizeRequestEvent,
-  pub selection_clear: XSelectionClearEvent,
-  pub selection: XSelectionEvent,
-  pub selection_request: XSelectionRequestEvent,
-  pub unmap: XUnmapEvent,
-  pub visibility: XVisibilityEvent,
-  pub pad: [c_long; 24],
-  // xf86vidmode
-  pub xf86vm_notify: xf86vmode::XF86VidModeNotifyEvent,
-  // xrandr
-  pub xrr_screen_change_notify: xrandr::XRRScreenChangeNotifyEvent,
-  pub xrr_notify: xrandr::XRRNotifyEvent,
-  pub xrr_output_change_notify: xrandr::XRROutputChangeNotifyEvent,
-  pub xrr_crtc_change_notify: xrandr::XRRCrtcChangeNotifyEvent,
-  pub xrr_output_property_notify: xrandr::XRROutputPropertyNotifyEvent,
-  pub xrr_provider_change_notify: xrandr::XRRProviderChangeNotifyEvent,
-  pub xrr_provider_property_notify: xrandr::XRRProviderPropertyNotifyEvent,
-  pub xrr_resource_change_notify: xrandr::XRRResourceChangeNotifyEvent,
-  // xscreensaver
-  pub xss_notify: xss::XScreenSaverNotifyEvent,
+    pub type_: c_int,
+    pub any: XAnyEvent,
+    pub button: XButtonEvent,
+    pub circulate: XCirculateEvent,
+    pub circulate_request: XCirculateRequestEvent,
+    pub client_message: XClientMessageEvent,
+    pub colormap: XColormapEvent,
+    pub configure: XConfigureEvent,
+    pub configure_request: XConfigureRequestEvent,
+    pub create_window: XCreateWindowEvent,
+    pub crossing: XCrossingEvent,
+    pub destroy_window: XDestroyWindowEvent,
+    pub error: XErrorEvent,
+    pub expose: XExposeEvent,
+    pub focus_change: XFocusChangeEvent,
+    pub generic_event_cookie: XGenericEventCookie,
+    pub graphics_expose: XGraphicsExposeEvent,
+    pub gravity: XGravityEvent,
+    pub key: XKeyEvent,
+    pub keymap: XKeymapEvent,
+    pub map: XMapEvent,
+    pub mapping: XMappingEvent,
+    pub map_request: XMapRequestEvent,
+    pub motion: XMotionEvent,
+    pub no_expose: XNoExposeEvent,
+    pub property: XPropertyEvent,
+    pub reparent: XReparentEvent,
+    pub resize_request: XResizeRequestEvent,
+    pub selection_clear: XSelectionClearEvent,
+    pub selection: XSelectionEvent,
+    pub selection_request: XSelectionRequestEvent,
+    pub unmap: XUnmapEvent,
+    pub visibility: XVisibilityEvent,
+    pub pad: [c_long; 24],
+    // xf86vidmode
+    pub xf86vm_notify: xf86vmode::XF86VidModeNotifyEvent,
+    // xrandr
+    pub xrr_screen_change_notify: xrandr::XRRScreenChangeNotifyEvent,
+    pub xrr_notify: xrandr::XRRNotifyEvent,
+    pub xrr_output_change_notify: xrandr::XRROutputChangeNotifyEvent,
+    pub xrr_crtc_change_notify: xrandr::XRRCrtcChangeNotifyEvent,
+    pub xrr_output_property_notify: xrandr::XRROutputPropertyNotifyEvent,
+    pub xrr_provider_change_notify: xrandr::XRRProviderChangeNotifyEvent,
+    pub xrr_provider_property_notify: xrandr::XRRProviderPropertyNotifyEvent,
+    pub xrr_resource_change_notify: xrandr::XRRResourceChangeNotifyEvent,
+    // xscreensaver
+    pub xss_notify: xss::XScreenSaverNotifyEvent,
 }
 
 impl XEvent {
-  pub fn get_type (&self) -> c_int {
-    unsafe {
-      self.type_
+    pub fn get_type(&self) -> c_int {
+        unsafe { self.type_ }
     }
-  }
 }
 
 impl fmt::Debug for XEvent {
-  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    let mut d = f.debug_struct("XEvent");
-    unsafe {
-      match self.type_ {
-        KeyPress => d.field("key", &self.key),
-        KeyRelease => d.field("key", &self.key),
-        ButtonPress => d.field("button", &self.button),
-        ButtonRelease => d.field("button", &self.button),
-        MotionNotify => d.field("motion", &self.motion),
-        EnterNotify => d.field("crossing", &self.crossing),
-        LeaveNotify => d.field("crossing", &self.crossing),
-        FocusIn => d.field("focus_change", &self.focus_change),
-        FocusOut => d.field("focus_change", &self.focus_change),
-        KeymapNotify => d.field("keymap", &self.keymap),
-        Expose => d.field("expose", &self.expose),
-        GraphicsExpose => d.field("graphics_expose", &self.graphics_expose),
-        NoExpose => d.field("no_expose", &self.no_expose),
-        VisibilityNotify => d.field("visibility", &self.visibility),
-        CreateNotify => d.field("create_window", &self.create_window),
-        DestroyNotify => d.field("destroy_window", &self.destroy_window),
-        UnmapNotify => d.field("unmap", &self.unmap),
-        MapNotify => d.field("map", &self.map),
-        MapRequest => d.field("map_request", &self.map_request),
-        ReparentNotify => d.field("reparent", &self.reparent),
-        ConfigureNotify => d.field("configure", &self.configure),
-        ConfigureRequest => d.field("configure_request", &self.configure_request),
-        GravityNotify => d.field("gravity", &self.gravity),
-        ResizeRequest => d.field("resize_request", &self.resize_request),
-        CirculateNotify => d.field("circulate", &self.circulate),
-        CirculateRequest => d.field("circulate_request", &self.circulate_request),
-        PropertyNotify => d.field("property", &self.property),
-        SelectionClear => d.field("selection_clear", &self.selection_clear),
-        SelectionRequest => d.field("selection_request", &self.selection_request),
-        SelectionNotify => d.field("selection", &self.selection),
-        ColormapNotify => d.field("colormap", &self.colormap),
-        ClientMessage => d.field("client_message", &self.client_message),
-        MappingNotify => d.field("mapping", &self.mapping),
-        GenericEvent => d.field("generic_event_cookie", &self.generic_event_cookie),
-        _ => d.field("any", &self.any),
-      }
-    }.finish()
-  }
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let mut d = f.debug_struct("XEvent");
+        unsafe {
+            match self.type_ {
+                KeyPress => d.field("key", &self.key),
+                KeyRelease => d.field("key", &self.key),
+                ButtonPress => d.field("button", &self.button),
+                ButtonRelease => d.field("button", &self.button),
+                MotionNotify => d.field("motion", &self.motion),
+                EnterNotify => d.field("crossing", &self.crossing),
+                LeaveNotify => d.field("crossing", &self.crossing),
+                FocusIn => d.field("focus_change", &self.focus_change),
+                FocusOut => d.field("focus_change", &self.focus_change),
+                KeymapNotify => d.field("keymap", &self.keymap),
+                Expose => d.field("expose", &self.expose),
+                GraphicsExpose => d.field("graphics_expose", &self.graphics_expose),
+                NoExpose => d.field("no_expose", &self.no_expose),
+                VisibilityNotify => d.field("visibility", &self.visibility),
+                CreateNotify => d.field("create_window", &self.create_window),
+                DestroyNotify => d.field("destroy_window", &self.destroy_window),
+                UnmapNotify => d.field("unmap", &self.unmap),
+                MapNotify => d.field("map", &self.map),
+                MapRequest => d.field("map_request", &self.map_request),
+                ReparentNotify => d.field("reparent", &self.reparent),
+                ConfigureNotify => d.field("configure", &self.configure),
+                ConfigureRequest => d.field("configure_request", &self.configure_request),
+                GravityNotify => d.field("gravity", &self.gravity),
+                ResizeRequest => d.field("resize_request", &self.resize_request),
+                CirculateNotify => d.field("circulate", &self.circulate),
+                CirculateRequest => d.field("circulate_request", &self.circulate_request),
+                PropertyNotify => d.field("property", &self.property),
+                SelectionClear => d.field("selection_clear", &self.selection_clear),
+                SelectionRequest => d.field("selection_request", &self.selection_request),
+                SelectionNotify => d.field("selection", &self.selection),
+                ColormapNotify => d.field("colormap", &self.colormap),
+                ClientMessage => d.field("client_message", &self.client_message),
+                MappingNotify => d.field("mapping", &self.mapping),
+                GenericEvent => d.field("generic_event_cookie", &self.generic_event_cookie),
+                _ => d.field("any", &self.any),
+            }
+        }
+        .finish()
+    }
 }
 
 macro_rules! event_conversions_and_tests {
@@ -1171,31 +1217,31 @@ event_conversions_and_tests! {
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XAnyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XButtonEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub root: Window,
-  pub subwindow: Window,
-  pub time: Time,
-  pub x: c_int,
-  pub y: c_int,
-  pub x_root: c_int,
-  pub y_root: c_int,
-  pub state: c_uint,
-  pub button: c_uint,
-  pub same_screen: Bool,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub root: Window,
+    pub subwindow: Window,
+    pub time: Time,
+    pub x: c_int,
+    pub y: c_int,
+    pub x_root: c_int,
+    pub y_root: c_int,
+    pub state: c_uint,
+    pub button: c_uint,
+    pub same_screen: Bool,
 }
 pub type XButtonPressedEvent = XButtonEvent;
 pub type XButtonReleasedEvent = XButtonEvent;
@@ -1203,127 +1249,127 @@ pub type XButtonReleasedEvent = XButtonEvent;
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCirculateEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub event: Window,
-  pub window: Window,
-  pub place: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub event: Window,
+    pub window: Window,
+    pub place: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCirculateRequestEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub parent: Window,
-  pub window: Window,
-  pub place: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub parent: Window,
+    pub window: Window,
+    pub place: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XClientMessageEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub message_type: Atom,
-  pub format: c_int,
-  pub data: ClientMessageData,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub message_type: Atom,
+    pub format: c_int,
+    pub data: ClientMessageData,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XColormapEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub colormap: Colormap,
-  pub new: Bool,
-  pub state: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub colormap: Colormap,
+    pub new: Bool,
+    pub state: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XConfigureEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub event: Window,
-  pub window: Window,
-  pub x: c_int,
-  pub y: c_int,
-  pub width: c_int,
-  pub height: c_int,
-  pub border_width: c_int,
-  pub above: Window,
-  pub override_redirect: Bool,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub event: Window,
+    pub window: Window,
+    pub x: c_int,
+    pub y: c_int,
+    pub width: c_int,
+    pub height: c_int,
+    pub border_width: c_int,
+    pub above: Window,
+    pub override_redirect: Bool,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XConfigureRequestEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub parent: Window,
-  pub window: Window,
-  pub x: c_int,
-  pub y: c_int,
-  pub width: c_int,
-  pub height: c_int,
-  pub border_width: c_int,
-  pub above: Window,
-  pub detail: c_int,
-  pub value_mask: c_ulong,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub parent: Window,
+    pub window: Window,
+    pub x: c_int,
+    pub y: c_int,
+    pub width: c_int,
+    pub height: c_int,
+    pub border_width: c_int,
+    pub above: Window,
+    pub detail: c_int,
+    pub value_mask: c_ulong,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCreateWindowEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub parent: Window,
-  pub window: Window,
-  pub x: c_int,
-  pub y: c_int,
-  pub width: c_int,
-  pub height: c_int,
-  pub border_width: c_int,
-  pub override_redirect: Bool,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub parent: Window,
+    pub window: Window,
+    pub x: c_int,
+    pub y: c_int,
+    pub width: c_int,
+    pub height: c_int,
+    pub border_width: c_int,
+    pub override_redirect: Bool,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCrossingEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub root: Window,
-  pub subwindow: Window,
-  pub time: Time,
-  pub x: c_int,
-  pub y: c_int,
-  pub x_root: c_int,
-  pub y_root: c_int,
-  pub mode: c_int,
-  pub detail: c_int,
-  pub same_screen: Bool,
-  pub focus: Bool,
-  pub state: c_uint,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub root: Window,
+    pub subwindow: Window,
+    pub time: Time,
+    pub x: c_int,
+    pub y: c_int,
+    pub x_root: c_int,
+    pub y_root: c_int,
+    pub mode: c_int,
+    pub detail: c_int,
+    pub same_screen: Bool,
+    pub focus: Bool,
+    pub state: c_uint,
 }
 pub type XEnterWindowEvent = XCrossingEvent;
 pub type XLeaveWindowEvent = XCrossingEvent;
@@ -1331,51 +1377,51 @@ pub type XLeaveWindowEvent = XCrossingEvent;
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XDestroyWindowEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub event: Window,
-  pub window: Window,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub event: Window,
+    pub window: Window,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XErrorEvent {
-  pub type_: c_int,
-  pub display: *mut Display,
-  pub resourceid: XID,
-  pub serial: c_ulong,
-  pub error_code: c_uchar,
-  pub request_code: c_uchar,
-  pub minor_code: c_uchar,
+    pub type_: c_int,
+    pub display: *mut Display,
+    pub resourceid: XID,
+    pub serial: c_ulong,
+    pub error_code: c_uchar,
+    pub request_code: c_uchar,
+    pub minor_code: c_uchar,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XExposeEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub x: c_int,
-  pub y: c_int,
-  pub width: c_int,
-  pub height: c_int,
-  pub count: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub x: c_int,
+    pub y: c_int,
+    pub width: c_int,
+    pub height: c_int,
+    pub count: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XFocusChangeEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub mode: c_int,
-  pub detail: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub mode: c_int,
+    pub detail: c_int,
 }
 pub type XFocusInEvent = XFocusChangeEvent;
 pub type XFocusOutEvent = XFocusChangeEvent;
@@ -1383,51 +1429,51 @@ pub type XFocusOutEvent = XFocusChangeEvent;
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XGraphicsExposeEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub drawable: Drawable,
-  pub x: c_int,
-  pub y: c_int,
-  pub width: c_int,
-  pub height: c_int,
-  pub count: c_int,
-  pub major_code: c_int,
-  pub minor_code: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub drawable: Drawable,
+    pub x: c_int,
+    pub y: c_int,
+    pub width: c_int,
+    pub height: c_int,
+    pub count: c_int,
+    pub major_code: c_int,
+    pub minor_code: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XGravityEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub event: Window,
-  pub window: Window,
-  pub x: c_int,
-  pub y: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub event: Window,
+    pub window: Window,
+    pub x: c_int,
+    pub y: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XKeyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub root: Window,
-  pub subwindow: Window,
-  pub time: Time,
-  pub x: c_int,
-  pub y: c_int,
-  pub x_root: c_int,
-  pub y_root: c_int,
-  pub state: c_uint,
-  pub keycode: c_uint,
-  pub same_screen: Bool,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub root: Window,
+    pub subwindow: Window,
+    pub time: Time,
+    pub x: c_int,
+    pub y: c_int,
+    pub x_root: c_int,
+    pub y_root: c_int,
+    pub state: c_uint,
+    pub keycode: c_uint,
+    pub same_screen: Bool,
 }
 pub type XKeyPressedEvent = XKeyEvent;
 pub type XKeyReleasedEvent = XKeyEvent;
@@ -1435,529 +1481,530 @@ pub type XKeyReleasedEvent = XKeyEvent;
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XKeymapEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub key_vector: [c_char; 32],
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub key_vector: [c_char; 32],
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XMapEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub event: Window,
-  pub window: Window,
-  pub override_redirect: Bool,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub event: Window,
+    pub window: Window,
+    pub override_redirect: Bool,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XMappingEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub event: Window,
-  pub request: c_int,
-  pub first_keycode: c_int,
-  pub count: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub event: Window,
+    pub request: c_int,
+    pub first_keycode: c_int,
+    pub count: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XMapRequestEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub parent: Window,
-  pub window: Window,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub parent: Window,
+    pub window: Window,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XMotionEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub root: Window,
-  pub subwindow: Window,
-  pub time: Time,
-  pub x: c_int,
-  pub y: c_int,
-  pub x_root: c_int,
-  pub y_root: c_int,
-  pub state: c_uint,
-  pub is_hint: c_char,
-  pub same_screen: Bool,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub root: Window,
+    pub subwindow: Window,
+    pub time: Time,
+    pub x: c_int,
+    pub y: c_int,
+    pub x_root: c_int,
+    pub y_root: c_int,
+    pub state: c_uint,
+    pub is_hint: c_char,
+    pub same_screen: Bool,
 }
 pub type XPointerMovedEvent = XMotionEvent;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XNoExposeEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub drawable: Drawable,
-  pub major_code: c_int,
-  pub minor_code: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub drawable: Drawable,
+    pub major_code: c_int,
+    pub minor_code: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XPropertyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub atom: Atom,
-  pub time: Time,
-  pub state: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub atom: Atom,
+    pub time: Time,
+    pub state: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XReparentEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub event: Window,
-  pub window: Window,
-  pub parent: Window,
-  pub x: c_int,
-  pub y: c_int,
-  pub override_redirect: Bool,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub event: Window,
+    pub window: Window,
+    pub parent: Window,
+    pub x: c_int,
+    pub y: c_int,
+    pub override_redirect: Bool,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XResizeRequestEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub width: c_int,
-  pub height: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub width: c_int,
+    pub height: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XSelectionClearEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub selection: Atom,
-  pub time: Time,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub selection: Atom,
+    pub time: Time,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XSelectionEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub requestor: Window,
-  pub selection: Atom,
-  pub target: Atom,
-  pub property: Atom,
-  pub time: Time,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub requestor: Window,
+    pub selection: Atom,
+    pub target: Atom,
+    pub property: Atom,
+    pub time: Time,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XSelectionRequestEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub owner: Window,
-  pub requestor: Window,
-  pub selection: Atom,
-  pub target: Atom,
-  pub property: Atom,
-  pub time: Time,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub owner: Window,
+    pub requestor: Window,
+    pub selection: Atom,
+    pub target: Atom,
+    pub property: Atom,
+    pub time: Time,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XUnmapEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub event: Window,
-  pub window: Window,
-  pub from_configure: Bool,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub event: Window,
+    pub window: Window,
+    pub from_configure: Bool,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XVisibilityEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub window: Window,
-  pub state: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub window: Window,
+    pub state: c_int,
 }
-
 
 //
 // Xkb structs
 //
 
-
 #[repr(C)]
 pub struct _XkbCompatMapRec {
-  pub sym_interpret: XkbSymInterpretPtr,
-  pub groups: [XkbModsRec; XkbNumKbdGroups],
-  pub num_si: c_ushort,
-  pub size_si: c_ushort,
+    pub sym_interpret: XkbSymInterpretPtr,
+    pub groups: [XkbModsRec; XkbNumKbdGroups],
+    pub num_si: c_ushort,
+    pub size_si: c_ushort,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XkbDesc {
-  pub dpy: *mut Display,
-  pub flags: c_ushort,
-  pub device_spec: c_ushort,
-  pub min_key_code: KeyCode,
-  pub max_key_code: KeyCode,
-  pub ctrls: XkbControlsPtr,
-  pub server: XkbServerMapPtr,
-  pub map: XkbClientMapPtr,
-  pub indicators: XkbIndicatorPtr,
-  pub names: XkbNamesPtr,
-  pub compat: XkbCompatMapPtr,
-  pub geom: XkbGeometryPtr,
+    pub dpy: *mut Display,
+    pub flags: c_ushort,
+    pub device_spec: c_ushort,
+    pub min_key_code: KeyCode,
+    pub max_key_code: KeyCode,
+    pub ctrls: XkbControlsPtr,
+    pub server: XkbServerMapPtr,
+    pub map: XkbClientMapPtr,
+    pub indicators: XkbIndicatorPtr,
+    pub names: XkbNamesPtr,
+    pub compat: XkbCompatMapPtr,
+    pub geom: XkbGeometryPtr,
 }
 
 #[repr(C)]
 pub struct _XkbIndicatorRec {
-  pub phys_indicators: c_ulong,
-  pub maps: [XkbIndicatorMapRec; XkbNumIndicators],
+    pub phys_indicators: c_ulong,
+    pub maps: [XkbIndicatorMapRec; XkbNumIndicators],
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XkbKeyAliasRec {
-  pub real: [c_char; XkbKeyNameLength],
-  pub alias: [c_char; XkbKeyNameLength],
+    pub real: [c_char; XkbKeyNameLength],
+    pub alias: [c_char; XkbKeyNameLength],
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XkbKeyNameRec {
-  pub name: [c_char; XkbKeyNameLength],
+    pub name: [c_char; XkbKeyNameLength],
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XkbNamesRec {
-  pub keycodes: Atom,
-  pub geometry: Atom,
-  pub symbols: Atom,
-  pub types: Atom,
-  pub compat: Atom,
-  pub vmods: [Atom; XkbNumVirtualMods],
-  pub indicators: [Atom; XkbNumIndicators],
-  pub groups: [Atom; XkbNumKbdGroups],
-  pub keys: XkbKeyNamePtr,
-  pub key_aliases: XkbKeyAliasPtr,
-  pub radio_groups: *mut Atom,
-  pub phys_symbols: Atom,
-  pub num_keys: c_uchar,
-  pub num_key_aliases: c_uchar,
-  pub num_rg: c_ushort,
+    pub keycodes: Atom,
+    pub geometry: Atom,
+    pub symbols: Atom,
+    pub types: Atom,
+    pub compat: Atom,
+    pub vmods: [Atom; XkbNumVirtualMods],
+    pub indicators: [Atom; XkbNumIndicators],
+    pub groups: [Atom; XkbNumKbdGroups],
+    pub keys: XkbKeyNamePtr,
+    pub key_aliases: XkbKeyAliasPtr,
+    pub radio_groups: *mut Atom,
+    pub phys_symbols: Atom,
+    pub num_keys: c_uchar,
+    pub num_key_aliases: c_uchar,
+    pub num_rg: c_ushort,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XkbStateRec {
-  pub group: c_uchar,
-  pub locked_group: c_uchar,
-  pub base_group: c_ushort,
-  pub latched_group: c_ushort,
-  pub mods: c_uchar,
-  pub base_mods: c_uchar,
-  pub latched_mods: c_uchar,
-  pub locked_mods: c_uchar,
-  pub compat_state: c_uchar,
-  pub grab_mods: c_uchar,
-  pub compat_grab_mods: c_uchar,
-  pub lookup_mods: c_uchar,
-  pub compat_lookup_mods: c_uchar,
-  pub ptr_buttons: c_ushort,
-}
+    pub group: c_uchar,
+    pub base_group: c_ushort,
+    pub latched_group: c_ushort,
+    pub locked_group: c_uchar,
 
+    pub mods: c_uchar,
+    pub base_mods: c_uchar,
+    pub latched_mods: c_uchar,
+    pub locked_mods: c_uchar,
+
+    pub compat_state: c_uchar,
+
+    pub grab_mods: c_uchar,
+    pub compat_grab_mods: c_uchar,
+
+    pub lookup_mods: c_uchar,
+    pub compat_lookup_mods: c_uchar,
+
+    pub ptr_buttons: c_ushort,
+}
 
 //
 // Xkb event structs
 //
 
-
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XkbAnyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub time: Time,
-  pub xkb_type: c_int,
-  pub device: c_uint,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub time: Time,
+    pub xkb_type: c_int,
+    pub device: c_uint,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XkbNewKeyboardNotifyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub time: Time,
-  pub xkb_type: c_int,
-  pub device: c_int,
-  pub old_device: c_int,
-  pub min_key_code: c_int,
-  pub max_key_code: c_int,
-  pub old_min_key_code: c_int,
-  pub old_max_key_code: c_int,
-  pub changed: c_uint,
-  pub req_major: c_char,
-  pub req_minor: c_char,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub time: Time,
+    pub xkb_type: c_int,
+    pub device: c_int,
+    pub old_device: c_int,
+    pub min_key_code: c_int,
+    pub max_key_code: c_int,
+    pub old_min_key_code: c_int,
+    pub old_max_key_code: c_int,
+    pub changed: c_uint,
+    pub req_major: c_char,
+    pub req_minor: c_char,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XkbMapNotifyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub time: Time,
-  pub xkb_type: c_int,
-  pub device: c_int,
-  pub changed: c_uint,
-  pub flags: c_uint,
-  pub first_type: c_int,
-  pub num_types: c_int,
-  pub min_key_code: KeyCode,
-  pub max_key_code: KeyCode,
-  pub first_key_sym: KeyCode,
-  pub first_key_act: KeyCode,
-  pub first_key_bahavior: KeyCode,
-  pub first_key_explicit: KeyCode,
-  pub first_modmap_key: KeyCode,
-  pub first_vmodmap_key: KeyCode,
-  pub num_key_syms: c_int,
-  pub num_key_acts: c_int,
-  pub num_key_behaviors: c_int,
-  pub num_key_explicit: c_int,
-  pub num_modmap_keys: c_int,
-  pub num_vmodmap_keys: c_int,
-  pub vmods: c_uint,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub time: Time,
+    pub xkb_type: c_int,
+    pub device: c_int,
+    pub changed: c_uint,
+    pub flags: c_uint,
+    pub first_type: c_int,
+    pub num_types: c_int,
+    pub min_key_code: KeyCode,
+    pub max_key_code: KeyCode,
+    pub first_key_sym: KeyCode,
+    pub first_key_act: KeyCode,
+    pub first_key_bahavior: KeyCode,
+    pub first_key_explicit: KeyCode,
+    pub first_modmap_key: KeyCode,
+    pub first_vmodmap_key: KeyCode,
+    pub num_key_syms: c_int,
+    pub num_key_acts: c_int,
+    pub num_key_behaviors: c_int,
+    pub num_key_explicit: c_int,
+    pub num_modmap_keys: c_int,
+    pub num_vmodmap_keys: c_int,
+    pub vmods: c_uint,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XkbStateNotifyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub time: Time,
-  pub xkb_type: c_int,
-  pub device: c_int,
-  pub changed: c_uint,
-  pub group: c_int,
-  pub base_group: c_int,
-  pub latched_group: c_int,
-  pub locked_group: c_int,
-  pub mods: c_uint,
-  pub base_mods: c_uint,
-  pub latched_mods: c_uint,
-  pub locked_mods: c_uint,
-  pub compat_state: c_int,
-  pub grab_mods: c_uchar,
-  pub compat_grab_mods: c_uchar,
-  pub lookup_mods: c_uchar,
-  pub compat_lookup_mods: c_uchar,
-  pub ptr_buttons: c_int,
-  pub keycode: KeyCode,
-  pub event_type: c_char,
-  pub req_major: c_char,
-  pub req_minor: c_char,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub time: Time,
+    pub xkb_type: c_int,
+    pub device: c_int,
+    pub changed: c_uint,
+    pub group: c_int,
+    pub base_group: c_int,
+    pub latched_group: c_int,
+    pub locked_group: c_int,
+    pub mods: c_uint,
+    pub base_mods: c_uint,
+    pub latched_mods: c_uint,
+    pub locked_mods: c_uint,
+    pub compat_state: c_int,
+    pub grab_mods: c_uchar,
+    pub compat_grab_mods: c_uchar,
+    pub lookup_mods: c_uchar,
+    pub compat_lookup_mods: c_uchar,
+    pub ptr_buttons: c_int,
+    pub keycode: KeyCode,
+    pub event_type: c_char,
+    pub req_major: c_char,
+    pub req_minor: c_char,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XkbControlsNotifyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub time: Time,
-  pub xkb_type: c_int,
-  pub device: c_int,
-  pub changed_ctrls: c_uint,
-  pub enabled_ctrls: c_uint,
-  pub enabled_ctrl_changes: c_uint,
-  pub num_groups: c_int,
-  pub keycode: KeyCode,
-  pub event_type: c_char,
-  pub req_major: c_char,
-  pub req_minor: c_char,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub time: Time,
+    pub xkb_type: c_int,
+    pub device: c_int,
+    pub changed_ctrls: c_uint,
+    pub enabled_ctrls: c_uint,
+    pub enabled_ctrl_changes: c_uint,
+    pub num_groups: c_int,
+    pub keycode: KeyCode,
+    pub event_type: c_char,
+    pub req_major: c_char,
+    pub req_minor: c_char,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XkbIndicatorNotifyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub time: Time,
-  pub xkb_type: c_int,
-  pub device: c_int,
-  pub changed: c_uint,
-  pub state: c_uint,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub time: Time,
+    pub xkb_type: c_int,
+    pub device: c_int,
+    pub changed: c_uint,
+    pub state: c_uint,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XkbNamesNotifyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub time: Time,
-  pub xkb_type: c_int,
-  pub device: c_int,
-  pub changed: c_uint,
-  pub first_type: c_int,
-  pub num_types: c_int,
-  pub first_lvl: c_int,
-  pub num_lvls: c_int,
-  pub num_aliases: c_int,
-  pub num_radio_groups: c_int,
-  pub changed_vmods: c_uint,
-  pub changed_groups: c_uint,
-  pub changed_indicators: c_uint,
-  pub first_key: c_int,
-  pub num_keys: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub time: Time,
+    pub xkb_type: c_int,
+    pub device: c_int,
+    pub changed: c_uint,
+    pub first_type: c_int,
+    pub num_types: c_int,
+    pub first_lvl: c_int,
+    pub num_lvls: c_int,
+    pub num_aliases: c_int,
+    pub num_radio_groups: c_int,
+    pub changed_vmods: c_uint,
+    pub changed_groups: c_uint,
+    pub changed_indicators: c_uint,
+    pub first_key: c_int,
+    pub num_keys: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XkbCompatMapNotifyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub time: Time,
-  pub xkb_type: c_int,
-  pub device: c_int,
-  pub changed_groups: c_uint,
-  pub first_si: c_int,
-  pub num_si: c_int,
-  pub num_total_si: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub time: Time,
+    pub xkb_type: c_int,
+    pub device: c_int,
+    pub changed_groups: c_uint,
+    pub first_si: c_int,
+    pub num_si: c_int,
+    pub num_total_si: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XkbBellNotifyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub time: Time,
-  pub xkb_type: c_int,
-  pub device: c_int,
-  pub percent: c_int,
-  pub pitch: c_int,
-  pub duration: c_int,
-  pub bell_class: c_int,
-  pub bell_id: c_int,
-  pub name: Atom,
-  pub window: Window,
-  pub event_only: Bool,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub time: Time,
+    pub xkb_type: c_int,
+    pub device: c_int,
+    pub percent: c_int,
+    pub pitch: c_int,
+    pub duration: c_int,
+    pub bell_class: c_int,
+    pub bell_id: c_int,
+    pub name: Atom,
+    pub window: Window,
+    pub event_only: Bool,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XkbActionMessageEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub time: Time,
-  pub xkb_type: c_int,
-  pub device: c_int,
-  pub keycode: KeyCode,
-  pub press: Bool,
-  pub key_event_follows: Bool,
-  pub group: c_int,
-  pub mods: c_uint,
-  pub message: [c_char; XkbActionMessageLength + 1],
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub time: Time,
+    pub xkb_type: c_int,
+    pub device: c_int,
+    pub keycode: KeyCode,
+    pub press: Bool,
+    pub key_event_follows: Bool,
+    pub group: c_int,
+    pub mods: c_uint,
+    pub message: [c_char; XkbActionMessageLength + 1],
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XkbAccessXNotifyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub time: Time,
-  pub xkb_type: c_int,
-  pub device: c_int,
-  pub detail: c_int,
-  pub keycode: c_int,
-  pub sk_delay: c_int,
-  pub debounce_delay: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub time: Time,
+    pub xkb_type: c_int,
+    pub device: c_int,
+    pub detail: c_int,
+    pub keycode: c_int,
+    pub sk_delay: c_int,
+    pub debounce_delay: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct _XkbExtensionDeviceNotifyEvent {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub time: Time,
-  pub xkb_type: c_int,
-  pub device: c_int,
-  pub reason: c_uint,
-  pub supported: c_uint,
-  pub unsupported: c_uint,
-  pub first_btn: c_int,
-  pub num_btns: c_int,
-  pub leds_defined: c_uint,
-  pub led_state: c_uint,
-  pub led_class: c_int,
-  pub led_id: c_int,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub time: Time,
+    pub xkb_type: c_int,
+    pub device: c_int,
+    pub reason: c_uint,
+    pub supported: c_uint,
+    pub unsupported: c_uint,
+    pub first_btn: c_int,
+    pub num_btns: c_int,
+    pub leds_defined: c_uint,
+    pub led_state: c_uint,
+    pub led_class: c_int,
+    pub led_id: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XkbEvent {
-  _pad: [c_long; 24],
+    _pad: [c_long; 24],
 }
 
 #[cfg(test)]
@@ -1968,539 +2015,537 @@ macro_rules! test_xkb_event_size {
 }
 
 #[test]
-fn xkb_event_size_test () {
-  test_xkb_event_size! {
-    XkbAnyEvent,
-    XkbNewKeyboardNotifyEvent,
-    XkbMapNotifyEvent,
-    XkbStateNotifyEvent,
-    XkbControlsNotifyEvent,
-    XkbIndicatorNotifyEvent,
-    XkbNamesNotifyEvent,
-    XkbCompatMapNotifyEvent,
-    XkbBellNotifyEvent,
-    XkbActionMessageEvent,
-    XkbAccessXNotifyEvent,
-    XkbExtensionDeviceNotifyEvent,
-  }
+fn xkb_event_size_test() {
+    test_xkb_event_size! {
+      XkbAnyEvent,
+      XkbNewKeyboardNotifyEvent,
+      XkbMapNotifyEvent,
+      XkbStateNotifyEvent,
+      XkbControlsNotifyEvent,
+      XkbIndicatorNotifyEvent,
+      XkbNamesNotifyEvent,
+      XkbCompatMapNotifyEvent,
+      XkbBellNotifyEvent,
+      XkbActionMessageEvent,
+      XkbAccessXNotifyEvent,
+      XkbExtensionDeviceNotifyEvent,
+    }
 }
 
 pub enum XkbKbdDpyStateRec {}
 pub type XkbKbdDpyStatePtr = *mut XkbKbdDpyStateRec;
 
-
 //
 // other structures
 //
 
-
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct Depth {
-  pub depth: c_int,
-  pub nvisuals: c_int,
-  pub visuals: *mut Visual,
+    pub depth: c_int,
+    pub nvisuals: c_int,
+    pub visuals: *mut Visual,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct Screen {
-  pub ext_data: *mut XExtData,
-  pub display: *mut Display,
-  pub root: Window,
-  pub width: c_int,
-  pub height: c_int,
-  pub mwidth: c_int,
-  pub mheight: c_int,
-  pub ndepths: c_int,
-  pub depths: *mut Depth,
-  pub root_depth: c_int,
-  pub root_visual: *mut Visual,
-  pub default_gc: GC,
-  pub cmap: Colormap,
-  pub white_pixel: c_ulong,
-  pub black_pixel: c_ulong,
-  pub max_maps: c_int,
-  pub min_maps: c_int,
-  pub backing_store: c_int,
-  pub save_unders: Bool,
-  pub root_input_mask: c_long,
+    pub ext_data: *mut XExtData,
+    pub display: *mut Display,
+    pub root: Window,
+    pub width: c_int,
+    pub height: c_int,
+    pub mwidth: c_int,
+    pub mheight: c_int,
+    pub ndepths: c_int,
+    pub depths: *mut Depth,
+    pub root_depth: c_int,
+    pub root_visual: *mut Visual,
+    pub default_gc: GC,
+    pub cmap: Colormap,
+    pub white_pixel: c_ulong,
+    pub black_pixel: c_ulong,
+    pub max_maps: c_int,
+    pub min_maps: c_int,
+    pub backing_store: c_int,
+    pub save_unders: Bool,
+    pub root_input_mask: c_long,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct ScreenFormat {
-  pub ext_data: *mut XExtData,
-  pub depth: c_int,
-  pub bits_per_pixel: c_int,
-  pub scanline_pad: c_int,
+    pub ext_data: *mut XExtData,
+    pub depth: c_int,
+    pub bits_per_pixel: c_int,
+    pub scanline_pad: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct Visual {
-  pub ext_data: *mut XExtData,
-  pub visualid: VisualID,
-  pub class: c_int,
-  pub red_mask: c_ulong,
-  pub green_mask: c_ulong,
-  pub blue_mask: c_ulong,
-  pub bits_per_rgb: c_int,
-  pub map_entries: c_int,
+    pub ext_data: *mut XExtData,
+    pub visualid: VisualID,
+    pub class: c_int,
+    pub red_mask: c_ulong,
+    pub green_mask: c_ulong,
+    pub blue_mask: c_ulong,
+    pub bits_per_rgb: c_int,
+    pub map_entries: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XArc {
-  pub x: c_short,
-  pub y: c_short,
-  pub width: c_ushort,
-  pub height: c_ushort,
-  pub angle1: c_short,
-  pub angle2: c_short,
+    pub x: c_short,
+    pub y: c_short,
+    pub width: c_ushort,
+    pub height: c_ushort,
+    pub angle1: c_short,
+    pub angle2: c_short,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XChar2b {
-  pub byte1: c_uchar,
-  pub byte2: c_uchar,
+    pub byte1: c_uchar,
+    pub byte2: c_uchar,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XCharStruct {
-  pub lbearing: c_short,
-  pub rbearing: c_short,
-  pub width: c_short,
-  pub ascent: c_short,
-  pub descent: c_short,
-  pub attributes: c_ushort,
+    pub lbearing: c_short,
+    pub rbearing: c_short,
+    pub width: c_short,
+    pub ascent: c_short,
+    pub descent: c_short,
+    pub attributes: c_ushort,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XClassHint {
-  pub res_name: *mut c_char,
-  pub res_class: *mut c_char,
+    pub res_name: *mut c_char,
+    pub res_class: *mut c_char,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XColor {
-  pub pixel: c_ulong,
-  pub red: c_ushort,
-  pub green: c_ushort,
-  pub blue: c_ushort,
-  pub flags: c_char,
-  pub pad: c_char,
+    pub pixel: c_ulong,
+    pub red: c_ushort,
+    pub green: c_ushort,
+    pub blue: c_ushort,
+    pub flags: c_char,
+    pub pad: c_char,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XComposeStatus {
-  pub compose_ptr: XPointer,
-  pub chars_matched: c_int,
+    pub compose_ptr: XPointer,
+    pub chars_matched: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XExtCodes {
-  pub extension: c_int,
-  pub major_opcode: c_int,
-  pub first_event: c_int,
-  pub first_error: c_int,
+    pub extension: c_int,
+    pub major_opcode: c_int,
+    pub first_event: c_int,
+    pub first_error: c_int,
 }
 
 #[repr(C)]
 pub struct XExtData {
-  pub number: c_int,
-  pub next: *mut XExtData,
-  pub free_private: Option<unsafe extern "C" fn () -> c_int>,
-  pub private_data: XPointer,
+    pub number: c_int,
+    pub next: *mut XExtData,
+    pub free_private: Option<unsafe extern "C" fn() -> c_int>,
+    pub private_data: XPointer,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XFontProp {
-  pub name: Atom,
-  pub card32: c_ulong,
+    pub name: Atom,
+    pub card32: c_ulong,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XFontSetExtents {
-  pub max_ink_extent: XRectangle,
-  pub max_logical_extent: XRectangle,
+    pub max_ink_extent: XRectangle,
+    pub max_logical_extent: XRectangle,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XFontStruct {
-  pub ext_data: *mut XExtData,
-  pub fid: Font,
-  pub direction: c_uint,
-  pub min_char_or_byte2: c_uint,
-  pub max_char_or_byte2: c_uint,
-  pub min_byte1: c_uint,
-  pub max_byte1: c_uint,
-  pub all_chars_exist: Bool,
-  pub default_char: c_uint,
-  pub n_properties: c_int,
-  pub properties: *mut XFontProp,
-  pub min_bounds: XCharStruct,
-  pub max_bounds: XCharStruct,
-  pub per_char: *mut XCharStruct,
-  pub ascent: c_int,
-  pub descent: c_int,
+    pub ext_data: *mut XExtData,
+    pub fid: Font,
+    pub direction: c_uint,
+    pub min_char_or_byte2: c_uint,
+    pub max_char_or_byte2: c_uint,
+    pub min_byte1: c_uint,
+    pub max_byte1: c_uint,
+    pub all_chars_exist: Bool,
+    pub default_char: c_uint,
+    pub n_properties: c_int,
+    pub properties: *mut XFontProp,
+    pub min_bounds: XCharStruct,
+    pub max_bounds: XCharStruct,
+    pub per_char: *mut XCharStruct,
+    pub ascent: c_int,
+    pub descent: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XGCValues {
-  pub function: c_int,
-  pub plane_mask: c_ulong,
-  pub foreground: c_ulong,
-  pub background: c_ulong,
-  pub line_width: c_int,
-  pub line_style: c_int,
-  pub cap_style: c_int,
-  pub join_style: c_int,
-  pub fill_style: c_int,
-  pub fill_rule: c_int,
-  pub arc_mode: c_int,
-  pub tile: Pixmap,
-  pub stipple: Pixmap,
-  pub ts_x_origin: c_int,
-  pub ts_y_origin: c_int,
-  pub font: Font,
-  pub subwindow_mode: c_int,
-  pub graphics_exposures: Bool,
-  pub clip_x_origin: c_int,
-  pub clip_y_origin: c_int,
-  pub clip_mask: Pixmap,
-  pub dash_offset: c_int,
-  pub dashes: c_char,
+    pub function: c_int,
+    pub plane_mask: c_ulong,
+    pub foreground: c_ulong,
+    pub background: c_ulong,
+    pub line_width: c_int,
+    pub line_style: c_int,
+    pub cap_style: c_int,
+    pub join_style: c_int,
+    pub fill_style: c_int,
+    pub fill_rule: c_int,
+    pub arc_mode: c_int,
+    pub tile: Pixmap,
+    pub stipple: Pixmap,
+    pub ts_x_origin: c_int,
+    pub ts_y_origin: c_int,
+    pub font: Font,
+    pub subwindow_mode: c_int,
+    pub graphics_exposures: Bool,
+    pub clip_x_origin: c_int,
+    pub clip_y_origin: c_int,
+    pub clip_mask: Pixmap,
+    pub dash_offset: c_int,
+    pub dashes: c_char,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XGenericEventCookie {
-  pub type_: c_int,
-  pub serial: c_ulong,
-  pub send_event: Bool,
-  pub display: *mut Display,
-  pub extension: c_int,
-  pub evtype: c_int,
-  pub cookie: c_uint,
-  pub data: *mut c_void,
+    pub type_: c_int,
+    pub serial: c_ulong,
+    pub send_event: Bool,
+    pub display: *mut Display,
+    pub extension: c_int,
+    pub evtype: c_int,
+    pub cookie: c_uint,
+    pub data: *mut c_void,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XHostAddress {
-  pub family: c_int,
-  pub length: c_int,
-  pub address: *mut c_char,
+    pub family: c_int,
+    pub length: c_int,
+    pub address: *mut c_char,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XIconSize {
-  pub min_width: c_int,
-  pub min_height: c_int,
-  pub max_width: c_int,
-  pub max_height: c_int,
-  pub width_inc: c_int,
-  pub height_inc: c_int,
+    pub min_width: c_int,
+    pub min_height: c_int,
+    pub max_width: c_int,
+    pub max_height: c_int,
+    pub width_inc: c_int,
+    pub height_inc: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XImage {
-  pub width: c_int,
-  pub height: c_int,
-  pub xoffset: c_int,
-  pub format: c_int,
-  pub data: *mut c_char,
-  pub byte_order: c_int,
-  pub bitmap_unit: c_int,
-  pub bitmap_bit_order: c_int,
-  pub bitmap_pad: c_int,
-  pub depth: c_int,
-  pub bytes_per_line: c_int,
-  pub bits_per_pixel: c_int,
-  pub red_mask: c_ulong,
-  pub green_mask: c_ulong,
-  pub blue_mask: c_ulong,
-  pub obdata: XPointer,
-  pub funcs: ImageFns,
+    pub width: c_int,
+    pub height: c_int,
+    pub xoffset: c_int,
+    pub format: c_int,
+    pub data: *mut c_char,
+    pub byte_order: c_int,
+    pub bitmap_unit: c_int,
+    pub bitmap_bit_order: c_int,
+    pub bitmap_pad: c_int,
+    pub depth: c_int,
+    pub bytes_per_line: c_int,
+    pub bits_per_pixel: c_int,
+    pub red_mask: c_ulong,
+    pub green_mask: c_ulong,
+    pub blue_mask: c_ulong,
+    pub obdata: XPointer,
+    pub funcs: ImageFns,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XKeyboardControl {
-  pub key_click_percent: c_int,
-  pub bell_percent: c_int,
-  pub bell_pitch: c_int,
-  pub bell_duration: c_int,
-  pub led: c_int,
-  pub led_mode: c_int,
-  pub key: c_int,
-  pub auto_repeat_mode: c_int,
+    pub key_click_percent: c_int,
+    pub bell_percent: c_int,
+    pub bell_pitch: c_int,
+    pub bell_duration: c_int,
+    pub led: c_int,
+    pub led_mode: c_int,
+    pub key: c_int,
+    pub auto_repeat_mode: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XKeyboardState {
-  pub key_click_percent: c_int,
-  pub bell_percent: c_int,
-  pub bell_pitch: c_uint,
-  pub bell_duration: c_uint,
-  pub led_mask: c_ulong,
-  pub global_auto_repeat: c_int,
-  pub auto_repeats: [c_char; 32],
+    pub key_click_percent: c_int,
+    pub bell_percent: c_int,
+    pub bell_pitch: c_uint,
+    pub bell_duration: c_uint,
+    pub led_mask: c_ulong,
+    pub global_auto_repeat: c_int,
+    pub auto_repeats: [c_char; 32],
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XmbTextItem {
-  pub chars: *mut c_char,
-  pub nchars: c_int,
-  pub delta: c_int,
-  pub font_set: XFontSet,
+    pub chars: *mut c_char,
+    pub nchars: c_int,
+    pub delta: c_int,
+    pub font_set: XFontSet,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XModifierKeymap {
-  pub max_keypermod: c_int,
-  pub modifiermap: *mut KeyCode,
+    pub max_keypermod: c_int,
+    pub modifiermap: *mut KeyCode,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XOMCharSetList {
-  pub charset_count: c_int,
-  pub charset_list: *mut *mut c_char,
+    pub charset_count: c_int,
+    pub charset_list: *mut *mut c_char,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XPixmapFormatValues {
-  pub depth: c_int,
-  pub bits_per_pixel: c_int,
-  pub scanline_pad: c_int,
+    pub depth: c_int,
+    pub bits_per_pixel: c_int,
+    pub scanline_pad: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XPoint {
-  pub x: c_short,
-  pub y: c_short,
+    pub x: c_short,
+    pub y: c_short,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XRectangle {
-  pub x: c_short,
-  pub y: c_short,
-  pub width: c_ushort,
-  pub height: c_ushort,
+    pub x: c_short,
+    pub y: c_short,
+    pub width: c_ushort,
+    pub height: c_ushort,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XrmOptionDescRec {
-  pub option: *mut c_char,
-  pub specifier: *mut c_char,
-  pub argKind: XrmOptionKind,
-  pub value: XPointer,
+    pub option: *mut c_char,
+    pub specifier: *mut c_char,
+    pub argKind: XrmOptionKind,
+    pub value: XPointer,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XrmValue {
-  pub size: c_uint,
-  pub addr: XPointer,
+    pub size: c_uint,
+    pub addr: XPointer,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XSegment {
-  pub x1: c_short,
-  pub y1: c_short,
-  pub x2: c_short,
-  pub y2: c_short,
+    pub x1: c_short,
+    pub y1: c_short,
+    pub x2: c_short,
+    pub y2: c_short,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XSetWindowAttributes {
-  pub background_pixmap: Pixmap,
-  pub background_pixel: c_ulong,
-  pub border_pixmap: Pixmap,
-  pub border_pixel: c_ulong,
-  pub bit_gravity: c_int,
-  pub win_gravity: c_int,
-  pub backing_store: c_int,
-  pub backing_planes: c_ulong,
-  pub backing_pixel: c_ulong,
-  pub save_under: Bool,
-  pub event_mask: c_long,
-  pub do_not_propagate_mask: c_long,
-  pub override_redirect: Bool,
-  pub colormap: Colormap,
-  pub cursor: Cursor,
+    pub background_pixmap: Pixmap,
+    pub background_pixel: c_ulong,
+    pub border_pixmap: Pixmap,
+    pub border_pixel: c_ulong,
+    pub bit_gravity: c_int,
+    pub win_gravity: c_int,
+    pub backing_store: c_int,
+    pub backing_planes: c_ulong,
+    pub backing_pixel: c_ulong,
+    pub save_under: Bool,
+    pub event_mask: c_long,
+    pub do_not_propagate_mask: c_long,
+    pub override_redirect: Bool,
+    pub colormap: Colormap,
+    pub cursor: Cursor,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XSizeHints {
-  pub flags: c_long,
-  pub x: c_int,
-  pub y: c_int,
-  pub width: c_int,
-  pub height: c_int,
-  pub min_width: c_int,
-  pub min_height: c_int,
-  pub max_width: c_int,
-  pub max_height: c_int,
-  pub width_inc: c_int,
-  pub height_inc: c_int,
-  pub min_aspect: AspectRatio,
-  pub max_aspect: AspectRatio,
-  pub base_width: c_int,
-  pub base_height: c_int,
-  pub win_gravity: c_int,
+    pub flags: c_long,
+    pub x: c_int,
+    pub y: c_int,
+    pub width: c_int,
+    pub height: c_int,
+    pub min_width: c_int,
+    pub min_height: c_int,
+    pub max_width: c_int,
+    pub max_height: c_int,
+    pub width_inc: c_int,
+    pub height_inc: c_int,
+    pub min_aspect: AspectRatio,
+    pub max_aspect: AspectRatio,
+    pub base_width: c_int,
+    pub base_height: c_int,
+    pub win_gravity: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XStandardColormap {
-  pub colormap: Colormap,
-  pub red_max: c_ulong,
-  pub red_mult: c_ulong,
-  pub green_max: c_ulong,
-  pub green_mult: c_ulong,
-  pub blue_max: c_ulong,
-  pub blue_mult: c_ulong,
-  pub base_pixel: c_ulong,
-  pub visualid: VisualID,
-  pub killid: XID,
+    pub colormap: Colormap,
+    pub red_max: c_ulong,
+    pub red_mult: c_ulong,
+    pub green_max: c_ulong,
+    pub green_mult: c_ulong,
+    pub blue_max: c_ulong,
+    pub blue_mult: c_ulong,
+    pub base_pixel: c_ulong,
+    pub visualid: VisualID,
+    pub killid: XID,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XTextItem {
-  pub chars: *mut c_char,
-  pub nchars: c_int,
-  pub delta: c_int,
-  pub font: Font,
+    pub chars: *mut c_char,
+    pub nchars: c_int,
+    pub delta: c_int,
+    pub font: Font,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XTextItem16 {
-  pub chars: *mut XChar2b,
-  pub nchars: c_int,
-  pub delta: c_int,
-  pub font: Font,
+    pub chars: *mut XChar2b,
+    pub nchars: c_int,
+    pub delta: c_int,
+    pub font: Font,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XTextProperty {
-  pub value: *mut c_uchar,
-  pub encoding: Atom,
-  pub format: c_int,
-  pub nitems: c_ulong,
+    pub value: *mut c_uchar,
+    pub encoding: Atom,
+    pub format: c_int,
+    pub nitems: c_ulong,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XTimeCoord {
-  pub time: Time,
-  pub x: c_short,
-  pub y: c_short,
+    pub time: Time,
+    pub x: c_short,
+    pub y: c_short,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XVisualInfo {
-  pub visual: *mut Visual,
-  pub visualid: VisualID,
-  pub screen: c_int,
-  pub depth: c_int,
-  pub class: c_int,
-  pub red_mask: c_ulong,
-  pub green_mask: c_ulong,
-  pub blue_mask: c_ulong,
-  pub colormap_size: c_int,
-  pub bits_per_rgb: c_int,
+    pub visual: *mut Visual,
+    pub visualid: VisualID,
+    pub screen: c_int,
+    pub depth: c_int,
+    pub class: c_int,
+    pub red_mask: c_ulong,
+    pub green_mask: c_ulong,
+    pub blue_mask: c_ulong,
+    pub colormap_size: c_int,
+    pub bits_per_rgb: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XwcTextItem {
-  pub chars: *mut wchar_t,
-  pub nchars: c_int,
-  pub delta: c_int,
-  pub font_set: XFontSet,
+    pub chars: *mut wchar_t,
+    pub nchars: c_int,
+    pub delta: c_int,
+    pub font_set: XFontSet,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XWindowAttributes {
-  pub x: c_int,
-  pub y: c_int,
-  pub width: c_int,
-  pub height: c_int,
-  pub border_width: c_int,
-  pub depth: c_int,
-  pub visual: *mut Visual,
-  pub root: Window,
-  pub class: c_int,
-  pub bit_gravity: c_int,
-  pub win_gravity: c_int,
-  pub backing_store: c_int,
-  pub backing_planes: c_ulong,
-  pub backing_pixel: c_ulong,
-  pub save_under: Bool,
-  pub colormap: Colormap,
-  pub map_installed: Bool,
-  pub map_state: c_int,
-  pub all_event_masks: c_long,
-  pub your_event_mask: c_long,
-  pub do_not_propagate_mask: c_long,
-  pub override_redirect: Bool,
-  pub screen: *mut Screen,
+    pub x: c_int,
+    pub y: c_int,
+    pub width: c_int,
+    pub height: c_int,
+    pub border_width: c_int,
+    pub depth: c_int,
+    pub visual: *mut Visual,
+    pub root: Window,
+    pub class: c_int,
+    pub bit_gravity: c_int,
+    pub win_gravity: c_int,
+    pub backing_store: c_int,
+    pub backing_planes: c_ulong,
+    pub backing_pixel: c_ulong,
+    pub save_under: Bool,
+    pub colormap: Colormap,
+    pub map_installed: Bool,
+    pub map_state: c_int,
+    pub all_event_masks: c_long,
+    pub your_event_mask: c_long,
+    pub do_not_propagate_mask: c_long,
+    pub override_redirect: Bool,
+    pub screen: *mut Screen,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XWindowChanges {
-  pub x: c_int,
-  pub y: c_int,
-  pub width: c_int,
-  pub height: c_int,
-  pub border_width: c_int,
-  pub sibling: Window,
-  pub stack_mode: c_int,
+    pub x: c_int,
+    pub y: c_int,
+    pub width: c_int,
+    pub height: c_int,
+    pub border_width: c_int,
+    pub sibling: Window,
+    pub stack_mode: c_int,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XWMHints {
-  pub flags: c_long,
-  pub input: Bool,
-  pub initial_state: c_int,
-  pub icon_pixmap: Pixmap,
-  pub icon_window: Window,
-  pub icon_x: c_int,
-  pub icon_y: c_int,
-  pub icon_mask: Pixmap,
-  pub window_group: XID,
+    pub flags: c_long,
+    pub input: Bool,
+    pub initial_state: c_int,
+    pub icon_pixmap: Pixmap,
+    pub icon_window: Window,
+    pub icon_x: c_int,
+    pub icon_y: c_int,
+    pub icon_mask: Pixmap,
+    pub window_group: XID,
 }
 
 #[repr(C)]
@@ -2556,17 +2601,17 @@ pub struct XIMPreeditCaretCallbackStruct {
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub union XIMTextString {
-  pub multi_byte: *mut c_char,
-  pub wide_char: wchar_t,
+    pub multi_byte: *mut c_char,
+    pub wide_char: wchar_t,
 }
 
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct XIMText {
-  pub length: c_ushort,
-  pub feedback: *mut XIMFeedback,
-  pub encoding_is_wchar: Bool,
-  pub string: XIMTextString,
+    pub length: c_ushort,
+    pub feedback: *mut XIMFeedback,
+    pub encoding_is_wchar: Bool,
+    pub string: XIMTextString,
 }
 
 #[repr(C)]
@@ -2579,72 +2624,71 @@ pub struct XICCallback {
 // anonymous structures
 //
 
-
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct AspectRatio {
-  pub x: c_int,
-  pub y: c_int,
+    pub x: c_int,
+    pub y: c_int,
 }
 
 #[derive(Debug, Clone, Copy, Default, PartialEq)]
 #[repr(C)]
 pub struct ClientMessageData {
-  longs: [c_long; 5],
+    longs: [c_long; 5],
 }
 
 impl ClientMessageData {
-  pub fn as_bytes (&self) -> &[c_char] {
-    self.as_ref()
-  }
+    pub fn as_bytes(&self) -> &[c_char] {
+        self.as_ref()
+    }
 
-  pub fn as_bytes_mut (&mut self) -> &mut [c_char] {
-    self.as_mut()
-  }
+    pub fn as_bytes_mut(&mut self) -> &mut [c_char] {
+        self.as_mut()
+    }
 
-  pub fn as_longs (&self) -> &[c_long] {
-    self.as_ref()
-  }
+    pub fn as_longs(&self) -> &[c_long] {
+        self.as_ref()
+    }
 
-  pub fn as_longs_mut (&mut self) -> &mut [c_long] {
-    self.as_mut()
-  }
+    pub fn as_longs_mut(&mut self) -> &mut [c_long] {
+        self.as_mut()
+    }
 
-  pub fn as_shorts (&self) -> &[c_short] {
-    self.as_ref()
-  }
+    pub fn as_shorts(&self) -> &[c_short] {
+        self.as_ref()
+    }
 
-  pub fn as_shorts_mut (&mut self) -> &mut [c_short] {
-    self.as_mut()
-  }
+    pub fn as_shorts_mut(&mut self) -> &mut [c_short] {
+        self.as_mut()
+    }
 
-  pub fn get_byte (&self, index: usize) -> c_char {
-    self.as_bytes()[index]
-  }
+    pub fn get_byte(&self, index: usize) -> c_char {
+        self.as_bytes()[index]
+    }
 
-  pub fn get_long (&self, index: usize) -> c_long {
-    self.longs[index]
-  }
+    pub fn get_long(&self, index: usize) -> c_long {
+        self.longs[index]
+    }
 
-  pub fn get_short (&self, index: usize) -> c_short {
-    self.as_shorts()[index]
-  }
+    pub fn get_short(&self, index: usize) -> c_short {
+        self.as_shorts()[index]
+    }
 
-  pub fn new() -> ClientMessageData {
-    ClientMessageData { longs: [0; 5] }
-  }
+    pub fn new() -> ClientMessageData {
+        ClientMessageData { longs: [0; 5] }
+    }
 
-  pub fn set_byte (&mut self, index: usize, value: c_char) {
-    self.as_bytes_mut()[index] = value;
-  }
+    pub fn set_byte(&mut self, index: usize, value: c_char) {
+        self.as_bytes_mut()[index] = value;
+    }
 
-  pub fn set_long (&mut self, index: usize, value: c_long) {
-    self.longs[index] = value;
-  }
+    pub fn set_long(&mut self, index: usize, value: c_long) {
+        self.longs[index] = value;
+    }
 
-  pub fn set_short (&mut self, index: usize, value: c_short) {
-    self.as_shorts_mut()[index] = value;
-  }
+    pub fn set_short(&mut self, index: usize, value: c_short) {
+        self.as_shorts_mut()[index] = value;
+    }
 }
 
 macro_rules! client_message_data_conversions {
@@ -2681,39 +2725,51 @@ client_message_data_conversions! {
 }
 
 #[test]
-fn client_message_size_test () {
-  assert!(::std::mem::size_of::<ClientMessageData>() >= ::std::mem::size_of::<[c_char; 20]>());
-  assert!(::std::mem::size_of::<ClientMessageData>() >= ::std::mem::size_of::<[c_short; 10]>());
+fn client_message_size_test() {
+    assert!(::std::mem::size_of::<ClientMessageData>() >= ::std::mem::size_of::<[c_char; 20]>());
+    assert!(::std::mem::size_of::<ClientMessageData>() >= ::std::mem::size_of::<[c_short; 10]>());
 }
 
 #[derive(Debug, Copy)]
 #[repr(C)]
 pub struct ImageFns {
-  pub create_image: Option<unsafe extern "C" fn (*mut Display, *mut Visual, c_uint, c_int, c_int, *mut c_char, c_uint, c_uint, c_int, c_int) -> *mut XImage>,
-  pub destroy_image: Option<unsafe extern "C" fn (*mut XImage) -> c_int>,
-  pub get_pixel: Option<unsafe extern "C" fn (*mut XImage, c_int, c_int) -> c_ulong>,
-  pub put_pixel: Option<unsafe extern "C" fn (*mut XImage, c_int, c_int, c_ulong) -> c_int>,
-  pub sub_image: Option<unsafe extern "C" fn (*mut XImage, c_int, c_int, c_uint, c_uint) -> *mut XImage>,
-  pub add_pixel: Option<unsafe extern "C" fn (*mut XImage, c_long) -> c_int>,
+    pub create_image: Option<
+        unsafe extern "C" fn(
+            *mut Display,
+            *mut Visual,
+            c_uint,
+            c_int,
+            c_int,
+            *mut c_char,
+            c_uint,
+            c_uint,
+            c_int,
+            c_int,
+        ) -> *mut XImage,
+    >,
+    pub destroy_image: Option<unsafe extern "C" fn(*mut XImage) -> c_int>,
+    pub get_pixel: Option<unsafe extern "C" fn(*mut XImage, c_int, c_int) -> c_ulong>,
+    pub put_pixel: Option<unsafe extern "C" fn(*mut XImage, c_int, c_int, c_ulong) -> c_int>,
+    pub sub_image:
+        Option<unsafe extern "C" fn(*mut XImage, c_int, c_int, c_uint, c_uint) -> *mut XImage>,
+    pub add_pixel: Option<unsafe extern "C" fn(*mut XImage, c_long) -> c_int>,
 }
 
 impl Clone for ImageFns {
-  fn clone (&self) -> ImageFns {
-    *self
-  }
+    fn clone(&self) -> ImageFns {
+        *self
+    }
 }
 
 impl PartialEq for ImageFns {
-  fn eq (&self, rhs: &ImageFns) -> bool {
-    unsafe { mem_eq(self, rhs) }
-  }
+    fn eq(&self, rhs: &ImageFns) -> bool {
+        unsafe { mem_eq(self, rhs) }
+    }
 }
-
 
 //
 // constants
 //
-
 
 // allocate colormap
 pub const AllocNone: c_int = 0;
@@ -2913,12 +2969,12 @@ pub const Mod4MapIndex: c_int = 6;
 pub const Mod5MapIndex: c_int = 7;
 
 // button masks
-pub const Button1Mask: c_uint = (1<<8);
-pub const Button2Mask: c_uint = (1<<9);
-pub const Button3Mask: c_uint = (1<<10);
-pub const Button4Mask: c_uint = (1<<11);
-pub const Button5Mask: c_uint = (1<<12);
-pub const AnyModifier: c_uint = (1<<15);
+pub const Button1Mask: c_uint = 1 << 8;
+pub const Button2Mask: c_uint = 1 << 9;
+pub const Button3Mask: c_uint = 1 << 10;
+pub const Button4Mask: c_uint = 1 << 11;
+pub const Button5Mask: c_uint = 1 << 12;
+pub const AnyModifier: c_uint = 1 << 15;
 
 // Notify modes
 pub const NotifyNormal: c_int = 0;
@@ -2990,15 +3046,14 @@ pub const RevertToNone: c_int = 0;
 pub const RevertToPointerRoot: c_int = 1;
 pub const RevertToParent: c_int = 2;
 
-
 // ConfigureWindow structure
-pub const CWX: c_ushort = (1<<0);
-pub const CWY: c_ushort = (1<<1);
-pub const CWWidth: c_ushort = (1<<2);
-pub const CWHeight: c_ushort = (1<<3);
-pub const CWBorderWidth: c_ushort = (1<<4);
-pub const CWSibling: c_ushort = (1<<5);
-pub const CWStackMode: c_ushort = (1<<6);
+pub const CWX: c_ushort = 1 << 0;
+pub const CWY: c_ushort = 1 << 1;
+pub const CWWidth: c_ushort = 1 << 2;
+pub const CWHeight: c_ushort = 1 << 3;
+pub const CWBorderWidth: c_ushort = 1 << 4;
+pub const CWSibling: c_ushort = 1 << 5;
+pub const CWStackMode: c_ushort = 1 << 6;
 
 // gravity
 pub const ForgetGravity: c_int = 0;
@@ -3141,29 +3196,29 @@ pub const ArcChord: c_int = 0;
 pub const ArcPieSlice: c_int = 1;
 
 // GC components
-pub const GCFunction: c_uint = (1<<0);
-pub const GCPlaneMask: c_uint = (1<<1);
-pub const GCForeground: c_uint = (1<<2);
-pub const GCBackground: c_uint = (1<<3);
-pub const GCLineWidth: c_uint = (1<<4);
-pub const GCLineStyle: c_uint = (1<<5);
-pub const GCCapStyle: c_uint = (1<<6);
-pub const GCJoinStyle: c_uint = (1<<7);
-pub const GCFillStyle: c_uint = (1<<8);
-pub const GCFillRule: c_uint = (1<<9);
-pub const GCTile: c_uint = (1<<10);
-pub const GCStipple: c_uint = (1<<11);
-pub const GCTileStipXOrigin: c_uint = (1<<12);
-pub const GCTileStipYOrigin: c_uint = (1<<13);
-pub const GCFont : c_uint = (1<<14);
-pub const GCSubwindowMode: c_uint = (1<<15);
-pub const GCGraphicsExposures: c_uint = (1<<16);
-pub const GCClipXOrigin: c_uint = (1<<17);
-pub const GCClipYOrigin: c_uint = (1<<18);
-pub const GCClipMask: c_uint = (1<<19);
-pub const GCDashOffset: c_uint = (1<<20);
-pub const GCDashList: c_uint = (1<<21);
-pub const GCArcMode: c_uint = (1<<22);
+pub const GCFunction: c_uint = 1 << 0;
+pub const GCPlaneMask: c_uint = 1 << 1;
+pub const GCForeground: c_uint = 1 << 2;
+pub const GCBackground: c_uint = 1 << 3;
+pub const GCLineWidth: c_uint = 1 << 4;
+pub const GCLineStyle: c_uint = 1 << 5;
+pub const GCCapStyle: c_uint = 1 << 6;
+pub const GCJoinStyle: c_uint = 1 << 7;
+pub const GCFillStyle: c_uint = 1 << 8;
+pub const GCFillRule: c_uint = 1 << 9;
+pub const GCTile: c_uint = 1 << 10;
+pub const GCStipple: c_uint = 1 << 11;
+pub const GCTileStipXOrigin: c_uint = 1 << 12;
+pub const GCTileStipYOrigin: c_uint = 1 << 13;
+pub const GCFont: c_uint = 1 << 14;
+pub const GCSubwindowMode: c_uint = 1 << 15;
+pub const GCGraphicsExposures: c_uint = 1 << 16;
+pub const GCClipXOrigin: c_uint = 1 << 17;
+pub const GCClipYOrigin: c_uint = 1 << 18;
+pub const GCClipMask: c_uint = 1 << 19;
+pub const GCDashOffset: c_uint = 1 << 20;
+pub const GCDashList: c_uint = 1 << 21;
+pub const GCArcMode: c_uint = 1 << 22;
 
 pub const GCLastBit: c_uint = 22;
 
@@ -3187,14 +3242,14 @@ pub const LedModeOff: c_int = 0;
 pub const LedModeOn: c_int = 1;
 
 // masks for ChangeKeyboardControl
-pub const KBKeyClickPercent: c_ulong = (1<<0);
-pub const KBBellPercent: c_ulong = (1<<1);
-pub const KBBellPitch: c_ulong = (1<<2);
-pub const KBBellDuration: c_ulong = (1<<3);
-pub const KBLed: c_ulong = (1<<4);
-pub const KBLedMode: c_ulong = (1<<5);
-pub const KBKey: c_ulong = (1<<6);
-pub const KBAutoRepeatMode: c_ulong = (1<<7);
+pub const KBKeyClickPercent: c_ulong = 1 << 0;
+pub const KBBellPercent: c_ulong = 1 << 1;
+pub const KBBellPitch: c_ulong = 1 << 2;
+pub const KBBellDuration: c_ulong = 1 << 3;
+pub const KBLed: c_ulong = 1 << 4;
+pub const KBLedMode: c_ulong = 1 << 5;
+pub const KBKey: c_ulong = 1 << 6;
+pub const KBAutoRepeatMode: c_ulong = 1 << 7;
 
 pub const MappingSuccess: c_uchar = 0;
 pub const MappingBusy: c_uchar = 1;
@@ -3301,93 +3356,93 @@ pub const NoSymbol: c_int = 0;
 pub const X_PROTOCOL: c_int = 11;
 pub const X_PROTOCOL_REVISION: c_int = 0;
 
-pub const XNVaNestedList: &'static str = "XNVaNestedList";
-pub const XNQueryInputStyle: &'static str = "queryInputStyle";
-pub const XNClientWindow: &'static str = "clientWindow";
-pub const XNInputStyle: &'static str = "inputStyle";
-pub const XNFocusWindow: &'static str = "focusWindow";
-pub const XNResourceName: &'static str = "resourceName";
-pub const XNResourceClass: &'static str = "resourceClass";
-pub const XNGeometryCallback: &'static str = "geometryCallback";
-pub const XNDestroyCallback: &'static str = "destroyCallback";
-pub const XNFilterEvents: &'static str = "filterEvents";
-pub const XNPreeditStartCallback: &'static str = "preeditStartCallback";
-pub const XNPreeditDoneCallback: &'static str = "preeditDoneCallback";
-pub const XNPreeditDrawCallback: &'static str = "preeditDrawCallback";
-pub const XNPreeditCaretCallback: &'static str = "preeditCaretCallback";
-pub const XNPreeditStateNotifyCallback: &'static str = "preeditStateNotifyCallback";
-pub const XNPreeditAttributes: &'static str = "preeditAttributes";
-pub const XNStatusStartCallback: &'static str = "statusStartCallback";
-pub const XNStatusDoneCallback: &'static str = "statusDoneCallback";
-pub const XNStatusDrawCallback: &'static str = "statusDrawCallback";
-pub const XNStatusAttributes: &'static str = "statusAttributes";
-pub const XNArea: &'static str = "area";
-pub const XNAreaNeeded: &'static str = "areaNeeded";
-pub const XNSpotLocation: &'static str = "spotLocation";
-pub const XNColormap: &'static str = "colorMap";
-pub const XNStdColormap: &'static str = "stdColorMap";
-pub const XNForeground: &'static str = "foreground";
-pub const XNBackground: &'static str = "background";
-pub const XNBackgroundPixmap: &'static str = "backgroundPixmap";
-pub const XNFontSet: &'static str = "fontSet";
-pub const XNLineSpace: &'static str = "lineSpace";
-pub const XNCursor: &'static str = "cursor";
+pub const XNVaNestedList: &str = "XNVaNestedList";
+pub const XNQueryInputStyle: &str = "queryInputStyle";
+pub const XNClientWindow: &str = "clientWindow";
+pub const XNInputStyle: &str = "inputStyle";
+pub const XNFocusWindow: &str = "focusWindow";
+pub const XNResourceName: &str = "resourceName";
+pub const XNResourceClass: &str = "resourceClass";
+pub const XNGeometryCallback: &str = "geometryCallback";
+pub const XNDestroyCallback: &str = "destroyCallback";
+pub const XNFilterEvents: &str = "filterEvents";
+pub const XNPreeditStartCallback: &str = "preeditStartCallback";
+pub const XNPreeditDoneCallback: &str = "preeditDoneCallback";
+pub const XNPreeditDrawCallback: &str = "preeditDrawCallback";
+pub const XNPreeditCaretCallback: &str = "preeditCaretCallback";
+pub const XNPreeditStateNotifyCallback: &str = "preeditStateNotifyCallback";
+pub const XNPreeditAttributes: &str = "preeditAttributes";
+pub const XNStatusStartCallback: &str = "statusStartCallback";
+pub const XNStatusDoneCallback: &str = "statusDoneCallback";
+pub const XNStatusDrawCallback: &str = "statusDrawCallback";
+pub const XNStatusAttributes: &str = "statusAttributes";
+pub const XNArea: &str = "area";
+pub const XNAreaNeeded: &str = "areaNeeded";
+pub const XNSpotLocation: &str = "spotLocation";
+pub const XNColormap: &str = "colorMap";
+pub const XNStdColormap: &str = "stdColorMap";
+pub const XNForeground: &str = "foreground";
+pub const XNBackground: &str = "background";
+pub const XNBackgroundPixmap: &str = "backgroundPixmap";
+pub const XNFontSet: &str = "fontSet";
+pub const XNLineSpace: &str = "lineSpace";
+pub const XNCursor: &str = "cursor";
 
-pub const XNVaNestedList_0: &'static [u8] = b"XNVaNestedList\0";
-pub const XNQueryInputStyle_0: &'static [u8] = b"queryInputStyle\0";
-pub const XNClientWindow_0: &'static [u8] = b"clientWindow\0";
-pub const XNInputStyle_0: &'static [u8] = b"inputStyle\0";
-pub const XNFocusWindow_0: &'static [u8] = b"focusWindow\0";
-pub const XNResourceName_0: &'static [u8] = b"resourceName\0";
-pub const XNResourceClass_0: &'static [u8] = b"resourceClass\0";
-pub const XNGeometryCallback_0: &'static [u8] = b"geometryCallback\0";
-pub const XNDestroyCallback_0: &'static [u8] = b"destroyCallback\0";
-pub const XNFilterEvents_0: &'static [u8] = b"filterEvents\0";
-pub const XNPreeditStartCallback_0: &'static [u8] = b"preeditStartCallback\0";
-pub const XNPreeditDoneCallback_0: &'static [u8] = b"preeditDoneCallback\0";
-pub const XNPreeditDrawCallback_0: &'static [u8] = b"preeditDrawCallback\0";
-pub const XNPreeditCaretCallback_0: &'static [u8] = b"preeditCaretCallback\0";
-pub const XNPreeditStateNotifyCallback_0: &'static [u8] = b"preeditStateNotifyCallback\0";
-pub const XNPreeditAttributes_0: &'static [u8] = b"preeditAttributes\0";
-pub const XNStatusStartCallback_0: &'static [u8] = b"statusStartCallback\0";
-pub const XNStatusDoneCallback_0: &'static [u8] = b"statusDoneCallback\0";
-pub const XNStatusDrawCallback_0: &'static [u8] = b"statusDrawCallback\0";
-pub const XNStatusAttributes_0: &'static [u8] = b"statusAttributes\0";
-pub const XNArea_0: &'static [u8] = b"area\0";
-pub const XNAreaNeeded_0: &'static [u8] = b"areaNeeded\0";
-pub const XNSpotLocation_0: &'static [u8] = b"spotLocation\0";
-pub const XNColormap_0: &'static [u8] = b"colorMap\0";
-pub const XNStdColormap_0: &'static [u8] = b"stdColorMap\0";
-pub const XNForeground_0: &'static [u8] = b"foreground\0";
-pub const XNBackground_0: &'static [u8] = b"background\0";
-pub const XNBackgroundPixmap_0: &'static [u8] = b"backgroundPixmap\0";
-pub const XNFontSet_0: &'static [u8] = b"fontSet\0";
-pub const XNLineSpace_0: &'static [u8] = b"lineSpace\0";
-pub const XNCursor_0: &'static [u8] = b"cursor\0";
+pub const XNVaNestedList_0: &[u8] = b"XNVaNestedList\0";
+pub const XNQueryInputStyle_0: &[u8] = b"queryInputStyle\0";
+pub const XNClientWindow_0: &[u8] = b"clientWindow\0";
+pub const XNInputStyle_0: &[u8] = b"inputStyle\0";
+pub const XNFocusWindow_0: &[u8] = b"focusWindow\0";
+pub const XNResourceName_0: &[u8] = b"resourceName\0";
+pub const XNResourceClass_0: &[u8] = b"resourceClass\0";
+pub const XNGeometryCallback_0: &[u8] = b"geometryCallback\0";
+pub const XNDestroyCallback_0: &[u8] = b"destroyCallback\0";
+pub const XNFilterEvents_0: &[u8] = b"filterEvents\0";
+pub const XNPreeditStartCallback_0: &[u8] = b"preeditStartCallback\0";
+pub const XNPreeditDoneCallback_0: &[u8] = b"preeditDoneCallback\0";
+pub const XNPreeditDrawCallback_0: &[u8] = b"preeditDrawCallback\0";
+pub const XNPreeditCaretCallback_0: &[u8] = b"preeditCaretCallback\0";
+pub const XNPreeditStateNotifyCallback_0: &[u8] = b"preeditStateNotifyCallback\0";
+pub const XNPreeditAttributes_0: &[u8] = b"preeditAttributes\0";
+pub const XNStatusStartCallback_0: &[u8] = b"statusStartCallback\0";
+pub const XNStatusDoneCallback_0: &[u8] = b"statusDoneCallback\0";
+pub const XNStatusDrawCallback_0: &[u8] = b"statusDrawCallback\0";
+pub const XNStatusAttributes_0: &[u8] = b"statusAttributes\0";
+pub const XNArea_0: &[u8] = b"area\0";
+pub const XNAreaNeeded_0: &[u8] = b"areaNeeded\0";
+pub const XNSpotLocation_0: &[u8] = b"spotLocation\0";
+pub const XNColormap_0: &[u8] = b"colorMap\0";
+pub const XNStdColormap_0: &[u8] = b"stdColorMap\0";
+pub const XNForeground_0: &[u8] = b"foreground\0";
+pub const XNBackground_0: &[u8] = b"background\0";
+pub const XNBackgroundPixmap_0: &[u8] = b"backgroundPixmap\0";
+pub const XNFontSet_0: &[u8] = b"fontSet\0";
+pub const XNLineSpace_0: &[u8] = b"lineSpace\0";
+pub const XNCursor_0: &[u8] = b"cursor\0";
 
-pub const XNQueryIMValuesList: &'static str = "queryIMValuesList";
-pub const XNQueryICValuesList: &'static str = "queryICValuesList";
-pub const XNVisiblePosition: &'static str = "visiblePosition";
-pub const XNR6PreeditCallback: &'static str = "r6PreeditCallback";
-pub const XNStringConversionCallback: &'static str = "stringConversionCallback";
-pub const XNStringConversion: &'static str = "stringConversion";
-pub const XNResetState: &'static str = "resetState";
-pub const XNHotKey: &'static str = "hotKey";
-pub const XNHotKeyState: &'static str = "hotKeyState";
-pub const XNPreeditState: &'static str = "preeditState";
-pub const XNSeparatorofNestedList: &'static str = "separatorofNestedList";
+pub const XNQueryIMValuesList: &str = "queryIMValuesList";
+pub const XNQueryICValuesList: &str = "queryICValuesList";
+pub const XNVisiblePosition: &str = "visiblePosition";
+pub const XNR6PreeditCallback: &str = "r6PreeditCallback";
+pub const XNStringConversionCallback: &str = "stringConversionCallback";
+pub const XNStringConversion: &str = "stringConversion";
+pub const XNResetState: &str = "resetState";
+pub const XNHotKey: &str = "hotKey";
+pub const XNHotKeyState: &str = "hotKeyState";
+pub const XNPreeditState: &str = "preeditState";
+pub const XNSeparatorofNestedList: &str = "separatorofNestedList";
 
-pub const XNQueryIMValuesList_0: &'static [u8] = b"queryIMValuesList\0";
-pub const XNQueryICValuesList_0: &'static [u8] = b"queryICValuesList\0";
-pub const XNVisiblePosition_0: &'static [u8] = b"visiblePosition\0";
-pub const XNR6PreeditCallback_0: &'static [u8] = b"r6PreeditCallback\0";
-pub const XNStringConversionCallback_0: &'static [u8] = b"stringConversionCallback\0";
-pub const XNStringConversion_0: &'static [u8] = b"stringConversion\0";
-pub const XNResetState_0: &'static [u8] = b"resetState\0";
-pub const XNHotKey_0: &'static [u8] = b"hotKey\0";
-pub const XNHotKeyState_0: &'static [u8] = b"hotKeyState\0";
-pub const XNPreeditState_0: &'static [u8] = b"preeditState\0";
-pub const XNSeparatorofNestedList_0: &'static [u8] = b"separatorofNestedList\0";
+pub const XNQueryIMValuesList_0: &[u8] = b"queryIMValuesList\0";
+pub const XNQueryICValuesList_0: &[u8] = b"queryICValuesList\0";
+pub const XNVisiblePosition_0: &[u8] = b"visiblePosition\0";
+pub const XNR6PreeditCallback_0: &[u8] = b"r6PreeditCallback\0";
+pub const XNStringConversionCallback_0: &[u8] = b"stringConversionCallback\0";
+pub const XNStringConversion_0: &[u8] = b"stringConversion\0";
+pub const XNResetState_0: &[u8] = b"resetState\0";
+pub const XNHotKey_0: &[u8] = b"hotKey\0";
+pub const XNHotKeyState_0: &[u8] = b"hotKeyState\0";
+pub const XNPreeditState_0: &[u8] = b"preeditState\0";
+pub const XNSeparatorofNestedList_0: &[u8] = b"separatorofNestedList\0";
 
 pub const XBufferOverflow: i32 = -1;
 pub const XLookupNone: i32 = 1;
@@ -3443,6 +3498,22 @@ pub const XkbAccessXNotifyMask: c_ulong = 1 << 10;
 pub const XkbExtensionDeviceNotifyMask: c_ulong = 1 << 11;
 pub const XkbAllEventsMask: c_ulong = 0xfff;
 
+pub const XkbModifierStateMask: c_ulong = 1 << 0;
+pub const XkbModifierBaseMask: c_ulong = 1 << 1;
+pub const XkbModifierLatchMask: c_ulong = 1 << 2;
+pub const XkbModifierLockMask: c_ulong = 1 << 3;
+pub const XkbGroupStateMask: c_ulong = 1 << 4;
+pub const XkbGroupBaseMask: c_ulong = 1 << 5;
+pub const XkbGroupLatchMask: c_ulong = 1 << 6;
+pub const XkbGroupLockMask: c_ulong = 1 << 7;
+pub const XkbCompatStateMask: c_ulong = 1 << 8;
+pub const XkbGrabModsMask: c_ulong = 1 << 9;
+pub const XkbCompatGrabModsMask: c_ulong = 1 << 10;
+pub const XkbLookupModsMask: c_ulong = 1 << 11;
+pub const XkbCompatLookupModsMask: c_ulong = 1 << 12;
+pub const XkbPointerButtonMask: c_ulong = 1 << 13;
+pub const XkbAllStateComponentsMask: c_ulong = 0x3fff;
+
 // Bitmask returned by XParseGeometry
 pub const NoValue: c_int = 0x0000;
 pub const XValue: c_int = 0x0001;
@@ -3461,7 +3532,13 @@ pub const IconWindowHint: c_long = 1 << 3;
 pub const IconPositionHint: c_long = 1 << 4;
 pub const IconMaskHint: c_long = 1 << 5;
 pub const WindowGroupHint: c_long = 1 << 6;
-pub const AllHints: c_long = InputHint | StateHint | IconPixmapHint | IconWindowHint | IconPositionHint | IconMaskHint | WindowGroupHint;
+pub const AllHints: c_long = InputHint
+    | StateHint
+    | IconPixmapHint
+    | IconWindowHint
+    | IconPositionHint
+    | IconMaskHint
+    | WindowGroupHint;
 pub const XUrgencyHint: c_long = 1 << 8;
 
 // XICCEncodingStyle
@@ -3471,12 +3548,12 @@ pub const XTextStyle: c_int = 2;
 pub const XStdICCTextStyle: c_int = 3;
 pub const XUTF8StringStyle: c_int = 4;
 
-
 //
 // inline functions
 //
 
-
 #[cfg(feature = "xlib")]
 #[inline]
-pub unsafe fn XUniqueContext () -> XContext { XrmUniqueQuark() }
+pub unsafe fn XUniqueContext() -> XContext {
+    XrmUniqueQuark()
+}
