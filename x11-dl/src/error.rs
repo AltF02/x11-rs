@@ -26,10 +26,7 @@ impl OpenError {
     }
 
     pub fn new(kind: OpenErrorKind, detail: String) -> OpenError {
-        OpenError {
-            kind,
-            detail,
-        }
+        OpenError { kind, detail }
     }
 }
 

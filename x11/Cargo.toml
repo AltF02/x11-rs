@@ -15,6 +15,24 @@ workspace = ".."
 edition = "2018"
 
 [features]
+all = ["dpms", 
+        "glx", 
+        "xcursor", 
+        "xf86vmode", 
+        "xft", 
+        "xinerama", 
+        "xinput", 
+        "xlib", 
+        "xlib_xcb", 
+        "xmu", 
+        "xrandr", 
+        "xrecord",
+        "xrender", 
+        "xss", 
+        "xt", 
+        "xtest", 
+        "xtst", 
+        "dox"]
 dpms = []
 glx = []
 xcursor = []
