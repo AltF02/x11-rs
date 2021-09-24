@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - _XkbControls struct
 - _XkbMods struct
 - XkbStateRec type
+- PictStandardARGB32 const
+- PictStandardRGB24 const
+- PictStandardA8 const
+- PictStandardA4 const
+- PictStandardA1 const
 - All feature
 
 ### Fixed
