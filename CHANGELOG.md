@@ -11,6 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - _XkbControls struct
 - _XkbMods struct
 - XkbStateRec type
+- XShmQueryExtension function
+- XShmGetEventBase function
+- XshmQueryVersion function
+- XShmPixmapFormat function
+- XShmAttach function
+- XShmDetach function
+- XShmPutImage function
+- XShmGetImage function
+- XShmCreateImage function
+- XShmCreatePixMap function
+- ShmSeg type
+- XShmCompletionEvent struct
+- XshmSegmentInfo struct
 - All feature
 
 ### Fixed
