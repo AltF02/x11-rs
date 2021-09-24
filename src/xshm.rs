@@ -1,4 +1,4 @@
-use super::xlib::{Bool, Display, Drawable, XImage, GC, Visual, Pixmap};
+use super::xlib::{Bool, Display, Drawable, Pixmap, Visual, XImage, GC};
 use std::os::raw::{c_char, c_int, c_uint, c_ulong};
 
 x11_link! { Xext, xext, ["libXext.so.6", "libXext.so"], 10,
