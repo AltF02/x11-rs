@@ -16,6 +16,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PictStandardA8 const
 - PictStandardA4 const
 - PictStandardA1 const
+- XShmQueryExtension function
+- XShmGetEventBase function
+- XshmQueryVersion function
+- XShmPixmapFormat function
+- XShmAttach function
+- XShmDetach function
+- XShmPutImage function
+- XShmGetImage function
+- XShmCreateImage function
+- XShmCreatePixMap function
+- ShmSeg type
+- XShmCompletionEvent struct
+- XshmSegmentInfo struct
 - All feature
 
 ### Fixed
