@@ -19,4 +19,4 @@ lazy_static = "1"
 libc = "0.2"
 
 [build-dependencies]
-pkg-config = "0.3.8"
+pkg-config = "0.3.19"
