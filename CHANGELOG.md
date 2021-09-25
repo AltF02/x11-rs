@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.19.1] - 2021-09-25
 ### Added
 - This changelog
 - _XkbControls struct
@@ -34,4 +35,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Field order in [_XkbStateRec](https://github.com/freedesktop/xorg-xserver/blob/master/include/xkbstr.h#L47) struct
 
-[Unreleased]: ../../compare/v2.19.0...HEAD
+[Unreleased]: ../../compare/v2.19.1...HEAD
+[2.19.1]: ../../compare/v2.19.0...v2.19.1
