@@ -391,6 +391,12 @@ pub const PictOpHSLColor: c_int = 0x3d;
 pub const PictOpHSLLuminosity: c_int = 0x3e;
 pub const PictOpBlendMaximum: c_int = 0x3e;
 
+pub const PictStandardARGB32: c_int = 0;
+pub const PictStandardRGB24: c_int = 0;
+pub const PictStandardA8: c_int = 2;
+pub const PictStandardA4: c_int = 3;
+pub const PictStandardA1: c_int = 4;
+
 // poly edge types
 pub const PolyEdgeSharp: c_int = 0;
 pub const PolyEdgeSmooth: c_int = 1;
