@@ -4,7 +4,7 @@ use std::os::raw::{c_char, c_int, c_uint, c_ulong};
 x11_link! { Xext, xext, ["libXext.so.6", "libXext.so"], 10,
     pub fn XShmQueryExtension(_1: *mut Display) -> Bool,
     pub fn XShmGetEventBase(_1: *mut Display) -> c_int,
-    pub fn XshmQueryVersion(_4: *mut Display, _3: *mut c_int, _2: *mut c_int, _1: *mut Bool) -> Bool,
+    pub fn XShmQueryVersion(_4: *mut Display, _3: *mut c_int, _2: *mut c_int, _1: *mut Bool) -> Bool,
     pub fn XShmPixmapFormat(_1: *mut Display) -> c_int,
     pub fn XShmAttach(_2: *mut Display, _1: *mut XshmSegmentInfo) -> Bool,
     pub fn XShmDetach(_2: *mut Display, _1: *mut XshmSegmentInfo) -> Bool,
@@ -37,7 +37,7 @@ pub struct XShmCompletionEvent {
 #[repr(C)]
 pub struct XshmSegmentInfo {
     shmseg: ShmSeg,
-    smid: c_int,
+    shmid: c_int,
     shmaddr: *mut c_char,
     readOnly: Bool,
 }
