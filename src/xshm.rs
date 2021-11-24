@@ -35,9 +35,9 @@ pub struct XShmCompletionEvent {
 
 #[derive(Copy, Clone, Debug, PartialEq)]
 #[repr(C)]
-pub struct XshmSegmentInfo {
-    shmseg: ShmSeg,
-    shmid: c_int,
-    shmaddr: *mut c_char,
-    readOnly: Bool,
+pub struct XShmSegmentInfo {
+    pub shmseg: ShmSeg,
+    pub shmid: c_int,
+    pub shmaddr: *mut c_char,
+    pub readOnly: Bool,
 }
