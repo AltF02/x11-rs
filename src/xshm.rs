@@ -23,23 +23,23 @@ pub type ShmSeg = c_ulong;
 #[repr(C)]
 pub struct XShmCompletionEvent {
     /// of event
-    _type: c_int,
+    pub _type: c_int,
     /// # of last request processed by server
-    serial: c_uint,
+    pub serial: c_uint,
     /// true if this came from a SendEvent request
-    send_event: Bool,
+    pub send_event: Bool,
     /// Display the event was read from
-    diplay: *mut Display,
+    pub diplay: *mut Display,
     /// drawable of request
-    drawable: *mut Drawable,
+    pub drawable: *mut Drawable,
     /// ShmReqCode
-    major_code: c_int,
+    pub major_code: c_int,
     /// X_ShmPutImage
-    minor_code: c_int,
+    pub minor_code: c_int,
     /// the ShmSeg used in the request
-    shmseg: ShmSeg,
+    pub shmseg: ShmSeg,
     /// the offset into ShmSeg used in the request
-    offset: c_ulong,
+    pub offset: c_ulong,
 }
 
 #[derive(Copy, Clone, Debug, PartialEq)]
