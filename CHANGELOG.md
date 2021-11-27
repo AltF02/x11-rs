@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
-Updated pkg-config to 0.3.19
+- Updated pkg-config to 0.3.19
+- Correct typos in xshm module
+- Make members of xshm-structs public
 
 ## [2.19.1] - 2021-09-25
 ### Added
