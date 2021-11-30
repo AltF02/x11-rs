@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated pkg-config to 0.3.19
 - Correct typos in xshm module
 - Make members of xshm-structs public
+- Update crate to rust 2021
 
 ## [2.19.1] - 2021-09-25
 ### Added
