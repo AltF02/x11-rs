@@ -2249,6 +2249,15 @@ pub struct XHostAddress {
     pub address: *mut c_char,
 }
 
+#[repr(C)]
+#[derive(Debug, Copy, Clone, PartialEq)]
+pub struct XServerInterpretedAddress {
+    pub typelength: c_int,
+    pub valuelength: c_int,
+    pub type_: *mut c_char,
+    pub value: *mut c_char,
+}
+
 #[derive(Debug, Clone, Copy, PartialEq)]
 #[repr(C)]
 pub struct XIconSize {
