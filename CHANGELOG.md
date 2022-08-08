@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - XServerInterpretedAddress struct
+- xpresent module
+- sync module
 
 ### Changed
 - Updated pkg-config to 0.3.24
