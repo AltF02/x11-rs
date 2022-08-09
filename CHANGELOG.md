@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+ 
+### Changed
+
+## [2.20.0] - 2022-08-09
+### Added
 - XServerInterpretedAddress struct
 - xpresent module
 - sync module
