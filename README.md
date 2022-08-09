@@ -6,10 +6,6 @@
 
 `x11-dl`: [![](https://img.shields.io/crates/v/x11-dl.svg)](https://crates.io/crates/x11-dl)
 
-Hey everyone, have recently jumped on board here, still getting my head around things. I do apologise for any delays whilst I catch up to speed. Thanks for all the issues and PRs, keep them coming - Erle Pereira (updated: Sept 2019)
-
-A new [wiki page](https://github.com/AltF02/x11-rs/wiki) has been created with the intention of a detaling a roadmap and a focal point for a broader vision around this codebase.
-
 ## License
 
 Licensed under 
