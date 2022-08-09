@@ -12,9 +12,27 @@ repository = "https://github.com/AltF02/x11-rs.git"
 build = "build.rs"
 documentation = "https://docs.rs/x11"
 workspace = ".."
-edition = "2018"
+edition = "2021"
 
 [features]
+all = ["dpms", 
+        "glx", 
+        "xcursor", 
+        "xf86vmode", 
+        "xft", 
+        "xinerama", 
+        "xinput", 
+        "xlib", 
+        "xlib_xcb", 
+        "xmu", 
+        "xrandr", 
+        "xrecord",
+        "xrender", 
+        "xss", 
+        "xt", 
+        "xtest", 
+        "xtst", 
+        "dox"]
 dpms = []
 glx = []
 xcursor = []
@@ -39,4 +57,4 @@ dox = []
 libc = "0.2"
 
 [build-dependencies]
-pkg-config = "0.3.8"
+pkg-config = "0.3.24"

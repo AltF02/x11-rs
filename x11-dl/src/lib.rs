@@ -12,7 +12,6 @@
 extern crate lazy_static;
 
 extern crate libc;
-extern crate maybe_uninit;
 
 #[macro_use]
 mod link;
@@ -26,6 +25,7 @@ pub mod xlib;
 pub mod dpms;
 pub mod glx;
 pub mod keysym;
+pub mod sync;
 pub mod xcursor;
 pub mod xdamage;
 pub mod xf86vmode;
@@ -37,8 +37,10 @@ pub mod xinput2;
 pub mod xlib_xcb;
 pub mod xmd;
 pub mod xmu;
+pub mod xpresent;
 pub mod xrecord;
 pub mod xrender;
+pub mod xshm;
 pub mod xss;
 pub mod xt;
 pub mod xtest;

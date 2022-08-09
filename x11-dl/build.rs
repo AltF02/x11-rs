@@ -26,6 +26,7 @@ fn main() {
         ("xrandr", "xrandr"),
         ("xtst", "xtst"),
         ("xrender", "xrender"),
+        ("xpresent", "xpresent"),
         ("xscrnsaver", "xscrnsaver"),
         ("xt", "xt"),
     ];

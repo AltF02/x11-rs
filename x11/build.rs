@@ -24,6 +24,7 @@ fn main() {
         ("xmu", "1.1", "xmu"),
         ("xrandr", "1.5", "xrandr"),
         ("xrender", "0.9.6", "xrender"),
+        ("xpresent", "1", "xpresent"),
         ("xscrnsaver", "1.2", "xss"),
         ("xt", "1.1", "xt"),
         ("xtst", "1.2", "xtst"),

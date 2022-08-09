@@ -1,0 +1,7 @@
+- [ ] Tested on an x11 machine
+- [ ] Compilation warnings were addressed
+- [ ] `cargo fmt` has been run on this branch
+- [ ] `cargo doc` builds successfully
+- [ ] Added an entry to `CHANGELOG.md` if knowledge of this change could be valuable to users
+- [ ] Updated documentation to reflect any user-facing changes
+- [ ] Created or updated an example program if it would help users understand this functionality
