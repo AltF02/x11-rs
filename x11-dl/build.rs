@@ -15,7 +15,7 @@ fn main() {
         ("xext", "xext"),
         ("gl", "gl"),
         ("xcursor", "xcursor"),
-        ("xdamange", "xdamage"),
+        ("xdamage", "xdamage"),
         ("xxf86vm", "xxf86vm"),
         ("xft", "xft"),
         ("xinerama", "xinerama"),

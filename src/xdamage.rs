@@ -6,8 +6,8 @@ use std::os::raw::{
   c_ulong,
 };
 
-use ::xlib::XserverRegion;
-use ::xlib::{
+use crate::xlib::XserverRegion;
+use crate::xlib::{
   Bool,
   XID,
   XRectangle,
