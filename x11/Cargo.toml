@@ -19,6 +19,7 @@ all = ["dpms",
         "glx", 
         "xcursor", 
         "xf86vmode", 
+        "xfixes",
         "xft", 
         "xinerama", 
         "xinput", 
@@ -51,6 +52,7 @@ xt = []
 xtest = ["xtst"]
 xtst = []
 dox = []
+xfixes = []
 
 [dependencies]
 libc = "0.2"

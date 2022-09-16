@@ -17,6 +17,7 @@ fn main() {
         ("x11-xcb", "1.6", "xlib_xcb"),
         ("xcursor", "1.1", "xcursor"),
         ("xext", "1.3", "dpms"),
+        ("xfixes", "3.1", "xfixes"),
         ("xft", "2.1", "xft"),
         ("xi", "1.7", "xinput"),
         ("xinerama", "1.1", "xinerama"),
