@@ -1,6 +1,6 @@
 [package]
 name = "x11"
-version = "2.20.0"
+version = "2.20.1"
 authors = [
     "daggerbot <daggerbot@gmail.com>",
     "Erle Pereira <erle@erlepereira.com>",
@@ -19,6 +19,7 @@ all = ["dpms",
         "glx", 
         "xcursor", 
         "xf86vmode", 
+        "xfixes",
         "xft", 
         "xinerama", 
         "xinput", 
@@ -37,6 +38,7 @@ dpms = []
 glx = []
 xcursor = []
 xf86vmode = []
+xfixes = []
 xft = []
 xinerama = []
 xinput = []
