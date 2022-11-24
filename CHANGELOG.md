@@ -6,12 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- xfixes feature
  
 ### Changed
-
-## [2.20.1] - 2022-11-24
-### Added
-- xfixes feature
 
 ## [2.20.0] - 2022-08-09
 ### Added
