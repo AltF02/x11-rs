@@ -50,5 +50,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Field order in [_XkbStateRec](https://github.com/freedesktop/xorg-xserver/blob/master/include/xkbstr.h#L47) struct
 
-[Unreleased]: ../../compare/v2.19.1...HEAD
+[Unreleased]: ../../compare/v2.20.0...HEAD
 [2.19.1]: ../../compare/v2.19.0...v2.19.1
+[2.20.0]: ../../compare/v2.19.1...v2.20.0
