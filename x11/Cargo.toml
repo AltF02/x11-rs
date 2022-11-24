@@ -19,6 +19,7 @@ all = ["dpms",
         "glx", 
         "xcursor", 
         "xf86vmode", 
+        "xfixes",
         "xft", 
         "xinerama", 
         "xinput", 
@@ -37,6 +38,7 @@ dpms = []
 glx = []
 xcursor = []
 xf86vmode = []
+xfixes = []
 xft = []
 xinerama = []
 xinput = []
