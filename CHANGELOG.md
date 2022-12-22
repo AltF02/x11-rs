@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+ - Fixed a bug that prevented the `XShm` module from loading.
+
 ## [2.20.1] - 2022-11-24
 ### Added
 - xfixes feature

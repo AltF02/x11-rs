@@ -11,7 +11,7 @@ x11_link! { Xext, xext, ["libXext.so.6", "libXext.so"], 10,
     pub fn XShmPutImage(_11: *mut Display, _10: Drawable, _9: GC, _8: *mut XImage, _7: c_int, _6: c_int, _5: c_int, _4: c_int, _3: c_uint, _2: c_uint, _1: Bool) -> Bool,
     pub fn XShmGetImage(_6: *mut Display, _5: Drawable, _4: *mut XImage, _3: c_int, _2: c_int, _1: c_uint) -> Bool,
     pub fn XShmCreateImage(_8: *mut Display, _7: *mut Visual, _6: c_uint, _5: c_int, _4: *mut c_char, _3: *mut XShmSegmentInfo, _2: c_uint, _1: c_uint) -> *mut XImage,
-    pub fn XShmCreatePixMap(_7: *mut Display, _6: Drawable, _5: *mut c_char, _4: *mut XShmSegmentInfo, _3: c_uint, _2: c_uint, _1: c_uint) -> Pixmap,
+    pub fn XShmCreatePixmap(_7: *mut Display, _6: Drawable, _5: *mut c_char, _4: *mut XShmSegmentInfo, _3: c_uint, _2: c_uint, _1: c_uint) -> Pixmap,
 
 variadic:
 globals:
