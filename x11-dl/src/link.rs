@@ -22,9 +22,9 @@ macro_rules! x11_link {
     globals:
     $(pub static $var_name:ident : $var_type:ty,)*
   } => {
+    #[non_exhaustive]
+    #[derive(Copy, Clone)]
     pub struct $struct_name {
-      #[allow(dead_code)]
-      lib: crate::link::DynamicLibrary,
       $(pub $fn_name: unsafe extern "C" fn ($($param_type),*) -> $ret_type,)*
       $(pub $vfn_name: unsafe extern "C" fn ($($vparam_type),+, ...) -> $vret_type,)*
       $(pub $var_name: *mut $var_type,)*
@@ -34,31 +34,28 @@ macro_rules! x11_link {
     unsafe impl Sync for $struct_name {}
 
     impl $struct_name {
-      unsafe fn init (this: *mut Self) -> Result<(), $crate::error::OpenError> {
-        lazy_static! {
-          static ref SYMS: [(&'static str, usize); $nsyms] = unsafe {[
-            $((stringify!($fn_name), &((*core::ptr::null::<$struct_name>()).$fn_name) as *const _ as usize),)*
-            $((stringify!($vfn_name), &((*core::ptr::null::<$struct_name>()).$vfn_name) as *const _ as usize),)*
-            $((stringify!($var_name), &((*core::ptr::null::<$struct_name>()).$var_name) as *const _ as usize),)*
-          ]};
-        }
-        let offset = this as usize;
-        for &(name, sym_offset) in SYMS.iter() {
-          *((offset + sym_offset) as *mut *mut _) = (*this).lib.symbol(name)?;
-        }
-        Ok(())
-      }
-
       pub fn open () -> Result<$struct_name, $crate::error::OpenError> {
-        unsafe {
-          let libdir = $crate::link::config::libdir::$pkg_name;
-          let lib = $crate::link::DynamicLibrary::open_multi(libdir, &[$($lib_name),*])?;
-          let mut this = ::std::mem::MaybeUninit::<$struct_name>::uninit();
-          let this_ptr = this.as_mut_ptr();
-          ::std::ptr::write(&mut (*this_ptr).lib, lib);
-          Self::init(this_ptr)?;
-          Ok(this.assume_init())
-        }
+        /// Cached function pointers and global variables for X11 libraries.
+        static CACHED: once_cell::sync::OnceCell<($crate::link::DynamicLibrary, $struct_name)> = once_cell::sync::OnceCell::new();
+
+        // Use the cached library or open a new one.
+        let (_, funcs) = CACHED.get_or_try_init(|| {
+          unsafe {
+            let libdir = $crate::link::config::libdir::$pkg_name;
+            let lib = $crate::link::DynamicLibrary::open_multi(libdir, &[$($lib_name),*])?;
+
+            // Load every function pointer.
+            let funcs = $struct_name {
+              $($fn_name: ::std::mem::transmute(lib.symbol(stringify!($fn_name))?),)*
+              $($vfn_name: ::std::mem::transmute(lib.symbol(stringify!($vfn_name))?),)*
+              $($var_name: ::std::mem::transmute(lib.symbol(stringify!($var_name))?),)*
+            };
+
+            Ok((lib, funcs))
+          }
+        })?;
+
+        Ok(*funcs)
       }
     }
   };
@@ -176,9 +173,12 @@ impl DynamicLibrary {
 }
 
 impl Drop for DynamicLibrary {
-    fn drop(&mut self) {
-        unsafe {
-            libc::dlclose(self.handle as *mut _);
-        }
+  fn drop (&mut self) {
+    unsafe {
+      libc::dlclose(self.handle as *mut _);
     }
+  }
 }
+
+unsafe impl Send for DynamicLibrary {}
+unsafe impl Sync for DynamicLibrary {}
