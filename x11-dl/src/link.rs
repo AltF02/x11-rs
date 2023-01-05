@@ -22,9 +22,9 @@ macro_rules! x11_link {
     globals:
     $(pub static $var_name:ident : $var_type:ty,)*
   } => {
-    #[non_exhaustive]
-    #[derive(Copy, Clone)]
+    #[allow(clippy::manual_non_exhaustive)]
     pub struct $struct_name {
+      _private: (),
       $(pub $fn_name: unsafe extern "C" fn ($($param_type),*) -> $ret_type,)*
       $(pub $vfn_name: unsafe extern "C" fn ($($vparam_type),+, ...) -> $vret_type,)*
       $(pub $var_name: *mut $var_type,)*
@@ -46,6 +46,7 @@ macro_rules! x11_link {
 
             // Load every function pointer.
             let funcs = $struct_name {
+              _private: (),
               $($fn_name: ::std::mem::transmute(lib.symbol(stringify!($fn_name))?),)*
               $($vfn_name: ::std::mem::transmute(lib.symbol(stringify!($vfn_name))?),)*
               $($var_name: ::std::mem::transmute(lib.symbol(stringify!($var_name))?),)*
@@ -55,7 +56,12 @@ macro_rules! x11_link {
           }
         })?;
 
-        Ok(*funcs)
+        Ok($struct_name {
+          _private: (),
+          $($fn_name: funcs.$fn_name,)*
+          $($vfn_name: funcs.$vfn_name,)*
+          $($var_name: funcs.$var_name,)*
+        })
       }
     }
   };
