@@ -8,9 +8,6 @@
 #![allow(deref_nullptr)]
 #![allow(clippy::missing_safety_doc)]
 
-#[macro_use]
-extern crate lazy_static;
-
 extern crate libc;
 
 #[macro_use]
