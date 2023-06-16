@@ -11,7 +11,7 @@ use std::os::raw::{c_int, c_uint, c_ulong};
 // functions
 //
 
-x11_link! { Xss, xscrnsaver, ["libXss.so.2", "libXss.so"], 11,
+x11_link! { Xss, xscrnsaver, ["libXss.so.2", "libXss.so", "libXss.2.dylib", "libXss.dylib"], 11,
   pub fn XScreenSaverQueryExtension (_1: *mut Display, _2: *mut c_int, _3: *mut c_int) -> Bool,
   pub fn XScreenSaverQueryVersion (_1: *mut Display, _2: *mut c_int, _3: *mut c_int) -> Status,
   pub fn XScreenSaverAllocInfo () -> *mut XScreenSaverInfo,

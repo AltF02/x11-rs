@@ -11,7 +11,7 @@ use super::xlib::{Display, Visual, GC};
 // functions
 //
 
-x11_link! { Xf86vmode, xtst, ["libXtst.so.6", "libXtst.so"], 15,
+x11_link! { Xf86vmode, xtst, ["libXtst.so.6", "libXtst.so", "libXtst.6.dylib", "libXtst.dylib"], 15,
   pub fn XTestCompareCurrentCursorWithWindow (_2: *mut Display, _1: c_ulong) -> c_int,
   pub fn XTestCompareCursorWithWindow (_3: *mut Display, _2: c_ulong, _1: c_ulong) -> c_int,
   pub fn XTestDiscard (_1: *mut Display) -> c_int,

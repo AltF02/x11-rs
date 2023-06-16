@@ -13,7 +13,7 @@ use crate::xrandr::RRCrtc;
 // functions
 //
 
-x11_link! { Xpresent, xpresent, ["libXpresent.so.1.0.0", "libXpresent.so"], 8,
+x11_link! { Xpresent, xpresent, ["libXpresent.so.1.0.0", "libXpresent.so", "libXpresent.1.0.0.dylib", "libXpresent.dylib"], 8,
     pub fn XPresentQueryExtension( dpy: *mut Display, major_opcode_return: *mut c_int, event_base_return: *mut c_int, error_base_return: *mut c_int) -> Bool,
     pub fn XPresentQueryVersion( dpy: *mut Display, major_version_return: *mut c_int, minor_version_return: *mut c_int ) -> Status,
     pub fn XPresentVersion() -> c_int,

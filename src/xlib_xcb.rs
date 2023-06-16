@@ -1,7 +1,6 @@
 use super::xlib::Display;
 use std::os::raw::c_void;
-
-x11_link! { Xlib_xcb, xlib_xcb, ["libX11-xcb.so.1", "libX11-xcb.so"], 2,
+x11_link! { Xlib_xcb, xlib_xcb, ["libX11-xcb.so.1", "libX11-xcb.so", "libX11-xcb.1.dylib", "libX11-xcb.dylib", "libX11-xcb.1.dylib", "libX11-xcb.dylib"], 2,
     pub fn XGetXCBConnection(_1: *mut Display) -> *mut xcb_connection_t,
     pub fn XSetEventQueueOwner(_1: *mut Display, _2: XEventQueueOwner) -> (),
     variadic:

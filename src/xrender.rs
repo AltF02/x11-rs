@@ -10,7 +10,7 @@ use super::xlib::{Atom, Bool, Colormap, Cursor, Display, Pixmap, Region, Visual,
 // functions
 //
 
-x11_link! { Xrender, xrender, ["libXrender.so.1", "libXrender.so"], 44,
+x11_link! { Xrender, xrender, ["libXrender.so.1", "libXrender.so", "libXrender.1.dylib", "libXrender.dylib"], 44,
   pub fn XRenderAddGlyphs (_7: *mut Display, _6: c_ulong, _5: *const c_ulong, _4: *const XGlyphInfo, _3: c_int, _2: *const c_char, _1: c_int) -> (),
   pub fn XRenderAddTraps (_6: *mut Display, _5: c_ulong, _4: c_int, _3: c_int, _2: *const XTrap, _1: c_int) -> (),
   pub fn XRenderChangePicture (_4: *mut Display, _3: c_ulong, _2: c_ulong, _1: *const XRenderPictureAttributes) -> (),

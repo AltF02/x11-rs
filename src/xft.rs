@@ -39,7 +39,7 @@ pub enum FcResult {
 // functions
 //
 
-x11_link! { Xft, xft, ["libXft.so.2", "libXft.so"], 77,
+x11_link! { Xft, xft, ["libXft.so.2", "libXft.so", "libXft.2.dylib", "libXft.dylib"], 77,
     pub fn XftCharExists (_2: *mut Display, _1: *mut XftFont, _0: c_uint) -> c_int,
     pub fn XftCharFontSpecRender (_7: *mut Display, _6: c_int, _5: c_ulong, _4: c_ulong, _3: c_int, _2: c_int, _1: *const XftCharFontSpec, _0: c_int) -> (),
     pub fn XftCharIndex (_2: *mut Display, _1: *mut XftFont, _0: c_uint) -> c_uint,

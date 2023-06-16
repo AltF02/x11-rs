@@ -9,7 +9,7 @@ use libc::{c_char, c_int, c_short, c_uint, c_ulong, c_ushort};
 // functions
 //
 
-x11_link! { Xlib, x11, ["libXfixes.so.3", "libXfixes.so"], 35,
+x11_link! { Xlib, x11, ["libXfixes.so.3", "libXfixes.so", "libXfixes.3.dylib", "libXfixes.dylib"], 35,
     pub fn XFixesQueryExtension(dpy: *mut Display, event_base: *mut c_int, error_base: *mut c_int) -> Bool,
     pub fn XFixesQueryVersion(dpy: *mut Display, major_version: *mut c_int, minor_version: *const c_int) -> Status,
     pub fn XFixesVersion() -> c_int,

@@ -11,7 +11,7 @@ use super::xmd::{BOOL, CARD16};
 // functions
 //
 
-x11_link! { Xext, xext, ["libXext.so.6", "libXext.so"], 9,
+x11_link! { Xext, xext, ["libXext.so.6", "libXext.so", "libXext.6.dylib", "libXext.dylib"], 9,
   pub fn DPMSQueryExtension (_1: *mut Display, _2: *mut c_int, _3: *mut c_int) -> Bool,
   pub fn DPMSGetVersion (_1: *mut Display, _2: *mut c_int, _3: *mut c_int) -> Status,
   pub fn DPMSCapable (_1: *mut Display) -> Bool,

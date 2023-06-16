@@ -15,7 +15,7 @@ use super::xt::{Widget, XtAppContext};
 // functions
 //
 
-x11_link! { Xmu, xmu, ["libXmu.so.6", "libXmu.so"], 132,
+x11_link! { Xmu, xmu, ["libXmu.so.6", "libXmu.so", "libXmu.6.dylib", "libXmu.dylib"], 132,
   pub fn XmuAddCloseDisplayHook (_3: *mut Display, _2: Option<unsafe extern "C" fn (*mut Display, *mut c_char) -> c_int>, _1: *mut c_char) -> *mut c_char,
   pub fn XmuAddInitializer (_2: Option<unsafe extern "C" fn (XtAppContext, *mut c_char)>, _1: *mut c_char) -> (),
   pub fn XmuAllStandardColormaps (_1: *mut Display) -> c_int,

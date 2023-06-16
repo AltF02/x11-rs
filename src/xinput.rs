@@ -10,7 +10,7 @@ use super::xlib::{Atom, Display, Time, XEvent, XModifierKeymap, XID};
 // functions
 //
 
-x11_link! { XInput, xi, ["libXi.so.6", "libXi.so"], 44,
+x11_link! { XInput, xi, ["libXi.so.6", "libXi.so", "libXi.6.dylib", "libXi.dylib"], 44,
   pub fn XAllowDeviceEvents (_4: *mut Display, _3: *mut XDevice, _2: c_int, _1: c_ulong) -> c_int,
   pub fn XChangeDeviceControl (_4: *mut Display, _3: *mut XDevice, _2: c_int, _1: *mut XDeviceControl) -> c_int,
   pub fn XChangeDeviceDontPropagateList (_5: *mut Display, _4: c_ulong, _3: c_int, _2: *mut c_ulong, _1: c_int) -> c_int,
