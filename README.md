@@ -6,6 +6,10 @@
 
 `x11-dl`: [![](https://img.shields.io/crates/v/x11-dl.svg)](https://crates.io/crates/x11-dl)
 
+## FAQ:
+* What is the difference between `x11` and `x11-dl`? x11 is statically linked, x11-dl is dynamically linked.
+* What if I just want to basic calls to `xlib`? This crate provides calls to most x11 api's, if you want to do basic calls, take a look at https://github.com/notgull/tiny-xlib
+
 ## License
 
 Licensed under 
@@ -20,5 +24,3 @@ Licensed under
 The X11 libraries written in C are available under the terms of the MIT license.
 These bindings are available as public domain.
 
-As of 2017 I don't have as much time to work on this myself as I once did (due to school and work,
-both full time), but feel free to submit a pull request if anything you need is missing!
