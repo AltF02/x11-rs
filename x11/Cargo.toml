@@ -36,6 +36,7 @@ all = ["dpms",
         "dox"]
 dpms = []
 glx = []
+none-symbol = ["xlib"]
 xcursor = []
 xf86vmode = []
 xfixes = []

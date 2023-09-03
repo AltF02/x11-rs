@@ -14,6 +14,9 @@ documentation = "https://docs.rs/x11-dl"
 workspace = ".."
 edition = "2021"
 
+[features]
+none-symbol = []
+
 [dependencies]
 libc = "0.2"
 once_cell = "1.17.0"
