@@ -10,7 +10,7 @@ use super::xlib::{Display, XVisualInfo, XID};
 // functions
 //
 
-x11_link! { Glx, gl, ["libGL.so.1", "libGL.so"], 40,
+x11_link! { Glx, gl, ["libGL.so.1", "libGL.so", "libGL.1.dylib", "libGL.dylib"], 40,
   pub fn glXChooseFBConfig (_4: *mut Display, _3: c_int, _2: *const c_int, _1: *mut c_int) -> *mut GLXFBConfig,
   pub fn glXChooseVisual (_3: *mut Display, _2: c_int, _1: *mut c_int) -> *mut XVisualInfo,
   pub fn glXCopyContext (_4: *mut Display, _3: GLXContext, _2: GLXContext, _1: c_ulong) -> (),

@@ -10,7 +10,7 @@ use super::xlib::{Bool, Display, Time, Window, XEvent};
 // functions
 //
 
-x11_link! { Xf86vmode, xxf86vm, ["libXxf86vm.so.1", "libXxf86vm.so"], 22,
+x11_link! { Xf86vmode, xxf86vm, ["libXxf86vm.so.1", "libXxf86vm.so", "libXxf86vm.1.dylib", "libXxf86vm.dylib"], 22,
   pub fn XF86VidModeAddModeLine (_4: *mut Display, _3: c_int, _2: *mut XF86VidModeModeInfo, _1: *mut XF86VidModeModeInfo) -> c_int,
   pub fn XF86VidModeDeleteModeLine (_3: *mut Display, _2: c_int, _1: *mut XF86VidModeModeInfo) -> c_int,
   pub fn XF86VidModeGetAllModeLines (_4: *mut Display, _3: c_int, _2: *mut c_int, _1: *mut *mut *mut XF86VidModeModeInfo) -> c_int,

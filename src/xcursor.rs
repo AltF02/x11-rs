@@ -11,7 +11,7 @@ use crate::xlib::{Cursor, Display, XColor, XImage};
 // functions
 //
 
-x11_link! { Xcursor, xcursor, ["libXcursor.so.1", "libXcursor.so"], 59,
+x11_link! { Xcursor, xcursor, ["libXcursor.so.1", "libXcursor.so", "libXcursor.dylib.1", "libXcursor.dylib", "libXcursor.1.dylib", "libXcursor.dylib"], 59,
   pub fn XcursorAnimateCreate (_1: *mut XcursorCursors) -> *mut XcursorAnimate,
   pub fn XcursorAnimateDestroy (_1: *mut XcursorAnimate) -> (),
   pub fn XcursorAnimateNext (_1: *mut XcursorAnimate) -> c_ulong,

@@ -10,7 +10,7 @@ use crate::xlib::{Bool, Display, Drawable, Status, Time, XID};
 // functions
 //
 
-x11_link! { Xext, xext, ["libXext.so.6", "libXext.so"], 38,
+x11_link! { Xext, xext, ["libXext.so.6", "libXext.so", "libXext.6.dylib", "libXext.dylib"], 38,
     pub fn XSyncQueryExtension(dpy: *mut Display, event_base: *mut c_int, error_base: *mut c_int) -> Status,
     pub fn XSyncInitialize(dpy: *mut Display, major_version: *mut c_int, minor_version: *mut c_int) -> Status,
     pub fn XSyncListSystemCounters(dpy: *mut Display, n_counters: *mut c_int) -> *mut XSyncSystemCounter,

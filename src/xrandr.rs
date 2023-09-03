@@ -11,7 +11,7 @@ use super::xrender::{XFixed, XTransform};
 // functions
 //
 
-x11_link! { Xrandr, xrandr, ["libXrandr.so.2", "libXrandr.so"], 70,
+x11_link! { Xrandr, xrandr, ["libXrandr.so.2", "libXrandr.so", "libXrandr.2.dylib", "libXrandr.dylib", "libXrandr.2.dylib", "libXrandr.dylib"], 70,
     pub fn XRRAddOutputMode (dpy: *mut Display, output: RROutput, mode: RRMode) -> (),
     pub fn XRRAllocGamma (size: c_int) -> *mut XRRCrtcGamma,
     pub fn XRRAllocModeInfo (name: *const c_char, nameLength: c_int) -> *mut XRRModeInfo,

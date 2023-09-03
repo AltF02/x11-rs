@@ -10,7 +10,7 @@ use super::xlib::{Bool, Display, Drawable, Status, Window, XID};
 // functions
 //
 
-x11_link! { Xlib, xinerama, ["libXinerama.so.1", "libXinerama.so"], 10,
+x11_link! { Xlib, xinerama, ["libXinerama.so.1", "libXinerama.so", "libXinerama.1.dylib", "libXinerama.dylib"], 10,
   pub fn XineramaIsActive (dpy: *mut Display) -> Bool,
   pub fn XineramaQueryExtension (dpy: *mut Display, event_base: *mut c_int, error_base: *mut c_int) -> Bool,
   pub fn XineramaQueryScreens (dpy: *mut Display, number: *mut c_int) -> *mut XineramaScreenInfo,

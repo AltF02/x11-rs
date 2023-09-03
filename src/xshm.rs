@@ -1,7 +1,7 @@
 use super::xlib::{Bool, Display, Drawable, Pixmap, Visual, XImage, GC};
 use std::os::raw::{c_char, c_int, c_uint, c_ulong};
 
-x11_link! { Xext, xext, ["libXext.so.6", "libXext.so"], 10,
+x11_link! { Xext, xext, ["libXext.so.6", "libXext.so", "libXext.6.dylib", "libXext.dylib"], 10,
     pub fn XShmQueryExtension(_1: *mut Display) -> Bool,
     pub fn XShmGetEventBase(_1: *mut Display) -> c_int,
     pub fn XShmQueryVersion(_4: *mut Display, _3: *mut c_int, _2: *mut c_int, _1: *mut Bool) -> Bool,
