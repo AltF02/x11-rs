@@ -37,6 +37,7 @@ all = ["dpms",
 dpms = []
 glx = []
 xcursor = []
+xdamage = []
 xf86vmode = []
 xfixes = []
 xft = []

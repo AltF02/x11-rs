@@ -15,6 +15,7 @@ fn main() {
         ("gl", "1", "glx"),
         ("x11", "1.4.99.1", "xlib"),
         ("x11-xcb", "1.6", "xlib_xcb"),
+        ("xdamage", "1.1.0", "xdamage"),
         ("xcursor", "1.1", "xcursor"),
         ("xext", "1.3", "dpms"),
         ("xfixes", "3.1", "xfixes"),

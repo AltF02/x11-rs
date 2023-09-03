@@ -24,6 +24,7 @@ pub mod glx;
 pub mod keysym;
 pub mod sync;
 pub mod xcursor;
+pub mod xdamage;
 pub mod xf86vmode;
 pub mod xfixes;
 pub mod xft;
