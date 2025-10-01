@@ -1,6 +1,6 @@
 [package]
 name = "x11"
-version = "2.21.0"
+version = "2.21.999"
 authors = [
     "daggerbot <daggerbot@gmail.com>",
     "Erle Pereira <erle@erlepereira.com>",
@@ -53,6 +53,13 @@ xt = []
 xtest = ["xtst"]
 xtst = []
 dox = []
+
+# Enable static linking of X11 dependencies.
+static = []
+
+# Disable linking of X11 libraries. Useful to skip build errors in situations
+# where this library might be pulled in, but not actually used.
+skip-buildrs = []
 
 [dependencies]
 libc = "0.2"

@@ -15,8 +15,31 @@ macro_rules! x11_link {
       $(pub fn $vfn_name ($($vparam_name : $vparam_type),+, ...) -> $vret_type;)*
     }
 
-    extern {
+    extern "C" {
       $(pub static $var_name : $var_type;)*
+    }
+
+    #[allow(unused)]
+    #[allow(clippy::manual_non_exhaustive)]
+    pub struct $struct_name {
+      _private: (),
+      $(pub $fn_name: unsafe extern "C" fn ($($param_type),*) -> $ret_type,)*
+      $(pub $vfn_name: unsafe extern "C" fn ($($vparam_type),+, ...) -> $vret_type,)*
+      $(pub $var_name: *mut $var_type,)*
+    }
+
+    unsafe impl Send for $struct_name {}
+    unsafe impl Sync for $struct_name {}
+
+    impl $struct_name {
+      pub fn open () -> Result<$struct_name, $crate::error::OpenError> {
+        Ok($struct_name {
+          _private: (),
+          $($fn_name: $fn_name,)*
+          $($vfn_name: $vfn_name,)*
+          $($var_name: unsafe { ::std::mem::transmute($var_name) },)*
+        })
+      }
     }
   }
 }

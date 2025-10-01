@@ -179,11 +179,11 @@ impl DynamicLibrary {
 }
 
 impl Drop for DynamicLibrary {
-  fn drop (&mut self) {
-    unsafe {
-      libc::dlclose(self.handle as *mut _);
+    fn drop(&mut self) {
+        unsafe {
+            libc::dlclose(self.handle as *mut _);
+        }
     }
-  }
 }
 
 unsafe impl Send for DynamicLibrary {}

@@ -8,6 +8,7 @@ x11_link! { Xlib_xcb, xlib_xcb, ["libX11-xcb.so.1", "libX11-xcb.so"], 2,
     globals:
 }
 
+#[repr(C)]
 pub enum XEventQueueOwner {
     XlibOwnsEventQueue = 0,
     XCBOwnsEventQueue = 1,

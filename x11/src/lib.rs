@@ -11,6 +11,8 @@
 
 extern crate libc;
 
+pub mod error;
+
 #[macro_use]
 mod link;
 mod internal;
